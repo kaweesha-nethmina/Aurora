@@ -1,73 +1,42 @@
-// Path: restaurant/services/menuService.ts
-
-export interface MenuItem {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-    category: string;
-    foodCode: string;  // Add this if not already present
+export const fetchMenuItems = async () => {
+  const response = await fetch('/api/menu-items'); // Update with your actual API endpoint
+  if (!response.ok) {
+    throw new Error('Failed to fetch menu items');
   }
-  
-  export const fetchMenuItems = async (): Promise<MenuItem[]> => {
-    // Example data, replace with real API call
-    return [
-      {
-        id: '1',
-        name: 'Cheese Pizza',
-        description: 'Delicious cheese pizza with a crispy crust.',
-        price: 12.99,
-        image: 'https://i.pinimg.com/736x/c3/77/dd/c377dd4a65a53c9824754ce53a9f30e1.jpg',
-        category: 'Main Course',
-        foodCode: 'F001',
-      },
-      {
-        id: '1',
-        name: 'Cheese Pizza',
-        description: 'Delicious cheese pizza with a crispy crust.',
-        price: 12.99,
-        image: 'https://i.pinimg.com/736x/c3/77/dd/c377dd4a65a53c9824754ce53a9f30e1.jpg',
-        category: 'Main Course',
-        foodCode: 'F001',
-      },
-      {
-        id: '1',
-        name: 'Cheese Pizza',
-        description: 'Delicious cheese pizza with a crispy crust.',
-        price: 12.99,
-        image: 'https://i.pinimg.com/736x/c3/77/dd/c377dd4a65a53c9824754ce53a9f30e1.jpg',
-        category: 'Main Course',
-        foodCode: 'F001',
-      },
-      {
-        id: '1',
-        name: 'Cheese Pizza',
-        description: 'Delicious cheese pizza with a crispy crust.',
-        price: 12.99,
-        image: 'https://i.pinimg.com/736x/c3/77/dd/c377dd4a65a53c9824754ce53a9f30e1.jpg',
-        category: 'Main Course',
-        foodCode: 'F001',
-      },
-      {
-        id: '1',
-        name: 'Cheese Pizza',
-        description: 'Delicious cheese pizza with a crispy crust.',
-        price: 12.99,
-        image: 'https://i.pinimg.com/736x/c3/77/dd/c377dd4a65a53c9824754ce53a9f30e1.jpg',
-        category: 'Main Course',
-        foodCode: 'F001',
-      },
-      {
-        id: '1',
-        name: 'Cheese Pizza',
-        description: 'Delicious cheese pizza with a crispy crust.',
-        price: 12.99,
-        image: 'https://i.pinimg.com/736x/c3/77/dd/c377dd4a65a53c9824754ce53a9f30e1.jpg',
-        category: 'Main Course',
-        foodCode: 'F001',
-      },
-      // More items...
-    ];
-  };
-  
+  return response.json();
+};
+
+export const deleteMenuItem = async (id: number) => {
+  const response = await fetch(`/api/menu-items/${id}`, {
+    method: 'DELETE',
+  });
+  if (!response.ok) {
+    throw new Error('Failed to delete menu item');
+  }
+};
+
+export const addMenuItem = async (menuItem: any) => {
+  const response = await fetch('/api/menu-items', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(menuItem),
+  });
+  if (!response.ok) {
+    throw new Error('Failed to add menu item');
+  }
+};
+
+export const editMenuItem = async (menuItem: any) => {
+  const response = await fetch(`/api/menu-items/${menuItem.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(menuItem),
+  });
+  if (!response.ok) {
+    throw new Error('Failed to edit menu item');
+  }
+};

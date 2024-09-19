@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MenuDetails.css';
 
 interface MenuItem {
@@ -12,43 +12,46 @@ interface MenuItem {
 }
 
 const MenuDetails: React.FC = () => {
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([
-    {
-      id: 1,
-      image: 'https://via.placeholder.com/100',
-      name: 'Burger',
-      price: 10.99,
-      description: 'A juicy burger with all the fixings',
-      category: 'Main Course',
-      foodCode: 'BUR001',
-    },
-    {
-      id: 2,
-      image: 'https://via.placeholder.com/100',
-      name: 'Pizza',
-      price: 14.99,
-      description: 'A delicious pizza with your choice of toppings',
-      category: 'Main Course',
-      foodCode: 'PIZ001',
-    },
-    {
-      id: 3,
-      image: 'https://via.placeholder.com/100',
-      name: 'Salad',
-      price: 8.99,
-      description: 'A fresh mix of greens with your choice of toppings',
-      category: 'Side Dish',
-      foodCode: 'SAL001',
-    },
-  ]);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  // Fetch menu items from the API
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/menu'); // Update with your endpoint
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        setMenuItems(data);
+      } catch (error) {
+        console.error('Error fetching menu items:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenuItems();
+  }, []);
 
   const handleEdit = (id: number) => {
     console.log(`Editing menu item with id ${id}`);
+    // Implement your edit functionality here
   };
 
-  const handleDelete = (id: number) => {
-    setMenuItems(menuItems.filter((menuItem) => menuItem.id !== id));
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/menu/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error('Failed to delete the menu item');
+
+      setMenuItems((prevItems) => prevItems.filter((menuItem) => menuItem.id !== id));
+    } catch (error) {
+      console.error('Error deleting menu item:', error);
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="menu-details">
@@ -77,18 +80,8 @@ const MenuDetails: React.FC = () => {
               <td className="table-cell">{menuItem.category}</td>
               <td className="table-cell">{menuItem.foodCode}</td>
               <td className="table-cell">
-                <button
-                  className="edit-button"
-                  onClick={() => handleEdit(menuItem.id)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(menuItem.id)}
-                >
-                  Delete
-                </button>
+                <button className="edit-button" onClick={() => handleEdit(menuItem.id)}>Edit</button>
+                <button className="delete-button" onClick={() => handleDelete(menuItem.id)}>Delete</button>
               </td>
             </tr>
           ))}
