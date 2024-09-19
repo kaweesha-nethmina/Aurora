@@ -1,0 +1,41 @@
+
+
+.employee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333; /* Dark background for the header */
+    padding: 15px;
+    color: white;
+    width: 1520px;
+    height: 70px;
+    margin-left: -120px;
+  }
+  
+  
+  .nav-links {
+    display: flex;
+    gap: 20px; /* Space between the links */
+    justify-content: center; /* Center the links horizontally */
+    flex-grow: 1; /* Allow the nav-links to grow and take available space */
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px; /* Rounded corners for better appearance */
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #d4af37; /* Gold color on hover */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background change on hover */
+  }
+  
+  .nav-links a.active {
+    font-weight: bold;
+    color: #d4af37; /* Gold color for the active tab */
+    background-color: rgba(255, 255, 255, 0.2); /* Slight background change for active tab */
+  }
+  

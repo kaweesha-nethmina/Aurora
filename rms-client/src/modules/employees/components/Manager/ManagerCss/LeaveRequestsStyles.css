@@ -1,0 +1,114 @@
+/* Container for the leave requests */
+.leaveRequestsContainer {
+  top: 60px !important;
+  background-color: #ffffff; /* White background for the container */
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 20px; /* Padding inside the container */
+  max-width: 1200px; /* Increased maximum width for better readability */
+  margin: auto; /* Center the container horizontally */
+  overflow-x: auto; /* Add horizontal scroll if content overflows */
+}
+
+/* Header of the leave requests section */
+.leaveRequestsHeader {
+  font-size: 1.75rem; /* Larger text for the header */
+  font-weight: bold; /* Bold text for emphasis */
+  color: #333; /* Dark gray text color */
+  margin-bottom: 24px; /* More space below the header */
+  text-align: center; /* Center align the header */
+}
+
+/* Table styling */
+.leaveRequestsTable {
+  width: 100%; /* Full width of the container */
+  border-collapse: collapse; /* Collapse table borders */
+}
+
+/* Table header styling */
+.tableHeader {
+  padding: 12px; /* Padding inside header cells */
+  border-bottom: 2px solid #ddd; /* Border below header cells */
+  font-weight: bold; /* Bold text in header cells */
+  text-align: left; /* Align text to the left */
+  color: #555; /* Dark gray text color */
+}
+
+/* Table row styling */
+.leaveRequestsTable tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Alternating row background color */
+}
+
+.leaveRequestsTable td {
+  padding: 12px; /* Padding inside cells */
+  border-bottom: 1px solid #ddd; /* Border below cells */
+  color: #333; /* Dark gray text color */
+}
+
+/* Action buttons styling */
+.actionButtons {
+  display: flex; /* Use flexbox for button alignment */
+  gap: 8px; /* Space between buttons */
+  justify-content: center; /* Center align the action buttons */
+}
+
+.approveButton,
+.rejectButton {
+  padding: 8px 16px; /* Padding inside the buttons */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners for buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 0.875rem; /* Slightly smaller font size */
+}
+
+.approveButton {
+  background-color: #4caf50; /* Green background for approve button */
+  color: white; /* White text color */
+}
+
+.rejectButton {
+  background-color: #f44336; /* Red background for reject button */
+  color: white; /* White text color */
+}
+
+/* Hover effect for buttons */
+.approveButton:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.rejectButton:hover {
+  background-color: #e53935; /* Darker red on hover */
+}
+.delete-buttonL {
+  padding: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #f44336 !important; /* Red color for the delete icon */
+  font-size: 1.2rem; /* Adjust size if needed */
+}
+
+/* Hover effect for delete icon */
+.delete-buttonL:hover {
+  color: #e53935; /* Darker red on hover */
+}
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .leaveRequestsContainer {
+    padding: 16px; /* Reduced padding on smaller screens */
+  }
+
+  .leaveRequestsHeader {
+    font-size: 1.5rem; /* Smaller header text on smaller screens */
+    margin-bottom: 16px; /* Reduced space below the header */
+  }
+
+  .approveButton,
+  .rejectButton {
+    padding: 6px 12px; /* Smaller padding on buttons */
+  }
+
+  .leaveRequestsTable {
+    font-size: 0.875rem; /* Smaller font size in the table */
+  }
+}

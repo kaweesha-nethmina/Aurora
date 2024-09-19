@@ -1,0 +1,31 @@
+/* Path: restaurant/components/Menu/menu.css */
+/* Path: restaurant/components/Menu/menu.css */
+.menu {
+    padding: 20px;
+  }
+  
+  .menu-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  /* Path: restaurant/components/Menu/menuItem.css */
+  .menu-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .menu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .menu-item h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+  }
+  

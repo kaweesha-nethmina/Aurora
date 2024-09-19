@@ -1,0 +1,126 @@
+.profile-tab {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* For positioning the edit icon */
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-title {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+}
+
+.profile-role {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0;
+}
+
+.profile-department {
+  font-size: 1rem;
+  color: #777;
+  margin: 5px 0;
+}
+
+.profile-details {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.profile-details p {
+  margin: 10px 0;
+}
+
+.profile-socials {
+  margin-top: 20px;
+}
+
+.social-link {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.social-link.linkedin {
+  background-color: #0077b5;
+}
+
+.social-link.github {
+  background-color: #333;
+}
+
+.social-link:hover {
+  background-color: #005582;
+  transform: scale(1.05);
+}
+
+.edit-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: #B3A06D;
+  cursor: pointer;
+}
+
+.edit-icon:hover {
+  color: #0056b3;
+}
+
+.profile-edit-form {
+  margin-top: 20px;
+}
+
+.profile-edit-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.profile-edit-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.save-button {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}

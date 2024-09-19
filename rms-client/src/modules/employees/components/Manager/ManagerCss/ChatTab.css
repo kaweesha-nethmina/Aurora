@@ -1,0 +1,95 @@
+/* src/components/Manager/ManagerCss/ChatTab.css */
+
+.chat-tab {
+  top: 35px !important;
+  background-color: #ffffff;
+  border-radius: 10px;
+  top: 40px;
+  padding: 20px;
+  width: 400px; /* Fixed width for the chat tab */
+  height: 600px; /* Fixed height for the chat tab */
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto; /* Center horizontally with margin */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  position: relative; /* For positioning delete button */
+}
+
+.chat-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px; /* Adjust margin for spacing */
+}
+
+.chat-messages {
+  flex: 1; /* Take up remaining space */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+  margin-bottom: 15px; /* Adjust margin for spacing */
+  padding-right: 10px; /* Space for scrollbar */
+}
+
+.chat-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust margin for spacing */
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f4f4f8;
+  position: relative; /* For positioning delete button */
+}
+
+.delete-button2 {
+  background: none;
+  border: none;
+  color: rgb(252, 0, 0);
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 10px; /* Adjust size as needed */
+}
+
+.message-author {
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 5px;
+}
+
+.message-text {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  word-break: break-word; /* Handle long words */
+  text-align: center; /* Center the text */
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.send-button {
+  padding: 12px 24px;
+  background-color: #b3a06d;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.send-button:hover {
+  background-color: #57503c;
+}

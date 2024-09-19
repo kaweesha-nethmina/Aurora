@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #232323; /* Dark background for the header */
+  padding: 15px;
+  color: white;
+  height: 80px; /* Ensure consistent height */
+  width: calc(100% - 250px); /* Adjust width to fit content */
+  position: fixed;
+  top: 0;
+  left: 250px; /* Adjust according to sidebar width */
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+.logo img {
+  height: 50px; /* Adjust the size of the logo as needed */
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px; /* Adjust space between links */
+  font-size: 14px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 4px; /* Rounded corners for better appearance */
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #d4af37; /* Gold color on hover */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background change on hover */
+}
+
+.nav-links a.active {
+  font-weight: bold;
+  color: #d4af37; /* Gold color for the active tab */
+  background-color: rgba(255, 255, 255, 0.2); /* Slight background change for active tab */
+}
+
+.user-icon img {
+  height: 30px; /* Adjust the size of the user icon as needed */
+}

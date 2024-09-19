@@ -1,0 +1,27 @@
+/* /reservations/styles/reservation.css */
+
+.calendar-view {
+    margin-top: 20px;
+  }
+  
+  .availability-info {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .availability-info p {
+    margin: 0;
+    font-size: 16px;
+  }
+  .check{
+    background-color: black;
+  }
+  .proceed-button{
+    background-color: black;
+  }
+  .confirm-button{
+    background-color: black;
+  }

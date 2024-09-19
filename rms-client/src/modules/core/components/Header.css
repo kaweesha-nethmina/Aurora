@@ -1,0 +1,41 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1e1e1e;
+  padding: 5px 20px;
+  height: 80px;
+  z-index: 1000; /* Ensure the header is above other content */
+}
+  
+  .logo img {
+    height: 40px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .nav-links .active {
+    background-color: #c0a16b;
+    color: #1e1e1e;
+  }
+  
+  .user-icon img {
+    height: 30px;
+    border-radius: 50%;
+  }
+  

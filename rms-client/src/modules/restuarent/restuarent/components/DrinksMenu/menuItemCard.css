@@ -1,0 +1,22 @@
+.menu-item-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.menu-item-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.menu-item-card h3 {
+    margin: 10px 0;
+}
+
+.menu-item-card span {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}

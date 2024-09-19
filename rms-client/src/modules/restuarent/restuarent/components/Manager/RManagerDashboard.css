@@ -1,0 +1,17 @@
+.dashboard-layoutR {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .dashboard-contentR {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-containerR {
+    flex-grow: 1;
+    padding: 1rem;
+    background-color: #f4f4f4;
+  }
+  

@@ -1,0 +1,56 @@
+/* EmployeeStyles.css */
+
+/* Container for the entire form */
+.formContainer {
+  top: -20px !important;
+  background-color: #ffffff; /* White background for the form container */
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 24px; /* Padding inside the container */
+  max-width: 500px; /* Maximum width of the container */
+  margin: auto; /* Center the container horizontally */
+  display: flex;
+  flex-direction: column; /* Arrange elements vertically */
+  margin-top: 75px;
+}
+
+/* Title of the form */
+.formTitle {
+  font-size: 1.5rem; /* Larger text for the title */
+  font-weight: bold; /* Bold text for emphasis */
+  color: #333; /* Dark gray text color */
+  margin-bottom: 16px; /* Space below the title */
+  text-align: center; /* Center align the title */
+}
+
+/* Form element styling */
+.employeeForm {
+  display: flex;
+  flex-direction: column; /* Arrange form elements vertically */
+  gap: 12px; /* Space between form elements */
+}
+
+/* Input field styling */
+.formInput {
+  padding: 12px; /* Padding inside input fields */
+  border: 1px solid #ddd; /* Light border for input fields */
+  border-radius: 4px; /* Rounded corners for input fields */
+  font-size: 1rem; /* Standard font size */
+}
+
+/* Button styling */
+.formButton {
+  padding: 12px; /* Padding inside the button */
+  background-color: #B3A06D; /* Blue background */
+  color: white; /* White text color */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners for button */
+  font-size: 1rem; /* Standard font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+/* Button hover effect */
+.formButton:hover {
+  background-color: #5a523e; /* Darker blue on hover */
+}

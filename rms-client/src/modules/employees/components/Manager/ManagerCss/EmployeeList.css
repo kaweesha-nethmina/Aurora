@@ -1,0 +1,121 @@
+/* Container for the employee list */
+.employee-list-container {
+  top: 80px !important;
+  right: -35px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-top: -20px;
+  height: 84vh;
+  border-radius: 20px;
+  box-shadow: 0 0 9px -1px #dddddd;
+}
+
+/* Title of the employee list */
+.employee-list-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Table styles */
+.employee-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employee-list-table th,
+.employee-list-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.employee-list-table th {
+  background-color: #f4f4f4;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button,
+.delete-button {
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.edit-button {
+  background-color: #B3A06D; /* Brown for edit */
+}
+
+.delete-button {
+  background-color: #dc3545; /* Red for delete */
+}
+
+.edit-button:hover {
+  background-color: #6a6147;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  top: 50px;
+  max-width: 500px;
+  position: relative;
+}
+
+/* Close button */
+.modal-content button {
+  margin-top: 10px;
+}
+
+/* Button styling for modal */
+.modal-content button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.modal-content button[type="button"] {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.modal-content button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.modal-content button[type="button"]:hover {
+  background-color: #d32f2f;
+}

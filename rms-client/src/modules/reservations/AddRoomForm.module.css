@@ -1,0 +1,164 @@
+/*.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .input, .textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .textarea {
+    resize: vertical;
+  }
+  
+  .button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }*/
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .input:focus,
+  .textarea:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  .textarea {
+    resize: none;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* ManagerNavBar Styles Integration */
+  
+  .nav-container {
+    background-color: #2c3e50; /* Dark background color */
+    padding: 10px 20px; /* Padding around the navbar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Space below the navbar */
+    border-radius: 8px;
+  }
+  
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-title {
+    color: #ecf0f1; /* Light text color */
+    font-size: 24px;
+    margin-right: 20px; /* Space between title and menu */
+  }
+  
+  .nav-menu {
+    list-style-type: none; /* Remove default list styling */
+    display: flex; /* Display menu items horizontally */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin-right: 15px; /* Space between menu items */
+  }
+  
+  .nav-item:last-child {
+    margin-right: 0; /* Remove right margin from the last item */
+  }
+  
+  .nav-link {
+    color: #ecf0f1; /* Light text color */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 18px;
+    transition: color 0.3s; /* Smooth color transition on hover */
+  }
+  
+  .nav-link:hover {
+    color: #3498db; /* Change color on hover */
+  }
+  

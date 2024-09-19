@@ -1,0 +1,75 @@
+.tableContainer {
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tableHeader {
+    background-color: #f7f7f7;
+  }
+  
+  .tableHeaderCell {
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .tableCell {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .deleteButton {
+    background-color: #e3342f;
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  
+  .editButton {
+    background-color: #3490dc;
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .saveButton {
+    background-color: #38c172;
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  
+  .cancelButton {
+    background-color: #6c757d;
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

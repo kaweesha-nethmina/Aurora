@@ -1,0 +1,42 @@
+/* ManagerCss/EmployeeNoticesStyles.css */
+.notices-container {
+    padding: 20px;
+  }
+  
+  .notices-header {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .notices-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .notice-item2 {
+    margin-left: 230px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: white;
+    width: 1000px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notice-title {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .notice-description {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 16px;
+  }
+  
