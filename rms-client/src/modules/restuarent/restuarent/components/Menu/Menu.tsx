@@ -1,4 +1,4 @@
-// Path: restaurant/components/Menu/Menu.tsx
+// Path: src/components/Menu/Menu.tsx
 
 import React, { useState, useEffect } from 'react';
 import MenuItem from './MenuItem';
@@ -13,15 +13,21 @@ const Menu: React.FC = () => {
   const [category, setCategory] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
 
+  // Fetch menu items from the server when the component mounts
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchMenuItems();
-      setMenuItems(data);
-      setFilteredItems(data);
+      try {
+        const data = await fetchMenuItems();
+        setMenuItems(data);
+        setFilteredItems(data); // Initialize filtered items with all items
+      } catch (error) {
+        console.error('Error fetching menu items:', error);
+      }
     };
     fetchData();
   }, []);
 
+  // Update filtered items whenever menuItems, category, or searchTerm change
   useEffect(() => {
     const filtered = filterMenuItems(menuItems, category, searchTerm);
     setFilteredItems(filtered);
@@ -37,9 +43,13 @@ const Menu: React.FC = () => {
         setSearchTerm={setSearchTerm}
       />
       <div className="menu-items">
-        {filteredItems.map((item) => (
-          <MenuItem key={item.id} item={item} />
-        ))}
+        {filteredItems.length > 0 ? (
+          filteredItems.map((item) => (
+            <MenuItem key={item.id} item={item} />
+          ))
+        ) : (
+          <p>No menu items found.</p>
+        )}
       </div>
     </div>
   );

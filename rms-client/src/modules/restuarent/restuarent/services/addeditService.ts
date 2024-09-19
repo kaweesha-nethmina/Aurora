@@ -1,23 +1,41 @@
-// Example service methods
+// src/services/addeditService.ts
 export interface MenuItem {
-    id?: string;
-    name: string;
-    price: number;
-    description: string;
-    foodCode: string;
-    category: 'food' | 'drink';
-    image: string;
+  name: string;
+  price: number;
+  description: string;
+  foodCode: string;
+  category: string;
+  image: string; // Include the image property
+}
+
+export const addMenuItem = async (menuItem: MenuItem) => {
+  const response = await fetch('http://localhost:5000/api/menu-items', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(menuItem),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to add menu item');
   }
-  
-  let menuItems: MenuItem[] = [];
-  
-  export const addMenuItem = async (menuItem: MenuItem): Promise<void> => {
-    menuItems.push({ ...menuItem, id: Date.now().toString() });
-  };
-  
-  export const editMenuItem = async (updatedItem: MenuItem): Promise<void> => {
-    menuItems = menuItems.map(item => item.id === updatedItem.id ? updatedItem : item);
-  };
-  
-  // Fetch or other methods if necessary
-  
+
+  return response.json();
+};
+
+export const editMenuItem = async (menuItem: MenuItem) => {
+  const response = await fetch(`http://localhost:5000/api/menu-items/${menuItem.foodCode}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(menuItem),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to edit menu item');
+  }
+
+  return response.json();
+};

@@ -1,42 +1,22 @@
-export const fetchMenuItems = async () => {
-  const response = await fetch('/api/menu-items'); // Update with your actual API endpoint
-  if (!response.ok) {
-    throw new Error('Failed to fetch menu items');
-  }
-  return response.json();
-};
+// src/services/menuService.ts
 
-export const deleteMenuItem = async (id: number) => {
-  const response = await fetch(`/api/menu-items/${id}`, {
-    method: 'DELETE',
-  });
-  if (!response.ok) {
-    throw new Error('Failed to delete menu item');
-  }
-};
+export interface MenuItem {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  category: string;
+  imageUrl: string;
+}
 
-export const addMenuItem = async (menuItem: any) => {
-  const response = await fetch('/api/menu-items', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(menuItem),
-  });
-  if (!response.ok) {
-    throw new Error('Failed to add menu item');
-  }
-};
-
-export const editMenuItem = async (menuItem: any) => {
-  const response = await fetch(`/api/menu-items/${menuItem.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(menuItem),
-  });
-  if (!response.ok) {
-    throw new Error('Failed to edit menu item');
+export const fetchMenuItems = async (): Promise<MenuItem[]> => {
+  try {
+    const response = await fetch('http://localhost:5000/api/menu-items');
+    if (!response.ok) throw new Error('Failed to fetch menu items');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching menu items:', error);
+    return [];
   }
 };

@@ -1,25 +1,51 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import employeeRoutes from './src/routers/employeeRouter'; // Adjust path as necessary
+import employeeRoutes from './src/routers/employeeRouter';
 import dutyRoasterRouter from './src/routers/dutyRoasterRouter';
 import chatRouter from './src/routers/chatRouter';
 import noticesRouter from './src/routers/noticesRouter';
 import leaveRequestRouter from './src/routers/leaveRequestRouter';
 import roomRouter from './src/routers/roomRouter';
+import menuItemRouter from './src/routers/menuItemRouter';
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
+import dotenv from 'dotenv';
 
+// Load environment variables
+dotenv.config();
 
+// Initialize express app
 const app = express();
+
+// Ensure uploads directory exists
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
 
 // CORS Configuration
 app.use(cors({
-  origin: 'http://localhost:5173', // Frontend URL
+  origin: 'http://localhost:5173', // Update with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
 }));
 
 // Middleware
 app.use(express.json());
+app.use('/uploads', express.static(uploadsDir)); // Serve static files from uploads directory
+
+// Multer setup for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadsDir); // Use uploads directory
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Append timestamp to file name to avoid duplicates
+  },
+});
+const upload = multer({ storage });
 
 // Routes
 app.use('/employees', employeeRoutes); // Prefix routes with /employees
@@ -28,9 +54,19 @@ app.use('/api', chatRouter);
 app.use('/api/notices', noticesRouter);
 app.use('/api', leaveRequestRouter);
 app.use('/api', roomRouter);
+app.use('/api/menu-items', menuItemRouter);
+
+// Image upload endpoint
+app.post('/api/upload', upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded.' });
+  }
+  const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+  res.json({ imageUrl });
+});
 
 // Database Connection
-const dbUri = 'mongodb://localhost:27017/test'; // Update with your database name
+const dbUri = process.env.MONGO_URI || 'mongodb://localhost:27017/test'; // Use env variable for DB URI
 mongoose.connect(dbUri)
   .then(() => {
     console.log('MongoDB connection successful');

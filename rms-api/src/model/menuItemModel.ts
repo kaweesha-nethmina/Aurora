@@ -1,21 +1,37 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-export interface IMenuItem extends Document {
-  name: string;
-  price: number;
-  description: string;
-  foodCode: string;
-  category: string;
-  image: string;
-}
-
-const MenuItemSchema: Schema = new Schema({
-  name: { type: String, required: true },
-  price: { type: Number, required: true },
-  description: { type: String },
-  foodCode: { type: String, required: true },
-  category: { type: String, required: true },
-  image: { type: String }
+const menuItemSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+  category: {
+    type: String,
+    required: true, // Assuming category is mandatory
+  },
+  image: {
+    type: String, // Changed from imageUrl to image for consistency
+    required: true, // Uncomment if you want to make the image required
+  },
+  availability: {
+    type: Boolean,
+    default: true,
+  },
+  foodCode: {
+    type: String,
+    required: true,
+    unique: true, // Ensure foodCode is unique
+  },
 });
 
-export default mongoose.model<IMenuItem>('MenuItem', MenuItemSchema);
+// Ensure the model name corresponds to the collection name in MongoDB
+const MenuItem = mongoose.model('MenuItem', menuItemSchema, 'menu-items');
+
+export default MenuItem;
