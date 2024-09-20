@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FeedbackRatingPage.css';
+import Header from '../../../core/components/Header';
 
 interface Rating {
   id: number;
@@ -46,6 +47,8 @@ const FeedbackRatingPage = () => {
 
   return (
     <div className="feedback-container">
+      <Header activeTab={''} />
+      
       <h1 className="feedback-title">Feedback and Rating</h1>
       <form onSubmit={handleSubmit} className="feedback-form">
         <div className="feedback-field">

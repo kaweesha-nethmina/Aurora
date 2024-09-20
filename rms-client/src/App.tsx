@@ -61,6 +61,14 @@ import TManagerDashboard from './modules/transportation/components/ADMIN/TManage
 import TManagerHeader from './modules/transportation/components/ADMIN/TManagerHeader';
 import AddDriverForm from './modules/transportation/components/ADMIN/AddDriverForm';
 import RoomManagerDashboard from './modules/reservations/components/RoomManager/RoomMDashboard';
+import GuestProfileLoginPage from './modules/guests/components/GuestProfileLoginPage';
+import AccountDetailsTable from './modules/guests/components/AccountDetailsTable';
+import AdminView from './modules/guests/components/AdminView/AdminView';
+import FeedbackRatingPage from './modules/guests/components/FeedbackRating/FeedbackRatingPage';
+import AdminPage from './modules/transportation/components/adminPage';
+import AdminDashboard from './modules/guests/components/AdminDashboard/AdminDashboard';
+import DisplayFeedbackPage from './modules/guests/components/DisplayFeedback/DisplayFeedbackPage';
+import AdminPageG from './modules/guests/components/AdminPage/AdminPage';
 function App() {
   return (
     <BrowserRouter>
@@ -132,9 +140,22 @@ function App() {
 
         
         <Route path='/spa' element={<Spa />} />
+
+
+
+
         <Route path='/guests' element={<Guests />} />
+ 
+       
+       
+        <Route path='/login' element={<GuestProfileLoginPage />} />
+        <Route path='/loginDetails' element={<AccountDetailsTable />} />
+        <Route path='/Feedbackrating' element={<FeedbackRatingPage/>}/>
+        <Route path='/AdminpageG' element={<AdminPageG/>}/>
+        <Route path='/Dashboard' element={<AdminDashboard/>}/>
+        <Route path='/displayfeedback' element={<DisplayFeedbackPage/>}/>
 
-
+        <Route path='/Adminview' element={<AdminView />} />
 
 
         {/* Shuttle Service */}
