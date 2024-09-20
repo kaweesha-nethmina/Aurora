@@ -75,8 +75,8 @@ const NoticesTab: React.FC = () => {
   };
 
   return (
-    <div className="notices-container">
-      <h2 className="notices-header">Notices</h2>
+    <div className="notices-containerM">
+      <h2 className="notices-header">ADD NOTICES</h2>
       
       {error && <p className="error-message">{error}</p>}
 

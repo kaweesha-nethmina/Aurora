@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './LeaveRequestsTab.css'; // Ensure the CSS file is present
+import './LeaveRequestsTab.css';
 
 interface LeaveRequest {
   id: number;
@@ -15,9 +15,9 @@ const LeaveRequestForm: React.FC = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [reason, setReason] = useState('');
-  const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([]); // Initialize as empty array
+  const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([]);
+  const [errors, setErrors] = useState<string[]>([]);
 
-  // Fetch leave requests on component mount
   useEffect(() => {
     const fetchLeaveRequests = async () => {
       try {
@@ -33,18 +33,41 @@ const LeaveRequestForm: React.FC = () => {
     fetchLeaveRequests();
   }, []);
 
-  // Handle form submission
+  const validateForm = (): boolean => {
+    const newErrors: string[] = [];
+    
+    if (!name.trim()) {
+      newErrors.push('Name is required.');
+    }
+
+    if (!startDate) {
+      newErrors.push('Start Date is required.');
+    }
+
+    if (!endDate) {
+      newErrors.push('End Date is required.');
+    } else if (new Date(startDate) > new Date(endDate)) {
+      newErrors.push('End Date must be after Start Date.');
+    }
+
+    if (!reason.trim()) {
+      newErrors.push('Reason is required.');
+    } else if (reason.length < 10) {
+      newErrors.push('Reason must be at least 10 characters long.');
+    }
+
+    setErrors(newErrors);
+    return newErrors.length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Check if the end date is after the start date
-    if (new Date(startDate) > new Date(endDate)) {
-      alert('End Date must be after Start Date');
+    if (!validateForm()) {
       return;
     }
 
     try {
-      // Post request to the backend
       const response = await fetch('http://localhost:5000/api/leave-requests', {
         method: 'POST',
         headers: {
@@ -55,7 +78,7 @@ const LeaveRequestForm: React.FC = () => {
           startDate,
           endDate,
           reason,
-          status: 'pending', // Default status
+          status: 'pending',
         }),
       });
 
@@ -64,14 +87,13 @@ const LeaveRequestForm: React.FC = () => {
       }
 
       const newRequest = await response.json();
-      // Add the new leave request to the state
       setLeaveRequests([...leaveRequests, { ...newRequest, id: leaveRequests.length + 1 }]);
       
-      // Clear the form fields
       setName('');
       setStartDate('');
       setEndDate('');
       setReason('');
+      setErrors([]);
     } catch (err) {
       console.error('Error submitting leave request:', err);
     }
@@ -121,6 +143,13 @@ const LeaveRequestForm: React.FC = () => {
               required
             />
           </div>
+          {errors.length > 0 && (
+            <div className="error-messages">
+              {errors.map((error, index) => (
+                <p key={index} className="error">{error}</p>
+              ))}
+            </div>
+          )}
           <div className="form-actions">
             <button type="submit" className="submit-button">Submit</button>
           </div>
@@ -133,6 +162,7 @@ const LeaveRequestForm: React.FC = () => {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Name</th>
               <th>Start Date</th>
               <th>End Date</th>
               <th>Reason</th>
@@ -142,6 +172,7 @@ const LeaveRequestForm: React.FC = () => {
           <tbody>
             {leaveRequests.map(request => (
               <tr key={request.id}>
+                <td>{request.id}</td>
                 <td>{request.name}</td>
                 <td>{request.startDate}</td>
                 <td>{request.endDate}</td>
@@ -154,7 +185,6 @@ const LeaveRequestForm: React.FC = () => {
       </div>
     </div>
   );
-  
 };
 
 export default LeaveRequestForm;
