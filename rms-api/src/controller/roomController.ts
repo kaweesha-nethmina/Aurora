@@ -1,4 +1,3 @@
-// rms-api/controllers/roomController.ts
 import { Request, Response } from 'express';
 import { Room } from '../model/roomModel';
 
@@ -6,9 +5,9 @@ import { Room } from '../model/roomModel';
 export const addRoom = async (req: Request, res: Response) => {
   try {
     const { roomType, price, rating, description } = req.body;
-    const image = req.file ? req.file.path : undefined; // Handle the image path if provided
-    
-    const room = new Room({ roomType, price, rating, description, image });
+    const imagePath = req.file ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}` : undefined;
+
+    const room = new Room({ roomType, price, rating, description, image: imagePath });
     await room.save();
     res.status(201).json(room);
   } catch (error) {

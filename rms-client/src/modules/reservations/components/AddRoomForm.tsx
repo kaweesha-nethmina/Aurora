@@ -1,28 +1,14 @@
 import React from 'react';
 import { useRoomForm } from '../hooks/useRoomForm';
 import styles from '../AddRoomForm.module.css';
-import Dashboard from './ManagerNavBar/ManagerNavBar';
 
 const AddRoomForm: React.FC = () => {
   const { roomFormState, handleInputChange, handleImageChange, handleSubmit } = useRoomForm();
 
   return (
     <div className={styles.container}>
-      
       <h2 className={styles.title}>Add Room Form</h2>
       <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="roomId">Room ID</label>
-          <input
-            id="roomId"
-            name="roomId"
-            type="text"
-            value={roomFormState.roomId}
-            onChange={handleInputChange}
-            required
-            className={styles.input}
-          />
-        </div>
         <div className={styles.formGroup}>
           <label className={styles.label} htmlFor="roomType">Room Type</label>
           <input

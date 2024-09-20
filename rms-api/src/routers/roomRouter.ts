@@ -1,4 +1,3 @@
-// rms-api/routes/roomRoutes.ts
 import express from 'express';
 import multer from 'multer';
 import { addRoom, getRooms, updateRoom, deleteRoom } from '../controller/roomController';

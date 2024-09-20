@@ -1,4 +1,3 @@
-// rms-api/models/roomModel.ts
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IRoom extends Document {

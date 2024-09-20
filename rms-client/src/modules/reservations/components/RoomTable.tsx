@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useRoomTable, { Room } from '../hooks/useRoomTable';
-import './styles/RoomTable.css'; // Import the normal CSS
+import './styles/RoomTable.css';
 
 const RoomTable: React.FC = () => {
   const {
