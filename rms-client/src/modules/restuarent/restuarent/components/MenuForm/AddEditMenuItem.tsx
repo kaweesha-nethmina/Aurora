@@ -14,12 +14,14 @@ interface AddEditMenuItemProps {
 
 const AddEditMenuItem: React.FC<AddEditMenuItemProps> = ({ menuItemToEdit, onSave }) => {
   const [menuItem, setMenuItem] = useState<MenuItemType>({
+    _id: '',
     name: '',
     price: 0,
     description: '',
-    foodCode: '',
     category: 'food',
-    image: '', // Updated field name
+    image: '',
+    availability: true,
+    foodCode: '',
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -34,57 +36,61 @@ const AddEditMenuItem: React.FC<AddEditMenuItemProps> = ({ menuItemToEdit, onSav
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    setMenuItem((prev) => ({ ...prev, [name]: name === 'price' ? parseFloat(value) : value }));
+    setMenuItem((prev) => ({
+      ...prev,
+      [name]: name === 'price' ? parseFloat(value) : value,
+    }));
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      const file = event.target.files[0];
-      setImageFile(file); // Store the file for upload
+    const file = event.target.files?.[0];
+    if (file) {
+      setImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setMenuItem((prev) => ({ ...prev, image: reader.result as string })); // Set the image preview
+        setMenuItem((prev) => ({ ...prev, image: reader.result as string }));
       };
-      reader.readAsDataURL(file); // Read the file as a Data URL
+      reader.readAsDataURL(file);
     }
   };
 
   const handleUploadImage = async (): Promise<string | null> => {
-    if (imageFile) {
-      const formData = new FormData();
-      formData.append('image', imageFile);
-
-      try {
-        const response = await fetch('http://localhost:5000/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
-        if (!response.ok) throw new Error('Image upload failed');
-
-        const data = await response.json();
-        return data.imageUrl; // Return the uploaded image URL
-      } catch (error) {
-        console.error('Error uploading image:', error);
-        alert('Failed to upload image. Please try again.');
-        return null; // Return null on error
-      }
+    if (!imageFile) return null;
+  
+    const formData = new FormData();
+    formData.append('image', imageFile);
+  
+    try {
+      const response = await fetch('http://localhost:5000/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      if (!response.ok) throw new Error('Image upload failed');
+  
+      const data = await response.json();
+      return data.imageUrl; // Return the uploaded image URL
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Failed to upload image. Please try again.');
+      return null;
     }
-    return null; // Return null if no file to upload
   };
-
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const uploadedImageUrl = await handleUploadImage(); // Upload the image before submitting
-      if (uploadedImageUrl) {
-        setMenuItem((prev) => ({ ...prev, image: uploadedImageUrl })); // Update the image URL if uploaded successfully
-      }
-
+      const uploadedImageUrl = await handleUploadImage();
+      
+      // Ensure the image URL is a string or provide a default value
+      const imageUrl = uploadedImageUrl || ""; // Default to an empty string if null
+  
+      setMenuItem((prev) => ({ ...prev, image: imageUrl }));
+  
       if (isEditing) {
-        await editMenuItem(menuItem);
+        await editMenuItem({ ...menuItem, image: imageUrl });
         alert('Menu item updated successfully!');
       } else {
-        await addMenuItem(menuItem);
+        await addMenuItem({ ...menuItem, image: imageUrl });
         alert('Menu item added successfully!');
       }
       onSave();
@@ -93,6 +99,9 @@ const AddEditMenuItem: React.FC<AddEditMenuItemProps> = ({ menuItemToEdit, onSav
       alert('Failed to add/update menu item. Please try again.');
     }
   };
+  
+
+  
 
   return (
     <div className="add-edit-menu-item">
@@ -120,6 +129,7 @@ const AddEditMenuItem: React.FC<AddEditMenuItemProps> = ({ menuItemToEdit, onSav
             onChange={handleInputChange}
             className="form-control"
             required
+            min="0"
           />
         </div>
         <div className="form-group">
@@ -170,6 +180,17 @@ const AddEditMenuItem: React.FC<AddEditMenuItemProps> = ({ menuItemToEdit, onSav
             className="form-control"
           />
           {menuItem.image && <img src={menuItem.image} alt="Menu Item" className="image-preview" />}
+        </div>
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              name="availability"
+              checked={menuItem.availability}
+              onChange={() => setMenuItem(prev => ({ ...prev, availability: !prev.availability }))}
+            />
+            Available
+          </label>
         </div>
         <button type="submit" className="submit-button">
           {isEditing ? 'Update' : 'Add'} Menu Item

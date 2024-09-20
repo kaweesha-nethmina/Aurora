@@ -1,37 +1,41 @@
 import mongoose from 'mongoose';
 
+// Define the schema for menu items
 const menuItemSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true, // Name is required
   },
   price: {
     type: Number,
     required: true,
+    min: 0, // Ensure price is a positive number
   },
   description: {
     type: String,
+    required: false, // Description is optional
   },
   category: {
     type: String,
-    required: true, // Assuming category is mandatory
+    enum: ['food', 'drink'], // Define valid categories
+    required: true,
   },
   image: {
-    type: String, // Changed from imageUrl to image for consistency
-    required: true, // Uncomment if you want to make the image required
+    type: String, // Store image URL
+    required: false, // Optional if not all items require an image
   },
   availability: {
     type: Boolean,
-    default: true,
+    default: true, // Default to true
   },
   foodCode: {
     type: String,
     required: true,
-    unique: true, // Ensure foodCode is unique
+    unique: true, // Ensure foodCode is unique for each item
   },
-});
+}, { timestamps: true }); // Automatically create createdAt and updatedAt fields
 
-// Ensure the model name corresponds to the collection name in MongoDB
+// Create the MenuItem model from the schema
 const MenuItem = mongoose.model('MenuItem', menuItemSchema, 'menu-items');
 
 export default MenuItem;

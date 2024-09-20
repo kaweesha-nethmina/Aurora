@@ -48,7 +48,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Routes
-app.use('/employees', employeeRoutes); // Prefix routes with /employees
+app.use('/employees', employeeRoutes); 
 app.use('/api/duty-roaster', dutyRoasterRouter); 
 app.use('/api', chatRouter);
 app.use('/api/notices', noticesRouter);
@@ -61,10 +61,11 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded.' });
   }
-  const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+  const imageUrl = `http://localhost:${process.env.PORT || 5000}/uploads/${req.file.filename}`;
   res.json({ imageUrl });
 });
 
+// Database Connection
 // Database Connection
 const dbUri = process.env.MONGO_URI || 'mongodb://localhost:27017/test'; // Use env variable for DB URI
 mongoose.connect(dbUri)
