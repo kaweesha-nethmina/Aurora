@@ -1,16 +1,17 @@
-.header {
-  display: flex;
-  justify-content: space-between;
+.headerHR {
+  display: flex !important;
+  justify-content: space-between !important;
   align-items: center;
-  background-color: #232323; /* Dark background for the header */
-  padding: 15px;
-  color: white;
-  height: 80px; /* Ensure consistent height */
-  width: calc(100% - 250px); /* Adjust width to fit content */
-  position: fixed;
-  top: 0;
-  left: 250px; /* Adjust according to sidebar width */
-  z-index: 1000; /* Ensure it stays above other content */
+  background-color: #272727 !important; /* Dark background for the header */
+  padding: 15px !important;
+  color: white !important;
+  height: 80px !important; /* Ensure consistent height */
+  width: calc(100% - 270px) !important; /* Adjust width to fit content */
+  position: fixed !important;
+  
+  left: 240px !important; /* Adjust according to sidebar width */
+  z-index: 12 !important; /* Ensure it stays above other content */
+  border-radius:0px 20px 20px 0px;
 }
 
 .logo img {

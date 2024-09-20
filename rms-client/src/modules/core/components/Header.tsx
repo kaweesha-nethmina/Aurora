@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ activeTab }) => {
   return (
-    <header className="headerM">
+    <header className="headerC">
       <div className="logo">
         <img src={logo} alt="Aurora Logo" />
       </div>

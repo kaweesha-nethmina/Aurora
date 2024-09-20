@@ -1,11 +1,7 @@
-import GuestProfile from './components/guestProfile';
-
-const Guests = () => {
+const Guest = () => {
   return (
-    <div>
-      <GuestProfile />
-    </div>
-  );
-};
+    <div>Guest</div>
+  )
+}
 
-export default Guests;
+export default Guest

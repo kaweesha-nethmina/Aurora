@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import logo from './../Images/Aurora white.png';
 
@@ -7,7 +7,7 @@ interface Tab {
   id: number;
   name: string;
   icon: string;
-  route: string; // Add route to define the path for each tab
+  route: string;
 }
 
 const tabs: Tab[] = [
@@ -22,7 +22,15 @@ const tabs: Tab[] = [
 ];
 
 const Sidebar = () => {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState<number>(1);
+
+  useEffect(() => {
+    const currentTab = tabs.find(tab => tab.route === location.pathname);
+    if (currentTab) {
+      setActiveTab(currentTab.id);
+    }
+  }, [location.pathname]);
 
   return (
     <div className={styles.sidebar}>
@@ -34,9 +42,8 @@ const Sidebar = () => {
           <li
             key={tab.id}
             className={`${styles.tabItem} ${activeTab === tab.id ? styles.activeTab : ''}`}
-            onClick={() => setActiveTab(tab.id)}
           >
-            <Link to={tab.route} className={styles.tabLink}>
+            <Link to={tab.route} className={styles.tabLink} onClick={() => setActiveTab(tab.id)}>
               <i className={`${tab.icon} ${styles.icon}`}></i>
               <span className={styles.tabName}>{tab.name}</span>
             </Link>

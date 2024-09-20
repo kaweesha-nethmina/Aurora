@@ -1,0 +1,54 @@
+.admin-view {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  .admin-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1f2937; /* gray-900 */
+    margin-bottom: 16px;
+  }
+  
+  .admin-search {
+    margin: 16px 0;
+  }
+  
+  .admin-input {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    color: #374151; /* gray-700 */
+    border: 1px solid #d1d5db; /* gray-300 */
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.2s;
+  }
+  
+  .admin-input:focus {
+    border-color: #4b5563; /* gray-600 */
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .admin-header {
+    padding: 8px;
+    font-weight: bold;
+    color: #1f2937; /* gray-900 */
+    border: 1px solid #d1d5db; /* gray-300 */
+  }
+  
+  .admin-row {
+    background-color: #f9fafb; /* gray-100 */
+  }
+  
+  .admin-cell {
+    padding: 8px;
+    color: #374151; /* gray-700 */
+    border: 1px solid #d1d5db; /* gray-300 */
+  }
+  
