@@ -1,0 +1,123 @@
+
+/* Container */
+.admin-container1 {
+  max-width: 1300px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff3b;
+  border-radius: 8px;
+  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.admin-container1:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.admin-title1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table */
+.admin-table1 {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.admin-table1 th,
+.admin-table1 td {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+}
+
+.admin-table1 th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: 600;
+}
+
+.admin-table1 tr:hover {
+  background-color: #f1f1f1;
+}
+
+.admin-table1 td {
+  vertical-align: middle;
+}
+
+/* Action buttons */
+.action-buttons1 {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 15px; /* Increase gap to create more space between buttons */
+}
+
+.approve-btn1{
+  padding: 12px 20px; /* Larger padding to make the buttons more prominent */
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size for better readability */
+  min-width: 120px; /* Ensure buttons maintain a larger consistent width */
+}
+
+.cancel-btn1 {
+  padding: 12px 20px; /* Larger padding to make the buttons more prominent */
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size for better readability */
+  min-width: 120px; /* Ensure buttons maintain a larger consistent width */
+}
+
+.approve-btn1 {
+  background-color: #28a745;
+  color: white;
+}
+
+.approve-btn1:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.cancel-btn1 {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-btn1:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+/* Status Styles */
+td.pending {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+td.approved {
+  color: #28a745;
+  font-weight: bold;
+}
+
+td.canceled {
+  color: #dc3545;
+  font-weight: bold;
+}

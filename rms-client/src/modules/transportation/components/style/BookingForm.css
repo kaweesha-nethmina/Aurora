@@ -1,0 +1,177 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Card Styles */
+  .card {
+    max-width:fit-content;
+    margin: 40px auto;
+    padding: 80px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 25px;
+    text-align: center;
+    
+  }
+  
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    color: #555555;
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+  
+  .form-group input {
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Button Styles */
+  .submit-btn {
+    width: 200px;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 40px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+  }
+  
+  /* Table Styles */
+  .table-container {
+    margin-top: 30px;
+  }
+  
+  .bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bookings-table thead {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .bookings-table th, .bookings-table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #eeeeee;
+  }
+  
+  .bookings-table th {
+    font-weight: 600;
+  }
+  
+  .bookings-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Status Color Coding */
+  .status.pending {
+    color: #FF9800;
+    font-weight: 600;
+  }
+  
+  .status.approved {
+    color: #4CAF50;
+    font-weight: 600;
+  }
+  
+  .status.cancelled {
+    color: #F44336;
+    font-weight: 600;
+  }
+  
+  /* Table Alternating Row Colors */
+  .bookings-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  /* Cancel Button Styles */
+.cancel-btn {
+  width: 20%;
+  padding: 12px;
+  background-color: #F44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 30px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #e53935;
+  transform: translateY(-2px);
+}
+
+/* confirm-cancel-Button Styles */
+.confirm-cancel-btn {
+  width: 20%;
+  padding: 12px;
+  background-color: #F44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 30px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.confirm-cancel-btn:hover {
+  background-color: #e53935;
+  transform: translateY(-2px);
+}

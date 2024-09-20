@@ -52,6 +52,10 @@ import AddEditMenuItem from './modules/restuarent/restuarent/components/MenuForm
 import MenuHomePage from './modules/restuarent/restuarent/components/HomePage/HomePage';
 import Header from './modules/core/components/Header';
 import RManagerDashboard from './modules/restuarent/restuarent/components/Manager/RmanagerDashboard';
+import AdminBookingsPage from './modules/transportation/components/adminBookingsPage';
+import BookingForm from './modules/transportation/components/bookingForm';
+import AdminVehiclePage from './modules/transportation/components/AdminVehiclePage';
+import ManageDrivers from './modules/transportation/components/ManageDrivers';
 function App() {
   return (
     <BrowserRouter>
@@ -119,7 +123,21 @@ function App() {
         
         <Route path='/spa' element={<Spa />} />
         <Route path='/guests' element={<Guests />} />
-        <Route path='/transportation' element={<Transport />} />
+
+
+
+
+        {/* Shuttle Service */}
+        <Route path='/transportation' element={<Transport/>}/>
+        <Route path='/Tadmin' element={<AdminBookingsPage/>}/>
+        <Route path='/Tbform' element={<BookingForm/>}/>
+
+        {/* Vehicle */}
+        <Route path='/TadminV' element={<AdminVehiclePage/>}/>
+
+        {/* Driver */}
+        <Route path='/TadminD' element={<ManageDrivers/>}/>
+
         <Route path='/offers' element={<Offers />} />
       </Routes>
     </BrowserRouter>
