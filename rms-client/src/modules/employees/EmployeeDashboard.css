@@ -7,12 +7,12 @@ html, body {
   overflow-y: auto;
   overflow-x: hidden; /* Allow scrolling */
 }
-.dashboard-container {
+.dashboard-containerEmp {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw; /* Full viewport width */
-  background: url('../employees/Images/background.jpg') no-repeat center center fixed;
+  background: url('../employees/Images/background.jpg') no-repeat center center fixed ;
   background-size: cover; /* Cover the entire container */
   box-sizing: border-box;
   margin-left: -120px;
@@ -105,10 +105,14 @@ html, body {
 }
 
 /* Main Content Area */
-.main-content {
+.main-contentEmp {
   flex: 1;
-  padding: 20px;
+  width: 1500px;
+  background-size: cover !important;
   background-color: rgba(255, 255, 255, 0.9);
   overflow-y: auto;
   box-sizing: border-box;
+  background: url('../employees/Images/backNew.jpg') no-repeat center center fixed ;
+  height: 100vh;
+
 }

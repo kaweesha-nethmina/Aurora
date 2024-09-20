@@ -1,10 +1,11 @@
 .profile-tab {
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 20px;
   max-width: 600px;
-  margin: 20px auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 150px;
+  margin-left: 470px;
+  box-shadow:  0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative; /* For positioning the edit icon */
 }
 

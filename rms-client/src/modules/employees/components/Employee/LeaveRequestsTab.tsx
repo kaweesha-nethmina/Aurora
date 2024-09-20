@@ -79,7 +79,7 @@ const LeaveRequestForm: React.FC = () => {
 
   return (
     <div className="leave-request-form-container">
-      <div className="card">
+      <div className="cardL">
         <h2 className="leave-request-form-title">Request Leave</h2>
         <form onSubmit={handleSubmit} className="leave-request-form">
           <div className="form-group">
@@ -127,7 +127,7 @@ const LeaveRequestForm: React.FC = () => {
         </form>
       </div>
   
-      <div className="card">
+      <div className="cardR">
         <h2 className="leave-requests-title">Leave Requests</h2>
         <table className="leave-requests-table">
           <thead>

@@ -1,59 +1,69 @@
-/* LeaveRequestForm.css */
-
 .leave-request-form-container {
-  background-color: #f9fafb; /* Light background for better readability */
-  padding: 1rem; /* Padding around the container */
-  border-radius: 0.5rem; /* Rounded corners for the container */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  max-width: 100%; /* Ensure full width of the container */
-  margin: 0 auto; /* Center the container horizontally */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: auto;
   display: flex;
-  flex-direction: column; /* Stack the form and table vertically */
-  gap: 1.5rem; /* Space between form and table cards */
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.card {
-  background-color: #ffffff; /* White background for the card */
-  border-radius: 0.5rem; /* Rounded corners for the card */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  padding: 1rem; /* Padding inside the card */
-  overflow-x: auto; /* Allow horizontal scroll if content overflows */
+.cardL {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  overflow-x: auto;
+  width: 700px; 
+  margin-left: -50px;
+  margin-top: 100px;
+}
+.cardR {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  overflow-x: auto;
+  width: 1000px; 
+  margin-left: -200px;
+  margin-top: 100px;
 }
 
 .leave-request-form-title {
-  color: #1f2937; /* Dark color for the title text */
-  font-size: 1.5rem; /* Slightly larger font size for the form title */
-  font-weight: 700; /* Bold text for emphasis */
-  margin-bottom: 1rem; /* Space below the title */
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .leave-request-form {
   display: flex;
-  flex-direction: column; /* Stack the form elements vertically */
+  flex-direction: column;
 }
 
 .form-group {
-  margin-bottom: 1rem; /* Space between form groups */
+  margin-bottom: 1rem;
 }
 
 .form-group label {
-  display: block; /* Label should be on its own line */
-  margin-bottom: 0.5rem; /* Space between label and input */
-  color: #4b5563; /* Dark gray color for the label text */
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4b5563;
 }
 
 .form-group input,
 .form-group textarea {
-  width: 100%; /* Full width for inputs and textarea */
-  padding: 0.5rem; /* Padding inside inputs and textarea */
-  border: 1px solid #d1d5db; /* Border for inputs and textarea */
-  border-radius: 0.25rem; /* Rounded corners for inputs and textarea */
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
 }
 
 .form-actions {
-  display: flex; /* Use flexbox for layout */
-  justify-content: center; /* Center items horizontally */
-  margin-top: 1rem; /* Space above the button */
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .submit-button {
@@ -68,37 +78,37 @@
 }
 
 .submit-button:hover {
-  background-color: #706547; /* Darker color on hover */
+  background-color: #706547;
 }
 
 .leave-requests-title {
-  color: #1f2937; /* Dark color for the title text */
-  font-size: 1.75rem; /* Larger font size for the table title */
-  font-weight: 700; /* Bold text for emphasis */
-  margin-bottom: 1rem; /* Space below the title */
+  color: #1f2937;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .leave-requests-table {
-  width: 100%; /* Full width for the table */
-  border-collapse: collapse; /* Collapse table borders */
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .leave-requests-table th,
 .leave-requests-table td {
-  padding: 1rem; /* Padding inside table cells */
-  border: 1px solid #e5e7eb; /* Light gray border for table cells */
-  text-align: left; /* Left align text */
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  text-align: left;
 }
 
 .leave-requests-table th {
-  background-color: #f3f4f6; /* Light gray background for table headers */
-  font-weight: 700; /* Bold text for headers */
+  background-color: #f3f4f6;
+  font-weight: 700;
 }
 
 .leave-requests-table tr:nth-child(even) {
-  background-color: #f9fafb; /* Alternating row colors */
+  background-color: #f9fafb;
 }
 
 .leave-requests-table tr:hover {
-  background-color: #f1f5f9; /* Light gray background on row hover */
+  background-color: #f1f5f9;
 }

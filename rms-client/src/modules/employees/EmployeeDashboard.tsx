@@ -20,8 +20,8 @@ const EmployeeDashboard: React.FC = () => {
   return (
     <div>
       <EmployeeHeader activeTab={getActiveTab()} />
-      <div className="dashboard-container">
-        <main className="main-content">
+      <div className="dashboard-Emp">
+        <main className="main-contentEmp">
           <Outlet /> {/* This will render the nested routes */}
         </main>
       </div>
