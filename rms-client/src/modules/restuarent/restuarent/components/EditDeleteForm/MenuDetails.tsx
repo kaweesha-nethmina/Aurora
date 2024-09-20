@@ -8,7 +8,7 @@ interface MenuItem {
   price: number;
   description: string;
   category: string;
-  imageUrl: string;
+  image: string; // Ensure this matches the backend
   foodCode: string;
   availability: boolean;
 }
@@ -112,10 +112,14 @@ const MenuDetails: React.FC = () => {
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && selectedItem) {
-      setSelectedItem({
-        ...selectedItem,
-        imageUrl: URL.createObjectURL(event.target.files[0]),
-      });
+      const file = event.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        setSelectedItem({
+          ...selectedItem,
+          image: imageUrl, // Store the local preview URL
+        });
+      }
     }
   };
 
@@ -142,7 +146,7 @@ const MenuDetails: React.FC = () => {
           {menuItems.map(menuItem => (
             <tr key={menuItem.foodCode}>
               <td className="table-cell">
-                <img src={menuItem.imageUrl} alt={menuItem.name} className="menu-image" />
+                <img src={menuItem.image} alt={menuItem.name} className="menu-image" />
               </td>
               <td className="table-cell">{menuItem.name}</td>
               <td className="table-cell">${menuItem.price.toFixed(2)}</td>
@@ -233,7 +237,7 @@ const MenuDetails: React.FC = () => {
                   onChange={handleImageChange}
                   className="form-control"
                 />
-                {selectedItem.imageUrl && <img src={selectedItem.imageUrl} alt="Preview" className="image-preview" />}
+                {selectedItem.image && <img src={selectedItem.image} alt="Preview" className="image-preview" />}
               </div>
               <button type="submit" className="submit-button">
                 {isEditing ? 'Save Changes' : 'Add Menu Item'}
