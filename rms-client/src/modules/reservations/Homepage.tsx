@@ -1,25 +1,25 @@
-// import React, { useState } from 'react';
-// import { rooms } from './utils/roomData';
-// import SearchAndFilter from './components/RoomFilter';
-// import RoomList from './components/RoomList';
-// import './styles/HomePage.css';
+import React, { useState } from 'react';
+import RoomSearch from './components/RoomSearch';
+import RoomList from './components/RoomList';
+import { initialRooms } from './utils/roomData';
 
-// const HomePage: React.FC = () => {
-//   const [searchTerm, setSearchTerm] = useState('');
-//   const [selectedType, setSelectedType] = useState('');
+const Homepage: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-//   return (
-//     <div className="homepage-container">
-//       <h1 className="homepage-title">Hotel Rooms</h1>
-//       <SearchAndFilter
-//         searchTerm={searchTerm}
-//         setSearchTerm={setSearchTerm}
-//         selectedType={selectedType}
-//         setSelectedType={setSelectedType}
-//       />
-//       <RoomList rooms={rooms} searchTerm={searchTerm} selectedType={selectedType} />
-//     </div>
-//   );
-// };
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
 
-// export default HomePage;
+  const filteredRooms = initialRooms.filter((room) =>
+    room.roomType.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="homepage">
+      <RoomSearch searchTerm={searchTerm} onSearch={handleSearch} />
+      <RoomList rooms={filteredRooms} />
+    </div>
+  );
+};
+
+export default Homepage;

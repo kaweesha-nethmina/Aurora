@@ -7,6 +7,7 @@ import useFilter from './hooks/useFilter';
 import './styles.css';
 
 import Subheader from './components/Navbar';
+import Header from '../core/components/Header';
 
 interface Room {
   id: number;
@@ -90,8 +91,8 @@ const Reservation = () => {
   };
 
   return (
-    <div className="container">
-     
+    <div className="containerRoom">
+     <Header activeTab={''} />
       <Subheader />
       <h1 className="title">Hotel Rooms</h1>
       <div className="controls">

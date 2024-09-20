@@ -1,38 +1,29 @@
+
 import React from 'react';
-import { Room } from '../states/types';
-import roomI from '../images/image1.jpg';
+import { Room } from './../utils/roomData';
 
 interface RoomListProps {
   rooms: Room[];
-  onEdit: (room: Room) => void;
-  onDelete: (id: number) => void;
 }
 
-const RoomList: React.FC<RoomListProps> = ({ rooms, onEdit, onDelete }) => {
+const RoomList: React.FC<RoomListProps> = ({ rooms }) => {
   return (
-    <div className="room-list">
-      <h2>Room List</h2>
-      <ul>
-        {rooms.map((room) => (
-          <li key={room.id}>
+    <div className="room-list-container">
+      {rooms.length > 0 ? (
+        rooms.map((room) => (
+          <div key={room.id} className="room-card">
+            <img src={room.image} alt={room.roomType} className="room-image" />
             <div className="room-details">
-              <h3>{room.name}</h3>
-              <button onClick={() => onEdit(room)}>Edit</button>
-              <button onClick={() => onDelete(room.id)}>Delete</button>
+              <h3>{room.roomType}</h3>
+              <p>{room.description}</p>
+              <p>Price: ${room.price}</p>
+              <p>Rating: {room.rating}</p>
             </div>
-            <p>{room.description}</p>
-            <div className="room-images">
-              {room.images.map((_, index) => (
-                <img
-                  key={index}
-                  src={roomI}  // Use the imported image for all items
-                  alt={room.name}
-                />
-              ))}
-            </div>
-          </li>
-        ))}
-      </ul>
+          </div>
+        ))
+      ) : (
+        <p>No rooms found</p>
+      )}
     </div>
   );
 };

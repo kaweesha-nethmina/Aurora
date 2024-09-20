@@ -112,6 +112,8 @@ function App() {
 
 
 
+        {/* room Routes */}
+        <Route path='/roomreservation' element={<Reservation />} />
         <Route path='/form' element={<RoomBookingForm />} />
         <Route path='/profilescreen' element={<ProfileScreen />} />
         <Route path='/navbar' element={<Navbar />} />
@@ -119,7 +121,7 @@ function App() {
         <Route path='/roomtable' element={<RoomTable />} />
         <Route path='/reservationtable' element={<Reservationdetails/>} />
         <Route path='/cancelform' element={<CancelBookingForm/>} />
-        <Route path='/canceltable' element={<CancelBookingTable/>} />
+        <Route path='/canceltable' element={<CancelBookingTable/>} />
 
 
 

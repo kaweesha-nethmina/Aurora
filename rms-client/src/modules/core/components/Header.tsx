@@ -9,15 +9,15 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ activeTab }) => {
   return (
-    <header className="header">
+    <header className="headerM">
       <div className="logo">
         <img src={logo} alt="Aurora Logo" />
       </div>
       <nav className="nav-links">
         <a href="/home" className={activeTab === 'home' ? 'active' : ''}>Home</a>
         <a href="/event" className={activeTab === 'events' ? 'active' : ''}>Events</a>
-        <a href="/reservation" className={activeTab === 'rooms' ? 'active' : ''}>Rooms</a>
-        <a href="/restaurant" className={activeTab === 'restaurant-bar' ? 'active' : ''}>Restaurant & Bar</a>
+        <a href="/roomreservation" className={activeTab === 'rooms' ? 'active' : ''}>Rooms</a>
+        <a href="/menuhomepage" className={activeTab === 'restaurant-bar' ? 'active' : ''}>Restaurant & Bar</a>
         <a href="/spa" className={activeTab === 'spa-wellness' ? 'active' : ''}>Spa & Wellness</a>
         <a href="/transportation" className={activeTab === 'transportation' ? 'active' : ''}>Transport</a>
         <a href="/offers" className={activeTab === 'offers' ? 'active' : ''}>Offers</a>

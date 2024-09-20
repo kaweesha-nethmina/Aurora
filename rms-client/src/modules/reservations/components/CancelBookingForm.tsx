@@ -1,12 +1,14 @@
 import React from 'react';
 import styles from '../CancelBookingForm.module.css';
 import { useCancelBookingForm } from '../hooks/useCancelBookingForm';
+import Navbar from './Navbar';
 
 const CancelBookingForm: React.FC = () => {
   const { bookingId, checkinDate, cancellationReason, isSubmitted, handleChange, handleSubmit } = useCancelBookingForm();
 
   return (
     <div className={styles.container}>
+      <Navbar />
       <h2 className={styles.title}>Cancel Booking Form</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>

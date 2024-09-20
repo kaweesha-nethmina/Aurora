@@ -5,12 +5,11 @@ import '../navbar.css'
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="nav-container">
+    <nav className="nav-containerM">
       <div className="nav-left">
-        <h1 className="nav-title">Room Booking</h1>
         <ul className="nav-menu">
           <li className="nav-item">
-            <Link to="/reservation" className="nav-link">Home</Link>
+            <Link to="/roomreservation" className="nav-link">Home</Link>
           </li>
           <li className="nav-item">
             <Link to="/profilescreen" className="nav-link">My Bookings</Link>

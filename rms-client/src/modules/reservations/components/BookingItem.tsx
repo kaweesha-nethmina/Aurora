@@ -1,5 +1,7 @@
 // src/modules/profile/components/BookingItem.tsx
 import React from 'react';
+import Navbar from './Navbar';
+import Header from '../../core/components/Header';
 
 interface Booking {
   id: number;
@@ -19,6 +21,8 @@ interface BookingItemProps {
 const BookingItem: React.FC<BookingItemProps> = ({ booking, onCancel }) => {
   return (
     <div className="booking-item">
+      <Header activeTab={''} />
+      <Navbar />
       <h3 className="title">Booking #{booking.id}</h3>
       <p className="detail">Room Type: {booking.roomType}</p>
       <p className="detail">Check-in Date: {booking.arrivalDate}</p>

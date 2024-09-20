@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 interface RoomSearchProps {
   searchTerm: string;
-  onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const RoomSearch: React.FC<RoomSearchProps> = ({ searchTerm, onSearch }) => {
   return (
-    <input
-      type="search"
-      value={searchTerm}
-      onChange={onSearch}
-      placeholder="Search rooms"
-      className="search-input"
-    />
+    <div className="search-filter-container">
+      <input
+        type="text"
+        placeholder="Search rooms"
+        value={searchTerm}
+        onChange={onSearch}
+        className="room-search-input"
+      />
+    </div>
   );
 };
 

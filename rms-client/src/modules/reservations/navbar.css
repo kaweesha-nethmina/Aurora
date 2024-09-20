@@ -1,7 +1,7 @@
 /* src/components/Navbar/navbar.css */
 
-.nav-container {
-    background-color: #1e40af; /* Blue color */
+.nav-containerM {
+    background-color: #866a1d; /* Blue color */
     color: #ffffff;
     padding: 16px;
     display: flex;
@@ -11,7 +11,8 @@
   
   .nav-left {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    margin-left: 610px;
   }
   
   .nav-title {
