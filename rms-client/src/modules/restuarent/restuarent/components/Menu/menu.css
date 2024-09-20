@@ -2,6 +2,10 @@
 /* Path: restaurant/components/Menu/menu.css */
 .menu {
     padding: 20px;
+    
+    width: 1520px;
+    background-color: rgb(255, 255, 255);
+    padding: 0;
   }
   
   .menu-items {

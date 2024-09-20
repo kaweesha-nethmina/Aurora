@@ -6,6 +6,8 @@ import SearchFilter from './SearchFilter';
 import { fetchMenuItems, MenuItem as MenuItemType } from '../../services/menuService';
 import { filterMenuItems } from '../../utils/filterUtils';
 import './menu.css';
+import Header from '../../../../core/components/Header';
+import Navbar from '../HomePage/ResNavbar';
 
 const Menu: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItemType[]>([]);
@@ -35,6 +37,8 @@ const Menu: React.FC = () => {
 
   return (
     <div className="menu">
+      <Header activeTab={''} />
+      <Navbar />
       <h2>Our Menu</h2>
       <SearchFilter
         category={category}

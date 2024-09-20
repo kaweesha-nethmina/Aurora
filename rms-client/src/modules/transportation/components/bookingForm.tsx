@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios
 import './style/BookingForm.css';
+import Header from '../../core/components/Header';
+import Navbar from './style/TNavbar';
 
 interface Booking {
   name: string;
@@ -104,7 +106,9 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="container">
+    <div className="containerBook">
+      <Header activeTab={''} />
+      <Navbar />
       <div className="card">
         <h1 className="card-title">Book Your Vehicle</h1>
         <form onSubmit={handleSubmit} className="form">

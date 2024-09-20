@@ -4,13 +4,17 @@
     margin: 0;
     padding: 0;
   }
-  
+  .containerBook{
+    background-color: #ffffff;
+    width: 1520px;
+    margin-top: 70px;
+  }
   /* Card Styles */
-  .card {
-    max-width:fit-content;
-    margin: 40px auto;
+  .containerBook .card {
+    width: 600px;
+    margin-left: 450px;
     padding: 80px;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;

@@ -143,11 +143,8 @@ function App() {
 
 
 
-
+      {/* Guest */}
         <Route path='/guests' element={<Guests />} />
- 
-       
-       
         <Route path='/login' element={<GuestProfileLoginPage />} />
         <Route path='/loginDetails' element={<AccountDetailsTable />} />
         <Route path='/Feedbackrating' element={<FeedbackRatingPage/>}/>
