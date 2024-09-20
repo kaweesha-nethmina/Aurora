@@ -12,11 +12,11 @@ interface Tab {
 
 const tabs: Tab[] = [
   { id: 1, name: 'Human Resource', icon: 'fa-solid fa-briefcase', route: '/hr/employees' },
-  { id: 2, name: 'Restaurant', icon: 'fa-solid fa-utensils', route: '/rmanager' },
+  { id: 2, name: 'Restaurant', icon: 'fa-solid fa-utensils', route: '/rmanager/addmenu' },
   { id: 3, name: 'Event', icon: 'fa-solid fa-calendar-check', route: '/event' },
-  { id: 4, name: 'Rooms', icon: 'fa-solid fa-bed', route: '/rooms' },
+  { id: 4, name: 'Rooms', icon: 'fa-solid fa-bed', route: '/roommanager/addroom' },
   { id: 5, name: 'Spa', icon: 'fa-solid fa-spa', route: '/spa' },
-  { id: 6, name: 'Shuttle Service', icon: 'fa-solid fa-bus', route: '/Tmanager' },
+  { id: 6, name: 'Shuttle Service', icon: 'fa-solid fa-bus', route: '/Tmanager/drivers' },
   { id: 7, name: 'Feedback', icon: 'fa-solid fa-comment-dots', route: '/feedback' },
   { id: 8, name: 'Offers', icon: 'fa-solid fa-tags', route: '/offers' },
 ];
