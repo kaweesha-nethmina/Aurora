@@ -1,0 +1,136 @@
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.4s ease;
+  }
+  
+  /* Modal Header */
+  .modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Input Fields */
+  .modal-content label {
+    display: block;
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  .modal-content input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s;
+  }
+  
+  /* Input Focus State */
+  .modal-content input[type="text"]:focus {
+    border-color: #05b64f;
+    outline: none;
+  }
+  
+  /* Action Buttons */
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Save Button */
+  .ed {
+    padding: 12px 25px;
+    width: 150px;
+    background-color: #196905;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ed:hover {
+    background-color: #05b64f;
+  }
+  
+  .ed:focus {
+    outline: 2px solid #05b64f;
+  }
+  
+  /* Cancel Button */
+  .de {
+    padding: 12px 25px;
+    width: 150px;
+    background-color: #bb8f00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .de:hover {
+    background-color: #dd930a;
+  }
+  
+  .de:focus {
+    outline: 2px solid #dd930a;
+  }
+  
+  /* Animation for Modal Slide In */
+  @keyframes slideIn {
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    .modal-content {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .ed, .de {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .modal-actions {
+      flex-direction: column;
+    }
+  }
+  
