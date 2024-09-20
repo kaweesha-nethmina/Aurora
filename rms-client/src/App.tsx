@@ -56,6 +56,10 @@ import AdminBookingsPage from './modules/transportation/components/adminBookings
 import BookingForm from './modules/transportation/components/bookingForm';
 import AdminVehiclePage from './modules/transportation/components/AdminVehiclePage';
 import ManageDrivers from './modules/transportation/components/ManageDrivers';
+import TransportBookings from './modules/transportation/components/TransportBookings';
+import TManagerDashboard from './modules/transportation/components/ADMIN/TManagerDashboard';
+import TManagerHeader from './modules/transportation/components/ADMIN/TManagerHeader';
+import AddDriverForm from './modules/transportation/components/ADMIN/AddDriverForm';
 function App() {
   return (
     <BrowserRouter>
@@ -132,6 +136,14 @@ function App() {
         <Route path='/Tadmin' element={<AdminBookingsPage/>}/>
         <Route path='/Tbform' element={<BookingForm/>}/>
 
+        
+        <Route path="/Tmanager" element={<TManagerDashboard />}>
+          <Route path="drivers" element={<ManageDrivers />} />
+          <Route path="add-drivers" element={<AddDriverForm />} />
+          <Route path="bookings" element={<TransportBookings />} />
+        </Route>
+  
+        <Route path='/tbHeader' element={<TManagerHeader activeTab={''}/>}/>
         {/* Vehicle */}
         <Route path='/TadminV' element={<AdminVehiclePage/>}/>
 

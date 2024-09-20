@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DriverTable from './DriverTable';
-import DriverForm from './DriverForm';
 import './style/ManageDriver.css'; 
 
 interface Driver {
@@ -10,37 +9,19 @@ interface Driver {
   phoneNumber: string;
 }
 
+// Initial driver data
 const initialDrivers: Driver[] = [
-  { driverCode: 'DRV001', firstName: 'pasindu', lastName: 'Mahesh', phoneNumber: '1234567890' },
+  { driverCode: 'DRV001', firstName: 'Pasindu', lastName: 'Mahesh', phoneNumber: '1234567890' },
   { driverCode: 'DRV002', firstName: 'Kaweesha', lastName: 'Nethmina', phoneNumber: '9876543210' },
   { driverCode: 'DRV003', firstName: 'Kavindu', lastName: 'Senanayake', phoneNumber: '1234567890' },
-  { driverCode: 'DRV003', firstName: 'Ashen', lastName: 'Senaathne', phoneNumber: '9876543210' },
+  { driverCode: 'DRV004', firstName: 'Ashen', lastName: 'Senaathne', phoneNumber: '9876543210' },
 ];
 
 const ManageDrivers = () => {
   const [drivers, setDrivers] = useState(initialDrivers);
-  const [newDriver, setNewDriver] = useState<Driver>({ driverCode: '', firstName: '', lastName: '', phoneNumber: '' });
-  const [editingDriver, setEditingDriver] = useState<Driver | null>(null);
-
-  const handleAddDriver = () => {
-    setDrivers([...drivers, newDriver]);
-    setNewDriver({ driverCode: '', firstName: '', lastName: '', phoneNumber: '' });
-  };
 
   const handleEditDriver = (driver: Driver) => {
-    setEditingDriver(driver);
-    setNewDriver(driver);
-  };
-
-  const handleUpdateDriver = () => {
-    if (editingDriver) {
-      const updatedDrivers = drivers.map((driver) =>
-        driver.driverCode === editingDriver.driverCode ? newDriver : driver
-      );
-      setDrivers(updatedDrivers);
-      setEditingDriver(null);
-      setNewDriver({ driverCode: '', firstName: '', lastName: '', phoneNumber: '' });
-    }
+    // Logic for editing a driver
   };
 
   const handleRemoveDriver = (driverCode: string) => {
@@ -51,13 +32,6 @@ const ManageDrivers = () => {
     <div className="driver-container">
       <h1 className="driver-title">Manage Drivers</h1>
       <DriverTable drivers={drivers} handleEditDriver={handleEditDriver} handleRemoveDriver={handleRemoveDriver} />
-      <DriverForm
-        newDriver={newDriver}
-        setNewDriver={setNewDriver}
-        handleAddDriver={handleAddDriver}
-        editingDriver={editingDriver}
-        handleUpdateDriver={handleUpdateDriver}
-      />
     </div>
   );
 };

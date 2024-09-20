@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #460f9d; /* Header background color */
+    color: white; /* Text color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px; /* Space between navigation links */
+}
+
+.nav-links a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.nav-links a:hover {
+    color: #ffa726; /* Change color on hover */
+}
+
+.nav-links a.active {
+    border-bottom: 2px solid #ffa726; /* Active link underline */
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon img {
+    width: 40px; /* Size of user icon */
+    height: 40px; /* Size of user icon */
+    border-radius: 50%; /* Circular user icon */
+}

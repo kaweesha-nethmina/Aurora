@@ -1,0 +1,39 @@
+.Bcontainer {
+    margin-top: 80px;
+    padding: 20px;
+    margin-left: 250px ;
+    width: 1200px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .bookings-table th,
+  .bookings-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .bookings-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .status.pending {
+    color: orange;
+  }
+  
+  .status.confirmed {
+    color: green;
+  }
+  
+  .status.canceled {
+    color: red;
+  }
+  

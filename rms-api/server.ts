@@ -8,6 +8,7 @@ import noticesRouter from './src/routers/noticesRouter';
 import leaveRequestRouter from './src/routers/leaveRequestRouter';
 import roomRouter from './src/routers/roomRouter';
 import menuItemRouter from './src/routers/menuItemRouter';
+import transportBookingRouter from './src/routers/transportBookingRouter'; // Import transport routes
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
@@ -55,6 +56,7 @@ app.use('/api/notices', noticesRouter);
 app.use('/api', leaveRequestRouter);
 app.use('/api', roomRouter);
 app.use('/api/menu-items', menuItemRouter);
+app.use('/api/TransportBooking', transportBookingRouter); // New route for transport bookings
 
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {
@@ -65,7 +67,6 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
   res.json({ imageUrl });
 });
 
-// Database Connection
 // Database Connection
 const dbUri = process.env.MONGO_URI || 'mongodb://localhost:27017/test'; // Use env variable for DB URI
 mongoose.connect(dbUri)

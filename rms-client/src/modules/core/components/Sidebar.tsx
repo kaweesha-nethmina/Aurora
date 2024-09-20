@@ -16,7 +16,7 @@ const tabs: Tab[] = [
   { id: 3, name: 'Event', icon: 'fa-solid fa-calendar-check', route: '/event' },
   { id: 4, name: 'Rooms', icon: 'fa-solid fa-bed', route: '/rooms' },
   { id: 5, name: 'Spa', icon: 'fa-solid fa-spa', route: '/spa' },
-  { id: 6, name: 'Shuttle Service', icon: 'fa-solid fa-bus', route: '/shuttle-service' },
+  { id: 6, name: 'Shuttle Service', icon: 'fa-solid fa-bus', route: '/Tmanager' },
   { id: 7, name: 'Feedback', icon: 'fa-solid fa-comment-dots', route: '/feedback' },
   { id: 8, name: 'Offers', icon: 'fa-solid fa-tags', route: '/offers' },
 ];

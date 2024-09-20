@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios
 import './style/BookingForm.css';
 
 interface Booking {
@@ -6,7 +7,7 @@ interface Booking {
   email: string;
   phone: string;
   pickup: string;
-  dropff: string;
+  dropoff: string;
   date: string;
   time: string;
   status: string;
@@ -17,7 +18,7 @@ const BookingForm = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [pickup, setPickup] = useState('');
-  const [dropff, setDropoff] = useState('');
+  const [dropoff, setDropoff] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -25,20 +26,43 @@ const BookingForm = () => {
   const [showCheckboxes, setShowCheckboxes] = useState(false);
   const [selectedBookings, setSelectedBookings] = useState<number[]>([]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const validatePhoneNumber = (number: string) => {
+    const phoneRegex = /^[0-9]{10}$/; // Simple validation for 10-digit phone number
+    return phoneRegex.test(number);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!validatePhoneNumber(phone)) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
+
     const newBooking: Booking = {
       name,
       email,
       phone,
       pickup,
-      dropff,
+      dropoff,
       date,
       time,
       status: 'pending',
     };
-    setBookings([...bookings, newBooking]);
-    setShowWaitingTable(true);
+
+    try {
+      // Send the booking data to the backend
+      await axios.post('http://localhost:5000/api/TransportBooking/bookings', newBooking);
+      // Update local state if the booking is successful
+      setBookings([...bookings, newBooking]);
+      setShowWaitingTable(true);
+      resetForm();
+    } catch (error) {
+      console.error('Error creating booking:', error);
+      alert('Failed to create booking. Please try again.');
+    }
+  };
+
+  const resetForm = () => {
     setName('');
     setEmail('');
     setPhone('');
@@ -144,13 +168,13 @@ const BookingForm = () => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="dropff">
+              <label htmlFor="dropoff">
                 Dropoff Location<span>*</span>
               </label>
               <input
-                id="dropff"
+                id="dropoff"
                 type="text"
-                value={dropff}
+                value={dropoff}
                 onChange={(event) => setDropoff(event.target.value)}
                 required
                 placeholder="Enter dropoff location"
@@ -216,7 +240,7 @@ const BookingForm = () => {
                   <td>{booking.email}</td>
                   <td>{booking.phone}</td>
                   <td>{booking.pickup}</td>
-                  <td>{booking.dropff}</td>
+                  <td>{booking.dropoff}</td>
                   <td>{booking.date}</td>
                   <td>{booking.time}</td>
                   <td className={`status ${booking.status}`}>
@@ -237,7 +261,7 @@ const BookingForm = () => {
           </table>
 
           <button className="cancel-btn" onClick={handleCancelAllBookings}>
-            Cancel Booking
+            {showCheckboxes ? 'Select Bookings' : 'Cancel Booking'}
           </button>
 
           {showCheckboxes && selectedBookings.length > 0 && (
@@ -251,4 +275,4 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm;
+export default BookingForm; 
