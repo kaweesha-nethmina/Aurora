@@ -3,7 +3,8 @@
 }
 
 .reservation-table {
-  width: 100%;
+  margin-left: 300px;
+  width: 950px !important;
   border-collapse: collapse;
 }
 

@@ -60,6 +60,7 @@ import TransportBookings from './modules/transportation/components/TransportBook
 import TManagerDashboard from './modules/transportation/components/ADMIN/TManagerDashboard';
 import TManagerHeader from './modules/transportation/components/ADMIN/TManagerHeader';
 import AddDriverForm from './modules/transportation/components/ADMIN/AddDriverForm';
+import RoomManagerDashboard from './modules/reservations/components/RoomManager/RoomMDashboard';
 function App() {
   return (
     <BrowserRouter>
@@ -87,7 +88,7 @@ function App() {
         {/* Other Routes */}
         <Route path='/event' element={<Event />} />
         
-        room Routes
+        
         <Route path='/restuarent' element={<Restaurant/>}/>
         <Route path="/menu" element={<Menu />} />
         <Route path="/menuhomepage" element={<MenuHomePage />} />
@@ -117,13 +118,16 @@ function App() {
         <Route path='/form' element={<RoomBookingForm />} />
         <Route path='/profilescreen' element={<ProfileScreen />} />
         <Route path='/navbar' element={<Navbar />} />
-        <Route path='/addroom' element={<AddRoomForm />} />
-        <Route path='/roomtable' element={<RoomTable />} />
-        <Route path='/reservationtable' element={<Reservationdetails/>} />
         <Route path='/cancelform' element={<CancelBookingForm/>} />
-        <Route path='/canceltable' element={<CancelBookingTable/>} />
+        
 
-
+        <Route path="/roommanager" element={<RoomManagerDashboard />}>
+          <Route path="addroom" element={<AddRoomForm />} />
+          <Route path="roomdetails" element={<RoomTable />} />
+          <Route path="reservations" element={<Reservationdetails />} />
+          <Route path="cancelreservations" element={<CancelBookingTable />} />
+          {/* <Route path="reports" element={<ReportsPage />} /> */}
+        </Route>
 
 
         

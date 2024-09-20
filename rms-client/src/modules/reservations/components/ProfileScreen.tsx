@@ -1,8 +1,8 @@
-// src/modules/profile/components/ProfileScreen.tsx
 import React, { useState, useEffect } from 'react';
 import BookingItem from './BookingItem';
 import '../profile.css';
-import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
+import Header from '../../core/components/Header';
 
 const ProfileScreen: React.FC = () => {
   const [bookings, setBookings] = useState([
@@ -31,20 +31,19 @@ const ProfileScreen: React.FC = () => {
   }, []);
 
   const handleCancelBooking = (id: number) => {
-    // cancel booking API call
+    // cancel booking API call (if needed)
     setBookings(bookings.filter((booking) => booking.id !== id));
   };
 
   return (
     <div className="profile-screen">
-      <h2 className="header">Booking Details</h2>
+      <Header activeTab={''} />
+      <Navbar />
       <ul className="booking-list">
         {bookings.map((booking) => (
-          <Link to="/cancelform">
           <li key={booking.id} className="booking-list-item">
             <BookingItem booking={booking} onCancel={handleCancelBooking} />
           </li>
-          </Link>
         ))}
       </ul>
     </div>

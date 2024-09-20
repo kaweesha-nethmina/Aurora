@@ -1,0 +1,23 @@
+.dashboard-layoutR {
+    display: flex;
+    height: 100vh;
+    
+  }
+  
+  .dashboard-contentR {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 1500px;
+  }
+  
+  .dashboard-containerR {
+    flex-grow: 1;
+    padding: 1rem;
+    background-color: #f4f4f4;
+    width: 1500px;
+    height: 100vh;
+    position: fixed;
+    overflow: auto;
+  }
+  

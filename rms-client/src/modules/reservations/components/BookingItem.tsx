@@ -1,7 +1,6 @@
-// src/modules/profile/components/BookingItem.tsx
 import React from 'react';
-import Navbar from './Navbar';
-import Header from '../../core/components/Header';
+import { useNavigate } from 'react-router-dom';
+
 
 interface Booking {
   id: number;
@@ -19,10 +18,16 @@ interface BookingItemProps {
 }
 
 const BookingItem: React.FC<BookingItemProps> = ({ booking, onCancel }) => {
+  const navigate = useNavigate(); // Use navigate hook to redirect
+
+  const handleCancelClick = () => {
+    onCancel(booking.id);
+    navigate('/cancelform'); // Navigate to cancel form
+  };
+
   return (
     <div className="booking-item">
-      <Header activeTab={''} />
-      <Navbar />
+      
       <h3 className="title">Booking #{booking.id}</h3>
       <p className="detail">Room Type: {booking.roomType}</p>
       <p className="detail">Check-in Date: {booking.arrivalDate}</p>
@@ -30,10 +35,7 @@ const BookingItem: React.FC<BookingItemProps> = ({ booking, onCancel }) => {
       <p className="detail">Special Requests: {booking.specialRequests}</p>
       <p className="detail">Payment Method: {booking.paymentMethod}</p>
       <p className="detail">Status: {booking.status}</p>
-      <button
-        onClick={() => onCancel(booking.id)}
-        className="cancel-button"
-      >
+      <button onClick={handleCancelClick} className="cancel-button">
         Cancel Booking
       </button>
     </div>

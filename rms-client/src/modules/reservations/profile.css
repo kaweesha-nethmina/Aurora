@@ -1,9 +1,8 @@
 /* src/modules/profile/styles/profile.css */
 
 .profile-screen {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 16px;
+    width: 1550px;
+    margin-top: 70px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -26,6 +25,8 @@
   
   .booking-item {
     background-color: #f9f9f9;
+    width: 800px;
+    margin-left: 350px;
     padding: 16px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

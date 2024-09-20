@@ -8,7 +8,7 @@ const AddRoomForm: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Dashboard />
+      
       <h2 className={styles.title}>Add Room Form</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>

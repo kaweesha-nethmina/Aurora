@@ -61,7 +61,7 @@ export const useRoomForm = () => {
         },
       });
       window.alert('Room added successfully!');
-      navigate('/roomtable'); // Redirect to RoomTable page
+      navigate('/roommanager/roomdetails'); // Redirect to RoomTable page
     } catch (error) {
       // Handle error, e.g., show an error message
       console.error('Failed to add room:', error);
