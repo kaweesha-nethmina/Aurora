@@ -74,6 +74,7 @@ import OffersTable from './modules/offers/offers/components/OffersTable/OffersTa
 import OfferCard from './modules/offers/offers/components/OffersHome/OfferCard';
 import AddOffer from './modules/offers/offers/components/AddOffer/AddOffer';
 import OManagerDashboard from './modules/offers/offers/components/Manager/OManagerDashboard';
+import MainHome from './modules/core/components/MainHome';
 function App() {
   return (
     <BrowserRouter>
@@ -98,6 +99,9 @@ function App() {
           <Route path='notices' element={<EmployeeNoticesTab />} />
         </Route>
         
+        <Route path='/homeMain' element={<MainHome />} />
+
+
         {/* Other Routes */}
         <Route path='/event' element={<Event />} />
         
