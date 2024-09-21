@@ -1,6 +1,6 @@
 // src/routers/feedbackRouter.ts
 import express from 'express';
-import { addFeedback, getFeedbacks, deleteFeedback } from '../controller/feedbackController';
+import { addFeedback, getFeedbacks, updateFeedback, deleteFeedback } from '../controller/feedbackController';
 
 const router = express.Router();
 
@@ -9,6 +9,9 @@ router.post('/feedback', addFeedback);
 
 // GET: Get all feedback
 router.get('/feedback', getFeedbacks);
+
+// PUT: Update feedback by ID
+router.put('/feedback/:id', updateFeedback);
 
 // DELETE: Delete feedback by ID
 router.delete('/feedback/:id', deleteFeedback);

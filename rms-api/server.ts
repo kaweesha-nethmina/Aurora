@@ -14,6 +14,8 @@ import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
 import driverRouter from './src/routers/driverRouter'; 
+import feedbackRouter from './src/routers/feedbackRouter'; 
+
 // Load environment variables
 dotenv.config();
 
@@ -58,6 +60,7 @@ app.use('/api', roomRouter);
 app.use('/api/menu-items', menuItemRouter);
 app.use('/api/TransportBooking', transportBookingRouter); // New route for transport bookings
 app.use('/api', driverRouter);
+app.use('/api', feedbackRouter); 
 
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {
