@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css'; // Import a CSS file for styling
 import logo from '../Images/Aurora white.png';
 import user from '../Images/user.png';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   activeTab: string;
@@ -23,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab }) => {
         <a href="/offers" className={activeTab === 'offers' ? 'active' : ''}>Offers</a>
       </nav>
       <div className="user-icon">
-        <img src={user} alt="User Icon" />
+       <Link to="/login"> <img src={user} alt="User Icon" /></Link>
       </div>
     </header>
   );
