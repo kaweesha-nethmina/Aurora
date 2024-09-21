@@ -5,7 +5,7 @@ import Navbar from '../nav/GNavbar';
 import axios from 'axios';
 
 interface Feedback {
-  id: string; // MongoDB ObjectId
+  _id: string; // MongoDB ObjectId
   name: string;
   rating: number;
   description: string;
@@ -34,11 +34,11 @@ const DisplayFeedbackPage = () => {
     if (selectedFeedback && updatedFeedback) {
       try {
         const response = await axios.put<{ feedback: Feedback }>(
-          `http://localhost:5000/api/feedback/${selectedFeedback.id}`,
+          `http://localhost:5000/api/feedback/${selectedFeedback._id}`,
           updatedFeedback
         );
         const updatedFeedbacks = feedbacks.map(feedback =>
-          feedback.id === selectedFeedback.id ? { ...feedback, ...response.data.feedback } : feedback
+          feedback._id === selectedFeedback._id ? { ...feedback, ...response.data.feedback } : feedback
         );
         setFeedbacks(updatedFeedbacks);
         closeModal();
@@ -47,13 +47,12 @@ const DisplayFeedbackPage = () => {
       }
     }
   };
-  
 
   const handleDelete = async () => {
     if (selectedFeedback) {
       try {
-        await axios.delete(`http://localhost:5000/api/feedback/${selectedFeedback.id}`);
-        setFeedbacks(feedbacks.filter(feedback => feedback.id !== selectedFeedback.id));
+        await axios.delete(`http://localhost:5000/api/feedback/${selectedFeedback._id}`);
+        setFeedbacks(feedbacks.filter(feedback => feedback._id !== selectedFeedback._id));
         closeModal();
       } catch (error) {
         console.error('Error deleting feedback:', error);
@@ -86,8 +85,8 @@ const DisplayFeedbackPage = () => {
         <div className="feedback-card-container">
           {feedbacks.map(feedback => (
             <div
-              key={feedback.id}
-              className={`feedback-card ${selectedFeedback?.id === feedback.id ? 'selected' : ''}`}
+              key={feedback._id}
+              className={`feedback-card ${selectedFeedback?._id === feedback._id ? 'selected' : ''}`}
               onClick={() => handleSelectFeedback(feedback)}
             >
               <h3 className="feedback-name">{feedback.name}</h3>
@@ -100,33 +99,41 @@ const DisplayFeedbackPage = () => {
           <div className="modal">
             <div className="modal-content">
               <h3 className="update-title">Update Feedback</h3>
-              <input
-                type="text"
-                value={updatedFeedback.name || ''}
-                onChange={(e) => setUpdatedFeedback({ ...updatedFeedback, name: e.target.value })}
-                className="feedback-input"
-                placeholder="Update name"
-              />
-              <input
-                type="number"
-                value={updatedFeedback.rating || 0}
-                onChange={(e) => setUpdatedFeedback({ ...updatedFeedback, rating: Math.max(0, Math.min(5, Number(e.target.value))) })} // Validate rating
-                className="feedback-input"
-                placeholder="Update rating"
-                min="0"
-                max="5"
-              />
-              <textarea
-                value={updatedFeedback.description || ''}
-                onChange={(e) => setUpdatedFeedback({ ...updatedFeedback, description: e.target.value })}
-                className="feedback-input"
-                placeholder="Update description"
-              />
-              <div className="feedback-buttons">
-                <button onClick={handleUpdate} className="button-update">Update</button>
-                <button onClick={handleDelete} className="button-delete">Delete</button>
-                <button onClick={closeModal} className="button-cancel">Cancel</button>
+              <div className="feedback-field">
+                <label className="feedback-label" htmlFor="update-name">Name</label>
+                <input
+                  className="feedback-input"
+                  id="update-name"
+                  type="text"
+                  value={updatedFeedback.name}
+                  onChange={(e) => setUpdatedFeedback({ ...updatedFeedback, name: e.target.value })}
+                />
               </div>
+              <div className="feedback-field">
+                <label className="feedback-label" htmlFor="update-rating">Rating</label>
+                <select
+                  className="feedback-input"
+                  id="update-rating"
+                  value={updatedFeedback.rating}
+                  onChange={(e) => setUpdatedFeedback({ ...updatedFeedback, rating: Number(e.target.value) })}
+                >
+                  {[...Array(6).keys()].map((num) => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="feedback-field">
+                <label className="feedback-label" htmlFor="update-description">Description</label>
+                <textarea
+                  className="feedback-input"
+                  id="update-description"
+                  value={updatedFeedback.description}
+                  onChange={(e) => setUpdatedFeedback({ ...updatedFeedback, description: e.target.value })}
+                />
+              </div>
+              <button onClick={handleUpdate} className="feedback-submit">Update</button>
+              <button onClick={handleDelete} className="feedback-submit">Delete</button>
+              <button onClick={closeModal} className="feedback-submit">Close</button>
             </div>
           </div>
         )}

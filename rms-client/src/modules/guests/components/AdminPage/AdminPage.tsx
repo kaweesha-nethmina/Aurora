@@ -8,7 +8,7 @@ interface Feedback {
   comment: string;
 }
 
-const AdminPage = () => {
+const GAdminPage = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([
     { id: 1, rating: 5, comment: 'Great service!' },
     { id: 2, rating: 3, comment: 'Average experience.' },
@@ -61,4 +61,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default GAdminPage;

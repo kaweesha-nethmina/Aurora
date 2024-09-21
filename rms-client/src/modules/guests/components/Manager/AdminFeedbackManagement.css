@@ -1,0 +1,127 @@
+/* AdminFeedbackManagement.css */
+
+.admin-feedback-management {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+    width: 1000px;
+    margin-left: 350px;
+    margin-top: 100px;
+}
+
+.admin-title {
+    text-align: center;
+    color: #333;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-name, .input-rating, .input-description {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-name:focus, .input-rating:focus, .input-description:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn-update {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #28a745; /* Green */
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-cancel {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #dc3545; /* Red */
+    cursor: pointer;
+}
+
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.feedback-table, th, td {
+    border: 1px solid #dee2e6;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
+
+.btn-edit {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #007bff; /* Blue */
+    cursor: pointer;
+}
+
+.btn-delete {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #dc3545; /* Red */
+    cursor: pointer;
+}
+
+.btn-edit:hover, .btn-delete:hover, .btn-update:hover, .btn-cancel:hover {
+    opacity: 0.9;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+

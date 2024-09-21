@@ -1,5 +1,6 @@
-.dashboard-container {
-  margin: auto;
+.dashboard-containerGE {
+  margin-top: 100px;
+  margin-left: 260px;
   padding: 2rem; /* Increased padding for a spacious feel */
   align-items: center;
   max-width: 1200px; /* Added a max width to center the content */
@@ -36,6 +37,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem; /* Increased gap for better spacing */
+  margin-left: 200px;
 }
 
 .dashboard-chart {

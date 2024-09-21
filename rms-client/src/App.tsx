@@ -70,6 +70,9 @@ import AdminDashboard from './modules/guests/components/AdminDashboard/AdminDash
 import DisplayFeedbackPage from './modules/guests/components/DisplayFeedback/DisplayFeedbackPage';
 import AdminPageG from './modules/guests/components/AdminPage/AdminPage';
 import UserProfileComponent from './modules/guests/components/UserProfile/UserProfileComponent';
+import GManagerDashboard from './modules/guests/components/Manager/GmanagerDashboard';
+import AdminFeedbackManagement from './modules/guests/components/Manager/AdminFeedbackManagement';
+import GAdminPage from './modules/guests/components/AdminPage/AdminPage';
 function App() {
   return (
     <BrowserRouter>
@@ -148,13 +151,18 @@ function App() {
       <Route path='/guests' element={<Guests />} />
         <Route path='/login' element={<GuestProfileLoginPage />} />
         <Route path='/loginDetails' element={<AccountDetailsTable />} />
-        <Route path='/Adminview' element={<AdminView />} />
+        
         <Route path='/Feedbackrating' element={<FeedbackRatingPage/>}/>
-        <Route path='/Adminpage' element={<AdminPage/>}/>
-        <Route path='/Dashboard' element={<AdminDashboard/>}/>
+        <Route path='/Adminpage' element={<GAdminPage/>}/>
+        
         <Route path='/displayfeedback' element={<DisplayFeedbackPage/>}/>
         <Route path='/pr' element={<UserProfileComponent/>}/>
 
+        <Route path="/GManager" element={<GManagerDashboard />}>
+          <Route path="feedback" element={<AdminFeedbackManagement />} />
+          <Route path='Dashboard' element={<AdminDashboard/>}/>
+          <Route path='Adminview' element={<AdminView />} />
+        </Route>
 
         {/* Shuttle Service */}
         <Route path='/transportation' element={<Transport/>}/>

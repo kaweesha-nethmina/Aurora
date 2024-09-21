@@ -52,7 +52,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-containerGE">
       <Header activeTab={''} />
       <h1 className="dashboard-title">Admin Dashboard</h1>
       <button className="dashboard-button" onClick={generateReports}>
@@ -74,7 +74,7 @@ const AdminDashboard = () => {
             <Line type="monotone" dataKey="rating" stroke="#8884d8" activeDot={{ r: 8 }} />
           </LineChart>
         </div>
-        <div className="dashboard-feedback">
+        {/* <div className="dashboard-feedback">
           <h2 className="feedback-title">Feedbacks</h2>
           <ul>
             {feedbacks.map((feedback) => (
@@ -83,7 +83,7 @@ const AdminDashboard = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+// src/controller/feedbackController.ts
 import { Request, Response } from 'express';
 import Feedback from '../model/feedbackModel';
 
@@ -31,13 +32,11 @@ export const updateFeedback = async (req: Request, res: Response) => {
   const { name, rating, description } = req.body;
 
   try {
-    // Validate that the feedback exists
     const existingFeedback = await Feedback.findById(id);
     if (!existingFeedback) {
       return res.status(404).json({ message: 'Feedback not found' });
     }
 
-    // Update the feedback
     const updatedFeedback = await Feedback.findByIdAndUpdate(
       id,
       { name, rating, description },

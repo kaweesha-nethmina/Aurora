@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 interface Rating {
-  id: string; // MongoDB ObjectId
+  _id: string; // MongoDB ObjectId
   name: string;
   rating: number;
   description: string;
@@ -54,6 +54,7 @@ const FeedbackRatingPage = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
           </div>
           <div className="feedback-field">
@@ -63,6 +64,7 @@ const FeedbackRatingPage = () => {
               id="rating"
               value={rating}
               onChange={(e) => setRating(Number(e.target.value))}
+              required
             >
               {[...Array(6).keys()].map((num) => (
                 <option key={num} value={num}>{num}</option>
@@ -76,6 +78,7 @@ const FeedbackRatingPage = () => {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required
             />
           </div>
           <button className="feedback-submit" type="submit">Submit</button>
