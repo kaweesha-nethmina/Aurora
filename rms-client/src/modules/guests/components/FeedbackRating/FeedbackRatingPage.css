@@ -1,114 +1,159 @@
-.feedback-container {
-    max-width: 640px;
-    margin: auto;
-    padding: 16px;
-    align-items: center;
+.feedback-containerF {
+  width: 1530px;
+  margin-top: 75px;
+  height: 100vh;
+  margin-left: 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.feedcon{
+  width: 500px;
+  margin-left: 500px;
+  margin-top: 50px;
+}
+.feedback-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.feedback-form {
+  margin-bottom: 24px;
+}
+
+.feedback-field {
+  margin-bottom: 24px;
+}
+
+.feedback-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+}
+
+.feedback-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.feedback-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.feedback-submit {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-submit:hover {
+  background-color: #0056b3;
+}
+
+.ratings-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.ratings-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.rating-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.rating-item:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rating-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.rating-actions {
+  display: flex;
+}
+
+.rating-edit {
+  background-color: #ffc107;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.rating-edit:hover {
+  background-color: #e0a800;
+}
+
+.rating-delete {
+  background-color: #dc3545;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.rating-delete:hover {
+  background-color: #c82333;
+}
+
+.rating-value,
+.rating-description {
+  margin-top: 5px;
+  color: #666;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .feedback-title, .ratings-title {
+      font-size: 2rem;
   }
-  
-  .feedback-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 16px;
+
+  .feedback-input, .feedback-submit, .rating-edit, .rating-delete {
+      padding: 10px;
   }
-  
-  .feedback-form {
-    margin-bottom: 16px;
+
+  .feedback-container {
+      padding: 15px;
   }
-  
-  .feedback-field {
-    margin-bottom: 16px;
-  }
-  
-  .feedback-label {
-    display: block;
-    margin-bottom: 8px;
-  }
-  
-  .feedback-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .feedback-submit {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .feedback-submit:hover {
-    background-color: #0056b3;
-  }
-  
-  .ratings-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 16px;
-  }
-  
-  .ratings-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .rating-item {
-    margin-bottom: 16px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .rating-header {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .rating-name {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  .rating-actions {
-    display: flex;
-  }
-  
-  .rating-edit {
-    background-color: #ffc107;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 8px;
-  }
-  
-  .rating-edit:hover {
-    background-color: #e0a800;
-  }
-  
-  .rating-delete {
-    background-color: #dc3545;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .rating-delete:hover {
-    background-color: #c82333;
-  }
-  
-  .rating-value {
-    margin-top: 5px;
-  }
-  
-  .rating-description {
-    margin-top: 5px;
-  }
-  
+}

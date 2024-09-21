@@ -1,70 +1,105 @@
-.container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    align-items: center;
-  }
-  
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 16px;
-  }
-  
-  .input-group {
-    margin-bottom: 16px;
-  }
-  
-  .input-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-  
-  .input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .account-type {
-    margin-bottom: 16px;
-  }
-  
-  .account-type button {
-    margin-right: 8px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .error {
-    color: red;
-    margin-bottom: 16px;
-  }
-  
-  .submit-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .toggle-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #f0f0f0;
-    color: #333;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
+.containerGE {
+  max-width: 400px; /* Maintained max width for a compact look */
+  margin-top: 200px ;
+  margin-left: 550px;
+  padding: 24px; /* Increased padding for more space */
+  background-color: #222222; /* White background */
+  border-radius: 10px; /* Slightly more rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  display: flex; /* Ensured flex layout for alignment */
+  flex-direction: column; /* Column layout */
+  align-items: center; /* Centered content */
+}
+
+.titleL {
+  font-size: 1.5rem; /* Adjusted font size */
+  font-weight: bold;
+  margin-bottom: 20px; /* Increased margin */
+  color: #ffffff; /* Darker text color */
+}
+
+.input-group {
+  margin-bottom: 20px; /* Increased margin for spacing */
+  width: 100%; /* Full width for input groups */
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #ffffff; /* Lighter text color */
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px; /* Increased padding for better usability */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s, box-shadow 0.2s; /* Added transition effects */
+}
+
+.input-group input:focus {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle shadow on focus */
+}
+
+.account-type {
+  margin-bottom: 20px; /* Increased margin */
+  display: flex; /* Flex layout for buttons */
+  justify-content: space-between; /* Spacing between buttons */
+  color: white;
+}
+
+.account-type button {
+  margin-right: 8px;
+  padding: 10px 16px; /* Adjusted padding */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9; /* Light background for buttons */
+  color: #ffffff; /* Darker text color */
+  transition: background-color 0.3s, transform 0.2s; /* Added transitions */
+}
+
+.account-type button:hover {
+  background-color: #e0e0e0; /* Hover effect for buttons */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.error {
+  color: red;
+  margin-bottom: 20px; /* Increased margin */
+  font-weight: 500; /* Slightly bolder text */
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px; /* Increased padding */
+  background-color: #ffa600;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Added transitions */
+}
+
+.submit-btn:hover {
+  background-color: #b36500; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.toggle-btn {
+  width: 100%;
+  padding: 12px; /* Increased padding */
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.2s; /* Added transitions */
+}
+
+.toggle-btn:hover {
+  background-color: #6e6e6e; /* Darker background on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}

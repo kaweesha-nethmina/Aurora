@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import './AdminDashboard.css';
+import Header from '../../../core/components/Header';
 
 interface Feedback {
   id: number;
@@ -52,6 +53,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
+      <Header activeTab={''} />
       <h1 className="dashboard-title">Admin Dashboard</h1>
       <button className="dashboard-button" onClick={generateReports}>
         Generate Reports

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css'
+import Header from '../../core/components/Header';
+import { Link } from 'react-router-dom';
 
 interface GuestProfile {
   firstName: string;
@@ -45,8 +47,9 @@ const GuestProfileLoginPage = () => {
   };
 
   return (
-    <div className="container">
-      <h2 className="title">{isLogin ? 'Login' : 'Create New Account'}</h2>
+    <div className="containerGE">
+      <Header activeTab={''} />
+      <h2 className="titleL">{isLogin ? 'Login' : 'Create New Account'}</h2>
       <form onSubmit={handleSubmit}>
         {!isLogin && (
           <>
@@ -130,9 +133,9 @@ const GuestProfileLoginPage = () => {
           </>
         )}
         {error && <p className="error">{error}</p>}
-        <button type="submit" className="submit-btn">
+        <Link to="/pr"> <button type="submit" className="submit-btn">
           {isLogin ? 'Login' : 'Create Account'}
-        </button>
+        </button></Link>
         <button type="button" className="toggle-btn" onClick={() => setIsLogin(!isLogin)}>
           {isLogin ? 'Create New Account' : 'Login Instead'}
         </button>

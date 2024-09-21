@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './AdminView.css';
+import Header from '../../../core/components/Header';
 
 interface User {
   id: number;
@@ -33,6 +34,7 @@ const AdminView = () => {
 
   return (
     <div className="admin-view">
+      <Header activeTab={''} />
       <h1 className="admin-title">User Logins and Details</h1>
       <div className="admin-search">
         <input

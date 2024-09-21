@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './AdminPage.css';
+import Header from '../../../core/components/Header';
 
 interface Feedback {
   id: number;
@@ -7,7 +8,7 @@ interface Feedback {
   comment: string;
 }
 
-const AdminPageG = () => {
+const AdminPage = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([
     { id: 1, rating: 5, comment: 'Great service!' },
     { id: 2, rating: 3, comment: 'Average experience.' },
@@ -30,6 +31,7 @@ const AdminPageG = () => {
 
   return (
     <div className="admin-container">
+      <Header activeTab={''} />
       <h1 className="admin-title">Feedback and Ratings</h1>
       <div className="admin-feedback-list">
         {feedbacks.map((feedback) => (
@@ -59,4 +61,4 @@ const AdminPageG = () => {
   );
 };
 
-export default AdminPageG;
+export default AdminPage;

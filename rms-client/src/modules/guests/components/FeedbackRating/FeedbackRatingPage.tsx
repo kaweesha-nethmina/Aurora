@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './FeedbackRatingPage.css';
 import Header from '../../../core/components/Header';
+import { Link } from 'react-router-dom';
+import Navbar from '../nav/GNavbar';
 
 interface Rating {
   id: number;
@@ -46,9 +48,10 @@ const FeedbackRatingPage = () => {
   };
 
   return (
-    <div className="feedback-container">
+    <div className="feedback-containerF">
       <Header activeTab={''} />
-      
+      <Navbar />
+      <div className='feedcon'>
       <h1 className="feedback-title">Feedback and Rating</h1>
       <form onSubmit={handleSubmit} className="feedback-form">
         <div className="feedback-field">
@@ -83,9 +86,9 @@ const FeedbackRatingPage = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <button className="feedback-submit" type="submit">
+        <Link to="/displayfeedback"> <button className="feedback-submit" type="submit">
           {isEditing ? 'Update' : 'Submit'}
-        </button>
+        </button></Link>
       </form>
       <h2 className="ratings-title">Ratings</h2>
       <ul className="ratings-list">
@@ -103,6 +106,7 @@ const FeedbackRatingPage = () => {
           </li>
         ))}
       </ul>
+      </div>
     </div>
   );
 };

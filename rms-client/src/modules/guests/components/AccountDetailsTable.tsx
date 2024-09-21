@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AccountDetailsTable.css';
+import Header from '../../core/components/Header';
 
 interface Account {
   firstname: string;
@@ -40,6 +41,7 @@ const AccountDetailsTable = () => {
 
   return (
     <div className="account-details">
+      <Header activeTab={''} />
       <h2 className="title">Account Details</h2>
       <table className="table">
         <tbody>

@@ -1,67 +1,124 @@
+/* Admin Page Container */
 .admin-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 16px;
-    align-items: center;
-  }
-  
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  height: 100vh; /* Full viewport height to center vertically */
+  background-color: #f9fafb; /* Light gray background */
+}
+
+/* Admin Title Styling */
+.admin-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937; /* Gray 900 */
+  text-align: center;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #1f2937;
+  padding-bottom: 8px;
+}
+
+/* Feedback List Container */
+.admin-feedback-list {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Individual Feedback Item Styling */
+.admin-feedback-item {
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-feedback-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Feedback Rating */
+.admin-feedback-rating {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937; /* Gray 900 */
+  margin-bottom: 8px;
+}
+
+/* Feedback Comment */
+.admin-feedback-comment {
+  color: #4b5563; /* Gray 600 */
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+/* Feedback Actions Container */
+.admin-feedback-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* Delete Button Styling */
+.admin-delete-button {
+  background-color: #f56565; /* Red 500 */
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 0.375rem; /* Rounded */
+  margin-right: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-delete-button:hover {
+  background-color: #c53030; /* Red 700 */
+  box-shadow: 0 4px 8px rgba(197, 48, 48, 0.3);
+}
+
+/* Accept Button Styling */
+.admin-accept-button {
+  background-color: #48bb78; /* Green 500 */
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 0.375rem; /* Rounded */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-accept-button:hover {
+  background-color: #38a169; /* Green 700 */
+  box-shadow: 0 4px 8px rgba(56, 161, 105, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .admin-title {
     font-size: 2rem;
-    font-weight: bold;
-    color: #1f2937; /* Gray 900 */
   }
-  
+
   .admin-feedback-list {
-    margin-top: 32px;
+    margin-top: 24px;
+    max-width: 100%;
+    padding: 0 16px;
   }
-  
+
   .admin-feedback-item {
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 16px;
-    margin-bottom: 16px;
   }
-  
-  .admin-feedback-rating {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #1f2937; /* Gray 900 */
-  }
-  
-  .admin-feedback-comment {
-    color: #4b5563; /* Gray 600 */
-  }
-  
-  .admin-feedback-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 16px;
-  }
-  
-  .admin-delete-button {
-    background-color: #f56565; /* Red 500 */
-    color: white;
-    font-weight: bold;
-    padding: 8px 16px;
-    border-radius: 0.375rem; /* Rounded */
-    margin-right: 16px;
-    cursor: pointer;
-  }
-  
-  .admin-delete-button:hover {
-    background-color: #c53030; /* Red 700 */
-  }
-  
+
+  .admin-delete-button,
   .admin-accept-button {
-    background-color: #48bb78; /* Green 500 */
-    color: white;
-    font-weight: bold;
     padding: 8px 16px;
-    border-radius: 0.375rem; /* Rounded */
-    cursor: pointer;
   }
-  
-  .admin-accept-button:hover {
-    background-color: #38a169; /* Green 700 */
-  }
-  
+}

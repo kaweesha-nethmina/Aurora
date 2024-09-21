@@ -23,7 +23,7 @@ import Reservation from './modules/reservations/Reservation'; // Fixed typo
 import Spa from './modules/spa/Spa';
 import Guests from './modules/guests/Guests';
 import Transport from './modules/transportation/Transportation'; // Fixed typo
-import Offers from './modules/offers/Offers';
+// import Offers from './modules/offers/Offers';
 import HotelRoomReservationForm from './modules/reservations/components/HotelRoomReservationForm';
 import RoomReservationPage from './modules/reservations/RoomReservationPage';
 import EmployeeNoticesTab from './modules/employees/components/Employee/notices';
@@ -69,6 +69,7 @@ import AdminPage from './modules/transportation/components/adminPage';
 import AdminDashboard from './modules/guests/components/AdminDashboard/AdminDashboard';
 import DisplayFeedbackPage from './modules/guests/components/DisplayFeedback/DisplayFeedbackPage';
 import AdminPageG from './modules/guests/components/AdminPage/AdminPage';
+import UserProfileComponent from './modules/guests/components/UserProfile/UserProfileComponent';
 function App() {
   return (
     <BrowserRouter>
@@ -144,15 +145,15 @@ function App() {
 
 
       {/* Guest */}
-        <Route path='/guests' element={<Guests />} />
+      <Route path='/guests' element={<Guests />} />
         <Route path='/login' element={<GuestProfileLoginPage />} />
         <Route path='/loginDetails' element={<AccountDetailsTable />} />
+        <Route path='/Adminview' element={<AdminView />} />
         <Route path='/Feedbackrating' element={<FeedbackRatingPage/>}/>
-        <Route path='/AdminpageG' element={<AdminPageG/>}/>
+        <Route path='/Adminpage' element={<AdminPage/>}/>
         <Route path='/Dashboard' element={<AdminDashboard/>}/>
         <Route path='/displayfeedback' element={<DisplayFeedbackPage/>}/>
-
-        <Route path='/Adminview' element={<AdminView />} />
+        <Route path='/pr' element={<UserProfileComponent/>}/>
 
 
         {/* Shuttle Service */}
@@ -174,7 +175,7 @@ function App() {
         {/* Driver */}
         <Route path='/TadminD' element={<ManageDrivers/>}/>
 
-        <Route path='/offers' element={<Offers />} />
+        {/* <Route path='/offers' element={<Offers />} /> */}
       </Routes>
     </BrowserRouter>
   );

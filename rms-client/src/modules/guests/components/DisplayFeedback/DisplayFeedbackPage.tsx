@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './DisplayFeedbackPage.css';
+import Header from '../../../core/components/Header';
+import Navbar from '../nav/GNavbar';
 
 interface Feedback {
   id: number;
@@ -45,38 +47,42 @@ const DisplayFeedbackPage = () => {
 
   return (
     <div className="feedback-container">
-      <h2 className="feedback-title">Display Feedback Page</h2>
-      <ul className="feedback-list">
-        {feedbacks.map((feedback) => (
-          <li
-            key={feedback.id}
-            className="feedback-item"
-            onClick={() => handleSelectFeedback(feedback)}
-          >
-            <p className="feedback-name">{feedback.name}</p>
-            <p className="feedback-text">{feedback.feedback}</p>
-          </li>
-        ))}
-      </ul>
-      {selectedFeedback && (
-        <div>
-          <input
-            type="text"
-            value={updatedFeedback}
-            onChange={(e) => setUpdatedFeedback(e.target.value)}
-            className="feedback-input"
-            placeholder="Update feedback"
-          />
-          <div className="feedback-buttons">
-            <button onClick={handleUpdate} className="button-update">
-              Update
-            </button>
-            <button onClick={handleDelete} className="button-delete">
-              Delete
-            </button>
-          </div>
+      <Header activeTab={''} />
+      <Navbar />
+      <div className='feedchat'>
+        <h2 className="feedback-title">Feedbacks</h2>
+        <div className="feedback-card-container">
+          {feedbacks.map((feedback) => (
+            <div
+              key={feedback.id}
+              className={`feedback-card ${selectedFeedback?.id === feedback.id ? 'selected' : ''}`}
+              onClick={() => handleSelectFeedback(feedback)}
+            >
+              <p className="feedback-name">{feedback.name}</p>
+              <p className="feedback-text">{feedback.feedback}</p>
+            </div>
+          ))}
         </div>
-      )}
+        {selectedFeedback && (
+          <div className="feedback-form">
+            <input
+              type="text"
+              value={updatedFeedback}
+              onChange={(e) => setUpdatedFeedback(e.target.value)}
+              className="feedback-input"
+              placeholder="Update feedback"
+            />
+            <div className="feedback-buttons">
+              <button onClick={handleUpdate} className="button-update">
+                Update
+              </button>
+              <button onClick={handleDelete} className="button-delete">
+                Delete
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
