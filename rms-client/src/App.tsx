@@ -68,6 +68,12 @@ import UserProfileComponent from './modules/guests/components/UserProfile/UserPr
 import GManagerDashboard from './modules/guests/components/Manager/GmanagerDashboard';
 import AdminFeedbackManagement from './modules/guests/components/Manager/AdminFeedbackManagement';
 import GAdminPage from './modules/guests/components/AdminPage/AdminPage';
+import Offers from './modules/offers/offers/Offers';
+import HomePage1 from './modules/offers/offers/components/OffersHome/HomePage';
+import OffersTable from './modules/offers/offers/components/OffersTable/OffersTable';
+import OfferCard from './modules/offers/offers/components/OffersHome/OfferCard';
+import AddOffer from './modules/offers/offers/components/AddOffer/AddOffer';
+import OManagerDashboard from './modules/offers/offers/components/Manager/OManagerDashboard';
 function App() {
   return (
     <BrowserRouter>
@@ -96,6 +102,7 @@ function App() {
         <Route path='/event' element={<Event />} />
         
         
+        {/* Restuarent */}
         <Route path='/restuarent' element={<Restaurant/>}/>
         <Route path="/menu" element={<Menu />} />
         <Route path="/menuhomepage" element={<MenuHomePage />} />
@@ -178,7 +185,35 @@ function App() {
         {/* Driver */}
         <Route path='/TadminD' element={<ManageDrivers/>}/>
 
-        {/* <Route path='/offers' element={<Offers />} /> */}
+
+
+
+
+
+        {/* Offers */}
+        <Route path='/offers' element={<Offers/>}/>
+        <Route path="/HomePage1" element={<HomePage1/>} />
+        
+       
+         <Route path="/Navbar" element={<Navbar/>} />
+         
+        
+        
+        <Route path="/OfferCard" element={<OfferCard offer={{
+        id: 0,
+        name: '',
+        description: '',
+        image: ''
+      }}/>} />
+       
+
+       <Route path="/OManager" element={<OManagerDashboard />}>
+       <Route path="AddOffer" element={<AddOffer onSave={() => { console.log(); }} />} />
+
+        <Route path="OffersTable" element={<OffersTable />} />
+      </Route>
+
+
       </Routes>
     </BrowserRouter>
   );

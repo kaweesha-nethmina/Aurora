@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab }) => {
         <a href="/menuhomepage" className={activeTab === 'restaurant-bar' ? 'active' : ''}>Restaurant & Bar</a>
         <a href="/spa" className={activeTab === 'spa-wellness' ? 'active' : ''}>Spa & Wellness</a>
         <a href="/transportation" className={activeTab === 'transportation' ? 'active' : ''}>Transport</a>
-        <a href="/offers" className={activeTab === 'offers' ? 'active' : ''}>Offers</a>
+        <a href="/HomePage1" className={activeTab === 'offers' ? 'active' : ''}>Offers</a>
       </nav>
       <div className="user-icon">
        <Link to="/login"> <img src={user} alt="User Icon" /></Link>

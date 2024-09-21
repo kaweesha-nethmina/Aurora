@@ -18,7 +18,7 @@ const tabs: Tab[] = [
   { id: 5, name: 'Spa', icon: 'fa-solid fa-spa', route: '/spa' },
   { id: 6, name: 'Shuttle Service', icon: 'fa-solid fa-bus', route: '/Tmanager/drivers' },
   { id: 7, name: 'Feedback', icon: 'fa-solid fa-comment-dots', route: '/GManager/feedback' },
-  { id: 8, name: 'Offers', icon: 'fa-solid fa-tags', route: '/offers' },
+  { id: 8, name: 'Offers', icon: 'fa-solid fa-tags', route: '/OManager' },
 ];
 
 const Sidebar = () => {

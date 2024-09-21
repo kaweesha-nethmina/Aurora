@@ -11,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ search, onSearchChange }) => {
       type="search"
       value={search}
       onChange={onSearchChange}
-      placeholder="Search rooms"
+      placeholder="Search offers" // Update placeholder to match context
       className="search-bar"
     />
   );

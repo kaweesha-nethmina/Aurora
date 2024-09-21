@@ -1,0 +1,17 @@
+.homepage {
+    margin-top: 70px;
+    
+  }
+  
+  .homepage-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .homepage-offers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
