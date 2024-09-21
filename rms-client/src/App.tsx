@@ -24,8 +24,6 @@ import Spa from './modules/spa/Spa';
 import Guests from './modules/guests/Guests';
 import Transport from './modules/transportation/Transportation'; // Fixed typo
 // import Offers from './modules/offers/Offers';
-import HotelRoomReservationForm from './modules/reservations/components/HotelRoomReservationForm';
-import RoomReservationPage from './modules/reservations/RoomReservationPage';
 import EmployeeNoticesTab from './modules/employees/components/Employee/notices';
 import RoomBookingForm from './modules/reservations/components/RoomBookingForm';
 import ProfileScreen from './modules/reservations/components/ProfileScreen';
@@ -50,7 +48,6 @@ import AdminCancelBookingTable from './modules/restuarent/restuarent/components/
 import AboutUs from './modules/restuarent/restuarent/components/AboutUs/AboutUs';
 import AddEditMenuItem from './modules/restuarent/restuarent/components/MenuForm/AddEditMenuItem';
 import MenuHomePage from './modules/restuarent/restuarent/components/HomePage/HomePage';
-import Header from './modules/core/components/Header';
 import RManagerDashboard from './modules/restuarent/restuarent/components/Manager/RmanagerDashboard';
 import AdminBookingsPage from './modules/transportation/components/adminBookingsPage';
 import BookingForm from './modules/transportation/components/bookingForm';
@@ -65,10 +62,8 @@ import GuestProfileLoginPage from './modules/guests/components/GuestProfileLogin
 import AccountDetailsTable from './modules/guests/components/AccountDetailsTable';
 import AdminView from './modules/guests/components/AdminView/AdminView';
 import FeedbackRatingPage from './modules/guests/components/FeedbackRating/FeedbackRatingPage';
-import AdminPage from './modules/transportation/components/adminPage';
 import AdminDashboard from './modules/guests/components/AdminDashboard/AdminDashboard';
 import DisplayFeedbackPage from './modules/guests/components/DisplayFeedback/DisplayFeedbackPage';
-import AdminPageG from './modules/guests/components/AdminPage/AdminPage';
 import UserProfileComponent from './modules/guests/components/UserProfile/UserProfileComponent';
 import GManagerDashboard from './modules/guests/components/Manager/GmanagerDashboard';
 import AdminFeedbackManagement from './modules/guests/components/Manager/AdminFeedbackManagement';
