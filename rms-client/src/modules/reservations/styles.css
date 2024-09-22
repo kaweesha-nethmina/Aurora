@@ -1,5 +1,5 @@
 .containerRoom {
-    width: 1500px;
+    width: 1520px;
     margin-top: 80px;
     
   }
@@ -14,11 +14,12 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
+    
   }
   
   .search-input,
   .filter-select {
-    width: 100%;
+    width: 600px !important;
     padding: 8px;
     margin: 0 8px;
     font-size: 14px;
@@ -133,4 +134,12 @@
     cursor: pointer;
   }
   
-  
+  .room-search-input{
+    width: 850px;
+    height: 7vh;
+    margin-left: 330px;
+    padding: 16px;
+    border-radius: 20px;
+    border: none;
+    background-color: #f3f3f3;
+  }

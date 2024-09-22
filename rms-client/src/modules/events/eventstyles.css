@@ -1,0 +1,216 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.card, .venue-card, .details, .confirmation {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.card-title, .details-title, .dates-title, .venue-title, .confirmation-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-description, .details-description, .venue-description, .confirmation-text {
+  font-size: 16px;
+  color: #555;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.dates, .calendar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.status {
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+}
+
+
+
+
+/* General Styles */
+/*body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+h2{
+  font-size: 1.5rem;
+  color:#333333;
+  text-align: center;
+}
+
+h3{
+  font-size: 1.2rem;
+  color:#333333;
+  text-align: center;
+}
+
+p{
+  font-size: 1rem;
+  color:#333333
+}
+*/
+/* Event List */
+/*
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #e0f7fa;
+  border-left: 6px solid #00838f;
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+
+.event-item:hover {
+  transform: translateY(-5px);
+}
+
+.event-info h3 {
+  font-size: 1.5rem;
+  color: #00796b;
+  margin-bottom: 5px;
+}
+
+.event-info p {
+  font-size: 1rem;
+  color: #555555;
+}
+*/
+/* Buttons */
+/*
+button {
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #00695c;
+  color: white;
+}
+
+.add-button {
+  background-color: #0288d1;
+  color: white;
+}
+
+.delete-button {
+  background-color: #d32f2f;
+  color: white;
+}
+*/
+/* Form */
+/*
+form {
+  background-color: #f1f8e9;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  font-size: 1.1rem;
+  color: #2e7d32;
+  margin-bottom: 8px;
+  display: block;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #c8e6c9;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #333333;
+}
+
+form input:focus {
+  border-color: #388e3c;
+  outline: none;
+}
+
+form button {
+  background-color: #388e3c;
+  color: white;
+}*/

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../RoomBookingForm.css';
-import Subheader from './Navbar'
+import Header from '../../core/components/Header';
+
 
 
 
@@ -57,7 +58,8 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
 
   return (
     <div className="booking-form-container">
-      <Subheader />
+      <Header activeTab={''} />
+      
       <h2 className="booking-form-title">Room Booking Form</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -145,7 +147,7 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
           </div>
         )}
         
-        <button type="submit">Book Room</button>
+        <button className='btn' type="submit">Book Room</button>
         
         {bookingSuccess && (
           <p className="success-message">Room booked successfully!</p>

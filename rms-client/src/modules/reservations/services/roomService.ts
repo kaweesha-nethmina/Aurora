@@ -3,7 +3,7 @@ export interface Room {
   name: string;
   price: number;
   rating: number;
-  type: string;
+  roomType: string;
   image: string; // This should hold the image URL
   description: string;
 }

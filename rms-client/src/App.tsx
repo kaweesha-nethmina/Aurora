@@ -88,8 +88,13 @@ import InventoryTable from './modules/spa/components/Manager/Inventory/Inventory
 import AppointmentPage from './modules/spa/components/Employee/Appoinment/AppointmentPage';
 import SManagerDashboard from './modules/spa/components/Admin/SmanagerDashboard';
 import AdminAppointment from './modules/spa/components/Admin/AdminAppointment';
-
-
+import EventHome from './modules/events/pages/eventhome/EventHome';
+import EventCard from './modules/events/components/EventCard';
+import EventDetails from './modules/events/components/EventDetails';
+import BookingEventForm from './modules/events/components/BookingForm';
+import PaymentEventForm from './modules/events/components/PaymentForm';
+import EManagerDashboard from './modules/events/components/ADMIN/EmanagerDashboard';
+import AddEvent from './modules/events/components/ADMIN/AddEvent';
 function App() {
   return (
     <BrowserRouter>
@@ -118,7 +123,20 @@ function App() {
 
 
         {/* Other Routes */}
-        <Route path='/event' element={<Event />} />
+        
+        <Route path="/eventhome" element={<EventHome/>} />
+        <Route path="/eventcard" element={<EventCard/>}/>
+        <Route path="/events/:id" element={<EventDetails/>}/>
+        <Route path="/events/:id/book" element={<BookingEventForm/>}/>
+        <Route path="events/:id/payment" element={<PaymentEventForm />} />
+        <Route path="/eventcard" element={<EventCard />} />
+
+        <Route path='/EManager' element={<EManagerDashboard />}>
+          <Route path='event' element={<Event />} />
+          <Route path='addevent' element={<AddEvent />} />
+        </Route>
+
+
         
         
         {/* Restuarent */}
@@ -148,7 +166,7 @@ function App() {
 
         {/* room Routes */}
         <Route path='/roomreservation' element={<Reservation />} />
-        <Route path='/form' element={<RoomBookingForm />} />
+        <Route path='/formroom' element={<RoomBookingForm />} />
         <Route path='/profilescreen' element={<ProfileScreen />} />
         <Route path='/navbar' element={<Navbar />} />
         <Route path='/cancelform' element={<CancelBookingForm/>} />
