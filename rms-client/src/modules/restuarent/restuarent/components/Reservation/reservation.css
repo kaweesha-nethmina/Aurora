@@ -1,27 +1,99 @@
-/* /reservations/styles/reservation.css */
-
-.calendar-view {
-    margin-top: 20px;
-  }
-  
-  .availability-info {
-    margin-top: 15px;
-    padding: 10px;
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin-top: 130px;
+    margin-left: 550px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     background-color: #f9f9f9;
-    border-radius: 5px;
+}
+
+.form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.resdetails{
+    margin-top: 100px;
+    margin-left: 200px;
+}
+.input-date,
+.input-number,
+.input-text,
+.input-tel,
+.input-email {
+    margin-bottom: 15px;
+    padding: 10px;
     border: 1px solid #ccc;
-  }
-  
-  .availability-info p {
-    margin: 0;
+    border-radius: 5px;
     font-size: 16px;
-  }
-  .check{
-    background-color: black;
-  }
-  .proceed-button{
-    background-color: black;
-  }
-  .confirm-button{
-    background-color: black;
-  }
+}
+
+.input-date:focus,
+.input-number:focus,
+.input-text:focus,
+.input-tel:focus,
+.input-email:focus {
+    border-color: #007BFF; /* Highlight border color */
+    outline: none; /* Remove default outline */
+}
+.action-buttons{
+    margin-top: 50px;
+    margin-left: 450px;
+}
+.check-button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.confirm-button{
+background: #0056b3;
+margin-top: 8px;
+height: 40px;
+}
+.check-button:hover {
+    background-color: #0056b3; /* Darken on hover */
+}
+/* Styles for CalendarView component */
+.calendar-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 440px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #cadffa;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure full width */
+    max-width: 600px; /* Limit max width for larger screens */
+}
+
+.calendar-view h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.availability-info2{
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #007BFF; /* Blue border for emphasis */
+    border-radius: 5px;
+    background-color: #000407 !important; /* Light blue background */
+}
+.proceed-button{
+    background-color: #0056b3;
+    margin-left: 200px;
+    margin-top: 20px;
+    margin-bottom: 300px;
+}

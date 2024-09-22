@@ -1,5 +1,3 @@
-
-// /reservations/components/ReservationForm.tsx
 import React, { useState } from 'react';
 import './reservation.css';
 
@@ -28,14 +26,14 @@ const ReservationForm: React.FC<ReservationFormProps> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit} className="reservation-form">
-      <h2>Reserve a Table</h2>
-      <input type="date" name="arrivalDate" onChange={handleChange} required />
-      <input type="date" name="departureDate" onChange={handleChange} required />
-      <input type="number" name="numGuests" min="1" onChange={handleChange} required />
-      <input type="text" name="name" placeholder="Name" onChange={handleChange} required />
-      <input type="tel" name="phone" placeholder="Phone" onChange={handleChange} required />
-      <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-      <button className='check' type="submit">Check Availability</button>
+      <h2 className="form-title">Reserve a Table</h2>
+      <input className="input-date arrival-date" type="date" name="arrivalDate" onChange={handleChange} required />
+      <input className="input-date departure-date" type="date" name="departureDate" onChange={handleChange} required />
+      <input className="input-number num-guests" type="number" name="numGuests" placeholder="No Of Guests" min="1" onChange={handleChange} required />
+      <input className="input-text name" type="text" name="name" placeholder="Name" onChange={handleChange} required />
+      <input className="input-tel phone" type="tel" name="phone" placeholder="Phone" onChange={handleChange} required />
+      <input className="input-email email" type="email" name="email" placeholder="Email" onChange={handleChange} required />
+      <button className="check-button" type="submit">Check Availability</button>
     </form>
   );
 };

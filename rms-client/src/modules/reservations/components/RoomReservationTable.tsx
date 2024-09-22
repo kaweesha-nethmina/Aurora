@@ -4,8 +4,8 @@ const RoomReservationTable = () => {
   const { reservations, handleAccept, handleReject, handleCancel } = useReservations();
 
   return (
-    <div className="table-container">
-      <table className="reservation-table">
+    <div className="table-containert">
+      <table className="reservation-tablet">
         <thead>
           <tr>
             <th>Room Type</th>
@@ -28,15 +28,15 @@ const RoomReservationTable = () => {
               <td>{reservation.status}</td>
               <td>
                 {reservation.status === 'Pending' && (
-                  <div className="action-buttons">
+                  <div className="action-buttonsr">
                     <button
-                      className="accept-button"
+                      className="accept-buttonr"
                       onClick={() => handleAccept(reservation.id)}
                     >
                       Accept
                     </button>
                     <button
-                      className="reject-button"
+                      className="reject-buttonr"
                       onClick={() => handleReject(reservation.id)}
                     >
                       Reject
@@ -45,7 +45,7 @@ const RoomReservationTable = () => {
                 )}
                 {reservation.status === 'Accepted' && (
                   <button
-                    className="cancel-button"
+                    className="cancel-buttonr"
                     onClick={() => handleCancel(reservation.id)}
                   >
                     Cancel

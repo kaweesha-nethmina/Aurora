@@ -1,40 +1,44 @@
 .homepage-containerS {
-    
-    margin-top: 70px;
-    width: 1530px;
-  }
-  
-  .button-wrapperS {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-  }
-  
-  .button-containerS {
-    width: 100%;
-    max-width: 33%;
-    padding: 16px;
-    text-align: center;
-  }
-  
-  .button-image {
-    height: 256px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .button {
-    margin-top: 16px;
-    padding: 8px 16px;
-    border-radius: 8px;
-    background-color: #e2e2e2;
-    color: #666666;
-  }
-  
-  .button.selected {
-    background-color: #3b82f6;
-    color: white;
-  }
-  
+  margin-top: 70px;
+  width: 1530px;
+}
+
+.button-wrapperS {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.button-containerS {
+  width: 100%;
+  max-width: 33%;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Stack image and button vertically */
+  align-items: center;
+}
+
+.button-image {
+  height: 256px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: #e2e2e2;
+  color: #666666;
+  width: 400px; /* Adjust width as needed */
+  text-align: center;
+  cursor: pointer;
+}
+
+.button.selected {
+  background-color: #3b82f6;
+  color: white;
+}

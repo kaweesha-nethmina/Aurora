@@ -13,8 +13,8 @@ const OManagerHeader: React.FC<OManagerHeaderProps> = ({ activeTab }) => {
             <nav className="nav-links">
                 <Link to="/OManager/AddOffer" className={activeTab === 'add-offer' ? 'active' : ''}>Add Offer</Link>
                 <Link to="/OManager/OffersTable" className={activeTab === 'offers' ? 'active' : ''}>Offers</Link>
-                <Link to="/OManager/bookings" className={activeTab === 'bookings' ? 'active' : ''}>Bookings</Link>
-                <Link to="/OManager/reports" className={activeTab === 'reports' ? 'active' : ''}>Reports</Link>
+                <Link to="/OManager/DataTable" className={activeTab === 'bookings' ? 'active' : ''}>Bookings</Link>
+                <Link to="/OManager/DailyReportGenerationForm" className={activeTab === 'reports' ? 'active' : ''}>Reports</Link>
             </nav>
             <div className="user-icon">
                 <img src={userIcon} alt="User Icon" />

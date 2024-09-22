@@ -11,8 +11,8 @@ const OManagerDashboard: React.FC = () => {
         const path = location.pathname;
         if (path === '/OManager/AddOffer') return 'AddOffer';
         if (path === '/OManager/offers') return 'offers';
-        if (path === '/OManager/bookings') return 'bookings';
-        if (path === '/OManager/reports') return 'reports';
+        if (path === '/OManager/DataTable') return 'bookings';
+        if (path === '/OManager/DailyReportGenerationForm') return 'reports';
         return '';
     };
 

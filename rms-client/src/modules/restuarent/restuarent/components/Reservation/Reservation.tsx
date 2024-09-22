@@ -4,6 +4,7 @@ import ReservationForm from '../Reservation/ReservationForm';
 import CalendarView from '../Reservation/CalendarView';
 import { useNavigate } from 'react-router-dom';
 import './reservation.css';
+import Header from '../../../../core/components/Header';
 
 const MenuReservation: React.FC = () => {
   const [reservationData, setReservationData] = useState<any>(null);
@@ -19,6 +20,7 @@ const MenuReservation: React.FC = () => {
 
   return (
     <div className="reservation-page">
+      <Header activeTab={'restaurant-bar'} />
       <ReservationForm onSubmit={handleFormSubmit} />
       {reservationData && (
         <>

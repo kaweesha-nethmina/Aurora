@@ -1,0 +1,53 @@
+.containerof {
+  width: 1520px;
+  margin-top: 75px;
+  
+}
+
+.image {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.list-item {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.acceptance {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.checkbox {
+  margin-right: 8px;
+}
+
+.label {
+  font-size: 18px;
+}
+
+.contact-info {
+  font-size: 18px;
+  margin-bottom: 16px;
+}

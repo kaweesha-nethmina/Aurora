@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 interface Event {
   id: number;
@@ -6,24 +7,37 @@ interface Event {
   date: string;
   time: string;
   location: string;
+  type: string;
 }
 
 interface EventFormProps {
   newEvent: Event;
   setNewEvent: React.Dispatch<React.SetStateAction<Event>>;
-  handleAddEvent: () => void;
+  handleAddEvent: () => void; // Add this line to accept the prop
 }
 
 const EventForm: React.FC<EventFormProps> = ({ newEvent, setNewEvent, handleAddEvent }) => {
-  /*const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleAddEvent();
-  };*/
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post<Event>('http://localhost:5000/api/events', newEvent);
+      console.log('Event added successfully:', response.data);
+      
+      // Show success alert
+      alert('Event added successfully!');
+
+      // Call handleAddEvent to reset the form in AddEvent
+      handleAddEvent(); 
+    } catch (error) {
+      console.error('Error adding event:', error);
+      alert('Error adding event. Please try again.');
+    }
+  };
+
 
   return (
     <div className="event-form">
       <h2>Add New Event</h2>
-      <form>
+      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
         <div className="form-group">
           <label htmlFor="name">Event Name</label>
           <input
@@ -31,6 +45,17 @@ const EventForm: React.FC<EventFormProps> = ({ newEvent, setNewEvent, handleAddE
             id="name"
             value={newEvent.name}
             onChange={(e) => setNewEvent({ ...newEvent, name: e.target.value })}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="type">Event Type</label>
+          <input
+            type="text"
+            id="type"
+            value={newEvent.type}
+            onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
             required
           />
         </div>
@@ -68,7 +93,7 @@ const EventForm: React.FC<EventFormProps> = ({ newEvent, setNewEvent, handleAddE
           />
         </div>
 
-        <button type="button" className="add-button" onClick={handleAddEvent}>
+        <button type="submit" className="add-button">
           Add Event
         </button>
       </form>

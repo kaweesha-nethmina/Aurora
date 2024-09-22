@@ -35,13 +35,13 @@
 }
 
 /* Action buttons */
-.action-buttons {
+.action-buttons1 {
   display: flex;
   gap: 10px;
 }
 
-.edit-button,
-.delete-button {
+.edit-button1,
+.delete-button1 {
   border: none;
   color: white;
   padding: 8px 12px;

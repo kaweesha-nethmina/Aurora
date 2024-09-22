@@ -15,6 +15,7 @@
   .booking-table {
     width: 100%;
     border-collapse: collapse;
+    margin-left: -100px;
   }
   
   .table-header {

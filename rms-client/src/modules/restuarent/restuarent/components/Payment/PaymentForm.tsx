@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './PaymentForm.css'; // Importing the CSS
+import { Link } from 'react-router-dom';
 
 interface PaymentFormValues {
   cardNumber: string;
@@ -122,9 +123,9 @@ const PaymentForm = () => {
         />
         {errors.cardHolderName && <p className="error-text">{errors.cardHolderName}</p>}
       </div>
-      <button className="submit-btn" type="submit">
+      <Link to='/detailspage'> <button className="submit-btn" type="submit">
         Submit
-      </button>
+      </button></Link>
     </form>
   );
 };

@@ -56,6 +56,8 @@ const BookingForm = () => {
       <input type="number" value={guests} onChange={(e) => setGuests(e.target.value)} />
       
       <button type="submit">Book Event</button>
+
+      <button type="submit">Make Payments</button>
       
       <button type="button" onClick={handleBackClick}>Back</button>
       

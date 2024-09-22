@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './MedicalAppointmentForm.css';
+import Header from '../../../../core/components/Header';
 
 interface Appointment {
   doctor: string;
@@ -60,6 +61,8 @@ const MedicalAppointmentForm: React.FC = () => {
 
   return (
     <div className="medical-appointment-form-container">
+      <Header activeTab={'spa-wellness'} />
+      <div className='spForm-container'>
       <h2 className="form-title">Book a Medical Appointment</h2>
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -104,6 +107,7 @@ const MedicalAppointmentForm: React.FC = () => {
           Book Appointment
         </button>
       </form>
+      </div>
     </div>
   );
 };

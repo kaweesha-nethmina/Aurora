@@ -11,7 +11,7 @@ interface ButtonProps {
 const ButtonComponent: React.FC<ButtonProps> = ({ id, label, image, isSelected, onClick }) => {
   return (
     <div className="button-container">
-      <img src={image} alt={label} className="button-image" />
+      
       <button
         className={`button ${isSelected ? 'selected' : ''}`}
         onClick={() => onClick(id)}

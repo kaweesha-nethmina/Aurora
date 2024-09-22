@@ -37,7 +37,7 @@ const Menu: React.FC = () => {
 
   return (
     <div className="menu">
-      <Header activeTab={''} />
+      <Header activeTab={'restaurant-bar'} />
       <Navbar />
       <h2>Our Menu</h2>
       <SearchFilter

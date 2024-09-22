@@ -98,13 +98,13 @@ const DutyRoasterTab: React.FC = () => {
   return (
     <div className="roaster-containerM">
       <h2 className="roaster-header">Duty Roaster</h2>
-      <div className="search-container">
+      <div className="search-container1">
         <input
           type="text"
           placeholder="Search by employee name..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
+          className="search-input1"
         />
         <button
           className="search-button"
@@ -214,7 +214,7 @@ const DutyRoasterTab: React.FC = () => {
               <td>{entry.shift}</td>
               <td>
                 <button
-                  className="view-button"
+                  className="view-button1"
                   onClick={() => {
                     setSelectedEntry(entry);
                     setShowUpdateForm(true);
@@ -223,7 +223,7 @@ const DutyRoasterTab: React.FC = () => {
                   View
                 </button>
                 <button
-                  className="delete-button"
+                  className="delete-button1"
                   onClick={() => handleDelete(entry._id)}
                 >
                   Delete

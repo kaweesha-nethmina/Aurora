@@ -109,7 +109,7 @@ const BookingForm = () => {
     <div className="containerBook">
       <Header activeTab={''} />
       <Navbar />
-      <div className="card">
+      <div className="card2">
         <h1 className="card-title">Book Your Vehicle</h1>
         <form onSubmit={handleSubmit} className="form">
           <div className="form-row">

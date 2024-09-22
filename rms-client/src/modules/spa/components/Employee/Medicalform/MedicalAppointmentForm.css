@@ -1,6 +1,7 @@
 .medical-appointment-form-container {
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 1520px;
+    margin-left: 200px;
+    margin-top: 100px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -54,4 +55,7 @@
   .submit-button:hover {
     background-color: #0056b3;
   }
-  
+  .spForm-container{
+    width: 600px;
+    margin-left: 300px;
+  }

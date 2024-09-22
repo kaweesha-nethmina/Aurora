@@ -12,6 +12,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    
   }
   
   /* Path: restaurant/components/Menu/menuItem.css */
@@ -20,12 +21,14 @@
     padding: 15px;
     border-radius: 8px;
     text-align: center;
+    width: 470px;
   }
   
   .menu-item img {
     width: 100%;
-    height: auto;
+    height: 300px;
     border-radius: 8px;
+    width: 600px;
   }
   
   .menu-item h3 {

@@ -95,6 +95,13 @@ import BookingEventForm from './modules/events/components/BookingForm';
 import PaymentEventForm from './modules/events/components/PaymentForm';
 import EManagerDashboard from './modules/events/components/ADMIN/EmanagerDashboard';
 import AddEvent from './modules/events/components/ADMIN/AddEvent';
+import Table from './modules/offers/offers/components/CustomerTable/Table';
+import TermsAndConditions from './modules/offers/offers/components/TermsAndConditions/TermsAndConditions';
+import DailyReportGenerationForm from './modules/offers/offers/components/DailyReport/DailyReportGenerationForm';
+import DataTable from './modules/offers/offers/components/ApproveBookings/DataTable';
+import OfferPaymentForm from './modules/offers/offers/components/Paynment/PaymentForm';
+import FormBook from './modules/offers/offers/components/BookingForm/Form';
+
 function App() {
   return (
     <BrowserRouter>
@@ -264,12 +271,18 @@ function App() {
         description: '',
         image: ''
       }}/>} />
+       <Route path="/Table" element={<Table/>} />
+       <Route path="/FormBook" element={<FormBook/>} />
+       <Route path="/TermsAndConditions" element={<TermsAndConditions/>} />
+       <Route path="/DailyReportGenerationForm" element={<DailyReportGenerationForm/>} />
+       <Route path="/OfferPaymentForm" element={<OfferPaymentForm/>} />
        
 
        <Route path="/OManager" element={<OManagerDashboard />}>
        <Route path="AddOffer" element={<AddOffer onSave={() => { console.log(); }} />} />
-
+       <Route path="DataTable" element={<DataTable/>} />
         <Route path="OffersTable" element={<OffersTable />} />
+        <Route path="DailyReportGenerationForm" element={<DailyReportGenerationForm/>} />
       </Route>
 
 

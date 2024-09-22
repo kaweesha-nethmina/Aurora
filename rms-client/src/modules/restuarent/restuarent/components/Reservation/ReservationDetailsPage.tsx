@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './reservation.css';
+import Header from '../../../../core/components/Header';
 
 const ReservationDetailsPage: React.FC = () => {
   const { state } = useLocation();
@@ -22,11 +23,13 @@ const ReservationDetailsPage: React.FC = () => {
   const handleConfirm = () => {
     // Confirm logic
     alert('Reservation Confirmed');
-    navigate('/');
+    navigate('/menupayment');
   };
 
   return (
     <div className="reservation-details-page">
+      <Header activeTab={'restaurant-bar'} />
+      <div className='resdetails'>
       <h2>Reservation Details</h2>
       {reservationData ? (
         <>
@@ -38,7 +41,7 @@ const ReservationDetailsPage: React.FC = () => {
           <p><strong>Guests:</strong> {reservationData.numGuests}</p>
           <p><strong>Status:</strong>Pending.. {}</p>
 
-          <div className="action-buttons">
+          <div className="action-buttonsR">
             <Link to="/cancelbooking"> <button onClick={handleCancel} className="cancel-button">Cancel</button></Link>
             <button onClick={handleConfirm} className="confirm-button">Confirm</button>
           </div>
@@ -46,6 +49,7 @@ const ReservationDetailsPage: React.FC = () => {
       ) : (
         <p>No reservation data found.</p>
       )}
+      </div>
     </div>
   );
 };

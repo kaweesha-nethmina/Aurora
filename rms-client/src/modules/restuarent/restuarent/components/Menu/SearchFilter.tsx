@@ -30,7 +30,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ category, setCategory, sear
         placeholder="Search menu..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-input"
+        className="search-input2"
       />
       <select
         value={category}

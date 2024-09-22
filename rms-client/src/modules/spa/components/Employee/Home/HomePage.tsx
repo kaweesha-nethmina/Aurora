@@ -25,21 +25,20 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage-containerS">
-      <Header activeTab={''} />
+      <Header activeTab={'spa-wellness'} />
       <Navbar />
       <div className="button-wrapperS">
         {buttons.map((button) => (
           <div key={button.id} className="button-containerS">
+            <img src={button.image} alt={button.label} className="button-image" />
             <ButtonComponent
               id={button.id}
               label={button.label}
-              image={button.image} // Pass the image prop here
               isSelected={selectedButton === button.id}
               onClick={() => {
                 handleButtonClick(button.id);
                 handleNavigation(button.path);
-              }}
-            />
+              } } image={''}            />
           </div>
         ))}
       </div>

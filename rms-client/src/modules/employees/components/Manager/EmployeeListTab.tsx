@@ -155,9 +155,9 @@ const EmployeeList: React.FC = () => {
                             <td>{new Date(employee.hire_date).toLocaleDateString()}</td>
                             <td>{employee.contact_info.email}</td>
                             <td>{employee.contact_info.username}</td>
-                            <td className="action-buttons">
-                                <button className="edit-button" onClick={() => handleEdit(employee)}>Edit</button>
-                                <button className="delete-button" onClick={() => handleDelete(employee._id)}>Delete</button>
+                            <td className="action-buttons1">
+                                <button className="edit-button1" onClick={() => handleEdit(employee)}>Edit</button>
+                                <button className="delete-button1" onClick={() => handleDelete(employee._id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

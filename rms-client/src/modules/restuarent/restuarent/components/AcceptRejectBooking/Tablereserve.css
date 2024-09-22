@@ -1,7 +1,7 @@
 /* styles/ReserveTable.css */
 
 .container {
-    margin: 20px auto;
+    
     padding: 20px;
     max-width: 900px;
   }
@@ -11,12 +11,14 @@
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
+    margin-left: -300px;
   }
   
   .reservation-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: -100px;
   }
   
   .reservation-table th,

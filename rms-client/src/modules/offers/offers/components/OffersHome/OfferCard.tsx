@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../OffersHome/OfferCard.css';
 
 interface OfferCardProps {
@@ -15,7 +16,7 @@ const OfferCard = ({ offer }: OfferCardProps) => {
       <img src={offer.image} alt={offer.name} className="offer-card-image" />
       <h2 className="offer-card-title">{offer.name}</h2>
       <p className="offer-card-description">{offer.description}</p>
-      <button className="offer-card-button">Book Now</button>
+      <Link to='/FormBook'><button className="offer-card-button">Book Now</button></Link> 
     </div>
   );
 };

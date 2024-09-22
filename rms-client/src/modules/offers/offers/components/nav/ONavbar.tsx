@@ -9,13 +9,13 @@ const Navbar: React.FC = () => {
       <div className="nav-left">
         <ul className="nav-menu">
           <li className="nav-item">
-            <Link to="#" className="nav-link">View Bookings</Link>
+            <Link to="/Table" className="nav-link">View Bookings</Link>
           </li>
           <li className="nav-item">
-            <Link to="#" className="nav-link">Payment</Link>
+            <Link to="/OfferPaymentForm" className="nav-link">Payment</Link>
           </li>
           <li className="nav-item">
-            <Link to="#" className="nav-link">Terms&Conditions</Link>
+            <Link to="/TermsAndConditions" className="nav-link">Terms&Conditions</Link>
           </li>
 
         </ul>
