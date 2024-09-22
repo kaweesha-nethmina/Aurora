@@ -1,0 +1,56 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    gap: 2rem;
+  }
+  
+  .image-section {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .page-image {
+    object-fit: cover;
+    height: 16rem;
+    width: 75%;
+    border-radius: 1rem;
+  }
+  
+  .description-section {
+    flex: 1;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    font-size: 1.125rem;
+    color: #4a4a4a;
+    margin-bottom: 2rem;
+  }
+  
+  .book-button {
+    background-color: #1d4ed8;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+  
+  .book-button:hover {
+    background-color: #1e40af;
+  }
+  
+  .booked {
+    background-color: #10b981;
+  }
+  
+  .booked:hover {
+    background-color: #047857;
+  }
+  

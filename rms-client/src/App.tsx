@@ -20,7 +20,7 @@ import DutyRoasterTabEmployee from './modules/employees/components/Employee/Duty
 // Other Modules
 import Event from './modules/events/Event';
 import Reservation from './modules/reservations/Reservation'; // Fixed typo
-import Spa from './modules/spa/Spa';
+
 import Guests from './modules/guests/Guests';
 import Transport from './modules/transportation/Transportation'; // Fixed typo
 // import Offers from './modules/offers/Offers';
@@ -75,6 +75,21 @@ import OfferCard from './modules/offers/offers/components/OffersHome/OfferCard';
 import AddOffer from './modules/offers/offers/components/AddOffer/AddOffer';
 import OManagerDashboard from './modules/offers/offers/components/Manager/OManagerDashboard';
 import MainHome from './modules/core/components/MainHome';
+import SpaApp from './modules/spa/Spa';
+import HomePage from './modules/spa/components/Employee/Home/HomePage';
+import GymPage from './modules/spa/components/Employee/Gym/GymPage';
+import GymAppointmentForm from './modules/spa/components/Employee/Gymform/GymAppointmentForm';
+import MedicalPage from './modules/spa/components/Employee/Medical/MedicalPage';
+import MedicalAppointmentForm from './modules/spa/components/Employee/Medicalform/MedicalAppointmentForm';
+import SpaPage from './modules/spa/components/Employee/Spa/SpaPage';
+import SpaAppointmentForm from './modules/spa/components/Employee/Spaform/SpaAppointmentForm';
+import CustomerDetailsTable from './modules/spa/components/Manager/CustomerDetailsTable';
+import InventoryTable from './modules/spa/components/Manager/Inventory/InventoryTable';
+import AppointmentPage from './modules/spa/components/Employee/Appoinment/AppointmentPage';
+import SManagerDashboard from './modules/spa/components/Admin/SmanagerDashboard';
+import AdminAppointment from './modules/spa/components/Admin/AdminAppointment';
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -148,8 +163,30 @@ function App() {
         </Route>
 
 
+        {/*customer routes spa*/}
+        <Route path='/spa' element={<SpaApp />} />
+        <Route path='/Home' element={<HomePage />} />
+        <Route path='/Gympage' element={<GymPage />} />
+        <Route path='/GymAppointmentForm' element={<GymAppointmentForm />} />
+        <Route path='/MedicalPage' element={<MedicalPage />} />
+        <Route path='/MedicalAppointmentForm' element={<MedicalAppointmentForm />} />
+        <Route path='/apoinments' element={<AppointmentPage />} />
+        <Route path='/SpaPage' element={<SpaPage />} /> 
+        <Route path='/SpaAppointmentForm ' element={<SpaAppointmentForm />} /> 
+        <Route path='/appointments' element={<AppointmentPage />} /> 
+
+        <Route path='/SManager' element={<SManagerDashboard />}>
+          
+          <Route path='Sappointments' element={<AdminAppointment />} />{/* Correct path and nesting */}
+        </Route>
+
+
+
+          {/*Manager routes  spa*/}
+        <Route path='/CustomerDetailsTable ' element={<CustomerDetailsTable />} /> 
+        <Route path='InventoryTable ' element={<InventoryTable />} /> 
         
-        <Route path='/spa' element={<Spa />} />
+        
 
 
 

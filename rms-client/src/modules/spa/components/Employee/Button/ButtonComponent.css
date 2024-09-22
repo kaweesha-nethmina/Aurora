@@ -1,0 +1,39 @@
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem; /* Tailwind mx-4 */
+  }
+  
+  .button-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 0.5rem; /* Tailwind mb-2 */
+  }
+  
+  .button {
+    background-color: #4a90e2; /* Light blue */
+    color: white;
+    border: none;
+    border-radius: 0.5rem; /* Tailwind rounded */
+    padding: 0.5rem 1rem; /* Tailwind py-2 px-4 */
+    cursor: pointer;
+    font-size: 1rem; /* Tailwind text-base */
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #357ABD; /* Darker blue */
+  }
+  
+  .button.selected {
+    background-color: #28a745; /* Green for selected */
+  }
+  
+  .button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.6); /* Focus outline for accessibility */
+  }
+  

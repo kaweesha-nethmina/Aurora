@@ -1,0 +1,66 @@
+.admin-appointment-container {
+    padding: 20px;
+    margin-top: 100px;
+    margin-left: 350px;
+  }
+  
+  .admin-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .admin-appointment-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-header {
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  .appointment-row {
+    transition: background-color 0.2s;
+  }
+  
+  .appointment-row:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .appointment-cell {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .appointment-actions {
+    display: flex;
+    gap: 5px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .approve-button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .reject-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .delete-button {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  

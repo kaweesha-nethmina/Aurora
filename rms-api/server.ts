@@ -16,6 +16,7 @@ import dotenv from 'dotenv';
 import driverRouter from './src/routers/driverRouter'; 
 import feedbackRouter from './src/routers/feedbackRouter'; 
 import offerRouter from './src/routers/offerRouter'; 
+import appointmentRoutes from './src/routers/appointmentRoutes';
 
 // Load environment variables
 dotenv.config();
@@ -31,9 +32,10 @@ if (!fs.existsSync(uploadsDir)) {
 
 // CORS Configuration
 app.use(cors({
-  origin: 'http://localhost:5173', // Update with your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
+  origin: 'http://localhost:5173',  // Frontend origin
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],  // Allow PATCH and other methods
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Allow necessary headers
+  credentials: true  // Enable if you need to send cookies or HTTP credentials
 }));
 
 // Middleware
@@ -63,7 +65,7 @@ app.use('/api/TransportBooking', transportBookingRouter); // New route for trans
 app.use('/api', driverRouter);
 app.use('/api', feedbackRouter); 
 app.use('/api/offers', offerRouter); 
-
+app.use('/api/appointments', appointmentRoutes);
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {
   if (!req.file) {
