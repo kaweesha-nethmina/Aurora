@@ -122,7 +122,7 @@ function App() {
         <Route path='/homeMain' element={<MainHome />} />
 
 
-        {/* Other Routes */}
+        Other Routes
         
         <Route path="/eventhome" element={<EventHome/>} />
         <Route path="/eventcard" element={<EventCard/>}/>

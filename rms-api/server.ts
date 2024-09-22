@@ -32,10 +32,9 @@ if (!fs.existsSync(uploadsDir)) {
 
 // CORS Configuration
 app.use(cors({
-  origin: 'http://localhost:5173',  // Frontend origin
-  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],  // Allow PATCH and other methods
-  allowedHeaders: ['Content-Type', 'Authorization'],  // Allow necessary headers
-  credentials: true  // Enable if you need to send cookies or HTTP credentials
+  origin: 'http://localhost:5173', // Update with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
 }));
 
 // Middleware
