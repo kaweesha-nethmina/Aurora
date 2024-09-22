@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './../styles/EventCard.css';
 import Header from '../../core/components/Header';
+import axios from 'axios';
 
 // Define the Event type
 interface Event {
-  id: number;
+  id: string; // Use string if you're using a custom ID
   name: string;
   date: string;
   location: string;
@@ -13,14 +14,34 @@ interface Event {
   image?: string;  // Optional image field
 }
 
-// Add Event Cards to display
-const events: Event[] = [
-  { id: 1, name: 'Weddings', date: '2024-01-01', location: 'Choose from 15 locations', description: 'Make your special day unforgettable with our luxurious wedding packages.', image: '/images/image1.jpg' },
-  { id: 2, name: 'Conferences', date: '2024-01-02', location: 'Choose from 12 conference spaces', description: 'Host your next conference with state-of-the-art facilities and professional services.', image: '/images/event2.jpg' },
-  { id: 3, name: 'Parties', date: '2024-01-03', location: 'Choose from 5 locations', description: 'Plan your party with us for a memorable and fun-filled experience.', image: '/images/event3.jpg' },
-];
-
 const EventCard: React.FC = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get<Event[]>('http://localhost:5000/api/events');
+        setEvents(response.data);
+      } catch (err) {
+        setError('Failed to load events');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  if (loading) {
+    return <div>Loading events...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <div className="event-card-container">
       <Header activeTab={'events'} />
@@ -34,7 +55,13 @@ const EventCard: React.FC = () => {
               <h2>{event.name}</h2>
               <p className="event-location">{event.location}</p>
               <p className="event-description">{event.description}</p>
-              <Link to={`/events/${event.id}`} className="view-details-btn">View Details</Link>
+              <Link
+                to={`/events/${event.id}`} // Only the pathname
+                state={{ event }} // Passing event data as state
+                className="view-details-btn"
+              >
+                View Details
+              </Link>
             </div>
           </div>
         ))}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface Event {
-  id: string; // MongoDB ObjectId as a string
+  id: string; // Custom ID
   name: string;
   date: string;
   time: string;

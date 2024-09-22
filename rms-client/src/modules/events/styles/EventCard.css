@@ -1,13 +1,22 @@
 
-body {
-  margin: 0;
-  position: relative; 
-  font-family: Arial, sans-serif;
-  min-height: 100vh; 
+
+
+
+
+
+.event-card-container {
+
+  padding: 100px;
+  background-color: rgba(245, 245, 245, 0.25); 
+  border-radius: 10px;
+  margin: 20px auto;
+  position: relative;
+  z-index: 1; 
+  
+  width: 1520px !important;
+  
 }
-
-
-body::after {
+.event-card-container::after {
   content: '';
   position: absolute;
   top: 0;
@@ -17,22 +26,13 @@ body::after {
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
+  background-image: url("./../image/background.jpg");
+  background-size: cover;
   z-index: -1; 
-  filter: blur(7px); 
+  height: 100vh;
+  filter: blur(5px); 
   transform: scale(1.1);
 }
-
-.event-card-container {
-
-  padding: 100px;
-  background-color: rgba(245, 245, 245, 0.25); 
-  border-radius: 10px;
-  max-width: 1200px;
-  margin: 20px auto;
-  position: relative;
-  z-index: 1; 
-}
-
 /* Event Grid */
 .event-grid {
   display: grid;

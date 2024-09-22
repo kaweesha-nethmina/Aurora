@@ -76,7 +76,7 @@ const NoticesTab: React.FC = () => {
 
   return (
     <div className="notices-containerM">
-      <h2 className="notices-header">ADD NOTICES</h2>
+      
       
       {error && <p className="error-message">{error}</p>}
 
@@ -98,7 +98,7 @@ const NoticesTab: React.FC = () => {
           required
           className="notice-textarea"
         />
-        <button type="submit" className="add-button">Add Notice</button>
+        <button type="submit" className="add-buttonN">Add Notice</button>
       </form>
 
       {/* Modal for editing notice */}
@@ -122,8 +122,8 @@ const NoticesTab: React.FC = () => {
               className="notice-textarea"
             />
             <div className="modal-actions">
-              <button onClick={handleUpdateNotice} className="modal-save">Save</button>
-              <button onClick={() => setIsModalOpen(false)} className="modal-cancel">Cancel</button>
+              <button onClick={handleUpdateNotice} className="modal-saveN">Save</button>
+              <button onClick={() => setIsModalOpen(false)} className="modal-cancelN">Cancel</button>
             </div>
           </div>
         </div>
@@ -137,11 +137,11 @@ const NoticesTab: React.FC = () => {
             <li key={notice._id} className="notice-item">
               <h3 className="notice-title">{notice.title}</h3>
               <p className="notice-description">{notice.description}</p>
-              <button className="edit-button" onClick={() => {
+              <button className="edit-buttonN" onClick={() => {
                 setEditingNotice(notice);
                 setIsModalOpen(true);
               }}>Edit</button>
-              <button className="delete-button" onClick={() => handleDeleteNotice(notice._id)}>Delete</button>
+              <button className="delete-buttonN" onClick={() => handleDeleteNotice(notice._id)}>Delete</button>
             </li>
           ))}
         </ul>

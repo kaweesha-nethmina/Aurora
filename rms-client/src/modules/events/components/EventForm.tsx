@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 interface Event {
-  id: number;
+  id: string; // Ensure this is string to match AddEvent
   name: string;
   date: string;
   time: string;
@@ -13,19 +13,17 @@ interface Event {
 interface EventFormProps {
   newEvent: Event;
   setNewEvent: React.Dispatch<React.SetStateAction<Event>>;
-  handleAddEvent: () => void; // Add this line to accept the prop
+  handleAddEvent: () => void;
 }
 
 const EventForm: React.FC<EventFormProps> = ({ newEvent, setNewEvent, handleAddEvent }) => {
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission
+
     try {
       const response = await axios.post<Event>('http://localhost:5000/api/events', newEvent);
       console.log('Event added successfully:', response.data);
-      
-      // Show success alert
       alert('Event added successfully!');
-
-      // Call handleAddEvent to reset the form in AddEvent
       handleAddEvent(); 
     } catch (error) {
       console.error('Error adding event:', error);
@@ -33,11 +31,20 @@ const EventForm: React.FC<EventFormProps> = ({ newEvent, setNewEvent, handleAddE
     }
   };
 
-
   return (
     <div className="event-form">
       <h2>Add New Event</h2>
-      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="id">Event ID (optional)</label>
+          <input
+            type="text"
+            id="id"
+            value={newEvent.id}
+            onChange={(e) => setNewEvent({ ...newEvent, id: e.target.value })}
+          />
+        </div>
+
         <div className="form-group">
           <label htmlFor="name">Event Name</label>
           <input

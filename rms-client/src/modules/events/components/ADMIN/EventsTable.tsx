@@ -3,7 +3,7 @@ import axios from 'axios';
 import EventModal from './EventModal';
 
 interface Event {
-  id: string; // MongoDB ObjectId as a string
+  id: string; // Custom ID
   name: string;
   date: string;
   time: string;
@@ -30,14 +30,12 @@ const EventsTable: React.FC = () => {
   }, []);
 
   const handleUpdateEvent = (eventId: string) => {
-    console.log('Event to update:', eventId); // Log the ID being updated
     const eventToEdit = events.find(event => event.id === eventId);
     setSelectedEvent(eventToEdit || null);
     setIsModalOpen(true);
   };
   
   const handleDeleteEvent = async (eventId: string) => {
-    console.log('Event to delete:', eventId); // Log the ID being deleted
     try {
       await axios.delete(`http://localhost:5000/api/events/${eventId}`);
       setEvents(events.filter(event => event.id !== eventId));
@@ -45,7 +43,6 @@ const EventsTable: React.FC = () => {
       console.error('Error deleting event:', error);
     }
   };
-  
 
   const handleModalClose = () => {
     setIsModalOpen(false);

@@ -9,10 +9,10 @@ router.post('/events', addEvent);
 // Get all events
 router.get('/events', getAllEvents);
 
-// Update event by ID
-router.put('/events/:id', updateEvent);
+// Update event by custom ID
+router.put('/events/:id', updateEvent); // This assumes you're passing the custom id as a URL param
 
-// Delete event by ID
-router.delete('/events/:id', deleteEvent);
+// Delete event by custom ID
+router.delete('/events/:id', deleteEvent); // This also uses the custom id
 
 export default router;
