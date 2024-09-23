@@ -33,6 +33,12 @@
   filter: blur(5px); 
   transform: scale(1.1);
 }
+.search-bar2{
+  width: 600px;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
 /* Event Grid */
 .event-grid {
   display: grid;
