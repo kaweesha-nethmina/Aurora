@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './CancelTableBookingPage.module.css';
 import { cancelBooking } from '../../services/cancelService';
+import Header from '../../../../core/components/Header';
 
 const CancelTableBookingPage = () => {
   const [name, setName] = useState('');
@@ -16,6 +17,7 @@ const CancelTableBookingPage = () => {
 
   return (
     <div className={styles.container}>
+      <Header activeTab={''} />
       <h2 className={styles.title}>Cancel Table Booking</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './PaymentForm.css'; // Importing the CSS
 import { Link } from 'react-router-dom';
+import Header from '../../../../core/components/Header';
 
 interface PaymentFormValues {
   cardNumber: string;
@@ -70,6 +71,7 @@ const PaymentForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="form">
+      <Header activeTab={''} />
       <h2 className="form-title">Payment Form</h2>
       <div className="form-field">
         <label htmlFor="cardNumber">Card Number</label>
