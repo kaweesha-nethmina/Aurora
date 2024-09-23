@@ -5,6 +5,7 @@ export interface MenuItem {
   description: string;
   category: string;
   image: string; // This should hold the image URL
+  foodCode: string;
 }
 
 export const fetchMenuItems = async (): Promise<MenuItem[]> => {

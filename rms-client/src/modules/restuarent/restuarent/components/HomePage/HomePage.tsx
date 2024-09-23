@@ -18,7 +18,7 @@ const MenuHomePage = () => {
       <div className="hero-section" style={{ backgroundImage: 'url(https://i.pinimg.com/564x/93/56/29/93562985476b406f25cffbe5d48212e0.jpg)' }}>
         <div className="hero-content">
           <Link to="/form"> <button className="book-now-btn" onClick={handleBookNowClick}>
-            Book Now
+            Order Now
           </button></Link>
         </div>
       </div>

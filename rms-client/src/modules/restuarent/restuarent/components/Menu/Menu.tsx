@@ -1,5 +1,3 @@
-// Path: src/components/Menu/Menu.tsx
-
 import React, { useState, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import SearchFilter from './SearchFilter';
@@ -8,6 +6,7 @@ import { filterMenuItems } from '../../utils/filterUtils';
 import './menu.css';
 import Header from '../../../../core/components/Header';
 import Navbar from '../HomePage/ResNavbar';
+import { Link } from 'react-router-dom';
 
 const Menu: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItemType[]>([]);
@@ -15,7 +14,6 @@ const Menu: React.FC = () => {
   const [category, setCategory] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
 
-  // Fetch menu items from the server when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,7 +27,6 @@ const Menu: React.FC = () => {
     fetchData();
   }, []);
 
-  // Update filtered items whenever menuItems, category, or searchTerm change
   useEffect(() => {
     const filtered = filterMenuItems(menuItems, category, searchTerm);
     setFilteredItems(filtered);
@@ -46,6 +43,7 @@ const Menu: React.FC = () => {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
+      <Link to="/form"><button className='orderNbtn'>Order Now</button></Link>
       <div className="menu-items">
         {filteredItems.length > 0 ? (
           filteredItems.map((item) => (
