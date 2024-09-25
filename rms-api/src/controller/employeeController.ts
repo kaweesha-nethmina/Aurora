@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
-import Employee from '../model/employeeModel'; // Adjust path as necessary
+import Employee from '../model/employeeModel';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 // Get all employees
 export const getEmployees = async (req: Request, res: Response): Promise<void> => {
@@ -26,26 +28,43 @@ export const getEmployeeById = async (req: Request, res: Response): Promise<void
 };
 
 // Create a new employee
+// Create a new employee
 export const createEmployee = async (req: Request, res: Response): Promise<void> => {
-  const { employeeID, firstName, lastName, position, department, hire_date, contact_info } = req.body;
-
   try {
-    const newEmployee = new Employee({
-      employeeID,
-      firstName,
-      lastName,
-      position,
-      department,
-      hire_date,
-      contact_info,
-    });
+      const maxEmployee = await Employee.findOne().sort({ employeeID: -1 });
+      const newEmployeeID = maxEmployee ? parseInt(maxEmployee.employeeID) + 1 : 1;
 
-    const savedEmployee = await newEmployee.save();
-    res.status(201).json(savedEmployee);
+      const { firstName, lastName, position, department, hire_date, contact_info } = req.body;
+
+      if (!firstName || !lastName || !position || !department || !hire_date || !contact_info) {
+          res.status(400).json({ message: 'All fields are required' });
+          return;
+      }
+
+      // Hash the password before saving
+      const hashedPassword = await bcrypt.hash(contact_info.password, 10);
+
+      const newEmployee = new Employee({
+          employeeID: newEmployeeID.toString(),
+          firstName,
+          lastName,
+          position,
+          department,
+          hire_date,
+          contact_info: {
+              ...contact_info,
+              password: hashedPassword, // Store hashed password
+          },
+      });
+
+      const savedEmployee = await newEmployee.save();
+      res.status(201).json(savedEmployee);
   } catch (err: unknown) {
-    res.status(400).json({ message: (err as Error).message });
+      console.error('Error creating employee:', err);
+      res.status(500).json({ message: (err as Error).message || 'An error occurred while creating the employee' });
   }
 };
+
 
 // Update an existing employee by ID
 export const updateEmployee = async (req: Request, res: Response): Promise<void> => {
@@ -77,3 +96,39 @@ export const deleteEmployee = async (req: Request, res: Response): Promise<void>
     res.status(500).json({ message: (err as Error).message });
   }
 };
+
+// Login employee
+export const loginEmployee = async (req: Request, res: Response): Promise<void> => {
+  const { username, password } = req.body;
+
+  try {
+    const employee = await Employee.findOne({ "contact_info.username": username });
+
+    if (!employee || !employee.contact_info) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, employee.contact_info.password);
+    if (!isPasswordValid) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
+
+    const token = jwt.sign({ id: employee._id }, process.env.JWT_SECRET || 'your_secret_key', { expiresIn: '1h' });
+    res.status(200).json({ token, employee: { // Include employee data
+      id: employee._id,
+      username: employee.contact_info.username,
+      email: employee.contact_info.email,
+      firstName: employee.firstName,
+      lastName: employee.lastName,
+      phone: employee.contact_info.phone,
+    } });
+  } catch (err: unknown) {
+    res.status(500).json({ message: (err as Error).message });
+  }
+};
+
+
+
+

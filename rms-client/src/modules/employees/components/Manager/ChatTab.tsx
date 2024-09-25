@@ -1,6 +1,4 @@
-// src/modules/employees/components/Manager/ChatTab.tsx
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useChats from '../../hooks/Manager/useChats'; // Ensure this path is correct
 import '../../components/Manager/ManagerCss/ChatTab.css'; // Adjust the path if needed
 
@@ -8,12 +6,22 @@ const ChatTab: React.FC = () => {
   const { chats, loading, error, setChats } = useChats(); // Call useChats hook
   const [newMessage, setNewMessage] = useState<string>('');
 
+  // Retrieve logged-in employee data from local storage
+  const storedEmployeeData = localStorage.getItem('employeeData');
+  const employee = storedEmployeeData ? JSON.parse(storedEmployeeData) : null;
+
   const handleSend = async () => {
+    if (!newMessage.trim()) return; // Prevent sending empty messages
+
     try {
       const response = await fetch('http://localhost:5000/api/chats', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chatId: 'chat123', message: newMessage, employeeId: '66c78ea749736da77b2679cf' }) // Replace with dynamic employeeId if necessary
+        body: JSON.stringify({
+          chatId: 'chat123', // Replace with dynamic chat ID if necessary
+          message: newMessage,
+          employeeId: employee ? employee.id : null // Use the logged-in employee's ID
+        })
       });
 
       if (!response.ok) {
@@ -60,7 +68,9 @@ const ChatTab: React.FC = () => {
               <button className="delete-button2" onClick={() => handleDelete(msg._id)}>
                 🗑️
               </button>
-              <div className="message-author">{msg.employeeId.name}:</div>
+              <div className="message-author">
+                {msg.employeeId?.firstName || 'Unknown'}: {/* Access the firstName directly */}
+              </div>
               <div className="message-text">{msg.message}</div>
             </div>
           ))

@@ -39,6 +39,10 @@ const employeeSchema = new Schema({
       type: String,
       required: true,
     },
+    phone: { // New field for phone number
+      type: String,
+      required: false, // Change to true if you want to make it mandatory
+    },
   },
 });
 

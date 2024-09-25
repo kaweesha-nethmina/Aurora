@@ -104,6 +104,8 @@ import LoginPageN from './modules/guests/Login/LoginPage';
 import ProfileComponent from './modules/guests/components/ProfileComponent/ProfileComponent';
 import ManagerLoginPage from './modules/employees/components/Login/ManagerLoginPage';
 import ManagerProfile from './modules/employees/components/Login/ManagerProfile';
+import EmployeeLogin from './modules/employees/components/Login/EmployeeLogin';
+import EmployeeProfile from './modules/employees/components/Login/EmployeeProfile';
 
 
 
@@ -125,14 +127,16 @@ function App() {
 
         {/* Employee Routes */}
         <Route path='/staf' element={<EmployeeDashboard />}>
-          <Route path='profile' element={<ProfileTab />} />
+          <Route path='profile' element={<EmployeeProfile />} />
           <Route path='leave-requests' element={<LeaveRequestsTabEmployee />} />
           <Route path='duty-roaster' element={<DutyRoasterTabEmployee />} />
           <Route path='chat' element={<ChatTab />} />
           <Route path='notices' element={<EmployeeNoticesTab />} />
+          {/* <Route path='employee-profile' element={<EmployeeProfile/>} /> */}
         </Route>
 
         <Route path="/manager-login" element={<ManagerLoginPage/>} />
+        <Route path="/employee-login" element={<EmployeeLogin/>} />
         
         <Route path='/' element={<MainHome />} />
 

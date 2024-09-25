@@ -16,7 +16,8 @@ const EmployeeList: React.FC = () => {
         contact_info: {
             email: '',
             username: '',
-            password: ''
+            password: '',
+            phone: ''
         }
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,10 +66,20 @@ const EmployeeList: React.FC = () => {
 
     const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
+        if (name.startsWith('contact_info.')) {
+            setFormData(prevData => ({
+                ...prevData,
+                contact_info: {
+                    ...prevData.contact_info,
+                    [name.split('.')[1]]: value
+                }
+            }));
+        } else {
+            setFormData(prevData => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -88,27 +99,13 @@ const EmployeeList: React.FC = () => {
             setEmployees(employees.map(emp => emp._id === updatedEmployee._id ? updatedEmployee : emp));
             setIsModalOpen(false);
             setEditingEmployee(null);
-            setFormData({
-                employeeID: '',
-                firstName: '',
-                lastName: '',
-                position: '',
-                department: '',
-                hire_date: '',
-                contact_info: {
-                    email: '',
-                    username: '',
-                    password: ''
-                }
-            });
+            resetFormData(); // Reset form data after submission
         } catch (err) {
             setError('Failed to update employee');
         }
     };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setEditingEmployee(null);
+    const resetFormData = () => {
         setFormData({
             employeeID: '',
             firstName: '',
@@ -119,9 +116,15 @@ const EmployeeList: React.FC = () => {
             contact_info: {
                 email: '',
                 username: '',
-                password: ''
+                password: '',
+                phone: ''
             }
         });
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        resetFormData();
     };
 
     if (loading) return <p>Loading...</p>;
@@ -133,28 +136,24 @@ const EmployeeList: React.FC = () => {
             <table className="employee-list-table">
                 <thead>
                     <tr>
-                        <th>Employee ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
                         <th>Position</th>
                         <th>Department</th>
+                        <th>Phone</th>
+                        <th>Email</th>
                         <th>Hire Date</th>
-                        <th>Contact Email</th>
-                        <th>Contact Username</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {employees.map(employee => (
                         <tr key={employee._id}>
-                            <td>{employee.employeeID}</td>
-                            <td>{employee.firstName}</td>
-                            <td>{employee.lastName}</td>
+                            <td>{employee.firstName} {employee.lastName}</td>
                             <td>{employee.position}</td>
                             <td>{employee.department}</td>
-                            <td>{new Date(employee.hire_date).toLocaleDateString()}</td>
+                            <td>{employee.contact_info.phone}</td>
                             <td>{employee.contact_info.email}</td>
-                            <td>{employee.contact_info.username}</td>
+                            <td>{new Date(employee.hire_date).toLocaleDateString()}</td>
                             <td className="action-buttons1">
                                 <button className="edit-button1" onClick={() => handleEdit(employee)}>Edit</button>
                                 <button className="delete-button1" onClick={() => handleDelete(employee._id)}>Delete</button>
@@ -176,6 +175,15 @@ const EmployeeList: React.FC = () => {
                                     name="employeeID"
                                     value={formData.employeeID}
                                     onChange={handleFormChange}
+                                />
+                            </label>
+                            <label>
+                                Name:
+                                <input
+                                    type="text"
+                                    name="fullName"
+                                    value={`${formData.firstName} ${formData.lastName}`} // Combined field for display
+                                    readOnly // Prevent editing here
                                 />
                             </label>
                             <label>
@@ -207,10 +215,26 @@ const EmployeeList: React.FC = () => {
                             </label>
                             <label>
                                 Department:
-                                <input
-                                    type="text"
+                                <select
                                     name="department"
                                     value={formData.department}
+                                    onChange={handleFormChange}
+                                >
+                                    <option value="" disabled>Select Department</option>
+                                    <option value="Human Resources">Human Resources</option>
+                                    <option value="Restaurant">Restaurant</option>
+                                    <option value="Event">Event</option>
+                                    <option value="Reservation">Reservation</option>
+                                    <option value="Spa">Spa</option>
+                                    <option value="Transport">Transport</option>
+                                </select>
+                            </label>
+                            <label>
+                                Phone:
+                                <input
+                                    type="text"
+                                    name="contact_info.phone"
+                                    value={formData.contact_info.phone}
                                     onChange={handleFormChange}
                                 />
                             </label>
@@ -229,24 +253,6 @@ const EmployeeList: React.FC = () => {
                                     type="email"
                                     name="contact_info.email"
                                     value={formData.contact_info.email}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <label>
-                                Contact Username:
-                                <input
-                                    type="text"
-                                    name="contact_info.username"
-                                    value={formData.contact_info.username}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <label>
-                                Contact Password:
-                                <input
-                                    type="password"
-                                    name="contact_info.password"
-                                    value={formData.contact_info.password}
                                     onChange={handleFormChange}
                                 />
                             </label>

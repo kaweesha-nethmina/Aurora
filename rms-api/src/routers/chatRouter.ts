@@ -1,5 +1,3 @@
-// src/routes/chatRoutes.ts
-
 import express from 'express';
 import { getChats, createChat, deleteChat } from '../controller/chatController';
 

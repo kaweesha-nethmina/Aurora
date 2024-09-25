@@ -1,10 +1,10 @@
+// Import statements remain the same
 import React, { useState } from 'react';
 import { createEmployee } from '../../services/Manager/employeeService';
 import '../../components/Manager/ManagerCss/EmployeeStyles.css';
 
 const AddEmployeeTab = () => {
   const [formData, setFormData] = useState({
-    employeeID: '',
     firstName: '',
     lastName: '',
     position: '',
@@ -13,13 +13,14 @@ const AddEmployeeTab = () => {
     contact_info: {
       email: '',
       username: '',
-      password: ''
+      password: '',
+      phone: ''
     }
   });
   
   const [errors, setErrors] = useState<string[]>([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -41,9 +42,6 @@ const AddEmployeeTab = () => {
   const validateForm = (): boolean => {
     const newErrors: string[] = [];
     
-    if (!formData.employeeID.trim()) {
-      newErrors.push('Employee ID is required.');
-    }
     if (!formData.firstName.trim()) {
       newErrors.push('First Name is required.');
     }
@@ -72,6 +70,9 @@ const AddEmployeeTab = () => {
     } else if (formData.contact_info.password.length < 6) {
       newErrors.push('Password must be at least 6 characters long.');
     }
+    if (!formData.contact_info.phone.trim()) {
+      newErrors.push('Phone number is required.');
+    }
 
     setErrors(newErrors);
     return newErrors.length === 0;
@@ -88,7 +89,6 @@ const AddEmployeeTab = () => {
       await createEmployee(formData);
       alert('Employee added successfully!');
       setFormData({
-        employeeID: '',
         firstName: '',
         lastName: '',
         position: '',
@@ -97,7 +97,8 @@ const AddEmployeeTab = () => {
         contact_info: {
           email: '',
           username: '',
-          password: ''
+          password: '',
+          phone: ''
         }
       });
       setErrors([]); // Clear errors on successful submission
@@ -118,15 +119,6 @@ const AddEmployeeTab = () => {
             ))}
           </div>
         )}
-        <input
-          className="formInput"
-          type="text"
-          name="employeeID"
-          placeholder="Employee ID"
-          value={formData.employeeID}
-          onChange={handleChange}
-          required
-        />
         <input
           className="formInput"
           type="text"
@@ -154,20 +146,29 @@ const AddEmployeeTab = () => {
           onChange={handleChange}
           required
         />
-        <input
-          className="formInput"
-          type="text"
-          name="department"
-          placeholder="Department"
-          value={formData.department}
-          onChange={handleChange}
-          required
-        />
+        {/* Dropdown for department */}
+        <label>
+          Department:
+          <select
+            className="formInput"
+            name="department"
+            value={formData.department}
+            onChange={handleChange}
+            required
+          >
+            <option value="" disabled>Select Department</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Event">Event</option>
+            <option value="Reservation">Reservation</option>
+            <option value="Spa">Spa</option>
+            <option value="Transport">Transport</option>
+          </select>
+        </label>
         <input
           className="formInput"
           type="date"
           name="hire_date"
-          placeholder="Hire Date"
           value={formData.hire_date}
           onChange={handleChange}
           required
@@ -196,6 +197,15 @@ const AddEmployeeTab = () => {
           name="password"
           placeholder="Password"
           value={formData.contact_info.password}
+          onChange={handleNestedChange}
+          required
+        />
+        <input
+          className="formInput"
+          type="text"
+          name="phone"
+          placeholder="Phone Number"
+          value={formData.contact_info.phone}
           onChange={handleNestedChange}
           required
         />

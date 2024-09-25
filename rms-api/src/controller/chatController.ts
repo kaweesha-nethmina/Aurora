@@ -1,11 +1,9 @@
-// src/controller/chatController.ts
-
 import { Request, Response } from 'express';
 import ChatMessage from '../model/chatModel';
 
 export const getChats = async (req: Request, res: Response) => {
   try {
-    const chats = await ChatMessage.find().populate('employeeId', 'name');
+    const chats = await ChatMessage.find().populate('employeeId', 'firstName');
     res.json(chats);
   } catch (error) {
     console.error('Error fetching chats:', error);
