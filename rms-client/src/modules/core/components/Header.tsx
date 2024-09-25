@@ -9,6 +9,9 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ activeTab }) => {
+  // Check if user data or token exists in local storage to determine login status
+  const isLoggedIn = !!localStorage.getItem('userData') || !!localStorage.getItem('token');
+
   return (
     <header className="headerC">
       <div className="logo">
@@ -25,7 +28,16 @@ const Header: React.FC<HeaderProps> = ({ activeTab }) => {
         <a href="/displayfeedback" className={activeTab === 'feedback' ? 'active' : ''}>Feedback</a>
       </nav>
       <div className="user-icon">
-       <Link to="/login"> <img src={user} alt="User Icon" /></Link>
+        {/* Show user icon only if logged in */}
+        {isLoggedIn && (
+          <Link to="/pr"><img src={user} alt="User Icon" /></Link>
+        )}
+      </div>
+      <div>
+        {/* Show login button only if not logged in */}
+        {!isLoggedIn && (
+          <Link to="/login"><button className='loginbtn'>Login</button></Link>
+        )}
       </div>
     </header>
   );

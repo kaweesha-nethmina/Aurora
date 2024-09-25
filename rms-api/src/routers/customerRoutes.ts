@@ -6,5 +6,6 @@ const router = express.Router();
 // Customer routes
 router.post('/signup', signup);
 router.post('/login', login); // Updated endpoint path
-router.get('/', getAllCustomers); 
+router.get('/', getAllCustomers);
+
 export default router;

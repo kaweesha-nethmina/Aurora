@@ -26,9 +26,6 @@ export const signup = async (req: Request, res: Response) => {
     }
 };
 
- // Ensure you have a function to generate JWT tokens
-
-// Login customer
 export const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
@@ -36,6 +33,7 @@ export const login = async (req: Request, res: Response) => {
         const customer = await Customer.findOne({ 'contact_info.username': username });
         if (!customer) return res.status(404).json({ message: 'User not found' });
 
+        // Check if contact_info is not null or undefined
         if (!customer.contact_info) {
             return res.status(404).json({ message: 'Contact info not found' });
         }
@@ -45,7 +43,21 @@ export const login = async (req: Request, res: Response) => {
 
         // Generate a token
         const token = generateToken(customer._id.toString());
-        res.status(200).json({ message: 'Login successful', token }); // Include the token in the response
+
+        // Return both token and customer details
+        res.status(200).json({
+            message: 'Login successful',
+            token,
+            customer: {
+                firstName: customer.firstName,
+                lastName: customer.lastName,
+                contact_info: {
+                    email: customer.contact_info.email,
+                    username: customer.contact_info.username,
+                },
+                phone: customer.phone,
+            },
+        });
     } catch (error: any) {
         res.status(500).json({ message: error.message });
     }
@@ -60,4 +72,3 @@ export const getAllCustomers = async (req: Request, res: Response) => {
         res.status(500).json({ message: error.message });
     }
 };
-

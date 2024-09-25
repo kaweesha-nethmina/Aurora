@@ -14,6 +14,7 @@ const customerSchema = new Schema({
         email: {
             type: String,
             required: true,
+            unique: true, // Ensure unique emails
         },
         username: {
             type: String,
