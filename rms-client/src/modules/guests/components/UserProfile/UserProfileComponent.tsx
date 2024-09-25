@@ -20,7 +20,7 @@ const defaultUserProfile: UserProfile = {
   profileImage: 'https://via.placeholder.com/150',
 };
 
-const UserProfileComponent = () => {
+const UserProfileComponent3 = () => {
   const [userProfile, setUserProfile] = useState(defaultUserProfile);
   const [feedback, setFeedback] = useState('');
 
@@ -59,4 +59,4 @@ const UserProfileComponent = () => {
   );
 };
 
-export default UserProfileComponent;
+export default UserProfileComponent3;

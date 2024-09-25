@@ -15,6 +15,10 @@ const driverSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  IDNumber: {
+    type: String,
+    required: true,
+  },
   phoneNumber: {
     type: String,
     required: true,

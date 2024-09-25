@@ -6,6 +6,7 @@ interface LeaveRequest {
   name: string;
   startDate: string;
   endDate: string;
+  catagory: string;
   reason: string;
   status: string;
 }
@@ -14,6 +15,7 @@ const LeaveRequestForm: React.FC = () => {
   const [name, setName] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [catagory, setCatagory] = useState('');
   const [reason, setReason] = useState('');
   const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
@@ -77,6 +79,7 @@ const LeaveRequestForm: React.FC = () => {
           employee: name,
           startDate,
           endDate,
+          catagory,
           reason,
           status: 'pending',
         }),
@@ -92,6 +95,7 @@ const LeaveRequestForm: React.FC = () => {
       setName('');
       setStartDate('');
       setEndDate('');
+      setCatagory('');
       setReason('');
       setErrors([]);
     } catch (err) {
@@ -134,6 +138,21 @@ const LeaveRequestForm: React.FC = () => {
               required
             />
           </div>
+          <div className="form-group">
+            <label htmlFor="category">Category:</label>
+            <select
+              id="category"
+              value={catagory}
+              onChange={(e) => setCatagory(e.target.value)}
+              required
+            >
+              <option value="">Select a category</option>
+              <option value="annual">Annual</option>
+              <option value="casual">Casual</option>
+              <option value="normal">Normal</option>
+            </select>
+          </div>
+
           <div className="form-group">
             <label htmlFor="reason">Reason:</label>
             <textarea

@@ -5,6 +5,7 @@ interface Driver {
   driverCode: string;
   firstName: string;
   lastName: string;
+  IDNumber: string;
   phoneNumber: string;
 }
 

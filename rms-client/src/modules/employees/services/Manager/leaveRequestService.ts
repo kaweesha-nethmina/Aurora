@@ -7,6 +7,7 @@ export interface LeaveRequest {
   employee: string;
   startDate: string;
   endDate: string;
+  catagory: string;
   reason: string;
   status: 'pending' | 'approved' | 'rejected';
 }

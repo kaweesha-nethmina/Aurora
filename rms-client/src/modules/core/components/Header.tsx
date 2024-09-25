@@ -15,13 +15,14 @@ const Header: React.FC<HeaderProps> = ({ activeTab }) => {
         <img src={logo} alt="Aurora Logo" />
       </div>
       <nav className="nav-links">
-        <a href="/homeMain" className={activeTab === 'home' ? 'active' : ''}>Home</a>
+        <a href="/" className={activeTab === 'home' ? 'active' : ''}>Home</a>
         <a href="/eventcard" className={activeTab === 'events' ? 'active' : ''}>Events</a>
         <a href="/roomreservation" className={activeTab === 'rooms' ? 'active' : ''}>Rooms</a>
         <a href="/menuhomepage" className={activeTab === 'restaurant-bar' ? 'active' : ''}>Restaurant & Bar</a>
         <a href="/spa" className={activeTab === 'spa-wellness' ? 'active' : ''}>Spa & Wellness</a>
         <a href="/transportation" className={activeTab === 'transportation' ? 'active' : ''}>Transport</a>
         <a href="/HomePage1" className={activeTab === 'offers' ? 'active' : ''}>Offers</a>
+        <a href="/displayfeedback" className={activeTab === 'feedback' ? 'active' : ''}>Feedback</a>
       </nav>
       <div className="user-icon">
        <Link to="/login"> <img src={user} alt="User Icon" /></Link>

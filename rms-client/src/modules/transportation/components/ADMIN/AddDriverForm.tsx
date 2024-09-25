@@ -6,6 +6,7 @@ interface Driver {
   driverCode: string;
   firstName: string;
   lastName: string;
+  IDNumber: string;
   phoneNumber: string;
 }
 
@@ -14,6 +15,7 @@ const AddDriverForm: React.FC = () => {
     driverCode: '',
     firstName: '',
     lastName: '',
+    IDNumber: '',
     phoneNumber: '',
   });
 
@@ -33,6 +35,7 @@ const AddDriverForm: React.FC = () => {
         driverCode: '',
         firstName: '',
         lastName: '',
+        IDNumber: '',
         phoneNumber: '',
       });
     } catch (error) {
@@ -70,6 +73,16 @@ const AddDriverForm: React.FC = () => {
           value={driver.lastName}
           onChange={handleChange}
           placeholder="Last Name"
+          required
+        />
+      </div>
+      <div className="form-group">
+        <input
+          type="text"
+          name="IDNumber"
+          value={driver.IDNumber}
+          onChange={handleChange}
+          placeholder="NIC"
           required
         />
       </div>

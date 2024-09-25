@@ -5,6 +5,7 @@ interface Driver {
   driverCode: string;
   firstName: string;
   lastName: string;
+  idnumber: string;
   phoneNumber: string;
 }
 
@@ -53,6 +54,15 @@ const DriverForm: React.FC<DriverFormProps> = ({
         />
       </div>
       <div className="driver-form-group">
+        <label className="driver-form-label">NIC</label>
+        <input
+          className="driver-form-input"
+          type="text"
+          value={newDriver.idnumber}
+          onChange={(e) => setNewDriver({ ...newDriver, idnumber: e.target.value })}
+        />
+      </div>
+      <div className="driver-form-group">
         <label className="driver-form-label">Phone Number</label>
         <input
           className="driver-form-input"
@@ -61,6 +71,8 @@ const DriverForm: React.FC<DriverFormProps> = ({
           onChange={(e) => setNewDriver({ ...newDriver, phoneNumber: e.target.value })}
         />
       </div>
+
+
       <button
         className="driver-btn"
         onClick={editingDriver ? handleUpdateDriver : handleAddDriver}

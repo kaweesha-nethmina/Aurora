@@ -38,6 +38,7 @@ const LeaveRequestsTab: React.FC = () => {
             <th className="tableHeader">Employee</th>
             <th className="tableHeader">Start Date</th>
             <th className="tableHeader">End Date</th>
+            <th className="tableHeader">Catagory</th>
             <th className="tableHeader">Reason</th>
             <th className="tableHeader">Status</th>
             <th className="tableHeader">Action</th>
@@ -49,6 +50,7 @@ const LeaveRequestsTab: React.FC = () => {
               <td>{request.employee}</td>
               <td>{request.startDate}</td>
               <td>{request.endDate}</td>
+              <td>{request.catagory}</td>
               <td>{request.reason}</td>
               <td>{request.status}</td>
               <td className="actionButtons">

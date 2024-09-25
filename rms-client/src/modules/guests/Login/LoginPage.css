@@ -1,0 +1,114 @@
+/* Updated unique class names for LoginPageN */
+.containerLoginN {
+    width: 1530px;
+    height: 100vh;
+    background-image: linear-gradient(rgba(19, 19, 19, 0.8), rgba(50, 28, 0, 0.8)), url(Images/background.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.form-boxN {
+    width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 50px 50px 30px;
+    text-align: center;
+    border-radius: 50px;
+}
+
+.form-boxN h1 {
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: #f0a402;
+    position: relative;
+}
+
+.form-boxN h1::after {
+    content: '';
+    width: 40px;
+    height: 4px;
+    border-radius: 3px;
+    background: rgb(51, 51, 51);
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.input-groupN {
+    margin-bottom: 15px;
+}
+
+.input-fieldN {
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+}
+
+.input-fieldN i {
+    margin-left: 15px;
+    color: #999;
+}
+
+.form-textN {
+    text-align: center;
+    font-size: 13px;
+    padding-top: 50px;
+}
+
+.form-textN a {
+    text-decoration: none;
+    color: #3c00a0;
+}
+
+.btn-fieldN {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-fieldN input {
+    width: 60%;
+    background: #f0a402;
+    color: #fff;
+    height: 50px;
+    border-radius: 30px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+}
+
+.btn-fieldN input:hover {
+    background: #999;
+}
+
+.success-messageN {
+    color: green;
+    font-weight: bold;
+}
+
+.error-messageN {
+    color: red;
+    font-weight: bold;
+}
+
+.login-errorN {
+    color: red;
+    font-weight: bold;
+}

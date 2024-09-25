@@ -5,7 +5,7 @@ import Driver from '../model/driverModel';
 // Add new driver
 export const addDriver = async (req: Request, res: Response) => {
   try {
-    const { driverCode, firstName, lastName, phoneNumber } = req.body;
+    const { driverCode, firstName, lastName,IDNumber, phoneNumber } = req.body;
 
     // Check for existing driver code
     const existingDriver = await Driver.findOne({ driverCode });
@@ -17,6 +17,7 @@ export const addDriver = async (req: Request, res: Response) => {
       driverCode,
       firstName,
       lastName,
+      IDNumber,
       phoneNumber,
     });
 

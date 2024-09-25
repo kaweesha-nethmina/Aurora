@@ -5,6 +5,7 @@ interface Driver {
   driverCode: string;
   firstName: string;
   lastName: string;
+  IDNumber: string;
   phoneNumber: string;
 }
 
@@ -22,6 +23,7 @@ const DriverTable: React.FC<DriverTableProps> = ({ drivers, handleEditDriver, ha
           <th>Driver Code</th>
           <th>First Name</th>
           <th>Last Name</th>
+          <th>NIC</th>
           <th>Phone Number</th>
           <th>Actions</th>
         </tr>
@@ -32,6 +34,7 @@ const DriverTable: React.FC<DriverTableProps> = ({ drivers, handleEditDriver, ha
             <td>{driver.driverCode}</td>
             <td>{driver.firstName}</td>
             <td>{driver.lastName}</td>
+            <td>{driver.IDNumber}</td>
             <td>{driver.phoneNumber}</td>
             <td>
               <button

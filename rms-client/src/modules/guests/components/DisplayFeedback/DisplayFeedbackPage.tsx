@@ -76,9 +76,18 @@ const DisplayFeedbackPage = () => {
     setUpdatedFeedback({});
   };
 
+  // Function to render stars based on the rating value
+  const renderStars = (rating: number) => {
+    return [...Array(5)].map((_, index) => (
+      <span key={index} style={{ color: index < rating ? '#ffc107' : '#e4e5e9', fontSize: '20px' }}>
+        ★
+      </span>
+    ));
+  };
+
   return (
     <div className="feedback-container">
-      <Header activeTab={''} />
+      <Header activeTab={'feedback'} />
       <Navbar />
       <div className="feedchat">
         <h2 className="feedback-title">Feedbacks</h2>
@@ -90,7 +99,7 @@ const DisplayFeedbackPage = () => {
               onClick={() => handleSelectFeedback(feedback)}
             >
               <h3 className="feedback-name">{feedback.name}</h3>
-              <p className="feedback-rating">Rating: {feedback.rating}</p>
+              <p className="feedback-rating">Rating: {renderStars(feedback.rating)}</p>
               <p className="feedback-description">{feedback.description}</p>
             </div>
           ))}
@@ -111,16 +120,24 @@ const DisplayFeedbackPage = () => {
               </div>
               <div className="feedback-field">
                 <label className="feedback-label" htmlFor="update-rating">Rating</label>
-                <select
-                  className="feedback-input"
-                  id="update-rating"
-                  value={updatedFeedback.rating}
-                  onChange={(e) => setUpdatedFeedback({ ...updatedFeedback, rating: Number(e.target.value) })}
-                >
-                  {[...Array(6).keys()].map((num) => (
-                    <option key={num} value={num}>{num}</option>
-                  ))}
-                </select>
+                <div className="star-rating">
+                  {[...Array(5)].map((_, index) => {
+                    const ratingValue = index + 1;
+                    return (
+                      <span
+                        key={ratingValue}
+                        onClick={() => setUpdatedFeedback({ ...updatedFeedback, rating: ratingValue })}
+                        style={{
+                          cursor: 'pointer',
+                          color: ratingValue <= (updatedFeedback.rating || 0) ? '#ffc107' : '#e4e5e9',
+                          fontSize: '24px',
+                        }}
+                      >
+                        ★
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
               <div className="feedback-field">
                 <label className="feedback-label" htmlFor="update-description">Description</label>

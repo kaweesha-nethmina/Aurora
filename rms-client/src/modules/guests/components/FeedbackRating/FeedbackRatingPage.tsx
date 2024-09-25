@@ -47,32 +47,47 @@ const FeedbackRatingPage = () => {
         <h1 className="feedback-title">Feedback and Rating</h1>
         <form onSubmit={handleSubmit} className="feedback-form">
           <div className="feedback-field">
-            <label className="feedback-label" htmlFor="name">Name</label>
-            <input
+            <label className="feedback-label" htmlFor="name">Category</label>
+            <select
               className="feedback-input"
               id="name"
-              type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-            />
-          </div>
-          <div className="feedback-field">
-            <label className="feedback-label" htmlFor="rating">Rating</label>
-            <select
-              className="feedback-input"
-              id="rating"
-              value={rating}
-              onChange={(e) => setRating(Number(e.target.value))}
-              required
             >
-              {[...Array(6).keys()].map((num) => (
-                <option key={num} value={num}>{num}</option>
-              ))}
+              <option value="select">Select</option>
+              <option value="Event">Event</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Rooms">Rooms</option>
+              <option value="Spa">Spa</option>
+              <option value="Transport">Transport</option>
             </select>
           </div>
+
           <div className="feedback-field">
-            <label className="feedback-label" htmlFor="description">Description</label>
+      <label className="feedback-label" htmlFor="rating">Rating</label>
+        <div className="star-rating">
+          {[...Array(5)].map((_, index) => {
+            const ratingValue = index + 1;
+            return (
+              <span
+                key={ratingValue}
+                onClick={() => setRating(ratingValue)}
+                style={{
+                  cursor: 'pointer',
+                  color: ratingValue <= rating ? "#ffc107" : "#e4e5e9",
+                  fontSize: "24px",
+                }}
+              >
+                ★
+          </span>
+        );
+      })}
+    </div>
+</div>
+
+          <div className="feedback-field">
+            <label className="feedback-label" htmlFor="description">Comment</label>
             <textarea
               className="feedback-input"
               id="description"

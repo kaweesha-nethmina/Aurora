@@ -64,7 +64,6 @@ import AdminView from './modules/guests/components/AdminView/AdminView';
 import FeedbackRatingPage from './modules/guests/components/FeedbackRating/FeedbackRatingPage';
 import AdminDashboard from './modules/guests/components/AdminDashboard/AdminDashboard';
 import DisplayFeedbackPage from './modules/guests/components/DisplayFeedback/DisplayFeedbackPage';
-import UserProfileComponent from './modules/guests/components/UserProfile/UserProfileComponent';
 import GManagerDashboard from './modules/guests/components/Manager/GmanagerDashboard';
 import AdminFeedbackManagement from './modules/guests/components/Manager/AdminFeedbackManagement';
 import GAdminPage from './modules/guests/components/AdminPage/AdminPage';
@@ -101,6 +100,10 @@ import DailyReportGenerationForm from './modules/offers/offers/components/DailyR
 import DataTable from './modules/offers/offers/components/ApproveBookings/DataTable';
 import OfferPaymentForm from './modules/offers/offers/components/Paynment/PaymentForm';
 import FormBook from './modules/offers/offers/components/BookingForm/Form';
+import LoginPageN from './modules/guests/Login/LoginPage';
+import ProfileComponent from './modules/guests/components/ProfileComponent/ProfileComponent';
+
+
 
 function App() {
   return (
@@ -126,7 +129,7 @@ function App() {
           <Route path='notices' element={<EmployeeNoticesTab />} />
         </Route>
         
-        <Route path='/homeMain' element={<MainHome />} />
+        <Route path='/' element={<MainHome />} />
 
 
         Other Routes
@@ -217,14 +220,16 @@ function App() {
 
       {/* Guest */}
       <Route path='/guests' element={<Guests />} />
-        <Route path='/login' element={<GuestProfileLoginPage />} />
+        <Route path='/loginG' element={<GuestProfileLoginPage />} />
         <Route path='/loginDetails' element={<AccountDetailsTable />} />
         
         <Route path='/Feedbackrating' element={<FeedbackRatingPage/>}/>
         <Route path='/Adminpage' element={<GAdminPage/>}/>
         
         <Route path='/displayfeedback' element={<DisplayFeedbackPage/>}/>
-        <Route path='/pr' element={<UserProfileComponent/>}/>
+        <Route path='/pr' element={<ProfileComponent/>}/>
+
+        <Route path='/login' element={<LoginPageN/>}/>
 
         <Route path="/GManager" element={<GManagerDashboard />}>
           <Route path="feedback" element={<AdminFeedbackManagement />} />

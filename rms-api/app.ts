@@ -17,6 +17,7 @@ import driverRouter from './src/routers/driverRouter';
 import feedbackRouter from './src/routers/feedbackRouter'; 
 import offerRouter from './src/routers/offerRouter'; 
 import appointmentRoutes from './src/routers/appointmentRoutes';
+import eventRouter from './src/routers/eventRouter';
 
 // Load environment variables
 dotenv.config();
@@ -65,6 +66,9 @@ app.use('/api', driverRouter);
 app.use('/api', feedbackRouter); 
 app.use('/api/offers', offerRouter); 
 app.use('/api/appointments', appointmentRoutes);
+app.use('/api', eventRouter);
+
+
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {
   if (!req.file) {
