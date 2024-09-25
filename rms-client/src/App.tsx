@@ -102,6 +102,8 @@ import OfferPaymentForm from './modules/offers/offers/components/Paynment/Paymen
 import FormBook from './modules/offers/offers/components/BookingForm/Form';
 import LoginPageN from './modules/guests/Login/LoginPage';
 import ProfileComponent from './modules/guests/components/ProfileComponent/ProfileComponent';
+import ManagerLoginPage from './modules/employees/components/Login/ManagerLoginPage';
+import ManagerProfile from './modules/employees/components/Login/ManagerProfile';
 
 
 
@@ -118,6 +120,7 @@ function App() {
           <Route path='chat' element={<ChatTab />} />
           <Route path='reports' element={<ReportsTab />} />
           <Route path='notices' element={<NoticesTab />} />
+          <Route path='manager-profile' element={<ManagerProfile />} />
         </Route>
 
         {/* Employee Routes */}
@@ -128,6 +131,8 @@ function App() {
           <Route path='chat' element={<ChatTab />} />
           <Route path='notices' element={<EmployeeNoticesTab />} />
         </Route>
+
+        <Route path="/manager-login" element={<ManagerLoginPage/>} />
         
         <Route path='/' element={<MainHome />} />
 

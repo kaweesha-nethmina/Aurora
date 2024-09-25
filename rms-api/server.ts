@@ -19,6 +19,7 @@ import offerRouter from './src/routers/offerRouter';
 import appointmentRoutes from './src/routers/appointmentRoutes';
 import eventRouter from './src/routers/eventRouter';
 import customerRoutes from './src/routers/customerRoutes';
+import managerRoutes from './src/routers/managerRoutes';
 
 // Load environment variables
 dotenv.config();
@@ -69,6 +70,7 @@ app.use('/api/offers', offerRouter);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api', eventRouter);
 app.use('/api/customers', customerRoutes);
+app.use('/api/managers', managerRoutes);
 
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {

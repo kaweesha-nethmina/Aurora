@@ -22,7 +22,7 @@ const ManagerHeader: React.FC<ManagerHeaderProps> = ({ activeTab }) => {
         <Link to="/hr/notices" className={activeTab === 'notices' ? 'active' : ''}>Notices</Link>
       </nav>
       <div className="user-icon">
-        <img src={userIcon} alt="User Icon" />
+        <Link to="/hr/manager-profile" className={activeTab === 'profile' ? 'active' : ''}> <img src={userIcon} alt="User Icon" /></Link>
       </div>
     </header>
   );

@@ -22,9 +22,12 @@ const ManagerLoginPage: React.FC = () => {
     const navigate = useNavigate();
     const [formType, setFormType] = useState<'login' | 'signup'>('login');
     const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
         username: '',
         password: '',
         email: '',
+        phone: '',
         confirmPassword: ''
     });
     const [registrationSuccess, setRegistrationSuccess] = useState<string | null>(null);
@@ -47,7 +50,7 @@ const ManagerLoginPage: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const { username, password, email, confirmPassword } = formData;
+        const { username, password, email, confirmPassword, firstName, lastName, phone } = formData;
 
         try {
             let response;
@@ -59,11 +62,11 @@ const ManagerLoginPage: React.FC = () => {
                     const { token, manager } = response.data;
                     localStorage.setItem('managerData', JSON.stringify(manager));
                     localStorage.setItem('token', token);
-                    navigate('/manager-dashboard'); // Navigate to manager dashboard
+                    navigate('/hr/manager-profile'); // Navigate to manager dashboard
                 }
             } else if (formType === 'signup') {
-                if (!email) {
-                    setRegistrationError("Email is required.");
+                if (!email || !firstName || !lastName || !phone) {
+                    setRegistrationError("All fields are required.");
                     return;
                 }
                 if (password !== confirmPassword) {
@@ -71,9 +74,16 @@ const ManagerLoginPage: React.FC = () => {
                     return;
                 }
 
-                response = await axios.post<SignupResponse>('http://localhost:5000/api/managers/signup', { username, email, password });
+                response = await axios.post<SignupResponse>('http://localhost:5000/api/managers/signup', { 
+                    username, 
+                    email, 
+                    password,
+                    firstName,
+                    lastName,
+                    phone 
+                });
                 setRegistrationSuccess(response.data.message);
-                setFormData({ username: '', password: '', email: '', confirmPassword: '' });
+                setFormData({ firstName: '', lastName: '', username: '', password: '', email: '', phone: '', confirmPassword: '' });
             }
 
             if (response) {
@@ -110,14 +120,25 @@ const ManagerLoginPage: React.FC = () => {
 
                 <form onSubmit={handleSubmit} className="formManager">
                     <div className="input-groupManager">
+                        {formType === 'signup' && (
+                            <>
+                                <div className="input-fieldManager">
+                                    <input type="text" placeholder="First Name" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                                </div>
+                                <div className="input-fieldManager">
+                                    <input type="text" placeholder="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                                </div>
+                                <div className="input-fieldManager">
+                                    <input type="email" placeholder="Email" name="email" value={formData.email} onChange={handleChange} required />
+                                </div>
+                                <div className="input-fieldManager">
+                                    <input type="text" placeholder="Phone" name="phone" value={formData.phone} onChange={handleChange} required />
+                                </div>
+                            </>
+                        )}
                         <div className="input-fieldManager">
                             <input type="text" placeholder="Username" name="username" value={formData.username} onChange={handleChange} required />
                         </div>
-                        {formType === 'signup' && (
-                            <div className="input-fieldManager">
-                                <input type="email" placeholder="Email" name="email" value={formData.email} onChange={handleChange} required />
-                            </div>
-                        )}
                         <div className="input-fieldManager">
                             <input type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} required />
                         </div>

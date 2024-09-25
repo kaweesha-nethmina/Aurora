@@ -1,0 +1,85 @@
+/* ManagerLoginPage.css */
+
+.containerManager {
+    max-width: 400px; /* Constrain the width of the login container */
+    margin: 2rem auto; /* Center it vertically and horizontally */
+    padding: 1.5rem; /* Add padding for inner content */
+    background-color: white; /* White background for clarity */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.form-titleManager {
+    font-size: 1.5rem; /* Increase the font size for title */
+    font-weight: bold; /* Make title bold */
+    margin-bottom: 1rem; /* Space below the title */
+    text-align: center; /* Center the title */
+}
+
+.success-messageManager,
+.error-messageManager,
+.login-errorManager {
+    margin: 0.5rem 0; /* Space between messages */
+    text-align: center; /* Center messages */
+    color: #d9534f; /* Red color for error messages */
+}
+
+.success-messageManager {
+    color: #5cb85c; /* Green color for success messages */
+}
+
+.input-groupManager {
+    margin-bottom: 1rem; /* Space below input groups */
+}
+
+.input-fieldManager {
+    width: 100%; /* Full width for input fields */
+    margin-top: 0.5rem; /* Space above input fields */
+}
+
+.input-fieldManager input {
+    width: 100%; /* Full width for inputs */
+    padding: 0.75rem; /* Padding inside input fields */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Rounded corners for inputs */
+    font-size: 0.875rem; /* Font size for inputs */
+}
+
+.input-fieldManager input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow */
+}
+
+.btn-fieldManager {
+    margin-top: 1rem; /* Space above the button */
+}
+
+.btn-fieldManager input {
+    width: 100%; /* Full width for button */
+    padding: 0.75rem; /* Padding inside button */
+    background-color: #007bff; /* Blue background for button */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.2s ease; /* Smooth transition */
+}
+
+.btn-fieldManager input:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.form-textManager {
+    text-align: center; /* Center switch text */
+    margin-top: 1rem; /* Space above the switch text */
+}
+
+.form-textManager a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* No underline */
+}
+
+.form-textManager a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

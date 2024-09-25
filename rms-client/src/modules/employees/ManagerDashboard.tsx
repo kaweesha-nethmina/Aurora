@@ -16,6 +16,7 @@ const ManagerDashboard: React.FC = () => {
     if (path === '/hr/chat') return 'chat';
     if (path === '/hr/reports') return 'reports';
     if (path === '/hr/notices') return 'notices';
+    if (path === '/hr/manager-profile') return 'profile';
     return '';
   };
 
