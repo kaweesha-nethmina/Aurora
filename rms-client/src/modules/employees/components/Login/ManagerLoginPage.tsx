@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './ManagerLoginPage.css';
 
 interface SignupResponse {
@@ -100,60 +100,65 @@ const ManagerLoginPage: React.FC = () => {
     };
 
     return (
-        <div className="containerManager">
+        <div className="containerManagerLogin"> {/* Unique container class */}
             {registrationSuccess && (
-                <p id="successMessageManager" className="success-messageManager">
+                <p id="successMessageManager" className="success-messageManagerLogin">
                     {registrationSuccess}
                 </p>
             )}
             {registrationError && (
-                <p className="error-messageManager">{registrationError}</p>
+                <p className="error-messageManagerLogin">{registrationError}</p>
             )}
             {loginError && (
-                <p className="login-errorManager">{loginError}</p>
+                <p className="login-errorManagerLogin">{loginError}</p>
             )}
 
-            <div className="form-boxManager">
-                <h1 id="titleManager" className="form-titleManager">
+            <div className="form-boxManagerLogin"> {/* Unique form box class */}
+                <h1 id="titleManager" className="form-titleManagerLogin">
                     {formType === 'signup' ? 'Manager Sign Up' : 'Manager Login'}
                 </h1>
 
-                <form onSubmit={handleSubmit} className="formManager">
-                    <div className="input-groupManager">
+                <form onSubmit={handleSubmit} className="formManagerLogin">
+                    <div className="input-groupManagerLogin">
                         {formType === 'signup' && (
                             <>
-                                <div className="input-fieldManager">
+                                <div className="input-fieldManagerLogin">
                                     <input type="text" placeholder="First Name" name="firstName" value={formData.firstName} onChange={handleChange} required />
                                 </div>
-                                <div className="input-fieldManager">
+                                <div className="input-fieldManagerLogin">
                                     <input type="text" placeholder="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} required />
                                 </div>
-                                <div className="input-fieldManager">
+                                <div className="input-fieldManagerLogin">
                                     <input type="email" placeholder="Email" name="email" value={formData.email} onChange={handleChange} required />
                                 </div>
-                                <div className="input-fieldManager">
+                                <div className="input-fieldManagerLogin">
                                     <input type="text" placeholder="Phone" name="phone" value={formData.phone} onChange={handleChange} required />
                                 </div>
                             </>
                         )}
-                        <div className="input-fieldManager">
+                        <div className="input-fieldManagerLogin">
                             <input type="text" placeholder="Username" name="username" value={formData.username} onChange={handleChange} required />
                         </div>
-                        <div className="input-fieldManager">
+                        <div className="input-fieldManagerLogin">
                             <input type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} required />
                         </div>
                         {formType === 'signup' && (
-                            <div className="input-fieldManager">
+                            <div className="input-fieldManagerLogin">
                                 <input type="password" placeholder="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
                             </div>
                         )}
                     </div>
-                    <div className="btn-fieldManager">
+                    <div className="btn-fieldManagerLogin">
                         <input type="submit" value={formType === 'signup' ? "Sign Up" : "Login"} />
                     </div>
                 </form>
 
-                <p id="switchTextManager" className="form-textManager">
+                <div className='lo'>
+                <Link to="/employee-login"><p className='mlog'>Login As Staff</p></Link>
+                <Link to="/login"><p className='mlog'>Login As Customer</p></Link>
+                </div>
+
+                <p id="switchTextManager" className="form-textManagerLogin">
                     {formType === 'signup' 
                         ? "Already have an account? " 
                         : "Don't have an account? "}

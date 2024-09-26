@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 interface SignupResponse {
@@ -10,13 +10,6 @@ interface SignupResponse {
 interface LoginResponse {
     token?: string;
     customer?: Customer; 
-    admin?: Admin;
-}
-
-interface Admin {
-    id: string;
-    username: string;
-    email: string;
 }
 
 interface Customer {
@@ -32,7 +25,7 @@ interface Customer {
 
 const LoginPageN: React.FC = () => {
     const navigate = useNavigate();
-    const [formType, setFormType] = useState<'login' | 'signup' | 'admin'>('login');
+    const [formType, setFormType] = useState<'login' | 'signup'>('login');
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -53,10 +46,6 @@ const LoginPageN: React.FC = () => {
 
     const handleSwitchForm = () => {
         setFormType(prevType => (prevType === 'login' ? 'signup' : 'login'));
-    };
-
-    const handleAdminSwitch = () => {
-        setFormType(prevType => (prevType === 'login' ? 'admin' : 'login'));
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,14 +85,6 @@ const LoginPageN: React.FC = () => {
                 response = await axios.post<SignupResponse>('http://localhost:5000/api/customers/signup', { firstName, lastName, email, phone, username, password });
                 setRegistrationSuccess(response.data.message);
                 setFormData({ username: '', password: '', firstName: '', lastName: '', email: '', phone: '', confirmPassword: '' });
-            } else if (formType === 'admin') {
-                response = await axios.post<LoginResponse>('http://localhost:5000/api/admin/login', { username, password });
-
-                if (response.data.token) {
-                    const { token } = response.data; 
-                    localStorage.setItem('adminToken', token);
-                    navigate('/pr');
-                }
             }
 
             if (response) {
@@ -135,7 +116,7 @@ const LoginPageN: React.FC = () => {
 
             <div className="form-boxN">
                 <h1 id="titleN" className="form-titleN">
-                    {formType === 'signup' ? 'Sign Up' : formType === 'admin' ? 'Staff Login' : 'Login'}
+                    {formType === 'signup' ? 'Sign Up' : 'Login'}
                 </h1>
 
                 <form onSubmit={handleSubmit} className="formN">
@@ -157,10 +138,10 @@ const LoginPageN: React.FC = () => {
                             </>
                         )}
                         <div className="input-fieldN">
-                            <input type="text" placeholder={formType === 'admin' ? "Staff Username" : "Username"} name="username" value={formData.username} onChange={handleChange} required />
+                            <input type="text" placeholder="Username" name="username" value={formData.username} onChange={handleChange} required />
                         </div>
                         <div className="input-fieldN">
-                            <input type="password" placeholder={formType === 'admin' ? "Staff Password" : "Password"} name="password" value={formData.password} onChange={handleChange} required />
+                            <input type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} required />
                         </div>
                         {formType === 'signup' && (
                             <div className="input-fieldN">
@@ -169,16 +150,20 @@ const LoginPageN: React.FC = () => {
                         )}
                     </div>
                     <div className="btn-fieldN">
-                        <input type="submit" value={formType === 'signup' ? "Sign Up" : formType === 'admin' ? "Login as Staff" : "Login"} />
+                        <input type="submit" value={formType === 'signup' ? "Sign Up" : "Login"} />
                     </div>
                 </form>
+                
 
                 <p id="signupTextN" className="form-textN">
                     If you don't have an account <a href="#" onClick={handleSwitchForm}>Sign Up</a>
                 </p>
-                <p id="adminTextN" className="form-textN">
-                    If you are a staff member <a href="#" onClick={handleAdminSwitch}>Login as Staff</a>
-                </p>
+
+
+                <div className='lo'><Link to="/manager-login"> <p className='mlog'>
+                        Login As Manager
+                    </p></Link>
+                    <Link to="/employee-login"><p className='mlog'>Login As Staff</p></Link></div>
             </div>
         </div>
     );

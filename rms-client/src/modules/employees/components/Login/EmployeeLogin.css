@@ -1,54 +1,88 @@
-.employee-login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* EmployeeLogin.css */
+
+.containerEmployeeLogin {
+    width: 1530px;
+    height: 100vh;
+    background-image: linear-gradient(rgba(19, 19, 19, 0.8), rgba(50, 28, 0, 0.8)), url(Images/background.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
 
-.employee-login-title {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
+.form-boxEmployeeLogin {
+    width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 50px 50px 30px;
+    text-align: center;
+    border-radius: 50px;
 }
 
-.employee-login-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
+.form-titleEmployeeLogin {
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: #f0a402;
+    position: relative;
 }
 
-.employee-login-label {
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-.employee-login-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.input-groupEmployeeLogin {
     margin-bottom: 15px;
-    font-size: 14px;
+}
+
+.input-fieldEmployeeLogin {
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+}
+
+.btn-fieldEmployeeLogin {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .employee-login-button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    width: 60%;
+    background: #f0a402;
+    color: #fff;
+    height: 50px;
+    border-radius: 30px;
+    border: 0;
+    outline: 0;
     cursor: pointer;
-    font-size: 16px;
+    transition: background 1s;
 }
 
-.employee-login-button:disabled {
-    background-color: #007bff99; /* Lighter blue for disabled state */
+.employee-login-button:hover {
+    background: #999;
 }
 
-.employee-login-error {
+.error-messageEmployeeLogin {
     color: red;
-    margin-bottom: 15px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Add some spacing below the error message */
+}
+
+.mlog{
+    
+    padding: 10px;
+    font-size: 12px;
+    color: black;
+}
+.lo{
+margin-top: 10px;
 }

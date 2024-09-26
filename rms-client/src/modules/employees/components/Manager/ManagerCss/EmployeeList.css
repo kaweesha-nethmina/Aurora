@@ -20,7 +20,8 @@
 
 /* Table styles */
 .employee-list-table {
-  width: 100%;
+  width: 1150px !important;
+  max-width: 1150px;
   border-collapse: collapse;
 }
 

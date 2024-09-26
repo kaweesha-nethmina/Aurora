@@ -1,85 +1,94 @@
 /* ManagerLoginPage.css */
 
-.containerManager {
-    max-width: 400px; /* Constrain the width of the login container */
-    margin: 2rem auto; /* Center it vertically and horizontally */
-    padding: 1.5rem; /* Add padding for inner content */
-    background-color: white; /* White background for clarity */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+.containerManagerLogin {
+    width: 1530px;
+    height: 100vh;
+    background-image: linear-gradient(rgba(19, 19, 19, 0.8), rgba(50, 28, 0, 0.8)), url(Images/background.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
 
-.form-titleManager {
-    font-size: 1.5rem; /* Increase the font size for title */
-    font-weight: bold; /* Make title bold */
-    margin-bottom: 1rem; /* Space below the title */
-    text-align: center; /* Center the title */
+.form-boxManagerLogin {
+    width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 50px 50px 30px;
+    text-align: center;
+    border-radius: 50px;
 }
 
-.success-messageManager,
-.error-messageManager,
-.login-errorManager {
-    margin: 0.5rem 0; /* Space between messages */
-    text-align: center; /* Center messages */
-    color: #d9534f; /* Red color for error messages */
+.form-titleManagerLogin {
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: #f0a402;
+    position: relative;
 }
 
-.success-messageManager {
-    color: #5cb85c; /* Green color for success messages */
+.input-groupManagerLogin {
+    margin-bottom: 15px;
 }
 
-.input-groupManager {
-    margin-bottom: 1rem; /* Space below input groups */
+.input-fieldManagerLogin {
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
 }
 
-.input-fieldManager {
-    width: 100%; /* Full width for input fields */
-    margin-top: 0.5rem; /* Space above input fields */
+input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
 }
 
-.input-fieldManager input {
-    width: 100%; /* Full width for inputs */
-    padding: 0.75rem; /* Padding inside input fields */
-    border: 1px solid #ccc; /* Light grey border */
-    border-radius: 4px; /* Rounded corners for inputs */
-    font-size: 0.875rem; /* Font size for inputs */
+.btn-fieldManagerLogin {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-.input-fieldManager input:focus {
-    border-color: #007bff; /* Blue border on focus */
-    outline: none; /* Remove default outline */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow */
+.btn-fieldManagerLogin input {
+    width: 60%;
+    background: #f0a402;
+    color: #fff;
+    height: 50px;
+    border-radius: 30px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
 }
 
-.btn-fieldManager {
-    margin-top: 1rem; /* Space above the button */
+.btn-fieldManagerLogin input:hover {
+    background: #999;
 }
 
-.btn-fieldManager input {
-    width: 100%; /* Full width for button */
-    padding: 0.75rem; /* Padding inside button */
-    background-color: #007bff; /* Blue background for button */
-    color: white; /* White text color */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.2s ease; /* Smooth transition */
+.success-messageManagerLogin {
+    color: green;
+    font-weight: bold;
 }
 
-.btn-fieldManager input:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+.error-messageManagerLogin,
+.login-errorManagerLogin {
+    color: red;
+    font-weight: bold;
 }
 
-.form-textManager {
-    text-align: center; /* Center switch text */
-    margin-top: 1rem; /* Space above the switch text */
+.form-textManagerLogin {
+    text-align: center;
+    font-size: 13px;
+    padding-top: 20px; /* Adjusted spacing */
 }
 
-.form-textManager a {
-    color: #007bff; /* Link color */
-    text-decoration: none; /* No underline */
-}
-
-.form-textManager a:hover {
-    text-decoration: underline; /* Underline on hover */
+.form-textManagerLogin a {
+    text-decoration: none;
+    color: #3c00a0;
 }

@@ -13,7 +13,6 @@ import NoticesTab from './modules/employees/components/Manager/NoticesTab';
 
 // Employee Dashboard and Tabs
 import EmployeeDashboard from './modules/employees/EmployeeDashboard';
-import ProfileTab from './modules/employees/components/Employee/ProfileTab';
 import LeaveRequestsTabEmployee from './modules/employees/components/Employee/LeaveRequestsTab';
 import DutyRoasterTabEmployee from './modules/employees/components/Employee/DutyRoasterTab';
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
-import './EmployeeLogin.css'; // Adjust the path as needed
+import { Link, useNavigate } from 'react-router-dom';
+import './EmployeeLogin.css'; // Use the same CSS file to maintain consistency
 
 const EmployeeLogin: React.FC = () => {
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -22,8 +22,8 @@ const EmployeeLogin: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        setError(null); // Reset error state before submission
-    
+        setError(null);
+
         try {
             const response = await fetch('http://localhost:5000/employees/login', {
                 method: 'POST',
@@ -32,22 +32,22 @@ const EmployeeLogin: React.FC = () => {
                 },
                 body: JSON.stringify(formData),
             });
-    
+
             if (!response.ok) {
                 throw new Error('Invalid credentials. Please try again.');
             }
-    
+
             const data = await response.json();
             console.log('Login successful:', data);
-    
-            if (data.token && data.employee) { // Ensure both token and employee data exist
+
+            if (data.token && data.employee) {
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('employeeData', JSON.stringify(data.employee)); // Store employee data
-                navigate('/staf/profile'); // Redirect to the profile page on successful login
+                localStorage.setItem('employeeData', JSON.stringify(data.employee));
+                navigate('/staf/profile');
             } else {
                 throw new Error('Token or employee data not received. Please try again.');
             }
-    
+
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(err.message);
@@ -58,41 +58,46 @@ const EmployeeLogin: React.FC = () => {
             setLoading(false);
         }
     };
-    
-    
-    
 
     return (
-        <div className="employee-login-container">
-            <h1 className="employee-login-title">Employee Login</h1>
-            <form onSubmit={handleSubmit} className="employee-login-form">
-                {error && <p className="error-message employee-login-error">{error}</p>}
-                <label className="employee-login-label">
-                    Username:
-                    <input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        required
-                        className="employee-login-input"
-                    />
-                </label>
-                <label className="employee-login-label">
-                    Password:
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                        className="employee-login-input"
-                    />
-                </label>
-                <button type="submit" disabled={loading} className="employee-login-button">
-                    {loading ? 'Logging in...' : 'Login'}
-                </button>
-            </form>
+        <div className="containerEmployeeLogin"> {/* Unique container class */}
+            <div className="form-boxEmployeeLogin"> {/* Unique form box class */}
+                <h1 className="form-titleEmployeeLogin">Employee Login</h1>
+                <form onSubmit={handleSubmit} className="formEmployeeLogin">
+                    {error && <p className="error-messageEmployeeLogin">{error}</p>}
+                    <div className="input-groupEmployeeLogin">
+                        <div className="input-fieldEmployeeLogin">
+                            <input
+                                type="text"
+                                name="username"
+                                placeholder="Username"
+                                value={formData.username}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="input-fieldEmployeeLogin">
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className="btn-fieldEmployeeLogin">
+                        <button type="submit" disabled={loading} className="employee-login-button">
+                            {loading ? 'Logging in...' : 'Login'}
+                        </button>
+                    </div>
+                    <div className='lo'><Link to="/manager-login"> <p className='mlog'>
+                        Login As Manager
+                    </p></Link>
+                    <Link to="/login"><p className='mlog'>Login As Customer</p></Link></div>
+                </form>
+            </div>
         </div>
     );
 };
