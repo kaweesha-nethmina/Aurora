@@ -109,10 +109,10 @@ html, body {
   flex: 1;
   width: 1530px;
   background-size: cover !important;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   overflow-y: auto;
   box-sizing: border-box;
-  background: url('../employees/Images/backNew.jpg') no-repeat center center fixed ;
+  background: url('../employees/Images/goldBack.jpg') no-repeat center center fixed ;
   height: 100vh;
 
 }
