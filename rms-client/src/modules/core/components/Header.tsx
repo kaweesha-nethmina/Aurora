@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab }) => {
         <img src={logo} alt="Aurora Logo" />
       </div>
       <nav className="nav-links">
-        <a href="/" className={activeTab === 'home' ? 'active' : ''}>Home</a>
+        <a href="/homeMain" className={activeTab === 'home' ? 'active' : ''}>Home</a>
         <a href="/eventcard" className={activeTab === 'events' ? 'active' : ''}>Events</a>
         <a href="/roomreservation" className={activeTab === 'rooms' ? 'active' : ''}>Rooms</a>
         <a href="/menuhomepage" className={activeTab === 'restaurant-bar' ? 'active' : ''}>Restaurant & Bar</a>

@@ -137,8 +137,8 @@ function App() {
         <Route path="/manager-login" element={<ManagerLoginPage/>} />
         <Route path="/employee-login" element={<EmployeeLogin/>} />
         
-        <Route path='/' element={<MainHome />} />
-
+        <Route path='/' element={<LoginPageN />} />
+        <Route path='/homeMain' element={<MainHome />} />
 
         Other Routes
         
