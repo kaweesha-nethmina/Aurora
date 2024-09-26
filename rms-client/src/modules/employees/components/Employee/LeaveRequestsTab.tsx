@@ -3,7 +3,7 @@ import './LeaveRequestsTab.css';
 
 interface LeaveRequest {
   id: number;
-  name: string;
+  employee: string;
   startDate: string;
   endDate: string;
   catagory: string;
@@ -12,13 +12,22 @@ interface LeaveRequest {
 }
 
 const LeaveRequestForm: React.FC = () => {
-  const [name, setName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [catagory, setCatagory] = useState('');
   const [reason, setReason] = useState('');
   const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([]);
+  const [filteredRequests, setFilteredRequests] = useState<LeaveRequest[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
+
+  useEffect(() => {
+    const storedEmployeeData = localStorage.getItem('employeeData');
+    const employee = storedEmployeeData ? JSON.parse(storedEmployeeData) : null;
+    if (employee) {
+      setFullName(`${employee.firstName} ${employee.lastName}`);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchLeaveRequests = async () => {
@@ -35,11 +44,18 @@ const LeaveRequestForm: React.FC = () => {
     fetchLeaveRequests();
   }, []);
 
+  useEffect(() => {
+    if (fullName) {
+      const userRequests = leaveRequests.filter((request) => request.employee === fullName);
+      setFilteredRequests(userRequests);
+    }
+  }, [fullName, leaveRequests]);
+
   const validateForm = (): boolean => {
     const newErrors: string[] = [];
     
-    if (!name.trim()) {
-      newErrors.push('Name is required.');
+    if (!fullName.trim()) {
+      newErrors.push('Full Name is required.');
     }
 
     if (!startDate) {
@@ -76,7 +92,7 @@ const LeaveRequestForm: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          employee: name,
+          employee: fullName,
           startDate,
           endDate,
           catagory,
@@ -92,7 +108,8 @@ const LeaveRequestForm: React.FC = () => {
       const newRequest = await response.json();
       setLeaveRequests([...leaveRequests, { ...newRequest, id: leaveRequests.length + 1 }]);
       
-      setName('');
+      // Reset fields
+      setFullName('');
       setStartDate('');
       setEndDate('');
       setCatagory('');
@@ -103,18 +120,31 @@ const LeaveRequestForm: React.FC = () => {
     }
   };
 
+  const getRowClassName = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'approved':
+        return 'approved-row';
+      case 'rejected':
+        return 'rejected-row';
+      case 'pending':
+        return 'pending-row';
+      default:
+        return '';
+    }
+};
+
   return (
     <div className="leave-request-form-container">
       <div className="cardL">
         <h2 className="leave-request-form-title">Request Leave</h2>
         <form onSubmit={handleSubmit} className="leave-request-form">
-          <div className="form-group">
-            <label htmlFor="name">Name:</label>
+        <div className="form-group">
+            <label htmlFor="fullName">Full Name:</label>
             <input
               type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id="fullName"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)} // Allow changes
               required
             />
           </div>
@@ -176,32 +206,30 @@ const LeaveRequestForm: React.FC = () => {
       </div>
   
       <div className="cardR">
-        <h2 className="leave-requests-title">Leave Requests</h2>
-        <table className="leave-requests-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Reason</th>
-              <th>Status</th>
+      <h2 className="leave-requests-title">Leave Requests</h2>
+      <table className="leave-requests-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredRequests.map(request => (
+            <tr key={request.id} className={getRowClassName(request.status)}>
+              <td>{request.employee}</td>
+              <td>{request.startDate}</td>
+              <td>{request.endDate}</td>
+              <td>{request.reason}</td>
+              <td>{request.status}</td>
             </tr>
-          </thead>
-          <tbody>
-            {leaveRequests.map(request => (
-              <tr key={request.id}>
-                <td>{request.id}</td>
-                <td>{request.name}</td>
-                <td>{request.startDate}</td>
-                <td>{request.endDate}</td>
-                <td>{request.reason}</td>
-                <td>{request.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
+    </div>
     </div>
   );
 };

@@ -88,27 +88,40 @@
   margin-bottom: 1rem;
 }
 
+/* LeaveRequestsTab.css */
+
+/* Default table styles */
 .leave-requests-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.leave-requests-table th,
-.leave-requests-table td {
-  padding: 1rem;
-  border: 1px solid #e5e7eb;
+.leave-requests-table th, .leave-requests-table td {
+  padding: 8px 12px;
   text-align: left;
+  border: 1px solid #ddd;
 }
 
-.leave-requests-table th {
-  background-color: #f3f4f6;
-  font-weight: 700;
+.leave-requests-table tbody tr {
+  transition: background-color 0.3s ease;
 }
 
-.leave-requests-table tr:nth-child(even) {
-  background-color: #f9fafb;
+/* Row colors based on status */
+.approved-row {
+  background-color: #a3f1b6; /* Light green for approved */
+  color: #155724;
 }
 
-.leave-requests-table tr:hover {
-  background-color: #f1f5f9;
+.rejected-row {
+  background-color: #f8d7da; /* Light red for rejected */
+  color: #721c24;
+}
+
+.pending-row {
+  background-color: #fff3cd; /* Light yellow for pending */
+  color: #856404;
+}
+
+.leave-requests-table tbody tr:hover {
+  background-color: #f0f0f0; /* Optional hover effect */
 }

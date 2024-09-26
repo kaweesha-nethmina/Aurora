@@ -107,7 +107,7 @@ html, body {
 /* Main Content Area */
 .main-contentEmp {
   flex: 1;
-  width: 1500px;
+  width: 1530px;
   background-size: cover !important;
   background-color: rgba(255, 255, 255, 0.9);
   overflow-y: auto;
