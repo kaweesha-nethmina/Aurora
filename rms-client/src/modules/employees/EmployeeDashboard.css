@@ -16,6 +16,7 @@ html, body {
   background-size: cover; /* Cover the entire container */
   box-sizing: border-box;
   margin-left: -120px;
+ 
 }
 
 /* Header */
@@ -106,7 +107,7 @@ html, body {
 
 /* Main Content Area */
 .main-contentEmp {
-  flex: 1;
+  flex-grow: 1;
   width: 1530px;
   background-size: cover !important;
   background-color: rgba(0, 0, 0, 0.9);

@@ -1,4 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import {
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+  Paper,
+  Snackbar,
+  Alert
+} from '@mui/material';
 import './LeaveRequestsTab.css';
 
 interface LeaveRequest {
@@ -20,6 +36,8 @@ const LeaveRequestForm: React.FC = () => {
   const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([]);
   const [filteredRequests, setFilteredRequests] = useState<LeaveRequest[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   useEffect(() => {
     const storedEmployeeData = localStorage.getItem('employeeData');
@@ -70,8 +88,8 @@ const LeaveRequestForm: React.FC = () => {
 
     if (!reason.trim()) {
       newErrors.push('Reason is required.');
-    } else if (reason.length < 10) {
-      newErrors.push('Reason must be at least 10 characters long.');
+    } else if (reason.length < 3) {
+      newErrors.push('Reason must be at least 3 characters long.');
     }
 
     setErrors(newErrors);
@@ -107,6 +125,8 @@ const LeaveRequestForm: React.FC = () => {
 
       const newRequest = await response.json();
       setLeaveRequests([...leaveRequests, { ...newRequest, id: leaveRequests.length + 1 }]);
+      setSnackbarMessage('Leave request submitted successfully!');
+      setSnackbarOpen(true);
       
       // Reset fields
       setFullName('');
@@ -131,105 +151,116 @@ const LeaveRequestForm: React.FC = () => {
       default:
         return '';
     }
-};
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   return (
     <div className="leave-request-form-container">
-      <div className="cardL">
-        <h2 className="leave-request-form-title">Request Leave</h2>
+      <Paper className="cardL" elevation={3}>
+        <Typography variant="h5" className="leave-request-form-title">Request Leave</Typography>
         <form onSubmit={handleSubmit} className="leave-request-form">
-        <div className="form-group">
-            <label htmlFor="fullName">Full Name:</label>
-            <input
-              type="text"
-              id="fullName"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)} // Allow changes
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="startDate">Start Date:</label>
-            <input
-              type="date"
-              id="startDate"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="endDate">End Date:</label>
-            <input
-              type="date"
-              id="endDate"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="category">Category:</label>
-            <select
-              id="category"
-              value={catagory}
-              onChange={(e) => setCatagory(e.target.value)}
-              required
-            >
-              <option value="">Select a category</option>
-              <option value="annual">Annual</option>
-              <option value="casual">Casual</option>
-              <option value="normal">Normal</option>
-            </select>
-          </div>
+          <TextField
+            label="Full Name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+            variant="outlined"
+          />
+          <TextField
+            label="Start Date"
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+            variant="outlined"
+          />
+          <TextField
+            label="End Date"
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+            variant="outlined"
+          />
+          <Select
+            label="Category"
+            value={catagory}
+            onChange={(e) => setCatagory(e.target.value)}
+            fullWidth
+            margin="dense"  // Adjusted margin here
+            required
+            displayEmpty
+          >
+            <MenuItem value="" disabled>Select a category</MenuItem>
+            <MenuItem value="annual">Annual</MenuItem>
+            <MenuItem value="casual">Casual</MenuItem>
+            <MenuItem value="normal">Normal</MenuItem>
+          </Select>
 
-          <div className="form-group">
-            <label htmlFor="reason">Reason:</label>
-            <textarea
-              id="reason"
-              value={reason}
-              onChange={(e) => setReason(e.target.value)}
-              required
-            />
-          </div>
+          <TextField
+            label="Reason"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+            multiline
+            rows={4}
+            variant="outlined"
+          />
           {errors.length > 0 && (
             <div className="error-messages">
               {errors.map((error, index) => (
-                <p key={index} className="error">{error}</p>
+                <Typography key={index} color="error">{error}</Typography>
               ))}
             </div>
           )}
-          <div className="form-actions">
-            <button type="submit" className="submit-button">Submit</button>
-          </div>
+          <Button type="submit" variant="contained" color="primary" className="submit-button">Submit</Button>
         </form>
-      </div>
+      </Paper>
   
-      <div className="cardR">
-      <h2 className="leave-requests-title">Leave Requests</h2>
-      <table className="leave-requests-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Reason</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredRequests.map(request => (
-            <tr key={request.id} className={getRowClassName(request.status)}>
-              <td>{request.employee}</td>
-              <td>{request.startDate}</td>
-              <td>{request.endDate}</td>
-              <td>{request.reason}</td>
-              <td>{request.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <Paper className="cardR" elevation={3}>
+        <Typography variant="h5" className="leave-requests-title">Leave Requests</Typography>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Name</TableCell>
+                <TableCell>Start Date</TableCell>
+                <TableCell>End Date</TableCell>
+                <TableCell>Reason</TableCell>
+                <TableCell>Status</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filteredRequests.map(request => (
+                <TableRow key={request.id} className={getRowClassName(request.status)}>
+                  <TableCell>{request.employee}</TableCell>
+                  <TableCell>{request.startDate}</TableCell>
+                  <TableCell>{request.endDate}</TableCell>
+                  <TableCell>{request.reason}</TableCell>
+                  <TableCell>{request.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+        <Alert onClose={handleSnackbarClose} severity="success">
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

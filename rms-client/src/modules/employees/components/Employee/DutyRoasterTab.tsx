@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import useDutyRoaster from '../../hooks/Manager/useDutyRoaster'; // Adjust the path if needed
+import { 
+  TextField, 
+  Button, 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableHead, 
+  TableRow, 
+  CircularProgress, 
+  Typography, 
+  Paper 
+} from '@mui/material';
 import '../../components/Employee/DutyRoasterTab.css'; // Adjust the path if needed
 
 interface DutyRoasterEntry {
@@ -23,42 +36,49 @@ const DutyRoasterTab: React.FC = () => {
 
   return (
     <div className="roaster-container">
-      <h2 className="roaster-header">Duty Roaster</h2>
+      <Typography variant="h4" className="roaster-header">
+        Duty Roaster
+      </Typography>
       <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search by employee name..."
+        <TextField
+          label="Search by employee name..."
+          variant="outlined"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input"
+          style={{ marginRight: 8 }}
         />
-        <button
-          className="search-button"
+        <Button 
+          variant="contained"
+          className='search-button' 
+          color="primary" 
           onClick={() => setSearchQuery(searchQuery)}
         >
           Search
-        </button>
+        </Button>
       </div>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      <table className="roaster-table">
-        <thead>
-          <tr>
-            <th className="table-header">Date</th>
-            <th className="table-header">Employee</th>
-            <th className="table-header">Shift</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredDutyRoaster.map((entry, index) => (
-            <tr key={index}>
-              <td>{new Date(entry.date).toLocaleDateString()}</td> {/* Format date */}
-              <td>{entry.employeeName}</td>
-              <td>{entry.shift}</td> {/* Display shift without dropdown */}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading && <CircularProgress />}
+      {error && <Typography color="error">Error: {error}</Typography>}
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Date</TableCell>
+              <TableCell>Employee</TableCell>
+              <TableCell>Shift</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredDutyRoaster.map((entry, index) => (
+              <TableRow key={index}>
+                <TableCell>{new Date(entry.date).toLocaleDateString()}</TableCell>
+                <TableCell>{entry.employeeName}</TableCell>
+                <TableCell>{entry.shift}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };

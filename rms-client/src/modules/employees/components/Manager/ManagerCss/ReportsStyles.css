@@ -1,8 +1,8 @@
 /* Container for the reports section */
 .reports-container {
   padding: 20px;
-  right: -30px;
-  background-color: #f4f4f4;
+  left: 200px;
+  width: 800px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -11,7 +11,8 @@
 /* Header of the reports section */
 .reports-header {
   font-size: 1.8em;
-  color: #333;
+  color: #ffffff;
+  text-shadow: 3px 2px #444444;
   margin-bottom: 20px;
 }
 
@@ -53,3 +54,24 @@
 .print-button:hover {
   background-color: #218838; /* Darker green */
 }
+
+@media print {
+  .reports-container {
+    width: 100%; /* Ensure full width */
+    margin: 0; /* Remove margins that could cause cropping */
+    padding: 1in; /* Add padding as needed */
+  }
+
+  .chart-card {
+    width: 100%; /* Ensure the card uses full available width */
+    max-width: 100%; /* Prevent overflow */
+    margin: 0; /* Remove any margins that could cause overflow */
+    page-break-inside: avoid; /* Avoid page breaks inside the card */
+  }
+
+  /* Ensure that no element goes beyond the page width */
+  * {
+    box-sizing: border-box; /* Include padding and border in element width */
+  }
+}
+

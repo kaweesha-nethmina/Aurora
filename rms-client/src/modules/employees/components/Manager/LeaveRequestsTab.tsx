@@ -1,4 +1,15 @@
 import React from 'react';
+import { 
+    Table, 
+    TableBody, 
+    TableCell, 
+    TableContainer, 
+    TableHead, 
+    TableRow, 
+    Button, 
+    CircularProgress, 
+    Alert 
+} from '@mui/material';
 import useLeaveRequests from '../../hooks/Manager/useLeaveRequests';
 import { updateLeaveRequestStatus, deleteLeaveRequest, LeaveRequest } from '../../services/Manager/leaveRequestService';
 import './ManagerCss/LeaveRequestsStyles.css'; // Import the CSS file
@@ -26,42 +37,65 @@ const LeaveRequestsTab: React.FC = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <CircularProgress />; // Loading spinner
 
   return (
     <div className="leaveRequestsContainer">
       <h2 className="leaveRequestsHeader">Leave Requests</h2>
-      {error && <p>{error}</p>}
-      <table className="leaveRequestsTable">
-        <thead>
-          <tr>
-            <th className="tableHeader">Employee</th>
-            <th className="tableHeader">Start Date</th>
-            <th className="tableHeader">End Date</th>
-            <th className="tableHeader">Catagory</th>
-            <th className="tableHeader">Reason</th>
-            <th className="tableHeader">Status</th>
-            <th className="tableHeader">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaveRequests.map((request: LeaveRequest) => (
-            <tr key={request._id}>
-              <td>{request.employee}</td>
-              <td>{request.startDate}</td>
-              <td>{request.endDate}</td>
-              <td>{request.catagory}</td>
-              <td>{request.reason}</td>
-              <td>{request.status}</td>
-              <td className="actionButtons">
-                <button className="approveButton" onClick={() => handleStatusChange(request._id, 'approved')}>Approve</button>
-                <button className="rejectButton" onClick={() => handleStatusChange(request._id, 'rejected')}>Reject</button>
-                <button className="delete-buttonL" onClick={() => handleDelete(request._id)}>🗑️</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {error && <Alert severity="error">{error}</Alert>} {/* Display error message */}
+
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Employee</TableCell>
+              <TableCell>Start Date</TableCell>
+              <TableCell>End Date</TableCell>
+              <TableCell>Category</TableCell>
+              <TableCell>Reason</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {leaveRequests.map((request: LeaveRequest) => (
+              <TableRow key={request._id}>
+                <TableCell>{request.employee}</TableCell>
+                <TableCell>{new Date(request.startDate).toLocaleDateString()}</TableCell>
+                <TableCell>{new Date(request.endDate).toLocaleDateString()}</TableCell>
+                <TableCell>{request.catagory}</TableCell>
+                <TableCell>{request.reason}</TableCell>
+                <TableCell>{request.status}</TableCell>
+                <TableCell>
+                  <Button 
+                    variant="contained" 
+                    color="primary" 
+                    onClick={() => handleStatusChange(request._id, 'approved')}
+                    style={{ marginRight: '5px' }} // Spacing
+                  >
+                    Approve
+                  </Button>
+                  <Button 
+                    variant="contained" 
+                    color="secondary" 
+                    onClick={() => handleStatusChange(request._id, 'rejected')}
+                    style={{ marginRight: '5px' }} // Spacing
+                  >
+                    Reject
+                  </Button>
+                  <Button 
+                    variant="outlined" 
+                    color="error" 
+                    onClick={() => handleDelete(request._id)}
+                  >
+                    🗑️
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };

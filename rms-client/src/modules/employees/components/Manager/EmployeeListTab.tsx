@@ -1,4 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    TextField,
+    CircularProgress,
+    Snackbar,
+    Alert
+} from '@mui/material';
 import './ManagerCss/EmployeeList.css';
 
 const EmployeeList: React.FC = () => {
@@ -21,14 +38,13 @@ const EmployeeList: React.FC = () => {
         }
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     useEffect(() => {
         const fetchEmployees = async () => {
             try {
                 const response = await fetch('http://localhost:5000/employees');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 setEmployees(data);
             } catch (err) {
@@ -55,16 +71,15 @@ const EmployeeList: React.FC = () => {
             const response = await fetch(`http://localhost:5000/employees/${id}`, {
                 method: 'DELETE',
             });
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+            if (!response.ok) throw new Error('Network response was not ok');
             setEmployees(employees.filter(employee => employee._id !== id));
+            setSnackbarOpen(true);
         } catch (err) {
             setError('Failed to delete employee');
         }
     };
 
-    const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         if (name.startsWith('contact_info.')) {
             setFormData(prevData => ({
@@ -81,6 +96,7 @@ const EmployeeList: React.FC = () => {
             }));
         }
     };
+    
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -92,17 +108,18 @@ const EmployeeList: React.FC = () => {
                 },
                 body: JSON.stringify(formData),
             });
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+            if (!response.ok) throw new Error('Network response was not ok');
             const updatedEmployee = await response.json();
             setEmployees(employees.map(emp => emp._id === updatedEmployee._id ? updatedEmployee : emp));
-            setIsModalOpen(false);
-            setEditingEmployee(null);
-            resetFormData(); // Reset form data after submission
+            handleCloseModal();
         } catch (err) {
             setError('Failed to update employee');
         }
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        resetFormData();
     };
 
     const resetFormData = () => {
@@ -122,146 +139,147 @@ const EmployeeList: React.FC = () => {
         });
     };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-        resetFormData();
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+        setError(null);
     };
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) return <CircularProgress />;
+    if (error) return <Alert severity="error">{error}</Alert>;
 
     return (
         <div className="employee-list-container">
             <h1 className="employee-list-title">Employee List</h1>
-            <table className="employee-list-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Department</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Hire Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {employees.map(employee => (
-                        <tr key={employee._id}>
-                            <td>{employee.firstName} {employee.lastName}</td>
-                            <td>{employee.position}</td>
-                            <td>{employee.department}</td>
-                            <td>{employee.contact_info.phone}</td>
-                            <td>{employee.contact_info.email}</td>
-                            <td>{new Date(employee.hire_date).toLocaleDateString()}</td>
-                            <td className="action-buttons1">
-                                <button className="edit-button1" onClick={() => handleEdit(employee)}>Edit</button>
-                                <button className="delete-button1" onClick={() => handleDelete(employee._id)}>Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Position</TableCell>
+                            <TableCell>Department</TableCell>
+                            <TableCell>Phone</TableCell>
+                            <TableCell>Email</TableCell>
+                            <TableCell>Hire Date</TableCell>
+                            <TableCell>Actions</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {employees.map(employee => (
+                            <TableRow key={employee._id}>
+                                <TableCell>{employee.firstName} {employee.lastName}</TableCell>
+                                <TableCell>{employee.position}</TableCell>
+                                <TableCell>{employee.department}</TableCell>
+                                <TableCell>{employee.contact_info.phone}</TableCell>
+                                <TableCell>{employee.contact_info.email}</TableCell>
+                                <TableCell>{new Date(employee.hire_date).toLocaleDateString()}</TableCell>
+                                <TableCell>
+                                    <Button variant="outlined" color="primary" onClick={() => handleEdit(employee)}>Edit</Button>
+                                    <Button variant="outlined" color="secondary" onClick={() => handleDelete(employee._id)}>Delete</Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
-            {isModalOpen && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <h2>Edit Employee</h2>
-                        <form onSubmit={handleSubmit}>
-                            <label>
-                                Employee ID:
-                                <input
-                                    type="text"
-                                    name="employeeID"
-                                    value={formData.employeeID}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <label>
-                                Name:
-                                <input
-                                    type="text"
-                                    name="fullName"
-                                    value={`${formData.firstName} ${formData.lastName}`} // Combined field for display
-                                    readOnly // Prevent editing here
-                                />
-                            </label>
-                            <label>
-                                First Name:
-                                <input
-                                    type="text"
-                                    name="firstName"
-                                    value={formData.firstName}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <label>
-                                Last Name:
-                                <input
-                                    type="text"
-                                    name="lastName"
-                                    value={formData.lastName}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <label>
-                                Position:
-                                <input
-                                    type="text"
-                                    name="position"
-                                    value={formData.position}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <label>
-                                Department:
-                                <select
-                                    name="department"
-                                    value={formData.department}
-                                    onChange={handleFormChange}
-                                >
-                                    <option value="" disabled>Select Department</option>
-                                    <option value="Human Resources">Human Resources</option>
-                                    <option value="Restaurant">Restaurant</option>
-                                    <option value="Event">Event</option>
-                                    <option value="Reservation">Reservation</option>
-                                    <option value="Spa">Spa</option>
-                                    <option value="Transport">Transport</option>
-                                </select>
-                            </label>
-                            <label>
-                                Phone:
-                                <input
-                                    type="text"
-                                    name="contact_info.phone"
-                                    value={formData.contact_info.phone}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <label>
-                                Hire Date:
-                                <input
-                                    type="date"
-                                    name="hire_date"
-                                    value={formData.hire_date}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <label>
-                                Contact Email:
-                                <input
-                                    type="email"
-                                    name="contact_info.email"
-                                    value={formData.contact_info.email}
-                                    onChange={handleFormChange}
-                                />
-                            </label>
-                            <button type="submit">Save</button>
-                            <button type="button" onClick={closeModal}>Cancel</button>
-                        </form>
-                    </div>
-                </div>
-            )}
+            <Dialog open={isModalOpen} onClose={handleCloseModal}>
+                <DialogTitle>Edit Employee</DialogTitle>
+                <DialogContent>
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            label="Employee ID"
+                            name="employeeID"
+                            value={formData.employeeID}
+                            
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="First Name"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleFormChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Last Name"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleFormChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Position"
+                            name="position"
+                            value={formData.position}
+                            onChange={handleFormChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Department"
+                            select
+                            name="department"
+                            value={formData.department}
+                            onChange={handleFormChange}
+                            fullWidth
+                            margin="normal"
+                        >
+                            <option value="" disabled>Select Department</option>
+                            <option value="Human Resources">Human Resources</option>
+                            <option value="Restaurant">Restaurant</option>
+                            <option value="Event">Event</option>
+                            <option value="Reservation">Reservation</option>
+                            <option value="Spa">Spa</option>
+                            <option value="Transport">Transport</option>
+                        </TextField>
+                        <TextField
+                            label="Phone"
+                            name="contact_info.phone"
+                            value={formData.contact_info.phone}
+                            onChange={handleFormChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Hire Date"
+                            type="date"
+                            name="hire_date"
+                            value={formData.hire_date}
+                            onChange={handleFormChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Contact Email"
+                            type="email"
+                            name="contact_info.email"
+                            value={formData.contact_info.email}
+                            onChange={handleFormChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <DialogActions>
+                            <Button onClick={handleCloseModal} color="primary">Cancel</Button>
+                            <Button type="submit" color="primary">Save</Button>
+                        </DialogActions>
+                    </form>
+                </DialogContent>
+            </Dialog>
+
+            <Snackbar 
+                open={snackbarOpen} 
+                autoHideDuration={6000} 
+                onClose={handleSnackbarClose} 
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} // Snackbar anchored to the bottom-right
+            >
+                <Alert onClose={handleSnackbarClose} severity="success">
+                    Employee deleted successfully!
+                </Alert>
+            </Snackbar>
+
         </div>
     );
 };

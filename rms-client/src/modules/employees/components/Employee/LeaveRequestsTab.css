@@ -67,7 +67,7 @@
 }
 
 .submit-button {
-  background-color: #B3A06D; 
+  background-color: #B3A06D !important; 
   color: white; 
   font-weight: 600; 
   padding: 0.5rem 1rem;
