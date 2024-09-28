@@ -159,6 +159,7 @@ const LeaveRequestForm: React.FC = () => {
 
   return (
     <div className="leave-request-form-container">
+      
       <Paper className="cardL" elevation={3}>
         <Typography variant="h5" className="leave-request-form-title">Request Leave</Typography>
         <form onSubmit={handleSubmit} className="leave-request-form">

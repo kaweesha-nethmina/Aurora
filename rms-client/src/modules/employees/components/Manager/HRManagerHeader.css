@@ -8,10 +8,9 @@
   height: 80px !important; /* Ensure consistent height */
   width: calc(100% - 270px) !important; /* Adjust width to fit content */
   position: fixed !important;
-  
   left: 240px !important; /* Adjust according to sidebar width */
   z-index: 12 !important; /* Ensure it stays above other content */
-  border-radius:0px 20px 20px 0px;
+  border-radius: 0px 20px 20px 0px;
 }
 
 .logo img {
@@ -20,8 +19,11 @@
 
 .nav-links {
   display: flex;
+  justify-content: center; /* Center the links horizontally */
+  align-items: center; /* Align the links vertically */
   gap: 20px; /* Adjust space between links */
   font-size: 14px;
+  flex-grow: 1; /* Allow the nav-links to take up available space */
 }
 
 .nav-links a {
@@ -45,4 +47,8 @@
 
 .user-icon img {
   height: 30px; /* Adjust the size of the user icon as needed */
+}
+
+.user-icon {
+  margin-right: 20px; /* Adjust space between user icon and right edge */
 }

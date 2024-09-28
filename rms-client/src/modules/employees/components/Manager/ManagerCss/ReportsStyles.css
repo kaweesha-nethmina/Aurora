@@ -1,6 +1,7 @@
 /* Container for the reports section */
 .reports-container {
   padding: 20px;
+  margin-top: -60px;
   left: 200px;
   width: 800px;
   border-radius: 8px;

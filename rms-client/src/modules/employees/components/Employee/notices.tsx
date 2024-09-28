@@ -10,6 +10,7 @@ import {
   Alert,
   Container,
 } from '@mui/material';
+import SmokeEffect from '../../../core/components/effect/SmokeEffect';
 
 const EmployeeNoticesTab: React.FC = () => {
   const [notices, setNotices] = useState<any[]>([]);
@@ -32,7 +33,8 @@ const EmployeeNoticesTab: React.FC = () => {
   }, []);
 
   return (
-    <Container style={{ marginTop: '80px' }}> {/* Adjust this margin to the height of your header */}
+    <Container style={{ marginTop: '80px' }}> 
+    <SmokeEffect />
       {loading && <CircularProgress />}
       {error && <Alert severity="error">{error}</Alert>}
       {notices.length === 0 && !loading && (

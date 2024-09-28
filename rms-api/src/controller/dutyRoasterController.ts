@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import DutyRoaster from '../model/dutyRoasterModel';
+import Employee from '../model/employeeModel';
 
 // Get all duty roasters
 export const getAllDutyRoasters = async (req: Request, res: Response) => {
@@ -17,6 +18,7 @@ export const getAllDutyRoasters = async (req: Request, res: Response) => {
 
 // Create a new duty roaster entry
 export const createDutyRoaster = async (req: Request, res: Response) => {
+  console.log('Request body:', req.body); // Log the request body
   const { date, employeeName, shift } = req.body;
 
   if (!date || !employeeName || !shift) {
@@ -76,5 +78,17 @@ export const deleteDutyRoaster = async (req: Request, res: Response) => {
     const err = error as Error;
     console.error('Failed to delete duty roaster entry:', err.message);
     res.status(500).json({ message: 'Failed to delete duty roaster entry', error: err.message });
+  }
+};
+
+// Get all employees
+export const getAllEmployees = async (req: Request, res: Response) => {
+  try {
+    const employees = await Employee.find();
+    res.status(200).json(employees);
+  } catch (error) {
+    const err = error as Error;
+    console.error('Error fetching employees:', err.message);
+    res.status(500).json({ message: 'Failed to fetch employees', error: err.message });
   }
 };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useChats from '../../hooks/Manager/useChats'; // Ensure this path is correct
 import '../../components/Manager/ManagerCss/ChatTab.css'; // Adjust the path if needed
 
+
 const ChatTab: React.FC = () => {
   const { chats, loading, error, setChats } = useChats(); // Call useChats hook
   const [newMessage, setNewMessage] = useState<string>('');
@@ -57,7 +58,9 @@ const ChatTab: React.FC = () => {
   };
 
   return (
+    
     <div className="chat-tab">
+      
       <h2 className="chat-title">Chat</h2>
       <div className="chat-messages">
         {loading && <p>Loading...</p>}
