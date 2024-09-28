@@ -9,8 +9,8 @@
   }
   .orderNbtn{
     background: #f76f00;
-    width: 400px;
-    margin-bottom: 20px;
+    width: 200px;
+    
   }
   .orderNbtn:hover{
     background-color: #f7b500;
@@ -41,5 +41,9 @@
   .menu-item h3 {
     margin: 10px 0;
     font-size: 1.5rem;
+  }
+  
+  .search-btn{
+    display: flex;
   }
   

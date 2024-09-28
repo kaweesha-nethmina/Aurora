@@ -37,13 +37,16 @@ const ReservationDetailsPage: React.FC = () => {
           <p><strong>Phone:</strong> {reservationData.phone}</p>
           <p><strong>Email:</strong> {reservationData.email}</p>
           <p><strong>Arrival Date:</strong> {reservationData.arrivalDate}</p>
+          <p><strong>Check in:</strong> {reservationData.checkin}</p>
+          <p><strong>Check out:</strong> {reservationData.checkout}</p>
+          <p><strong>Food Codes:</strong> {reservationData.foodcode}</p>
           <p><strong>Departure Date:</strong> {reservationData.departureDate}</p>
           <p><strong>Guests:</strong> {reservationData.numGuests}</p>
           <p><strong>Status:</strong>Pending.. {}</p>
 
           <div className="action-buttonsR">
-            <Link to="/cancelbooking"> <button onClick={handleCancel} className="cancel-button">Cancel</button></Link>
-            <button onClick={handleConfirm} className="confirm-button">Confirm</button>
+            <Link to="/cancelbooking"> <button onClick={handleCancel} className="cancel-button2">Cancel</button></Link>
+            <button onClick={handleConfirm} className="confirm-button2">Reserve Now</button>
           </div>
         </>
       ) : (

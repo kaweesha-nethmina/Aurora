@@ -1,4 +1,3 @@
-// /reservations/components/CalendarView.tsx
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -20,7 +19,6 @@ const CalendarView: React.FC<CalendarViewProps> = ({ arrivalDate, departureDate 
 
   // Simulated API call to check availability for the selected date
   const checkTableAvailability = (_date: Date) => {
-    // Dummy logic for table availability (replace this with actual API call)
     const available = Math.floor(Math.random() * 10); // Random available table count (for demo purposes)
     setAvailableTables(available);
   };
@@ -31,6 +29,23 @@ const CalendarView: React.FC<CalendarViewProps> = ({ arrivalDate, departureDate 
     }
   }, [selectedDate]);
 
+  // Function to apply custom classes to calendar tiles
+  const tileClassName = ({ date, view }: { date: Date; view: string }) => {
+    let className = '';
+
+    // Highlight weekends
+    if (view === 'month' && (date.getDay() === 0 || date.getDay() === 6)) {
+      className += ' weekend'; // Apply weekend class
+    }
+
+    // Highlight the selected date
+    if (selectedDate && date.toDateString() === selectedDate.toDateString()) {
+      className += ' selected'; // Apply selected date class
+    }
+
+    return className;
+  };
+
   return (
     <div className="calendar-view">
       <h3>Select a date to check available tables</h3>
@@ -39,6 +54,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ arrivalDate, departureDate 
         value={selectedDate}
         minDate={new Date(arrivalDate)}
         maxDate={new Date(departureDate)}
+        tileClassName={tileClassName} // Apply custom classes
       />
       {selectedDate && (
         <div className="availability-info">

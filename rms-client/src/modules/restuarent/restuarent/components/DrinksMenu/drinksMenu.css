@@ -1,13 +1,53 @@
+/* Path: restaurant/components/DrinksMenu/drinksMenu.css */
 .drinks-menu {
-    padding: 20px;
+     /* Add padding for consistency */
+    width: 1520px;
+    background-color: rgb(255, 255, 255);
 }
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* Match the Menu's 3-column layout */
     gap: 20px;
 }
 
-.drinks-filter, .drinks-search {
-    margin-bottom: 20px;
+.drinks-filter,
+.drinks-search {
+    margin-bottom: 20px; /* Add margin for spacing */
+}
+
+.menu-item-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    width: 470px; /* Keep consistent width with menu items */
+}
+
+.menu-item-card img {
+    width: 100%;
+    height: 300px; /* Ensure image height is consistent */
+    border-radius: 8px;
+}
+
+.menu-item-card h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+/* Specific button styles for consistency */
+.orderNbtn {
+    background: #f76f00; /* Same background color for the button */
+    width: 200px; /* Consistent button width */
+}
+
+.orderNbtn:hover {
+    background-color: #f7b500; /* Consistent hover effect */
+}
+.drinks-search{
+    background-color: #c5c4c3;
+    width: 800px;
+    border-radius: 20px;
+    margin-left: 350px;
+    margin-top: 10px;
 }

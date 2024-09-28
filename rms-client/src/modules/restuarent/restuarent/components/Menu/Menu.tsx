@@ -37,6 +37,7 @@ const Menu: React.FC = () => {
       <Header activeTab={'restaurant-bar'} />
       <Navbar />
       <h2>Our Menu</h2>
+      <div className='search-btn'>
       <SearchFilter
         category={category}
         setCategory={setCategory}
@@ -44,6 +45,7 @@ const Menu: React.FC = () => {
         setSearchTerm={setSearchTerm}
       />
       <Link to="/form"><button className='orderNbtn'>Order Now</button></Link>
+      </div>
       <div className="menu-items">
         {filteredItems.length > 0 ? (
           filteredItems.map((item) => (

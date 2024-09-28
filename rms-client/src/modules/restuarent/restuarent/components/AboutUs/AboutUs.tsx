@@ -1,12 +1,16 @@
 // restaurant/components/AboutUs.tsx
 import { useState } from 'react';
 import styles from '../AboutUs/AboutUs.module.css';
+import Header from '../../../../core/components/Header';
+import Navbar from '../HomePage/ResNavbar';
 
 const AboutUs = () => {
   const [showMore, setShowMore] = useState(false);
 
   return (
     <div className={styles.container}>
+      <Header activeTab={'restaurant-bar'} />
+      <Navbar />
       <h1 className={styles.title}>About Us</h1>
       <div className={styles.grid}>
         <div className={styles.imageWrapper}>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './drinksMenu.css';
 interface DrinksSearchProps {
     searchTerm: string;
     setSearchTerm: (term: string) => void;

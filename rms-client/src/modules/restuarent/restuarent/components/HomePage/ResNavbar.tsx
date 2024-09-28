@@ -12,10 +12,10 @@ const Navbar: React.FC = () => {
             <Link to="/menu" className="nav-link">Menu</Link>
           </li>
           <li className="nav-item">
-            <Link to="#" className="nav-link">Bar</Link>
+            <Link to="/drinks" className="nav-link">Bar</Link>
           </li>
           <li className="nav-item">
-            <Link to="#" className="nav-link">About Us</Link>
+            <Link to="/aboutus" className="nav-link">About Us</Link>
           </li>
 
         </ul>

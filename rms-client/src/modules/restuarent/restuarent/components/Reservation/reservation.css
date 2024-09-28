@@ -1,3 +1,11 @@
+.reservation-page{
+    background-image:linear-gradient(rgba(19, 19, 19, 0.8), rgba(50, 28, 0, 0.8)), url('../../Images/resBack.jpeg');
+    background-size: cover;
+    height: 100vh;
+    position: fixed;
+    width: 1530px;
+    overflow-x: auto;
+}
 .reservation-form {
     display: flex;
     flex-direction: column;
@@ -93,7 +101,63 @@ height: 40px;
 }
 .proceed-button{
     background-color: #0056b3;
-    margin-left: 200px;
     margin-top: 20px;
     margin-bottom: 300px;
+}
+
+.cancel-button2{
+    width: 150px;
+    background-color: #b32a00;
+    margin-right: 20px;
+}
+.confirm-button2{
+    width: 150px;
+    background-color: #0b8300;
+}
+
+/* Styles for selected date */
+/* Styles for selected date */
+.selected {
+    background-color: #007BFF !important; /* Bright blue background */
+    color: white !important; /* White text for good contrast */
+    border-radius: 50%; /* Rounded shape for selected date */
+}
+
+/* Styles for weekend dates */
+.weekend {
+    background-color: #f8d7da !important; /* Light red background for weekends */
+    color: #721c24 !important; /* Dark red text for visibility */
+}
+
+/* General styles for calendar */
+.react-calendar__tile {
+    color: black !important; /* Default black text for calendar tiles */
+}
+
+/* Hover state for better visibility */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background-color: #e0f7fa !important; /* Light blue background on hover */
+    color: black !important; /* Ensure text is always black on hover */
+}
+
+/* Disabled tile styles (for dates outside min/max range) */
+.react-calendar__tile--disabled {
+    color: #ccc !important; /* Light grey text for disabled dates */
+}
+
+/* Custom styles for the header (month and year) */
+.react-calendar__navigation button {
+    color: black !important; /* Black text for the month/year navigation */
+    font-weight: bold; /* Make navigation text bold */
+}
+
+.react-calendar__month-view__weekdays {
+    color: black !important; /* Black text for weekdays */
+}
+
+/* Specific styles for today’s date */
+.react-calendar__tile--now {
+    background-color: #ffeb3b !important; /* Highlight today’s date in yellow */
+    color: black !important; /* Black text on today’s tile */
 }

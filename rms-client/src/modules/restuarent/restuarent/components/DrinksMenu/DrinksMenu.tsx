@@ -4,6 +4,9 @@ import MenuItemCard from '../DrinksMenu/MenuItemCard';
 import DrinksFilter from './DrinksFilter';
 import DrinksSearch from './DrinksSearch';
 import './drinksMenu.css';
+import Header from '../../../../core/components/Header';
+import Navbar from '../HomePage/ResNavbar';
+
 
 const DrinksMenu: React.FC = () => {
     const [drinks, setDrinks] = useState<DrinkItem[]>([]);
@@ -32,8 +35,10 @@ const DrinksMenu: React.FC = () => {
 
     return (
         <div className="drinks-menu">
+            <Header activeTab={'restaurant-bar'} />
+            <Navbar />
             <DrinksSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <DrinksFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+            {/* <DrinksFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} /> */}
             <div className="menu-grid">
                 {filteredDrinks.map(drink => (
                     <MenuItemCard key={drink.id} item={drink} />
