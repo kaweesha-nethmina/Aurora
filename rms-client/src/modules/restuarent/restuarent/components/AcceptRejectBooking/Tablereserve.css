@@ -3,7 +3,7 @@
 .container {
     
     padding: 20px;
-    max-width: 900px;
+    max-width: 1000px;
   }
   
   .heading {
@@ -15,10 +15,10 @@
   }
   
   .reservation-table {
-    width: 100%;
+    width: 70%;
     border-collapse: collapse;
-    margin-top: 20px;
-    margin-left: -100px;
+    margin-top: 50px;
+    margin-left: -250px;
   }
   
   .reservation-table th,
@@ -67,5 +67,17 @@
   .status-rejected {
     color: #dc3545;
     font-weight: bold;
+  }
+  .accept-btn, .reject-btn {
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .reject-btn {
+    background-color: #f44336; /* Red */
   }
   
