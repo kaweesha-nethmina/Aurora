@@ -3,12 +3,13 @@ import '../AdminCancelBookingTable/AdmincancelBookingTable.css';
 
 interface Booking {
   phone: string;
-  _id: string; // Assuming MongoDB ObjectId
+  _id: string;
   name: string;
   phoneNumber: string;
   checkin: string;
   cancellationReason: string;
-  email: string; // Assuming you have an email field in your reservation model
+  email: string;
+  status: string;
 }
 
 const AdminCancelBookingTable: React.FC = () => {
@@ -17,7 +18,6 @@ const AdminCancelBookingTable: React.FC = () => {
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [reason, setReason] = useState('');
 
-  // Function to fetch reservations from the API
   const fetchReservations = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/table-reservations');
@@ -28,12 +28,10 @@ const AdminCancelBookingTable: React.FC = () => {
     }
   };
 
-  // Fetch reservations when the component mounts
   useEffect(() => {
     fetchReservations();
   }, []);
 
-  // Function to handle notification
   const handleNotify = (booking: Booking) => {
     setSelectedBooking(booking);
     setIsModalOpen(true);
@@ -43,32 +41,31 @@ const AdminCancelBookingTable: React.FC = () => {
     if (!selectedBooking) return;
 
     try {
-        const response = await fetch('http://localhost:5000/api/send-notification', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: selectedBooking.email,
-                message: `Your reservation ${reason}`,
-            }),
-        });
+      const response = await fetch('http://localhost:5000/api/send-notification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: selectedBooking.email,
+          message: `Your reservation ${reason}`,
+        }),
+      });
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Error from server:', errorData);  // Log the error details from the server
-            throw new Error('Failed to send notification');
-        }
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error from server:', errorData);
+        throw new Error('Failed to send notification');
+      }
 
-        alert(`Notification sent to ${selectedBooking.name} for booking ID: ${selectedBooking._id}`);
-        setIsModalOpen(false);
-        setReason('');
+      alert(`Notification sent to ${selectedBooking.name} for booking ID: ${selectedBooking._id}`);
+      setIsModalOpen(false);
+      setReason('');
     } catch (error) {
-        console.error('Failed to send notification:', error);
-        alert('Failed to send notification. Please try again.');
+      console.error('Failed to send notification:', error);
+      alert('Failed to send notification. Please try again.');
     }
-};
-
+  };
 
   return (
     <div className="container">
@@ -79,6 +76,7 @@ const AdminCancelBookingTable: React.FC = () => {
             <th className="table-header">Name</th>
             <th className="table-header">Phone Number</th>
             <th className="table-header">E-mail</th>
+            <th className="table-header">Status</th>
             <th className="table-header">Action</th>
           </tr>
         </thead>
@@ -88,6 +86,7 @@ const AdminCancelBookingTable: React.FC = () => {
               <td className="table-cell">{booking.name}</td>
               <td className="table-cell">{booking.phone}</td>
               <td className="table-cell">{booking.email}</td>
+              <td className="table-cell">{booking.status}</td>
               <td className="table-cell">
                 <button
                   className="notify-button"
@@ -103,18 +102,19 @@ const AdminCancelBookingTable: React.FC = () => {
 
       {/* Modal for entering notification reason */}
       {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
+        <div className="custom-modal">
+          <div className="custom-modal-content">
+            <span className="custom-close" onClick={() => setIsModalOpen(false)}>&times;</span>
             <h2>Notify {selectedBooking?.name}</h2>
             <label htmlFor="reason">Reservation Status:</label>
             <textarea
               id="reason"
+              className='txt'
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               rows={4}
             />
-            <button onClick={sendNotification}>Send Notification</button>
+            <button className='sendbtn' onClick={sendNotification}>Send Notification</button>
           </div>
         </div>
       )}

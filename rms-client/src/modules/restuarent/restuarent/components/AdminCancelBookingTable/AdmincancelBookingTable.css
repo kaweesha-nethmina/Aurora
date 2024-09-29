@@ -1,48 +1,49 @@
 .container {
-    
-    max-width: 1000px;
-    margin-top: 100px;
-    margin-left: 500px;
-    padding: 16px;
-  }
-  
-  .heading {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 16px;
-  }
-  
-  .booking-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-left: -100px;
-  }
-  
-  .table-header {
-    padding: 8px;
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  .table-cell {
-    padding: 8px;
-    border: 1px solid #ddd;
-  }
-  
-  .notify-button {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .notify-button:hover {
-    background-color: #0056b3;
-  }
-  .modal {
+  max-width: 1000px;
+  margin-top: 100px;
+  margin-left: 500px;
+  padding: 16px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: -100px;
+}
+
+.table-header {
+  padding: 8px;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.table-cell {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.notify-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.notify-button:hover {
+  background-color: #0056b3;
+}
+
+/* Custom modal styles */
+.custom-modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,8 +57,8 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
-  background-color: #fefefe;
+.custom-modal-content {
+  background-color: #fafafa;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -65,19 +66,28 @@
   border-radius: 5px;
 }
 
-.close {
-  color: #aaa;
+.custom-close {
+  color: #e20606;
   float: right;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
+.custom-close:hover,
+.custom-close:focus {
+  color: rgb(245, 90, 90);
   text-decoration: none;
   cursor: pointer;
 }
 
-  
+.sendbtn{
+  background-color: #703c01;
+}
+.sendbtn:hover{
+  background-color: #a75a03;
+}
+.txt{
+  border-radius: 10px;
+  padding: 10px;
+}
