@@ -1,23 +1,74 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../AdminCancelBookingTable/AdmincancelBookingTable.css';
 
 interface Booking {
-  id: number;
+  phone: string;
+  _id: string; // Assuming MongoDB ObjectId
   name: string;
   phoneNumber: string;
-  checkinDate: string;
+  checkin: string;
   cancellationReason: string;
+  email: string; // Assuming you have an email field in your reservation model
 }
 
-const AdminCancelBookingTable = () => {
-  const [bookings, setBookings] = useState<Booking[]>([
-    { id: 1, name: 'John Doe', phoneNumber: '1234567890', checkinDate: '2024-01-01', cancellationReason: 'Personal reasons' },
-    { id: 2, name: 'Jane Doe', phoneNumber: '9876543210', checkinDate: '2024-01-15', cancellationReason: 'Change of plans' },
-  ]);
+const AdminCancelBookingTable: React.FC = () => {
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [reason, setReason] = useState('');
 
-  const handleNotify = (id: number) => {
-    alert(`Notification sent for booking ${id}`);
+  // Function to fetch reservations from the API
+  const fetchReservations = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/table-reservations');
+      const data = await response.json();
+      setBookings(data);
+    } catch (error) {
+      console.error('Failed to fetch reservations:', error);
+    }
   };
+
+  // Fetch reservations when the component mounts
+  useEffect(() => {
+    fetchReservations();
+  }, []);
+
+  // Function to handle notification
+  const handleNotify = (booking: Booking) => {
+    setSelectedBooking(booking);
+    setIsModalOpen(true);
+  };
+
+  const sendNotification = async () => {
+    if (!selectedBooking) return;
+
+    try {
+        const response = await fetch('http://localhost:5000/api/send-notification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: selectedBooking.email,
+                message: `Your reservation ${reason}`,
+            }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Error from server:', errorData);  // Log the error details from the server
+            throw new Error('Failed to send notification');
+        }
+
+        alert(`Notification sent to ${selectedBooking.name} for booking ID: ${selectedBooking._id}`);
+        setIsModalOpen(false);
+        setReason('');
+    } catch (error) {
+        console.error('Failed to send notification:', error);
+        alert('Failed to send notification. Please try again.');
+    }
+};
+
 
   return (
     <div className="container">
@@ -27,22 +78,20 @@ const AdminCancelBookingTable = () => {
           <tr>
             <th className="table-header">Name</th>
             <th className="table-header">Phone Number</th>
-            <th className="table-header">Checkin Date</th>
-            <th className="table-header">Cancellation Reason</th>
+            <th className="table-header">E-mail</th>
             <th className="table-header">Action</th>
           </tr>
         </thead>
         <tbody>
           {bookings.map((booking) => (
-            <tr key={booking.id}>
+            <tr key={booking._id}>
               <td className="table-cell">{booking.name}</td>
-              <td className="table-cell">{booking.phoneNumber}</td>
-              <td className="table-cell">{booking.checkinDate}</td>
-              <td className="table-cell">{booking.cancellationReason}</td>
+              <td className="table-cell">{booking.phone}</td>
+              <td className="table-cell">{booking.email}</td>
               <td className="table-cell">
                 <button
                   className="notify-button"
-                  onClick={() => handleNotify(booking.id)}
+                  onClick={() => handleNotify(booking)}
                 >
                   Notify
                 </button>
@@ -51,6 +100,24 @@ const AdminCancelBookingTable = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Modal for entering notification reason */}
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
+            <h2>Notify {selectedBooking?.name}</h2>
+            <label htmlFor="reason">Reservation Status:</label>
+            <textarea
+              id="reason"
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              rows={4}
+            />
+            <button onClick={sendNotification}>Send Notification</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

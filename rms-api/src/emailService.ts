@@ -1,22 +1,31 @@
-import nodemailer from 'nodemailer';
+// import { Request, Response } from 'express';
+// import nodemailer from 'nodemailer';
 
-// Create a transporter for sending emails
-const transporter = nodemailer.createTransport({
-  service: 'gmail', // Or your email service
-  auth: {
-    user: 'your-email@gmail.com', // Your email
-    pass: 'your-email-password', // Your email password or app-specific password
-  },
-});
+// // Send notification email
+// export const sendNotificationEmail = async (req: Request, res: Response) => {
+//   const { email, message } = req.body;
 
-// Function to send an email
-export const sendEmail = async (to: string, subject: string, text: string) => {
-  const mailOptions = {
-    from: 'your-email@gmail.com', // Sender address
-    to, // Receiver's email address
-    subject,
-    text,
-  };
+//   // Configure nodemailer transporter
+//   const transporter = nodemailer.createTransport({
+//     service: 'gmail', // Use your email service provider
+//     auth: {
+//       user: 'your-email@gmail.com', // Your email address
+//       pass: 'your-email-password', // Your email password or app password
+//     },
+//   });
 
-  await transporter.sendMail(mailOptions);
-};
+//   const mailOptions = {
+//     from: 'your-email@gmail.com',
+//     to: email,
+//     subject: 'Reservation Update',
+//     text: message,
+//   };
+
+//   try {
+//     await transporter.sendMail(mailOptions);
+//     return res.status(200).json({ message: 'Email sent successfully' });
+//   } catch (error) {
+//     console.error('Error sending email:', error);
+//     return res.status(500).json({ message: 'Failed to send email', error });
+//   }
+// };
