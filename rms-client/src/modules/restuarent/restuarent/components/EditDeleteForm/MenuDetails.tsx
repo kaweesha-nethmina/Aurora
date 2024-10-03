@@ -129,7 +129,7 @@ const MenuDetails: React.FC = () => {
 
   return (
     <div className="menu-details">
-      <h2 className="title">Menu Details</h2>
+      <h2 className="titleM">Menu Details</h2>
       <table className="menu-table">
         <thead>
           <tr>

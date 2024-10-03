@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
  // Custom header for this dashboard
-
-import '../../../../employees/ManagerDashboard.css'; // Custom CSS file for this dashboard
+import './RManagerDashboard.css';
+// import '../../../../employees/ManagerDashboard.css'; // Custom CSS file for this dashboard
 import RManagerHeader from './RManagerHeader';
 import Sidebar from '../../../../core/components/Sidebar';
 

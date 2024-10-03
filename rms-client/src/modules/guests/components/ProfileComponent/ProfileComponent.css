@@ -2,9 +2,12 @@
   width: 1530px;
   margin-top: 80px;
   padding: 40px;
-  height: 100vh;
+  height: 90vh;
   background-color: #ffffff; /* Light background for better readability */
   box-shadow: 0 0 14px 6px rgba(0, 0, 0, 0.1);
+  background-image:linear-gradient(rgba(180, 175, 175, 0.8), rgba(22, 22, 22, 0.8)), url('./../../Images/b.jpg');
+  background-size: cover;
+
 }
 
 .profile-content {

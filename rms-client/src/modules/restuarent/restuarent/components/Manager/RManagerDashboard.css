@@ -1,6 +1,8 @@
 .dashboard-layoutR {
     display: flex;
     height: 100vh;
+    background-color: #f4f4f4;
+
   }
   
   .dashboard-contentR {
@@ -13,5 +15,9 @@
     flex-grow: 1;
     padding: 1rem;
     background-color: #f4f4f4;
+    /* background-image:linear-gradient(rgba(255, 255, 255, 0.8), rgba(211, 120, 1, 0.8)); */
+    background-image: url('./../../Images/2.jpg');
+    background-size: cover;
+    margin-left: 50px;
   }
   

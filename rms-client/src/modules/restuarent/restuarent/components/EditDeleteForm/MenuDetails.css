@@ -26,15 +26,17 @@ html, body {
     padding: 16px;
   }
   
-  .title {
+  .titleM {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 16px;
+    color: white;
   }
   
   .menu-table {
     width: 100%;
     border-collapse: collapse;
+    background: white;
   }
   
   .table-header, .table-cell {
