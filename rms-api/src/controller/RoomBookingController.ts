@@ -109,3 +109,24 @@ export const rejectBooking = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Failed to update booking', error });
   }
 };
+// Function to get bookings per month
+export const getBookingsPerMonth = async (req: Request, res: Response) => {
+  try {
+    const bookings = await RoomBooking.aggregate([
+      {
+        $group: {
+          _id: { $month: '$arrivalDate' }, // Group by month
+          count: { $sum: 1 }, // Count the number of bookings
+        },
+      },
+      {
+        $sort: { _id: 1 }, // Sort by month
+      },
+    ]);
+
+    res.status(200).json(bookings);
+  } catch (error) {
+    console.error('Error fetching bookings per month:', error);
+    res.status(500).json({ message: 'Failed to retrieve bookings per month' });
+  }
+};

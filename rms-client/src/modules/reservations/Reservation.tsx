@@ -1,49 +1,46 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import RoomCard from './components/RoomCard';
 import RoomSearch from './components/RoomSearch';
-// import RoomFilter from './components/RoomFilter';
 import useSearch from './hooks/useSearch';
 import useFilter from './hooks/useFilter';
 import './styles.css';
 import Subheader from './components/Navbar';
 import Header from '../core/components/Header';
-import { fetchRooms, Room as RoomType } from './services/roomService'; // Adjust the import path as needed
+import { fetchRooms, Room } from './services/roomService';
 
-const Reservation = () => {
+const Reservation: React.FC = () => {
   const { searchTerm, handleSearch } = useSearch();
   const { selectedType } = useFilter();
-  const [rooms, setRooms] = useState<RoomType[]>([]); // Store all rooms fetched from the API
-  const [filteredRooms, setFilteredRooms] = useState<RoomType[]>([]); // Store rooms after filtering
-  const [showDetails, setShowDetails] = useState<{ [key: string]: boolean }>({});
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [filteredRooms, setFilteredRooms] = useState<Room[]>([]);
+  const [visibleDetailId, setVisibleDetailId] = useState<string | null>(null);
 
-  // Fetch room data when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       const roomsData = await fetchRooms();
-      setRooms(roomsData); // Store fetched rooms
-      setFilteredRooms(roomsData); // Initialize filtered rooms with all fetched rooms
+      setRooms(roomsData);
+      setFilteredRooms(roomsData);
     };
     fetchData();
   }, []);
 
-  // Apply filters and search whenever searchTerm or selectedType changes
-  useEffect(() => {
-    applyFilters();
-  }, [searchTerm, selectedType]);
-
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = rooms.filter((room) =>
       room.roomType.toLowerCase().includes(searchTerm.toLowerCase())
     );
     if (selectedType) {
       filtered = filtered.filter((room) => room.roomType === selectedType);
     }
-    setFilteredRooms(filtered); // Update the filtered rooms list
-  };
+    setFilteredRooms(filtered);
+  }, [rooms, searchTerm, selectedType]);
 
-  const handleShowDetails = (id: string) => {
-    setShowDetails((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
+  useEffect(() => {
+    applyFilters();
+  }, [applyFilters]);
+
+  const toggleRoomDetails = useCallback((roomId: string) => {
+    setVisibleDetailId((prevId) => prevId === roomId ? null : roomId);
+  }, []);
 
   return (
     <div className="containerRoom">
@@ -52,15 +49,14 @@ const Reservation = () => {
       <h1 className="title">Hotel Rooms</h1>
       <div className="controls">
         <RoomSearch searchTerm={searchTerm} onSearch={handleSearch} />
-        {/* <RoomFilter selectedType={selectedType} onFilter={handleFilter} /> */}
       </div>
       <div className="room-grid">
         {filteredRooms.map((room) => (
           <RoomCard
-            key={room.id}
+            key={room._id.toString()} // Change from room.id to room._id.toString()
             room={room}
-            onShowDetails={handleShowDetails}
-            showDetails={showDetails}
+            isDetailVisible={visibleDetailId === room._id.toString()} // Change from room.id to room._id.toString()
+            onToggleDetail={() => toggleRoomDetails(room._id.toString())} // Change from room.id to room._id.toString()
           />
         ))}
       </div>

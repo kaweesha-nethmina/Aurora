@@ -1,31 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Room as RoomType } from '../services/roomService'; // Adjust the import path as needed
+import { Room as RoomType } from '../services/roomService';
 
 interface RoomCardProps {
   room: RoomType;
-  onShowDetails: (id: string) => void; // Changed to string
-  showDetails: { [key: string]: boolean };
+  isDetailVisible: boolean;
+  onToggleDetail: () => void;
 }
 
-const RoomCard: React.FC<RoomCardProps> = ({ room, onShowDetails, showDetails }) => {
+const RoomCard: React.FC<RoomCardProps> = React.memo(({ room, isDetailVisible, onToggleDetail }) => {
   return (
     <div className="room-card">
       <img src={room.image} alt={room.roomType} className="room-image" />
-      <h2 className="room-name">{room.roomType}</h2> {/* Display roomType instead of name */}
-      <p className="room-type">{room.roomType}</p> {/* Display room type */}
+      <h2 className="room-name">{room.roomType}</h2>
       <p className="room-price">${room.price} per night</p>
-      <button onClick={() => onShowDetails(room.id)} className="details-button">
-        {showDetails[room.id] ? 'Hide Details' : 'View Details'}
+      <button onClick={onToggleDetail} className="details-button">
+        {isDetailVisible ? 'Hide Details' : 'View Details'}
       </button>
-      {showDetails[room.id] && <p className="room-description">{room.description}</p>}
+      {isDetailVisible && <p className="room-description">{room.description}</p>}
+      <Link to={`/formroom/${room._id}?roomType=${encodeURIComponent(room.roomType)}`}>
 
-      <Link to="/formroom">
         <button className="book-button">Book Now</button>
       </Link>
     </div>
   );
-};
-
+});
 
 export default RoomCard;

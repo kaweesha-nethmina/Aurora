@@ -1,5 +1,5 @@
 import express from 'express';
-import { createBooking, getAllBookings, getBookingById, deleteBooking, acceptBooking, rejectBooking } from '../controller/RoomBookingController';
+import { createBooking, getAllBookings, getBookingById, deleteBooking, acceptBooking, rejectBooking, getBookingsPerMonth } from '../controller/RoomBookingController';
 
 const router = express.Router();
 
@@ -20,5 +20,8 @@ router.put('/bookings/:id/accept', acceptBooking);
 
 // Reject a booking
 router.put('/bookings/:id/reject', rejectBooking);
+
+router.get('/bookings-per-month', getBookingsPerMonth);
+
 
 export default router;

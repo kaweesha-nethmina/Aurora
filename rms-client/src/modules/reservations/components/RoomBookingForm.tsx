@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../RoomBookingForm.css';
 import Header from '../../core/components/Header';
 import axios from 'axios';
@@ -26,7 +27,11 @@ interface UserProfile {
 }
 
 const RoomBookingForm: React.FC = () => {
-  const [roomType, setRoomType] = useState('');
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const initialRoomType = queryParams.get('roomType') || ''; // Retrieve roomType from URL
+
+  const [roomType, setRoomType] = useState(initialRoomType);
   const [arrivalDate, setArrivalDate] = useState('');
   const [departureDate, setDepartureDate] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
@@ -58,10 +63,6 @@ const RoomBookingForm: React.FC = () => {
       }
     }
   }, []);
-
-  const handleRoomTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setRoomType(event.target.value);
-  };
 
   const handleArrivalDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setArrivalDate(event.target.value);
@@ -131,18 +132,12 @@ const RoomBookingForm: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="room-type">Room Type</label>
-          <select
+          <input
             id="room-type"
-            value={roomType}
-            onChange={handleRoomTypeChange}
-          >
-            <option value="">Select Room Type</option>
-            <option value="single">Single</option>
-            <option value="double">Double</option>
-            <option value="suite">Suite</option>
-            <option value="family">Family</option>
-            <option value="deluxe">Deluxe</option>
-          </select>
+            type="text"
+            value={roomType} // Use the state directly here
+            readOnly // Make it read-only as it should be auto-filled
+          />
         </div>
         <div className="form-group">
           <label htmlFor="arrival-date">Check-in Date</label>

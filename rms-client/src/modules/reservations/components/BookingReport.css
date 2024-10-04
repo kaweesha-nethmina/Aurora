@@ -1,0 +1,45 @@
+/* BookingReport.css */
+
+.booking-report-container {
+    max-width: 800px; /* Set a maximum width for the container */
+    margin-left: 420px;
+    margin-top: 100px;
+    padding: 20px; /* Add some padding */
+    border: 1px solid #ddd; /* Light border around the container */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .booking-report-table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Remove space between borders */
+    margin-top: 10px; /* Space above the table */
+  }
+  
+  .booking-report-table th,
+  .booking-report-table td {
+    border: 1px solid #ddd; /* Light border for table cells */
+    padding: 12px; /* Padding inside cells */
+    text-align: center; /* Center text */
+  }
+  
+  .booking-report-table th {
+    background-color: #007bff; /* Blue background for header */
+    color: white; /* White text color for header */
+  }
+  
+  .booking-report-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray for even rows */
+  }
+  
+  .booking-report-table tr:hover {
+    background-color: #f1f1f1; /* Light gray on hover */
+  }
+  
+  .error-message {
+    color: red; /* Red color for error messages */
+    text-align: center; /* Center the error message */
+    margin-top: 10px; /* Space above error message */
+  }
+  

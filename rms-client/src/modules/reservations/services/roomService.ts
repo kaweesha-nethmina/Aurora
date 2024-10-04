@@ -1,5 +1,6 @@
+import { ObjectId } from 'mongodb';
 export interface Room {
-  id: string; // Changed to string
+  _id: ObjectId; // Changed to string
   name: string;
   price: number;
   rating: number;

@@ -105,6 +105,7 @@ import ManagerLoginPage from './modules/employees/components/Login/ManagerLoginP
 import ManagerProfile from './modules/employees/components/Login/ManagerProfile';
 import EmployeeLogin from './modules/employees/components/Login/EmployeeLogin';
 import EmployeeProfile from './modules/employees/components/Login/EmployeeProfile';
+import BookingReport from './modules/reservations/components/BookingReport';
 
 
 
@@ -184,7 +185,7 @@ function App() {
 
         {/* room Routes */}
         <Route path='/roomreservation' element={<Reservation />} />
-        <Route path='/formroom' element={<RoomBookingForm />} />
+        <Route path="/formroom/:id" element={<RoomBookingForm />} />
         <Route path='/profilescreen' element={<ProfileScreen />} />
         <Route path='/navbar' element={<Navbar />} />
         <Route path='/cancelform' element={<CancelBookingForm/>} />
@@ -194,6 +195,7 @@ function App() {
           <Route path="addroom" element={<AddRoomForm />} />
           <Route path="roomdetails" element={<RoomTable />} />
           <Route path="reservations" element={<Reservationdetails />} />
+          <Route path="reports" element={<BookingReport />} />
           {/* <Route path="reports" element={<ReportsPage />} /> */}
         </Route>
 
