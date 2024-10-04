@@ -4,7 +4,8 @@ import {
   getTableReservations,
   getTableReservationById,
   acceptTableReservation,
-  rejectTableReservation
+  rejectTableReservation,
+  getMonthlyReservations,
 } from '../controller/TablereservationController';
 
 const router = express.Router();
@@ -23,5 +24,8 @@ router.put('/:id/accept', acceptTableReservation);
 
 // Route to reject a reservation
 router.put('/:id/reject', rejectTableReservation);
+
+// Route to get monthly reservations
+router.get('/monthly', getMonthlyReservations);
 
 export default router;

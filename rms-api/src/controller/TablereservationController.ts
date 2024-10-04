@@ -76,3 +76,51 @@ export const rejectTableReservation = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Failed to update reservation', error });
   }
 };
+
+// Get monthly reservations
+export const getMonthlyReservations = async (req: Request, res: Response) => {
+  const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+  const endOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+
+  console.log('Fetching reservations from:', startOfMonth, 'to:', endOfMonth);
+
+  try {
+    const reservations = await TableReservationModel.find({
+      arrivalDate: { $gte: startOfMonth, $lte: endOfMonth }
+    });
+
+    console.log('Reservations found:', reservations); // Log fetched reservations
+
+    if (!reservations || reservations.length === 0) {
+      return res.status(404).json({ message: 'No reservations found for this month' });
+    }
+
+    // Process data to count reservations per month
+    const counts: { [key: string]: number } = {};
+
+    reservations.forEach((reservation) => {
+      const date = new Date(reservation.arrivalDate);
+      const monthYear = `${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`;
+      
+      // Initialize if not present
+      if (!counts[monthYear]) {
+        counts[monthYear] = 0; // Initialize count
+      }
+      counts[monthYear] += 1; // Increment count
+    });
+
+    // Convert counts object to an array
+    const monthlyReport = Object.entries(counts).map(([month, count]) => ({
+      month,
+      count,
+      year: new Date(month).getFullYear(), // Extract year from the month string
+    }));
+
+    return res.status(200).json(monthlyReport);
+  } catch (error) {
+    console.error('Error fetching monthly reservations:', error);
+    return res.status(500).json({ message: 'Failed to retrieve monthly reservations', error });
+  }
+};
+
+

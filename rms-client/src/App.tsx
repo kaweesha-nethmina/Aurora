@@ -105,6 +105,7 @@ import ManagerProfile from './modules/employees/components/Login/ManagerProfile'
 import EmployeeLogin from './modules/employees/components/Login/EmployeeLogin';
 import EmployeeProfile from './modules/employees/components/Login/EmployeeProfile';
 import BookingReport from './modules/reservations/components/BookingReport';
+import MonthlyReservationReport from './modules/restuarent/restuarent/components/AcceptRejectBooking/MonthlyReservationReport';
 
 
 
@@ -173,7 +174,8 @@ function App() {
           <Route path="admincancel" element={<AdminCancelBookingTable />} />
           <Route path="editmenu" element={<MenuDetails />} />
           <Route path="addmenu" element={<AddEditMenuItem onSave={() => { /* your save logic */ }} />} />
-          <Route path="tablereserve" element={<ReserveTablePage />} /> {/* Added route for Table Reserve */}
+          <Route path="tablereserve" element={<ReserveTablePage />} /> 
+          <Route path="report" element={<MonthlyReservationReport />} />{/* Added route for Table Reserve */}
         </Route>
 
 

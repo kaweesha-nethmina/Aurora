@@ -14,7 +14,8 @@ interface RManagerHeaderProps {
           <Link to="/Rmanager/admincancel" className={activeTab === 'admincancel' ? 'active' : ''}>Admin Cancel</Link>
           <Link to="/Rmanager/editmenu" className={activeTab === 'editmenu' ? 'active' : ''}>Edit Menu</Link>
           <Link to="/Rmanager/addmenu" className={activeTab === 'addmenu' ? 'active' : ''}>Add Menu</Link>
-          <Link to="/Rmanager/tablereserve" className={activeTab === 'tablereserve' ? 'active' : ''}>Table Reserve</Link> {/* Added path */}
+          <Link to="/Rmanager/tablereserve" className={activeTab === 'tablereserve' ? 'active' : ''}>Table Reserve</Link>
+          <Link to="/Rmanager/report" className={activeTab === 'report' ? 'active' : ''}>Report</Link> {/* Added path */}
         </nav>
         <div className="user-icon">
           <img src={userIcon} alt="User Icon" />

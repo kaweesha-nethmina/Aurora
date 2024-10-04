@@ -14,7 +14,8 @@ const RManagerDashboard: React.FC = () => {
       if (path === '/admincancel') return 'admincancel';
       if (path === '/editmenu') return 'editmenu';
       if (path === '/addmenu') return 'addmenu';
-      if (path === '/tablereserve') return 'tablereserve'; // Added path for table reservation
+      if (path === '/tablereserve') return 'tablereserve';
+      if (path === '/report') return 'report'; // Added path for table reservation
       return '';
     };
   

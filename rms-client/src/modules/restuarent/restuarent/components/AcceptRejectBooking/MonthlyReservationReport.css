@@ -1,0 +1,58 @@
+/* CSS Styles for MonthlyReservationReport */
+
+.monthly-reservation-container {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .monthly-reservation-heading {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .loading, .error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ff0000; /* Red color for errors */
+  }
+  
+  .no-reservations-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+  }
+  
+  .monthly-reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-header {
+    background-color: #725700; /* Bootstrap primary color */
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table-row {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-data {
+    padding: 10px;
+  }
+  
+  .table-row:nth-child(even) {
+    background-color: #f2f2f2; /* Zebra striping for rows */
+  }
+  
+  .table-row:hover {
+    background-color: #e7f1ff; /* Highlight row on hover */
+  }
+  
