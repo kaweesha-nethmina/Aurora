@@ -1,23 +1,24 @@
-.dashboard-layoutR {
+.dashboard-layoutQ {
     display: flex;
     height: 100vh;
     
   }
   
-  .dashboard-contentR {
+  .dashboard-contentQ {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     width: 1500px;
   }
   
-  .dashboard-containerR {
+  .dashboard-containerQ {
     flex-grow: 1;
     padding: 1rem;
     background-color: #f4f4f4;
-    width: 1500px;
+    width: 1530px;
     height: 100vh;
     position: fixed;
     overflow: auto;
+    background-image: url("../../images/r6.jpg");
   }
   

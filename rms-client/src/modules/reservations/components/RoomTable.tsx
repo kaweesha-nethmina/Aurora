@@ -38,7 +38,7 @@ const RoomTable: React.FC = () => {
           <tr>
             <th>Room Type</th>
             <th>Price</th>
-            <th>Rating</th>
+            
             <th>Description</th>
             <th>Image</th>
             <th>Actions</th>
@@ -49,7 +49,7 @@ const RoomTable: React.FC = () => {
             <tr key={room._id}>
               <td>{room.roomType}</td>
               <td>${room.price.toFixed(2)}</td>
-              <td>{room.rating}</td>
+              
               <td>{room.description}</td>
               <td>
                 <img src={room.image} alt={room.roomType} className="room-image" />
@@ -70,13 +70,20 @@ const RoomTable: React.FC = () => {
             <h3>Edit Room</h3>
             <label>
               Room Type:
-              <input
-                type="text"
+              <select
                 name="roomType"
                 value={editingRoom.roomType}
                 onChange={handleInputChange}
-              />
+              >
+                <option value="">Select a room type</option>
+                <option value="single">Single Room</option>
+                <option value="double">Double Room</option>
+                <option value="deluxe">Deluxe Room</option>
+                <option value="suite">Suite Room</option>
+              </select>
             </label>
+
+
             <label>
               Price:
               <input

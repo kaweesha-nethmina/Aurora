@@ -9,32 +9,25 @@ const AddRoomForm: React.FC = () => {
     <div className={styles.container}>
       <h2 className={styles.title}>Add Room Form</h2>
       <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
+      <div className={styles.formGroup}>
           <label className={styles.label} htmlFor="roomType">Room Type</label>
-          <input
+          <select
             id="roomType"
             name="roomType"
-            type="text"
             value={roomFormState.roomType}
             onChange={handleInputChange}
             required
             className={styles.input}
-          />
+          >
+            <option value="">Select a room type</option>
+            <option value="single">Single Room</option>
+            <option value="double">Double Room</option>
+            <option value="deluxe">Deluxe Room</option>
+            <option value="suite">Suite Room</option>
+          </select>
         </div>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="rating">Rating</label>
-          <input
-            id="rating"
-            name="rating"
-            type="number"
-            min="1"
-            max="5"
-            value={roomFormState.rating}
-            onChange={handleInputChange}
-            required
-            className={styles.input}
-          />
-        </div>
+
+        
         <div className={styles.formGroup}>
           <label className={styles.label} htmlFor="price">Price ($)</label>
           <input

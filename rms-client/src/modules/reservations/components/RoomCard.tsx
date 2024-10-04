@@ -15,7 +15,6 @@ const RoomCard: React.FC<RoomCardProps> = ({ room, onShowDetails, showDetails })
       <h2 className="room-name">{room.roomType}</h2> {/* Display roomType instead of name */}
       <p className="room-type">{room.roomType}</p> {/* Display room type */}
       <p className="room-price">${room.price} per night</p>
-      <p className="room-rating">Rating: {room.rating}/5</p>
       <button onClick={() => onShowDetails(room.id)} className="details-button">
         {showDetails[room.id] ? 'Hide Details' : 'View Details'}
       </button>

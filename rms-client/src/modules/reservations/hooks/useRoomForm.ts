@@ -23,13 +23,14 @@ export const useRoomForm = () => {
 
   const navigate = useNavigate(); // Initialize useNavigate hook
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setRoomFormState((prevState) => ({
       ...prevState,
-      [name]: name === 'price' || name === 'rating' ? Number(value) : value,
+      [name]: value,
     }));
   };
+  
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

@@ -17,13 +17,13 @@ const RoomManagerDashboard: React.FC = () => {
   };
 
   return (
-    <div className="dashboard-layout">
+    <div className="dashboard-layoutQ">
       <Sidebar />  
        
-      <div className="dashboard-content">
+      <div className="dashboard-contentQ">
       <RoomManagerHeader activeTab={getActiveTab()} />
       
-        <div className="dashboard-containerR">
+        <div className="dashboard-containerQ">
           <Outlet /> {/* Renders the matched child route */}
         </div>
       </div>

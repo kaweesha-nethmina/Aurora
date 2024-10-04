@@ -64,7 +64,7 @@ const useRoomTable = () => {
     setEditingRoom(null);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     if (editingRoom) {
       const { name, value } = e.target;
       setEditingRoom({
@@ -73,6 +73,7 @@ const useRoomTable = () => {
       });
     }
   };
+  
 
   return {
     rooms,
