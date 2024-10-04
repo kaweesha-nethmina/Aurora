@@ -14,7 +14,6 @@ const RoomManagerHeader: React.FC<RoomManagerHeaderProps> = ({ activeTab }) => {
         <Link to="/roommanager/addroom" className={activeTab === 'addrooms' ? 'active' : ''}>Add Rooms</Link>
         <Link to="/roommanager/roomdetails" className={activeTab === 'roomdetails' ? 'active' : ''}>Room Details</Link>
         <Link to="/roommanager/reservations" className={activeTab === 'reservations' ? 'active' : ''}>Reservations</Link>
-        <Link to="/roommanager/cancelreservations" className={activeTab === 'cancelreservations' ? 'active' : ''}>Cancel Reservations</Link>
         <Link to="/roommanager/reports" className={activeTab === 'reports' ? 'active' : ''}>Reports</Link>
       </nav>
       <div className="user-icon">

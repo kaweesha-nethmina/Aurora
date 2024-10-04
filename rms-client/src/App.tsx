@@ -194,7 +194,6 @@ function App() {
           <Route path="addroom" element={<AddRoomForm />} />
           <Route path="roomdetails" element={<RoomTable />} />
           <Route path="reservations" element={<Reservationdetails />} />
-          <Route path="cancelreservations" element={<CancelBookingTable />} />
           {/* <Route path="reports" element={<ReportsPage />} /> */}
         </Route>
 

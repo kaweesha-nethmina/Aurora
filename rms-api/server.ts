@@ -23,6 +23,10 @@ import managerRoutes from './src/routers/managerRoutes';
 import leaveReportRoutes from './src/routers/leaveReportRoutes';
 import tableReservationRouter from './src/routers/TablereservationRouter';
 import notificationRoutes from './src/routers/notificationrouter';
+import RoomBookingRoutes from './src/routers/RoomBookingRoutes';
+
+
+
 // Load environment variables
 dotenv.config();
 
@@ -76,6 +80,7 @@ app.use('/api/managers', managerRoutes);
 app.use('/api', leaveReportRoutes);
 app.use('/api/table-reservations', tableReservationRouter);
 app.use('/api', notificationRoutes);
+app.use('/api', RoomBookingRoutes);
 
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {

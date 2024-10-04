@@ -1,63 +1,72 @@
 import { useReservations } from '../states/useReservations';
 
 const RoomReservationTable = () => {
-  const { reservations, handleAccept, handleReject, handleCancel } = useReservations();
+    const { reservations, isLoading, error, handleAccept, handleReject, handleDelete } = useReservations();
 
-  return (
-    <div className="table-containert">
-      <table className="reservation-tablet">
-        <thead>
-          <tr>
-            <th>Room Type</th>
-            <th>Check-in Date</th>
-            <th>Check-out Date</th>
-            <th>Special Requests</th>
-            <th>Payment Method</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {reservations.map((reservation) => (
-            <tr key={reservation.id}>
-              <td>{reservation.roomType}</td>
-              <td>{reservation.checkInDate}</td>
-              <td>{reservation.checkOutDate}</td>
-              <td>{reservation.specialRequests}</td>
-              <td>{reservation.paymentMethod}</td>
-              <td>{reservation.status}</td>
-              <td>
-                {reservation.status === 'Pending' && (
-                  <div className="action-buttonsr">
-                    <button
-                      className="accept-buttonr"
-                      onClick={() => handleAccept(reservation.id)}
-                    >
-                      Accept
-                    </button>
-                    <button
-                      className="reject-buttonr"
-                      onClick={() => handleReject(reservation.id)}
-                    >
-                      Reject
-                    </button>
-                  </div>
-                )}
-                {reservation.status === 'Accepted' && (
-                  <button
-                    className="cancel-buttonr"
-                    onClick={() => handleCancel(reservation.id)}
-                  >
-                    Cancel
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    if (isLoading) {
+        return <div>Loading...</div>; // Show loading state
+    }
+
+    if (error) {
+        return <div>{error}</div>; // Show error state
+    }
+
+    if (reservations.length === 0) {
+        return <div>No reservations available.</div>; // Show when there are no reservations
+    }
+
+    return (
+        <div className="table-containert">
+            <table className="reservation-tablet">
+                <thead>
+                    <tr>
+                        <th>Room Type</th>
+                        <th>Check-in Date</th>
+                        <th>Check-out Date</th>
+                        <th>Special Requests</th>
+                        <th>Payment Method</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {reservations.map((reservation) => {
+                        if (!reservation._id) {
+                            console.error("Reservation ID is missing:", reservation);
+                            return null; // Skip rendering for reservations without an ID
+                        }
+
+                        console.log("Reservation Status:", reservation.status); // Log the status of each reservation
+
+                        return (
+                            <tr key={reservation._id}>
+                                <td>{reservation.roomType}</td>
+                                <td>{reservation.arrivalDate}</td>
+                                <td>{reservation.departureDate}</td>
+                                <td>{reservation.specialRequests}</td>
+                                <td>{reservation.paymentMethod}</td>
+                                <td>{reservation.status}</td>
+                                <td>
+                                    {reservation.status === 'Pending' && (
+                                        <div className="action-buttonst">
+                                            <button onClick={() => handleAccept(reservation._id)}>Accept</button>
+                                            <button onClick={() => handleReject(reservation._id)}>Reject</button>
+                                        </div>
+                                    )}
+                                    {(reservation.status === 'accepted' || reservation.status === 'rejected') && (
+                                        <div className="action-buttonst">
+                                            <button onClick={() => handleDelete(reservation._id)}>Delete</button>
+                                            {/* <button onClick={() => handleCancel(reservation._id)}>Cancel</button> */}
+                                        </div>
+                                    )}
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
+    );
 };
 
 export default RoomReservationTable;

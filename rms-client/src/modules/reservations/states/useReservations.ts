@@ -1,88 +1,127 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-interface RoomReservation {
-  id: number;
+interface Reservation {
+  _id: string; // Updated to reflect the correct field
   roomType: string;
-  checkInDate: string;
-  checkOutDate: string;
+  arrivalDate: string;
+  departureDate: string;
   specialRequests: string;
   paymentMethod: string;
   status: string;
+  email: string; // Add email for notifications
 }
 
-const initialReservations: RoomReservation[] = [
-  {
-    id: 1,
-    roomType: 'Single',
-    checkInDate: '2023-03-01',
-    checkOutDate: '2023-03-03',
-    specialRequests: 'Extra Bed',
-    paymentMethod: 'Credit Card',
-    status: 'Pending',
-  },
-  {
-    id: 2,
-    roomType: 'Double',
-    checkInDate: '2023-03-05',
-    checkOutDate: '2023-03-07',
-    specialRequests: 'Room Service',
-    paymentMethod: 'Cash',
-    status: 'Pending',
-  },
-];
-
 export const useReservations = () => {
-  const [reservations, setReservations] = useState(initialReservations);
+  const [reservations, setReservations] = useState<Reservation[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleAccept = (id: number) => {
-    setReservations(
-      reservations.map((reservation) =>
-        reservation.id === id
-          ? { ...reservation, status: 'Accepted' }
-          : reservation
-      )
-    );
-  };
-
-  const handleReject = (id: number) => {
-    setReservations(
-      reservations.map((reservation) =>
-        reservation.id === id
-          ? { ...reservation, status: 'Rejected' }
-          : reservation
-      )
-    );
-  };
-
-  const handleCancel = (id: number) => {
-    setReservations(
-      reservations.map((reservation) =>
-        reservation.id === id
-          ? { ...reservation, status: 'Cancelled' }
-          : reservation
-      )
-    );
-    notifyManager(id);
-  };
-
-  const notifyManager = (id: number) => {
-    const cancelledReservation = reservations.find(
-      (reservation) => reservation.id === id
-    );
-    if (cancelledReservation) {
-      // Example notification logic
-      console.log(
-        `Manager notified: Reservation ID ${cancelledReservation.id} for ${cancelledReservation.roomType} has been cancelled.`
-      );
-      // You can integrate with an actual notification service here
+  // Fetch reservations from the backend
+  const fetchReservations = async () => {
+    try {
+      const response = await axios.get<Reservation[]>('http://localhost:5000/api/bookings');
+      setReservations(response.data);
+    } catch (error) {
+      setError('Error fetching reservations');
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const sendEmail = async (email: string, subject: string, message: string) => {
+    try {
+      await axios.post('http://localhost:5000/api/send-email', {
+        email,
+        subject,
+        message,
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  };
+
+  // Handle Accept
+  const handleAccept = async (_id: string) => {
+    if (!_id) {
+      console.error('Invalid reservation ID:', _id);
+      return;
+    }
+    try {
+      const response = await axios.put<Reservation>(`http://localhost:5000/api/bookings/${_id}/accept`);
+      const updatedReservation = response.data;
+      setReservations((prevReservations) =>
+        prevReservations.map((reservation) =>
+          reservation._id === _id ? updatedReservation : reservation
+        )
+      );
+      // Send email notification
+      await sendEmail(updatedReservation.email, 'Reservation Accepted', 'Your reservation has been accepted.');
+    } catch (error) {
+      console.error('Error accepting reservation:', error);
+    }
+  };
+
+  // Handle Reject
+  const handleReject = async (_id: string) => {
+    try {
+      const response = await axios.put<Reservation>(`http://localhost:5000/api/bookings/${_id}/reject`);
+      const updatedReservation = response.data;
+      setReservations((prevReservations) =>
+        prevReservations.map((reservation) =>
+          reservation._id === _id ? updatedReservation : reservation
+        )
+      );
+      // Send email notification
+      await sendEmail(updatedReservation.email, 'Reservation Rejected', 'Your reservation has been rejected.');
+    } catch (error) {
+      console.error('Error rejecting reservation:', error);
+    }
+  };
+
+  // Handle Cancel
+  const handleCancel = async (_id: string) => {
+    try {
+      const response = await axios.put<Reservation>(`http://localhost:5000/api/bookings/${_id}/cancel`);
+      const updatedReservation = response.data;
+      setReservations((prevReservations) =>
+        prevReservations.map((reservation) =>
+          reservation._id === _id ? updatedReservation : reservation
+        )
+      );
+    } catch (error) {
+      console.error('Error canceling reservation:', error);
+    }
+  };
+
+  // Handle Delete
+  const handleDelete = async (_id: string) => {
+    if (!_id) {
+      console.error('Invalid reservation ID:', _id);
+      return;
+    }
+    try {
+      await axios.delete<Reservation>(`http://localhost:5000/api/bookings/${_id}`);
+      setReservations((prevReservations) =>
+        prevReservations.filter((reservation) => reservation._id !== _id)
+      );
+    } catch (error) {
+      console.error('Error deleting reservation:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchReservations();
+  }, []);
+
   return {
     reservations,
+    isLoading,
+    error,
     handleAccept,
     handleReject,
     handleCancel,
+    handleDelete, // Expose the handleDelete function
   };
 };
-

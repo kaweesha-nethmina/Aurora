@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 interface Booking {
-  id: number;
+  _id: string; // Use _id instead of id
   roomType: string;
   arrivalDate: string;
   departureDate: string;
@@ -14,21 +13,24 @@ interface Booking {
 
 interface BookingItemProps {
   booking: Booking;
-  onCancel: (id: number) => void;
+  onCancel: (_id: string) => void; // Updated to match ID type
 }
 
 const BookingItem: React.FC<BookingItemProps> = ({ booking, onCancel }) => {
-  const navigate = useNavigate(); // Use navigate hook to redirect
+  const navigate = useNavigate();
 
   const handleCancelClick = () => {
-    onCancel(booking.id);
-    navigate('/cancelform'); // Navigate to cancel form
+    const confirmCancel = window.confirm('Are you sure you want to cancel this booking?');
+    if (confirmCancel) {
+      console.log("Canceling booking with ID:", booking._id); // Debugging log
+      onCancel(booking._id); // Call the onCancel function with booking ID
+      navigate('/roomreservation'); // Optional navigation
+    }
   };
 
   return (
     <div className="booking-item">
-      
-      <h3 className="title">Booking #{booking.id}</h3>
+      <h3 className="title">Booking #{booking._id}</h3>
       <p className="detail">Room Type: {booking.roomType}</p>
       <p className="detail">Check-in Date: {booking.arrivalDate}</p>
       <p className="detail">Check-out Date: {booking.departureDate}</p>

@@ -1,5 +1,5 @@
 import RoomReservationTable from './components/RoomReservationTable';
-import '../reservations/Reservationtable.css'
+import '../reservations/Reservationtable.css';
 
 const Reservationdetails = () => {
   return (

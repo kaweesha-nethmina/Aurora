@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../RoomBookingForm.css';
 import Header from '../../core/components/Header';
+import axios from 'axios';
 
+// Define an interface for the booking data
+interface BookingData {
+  roomType: string;
+  arrivalDate: string;
+  departureDate: string;
+  specialRequests: string;
+  paymentMethod: string;
+  cardNumber: string;
+  expirationDate: string;
+  cvv: string;
+  email: string; // Include email in the booking data
+}
 
+// Define an interface for user profile
+interface UserProfile {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  username?: string;
+}
 
-
-
-interface RoomBookingFormProps {}
-
-const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
+const RoomBookingForm: React.FC = () => {
   const [roomType, setRoomType] = useState('');
   const [arrivalDate, setArrivalDate] = useState('');
   const [departureDate, setDepartureDate] = useState('');
@@ -17,7 +34,30 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
   const [cvv, setCvv] = useState('');
+  const [email, setEmail] = useState(''); // State for email
   const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null); // State for user profile
+
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      try {
+        const parsedData = JSON.parse(userData);
+        if (parsedData && parsedData.firstName && parsedData.lastName && parsedData.contact_info) {
+          setUserProfile({
+            firstName: parsedData.firstName,
+            lastName: parsedData.lastName,
+            email: parsedData.contact_info.email,
+            phone: parsedData.phone,
+            username: parsedData.contact_info.username,
+          });
+          setEmail(parsedData.contact_info.email); // Set email state from local storage
+        }
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+      }
+    }
+  }, []);
 
   const handleRoomTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setRoomType(event.target.value);
@@ -51,9 +91,36 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
     setCvv(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setBookingSuccess(true);
+
+    const bookingData: BookingData = {
+      roomType,
+      arrivalDate,
+      departureDate,
+      specialRequests,
+      paymentMethod,
+      cardNumber,
+      expirationDate,
+      cvv,
+      email,
+    };
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/bookings', bookingData);
+      
+      if (response.status === 201) {
+        setBookingSuccess(true);
+        alert('Room booked successfully!');
+      }
+    } catch (error: any) {
+      console.error('Error booking room:', error);
+      alert('Error booking room. Please try again.');
+    }
   };
 
   return (
@@ -73,8 +140,8 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
             <option value="single">Single</option>
             <option value="double">Double</option>
             <option value="suite">Suite</option>
-            <option value="suite">Family</option>
-            <option value="suite">Delux</option>
+            <option value="family">Family</option>
+            <option value="deluxe">Deluxe</option>
           </select>
         </div>
         <div className="form-group">
@@ -104,6 +171,16 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+            required // Make email required
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="payment-method">Payment Method</label>
           <select
             id="payment-method"
@@ -124,6 +201,7 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
                 type="text"
                 value={cardNumber}
                 onChange={handleCardNumberChange}
+                required // Make card number required
               />
             </div>
             <div className="form-group">
@@ -133,6 +211,7 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
                 type="text"
                 value={expirationDate}
                 onChange={handleExpirationDateChange}
+                required // Make expiration date required
               />
             </div>
             <div className="form-group">
@@ -142,6 +221,7 @@ const RoomBookingForm: React.FC<RoomBookingFormProps> = () => {
                 type="text"
                 value={cvv}
                 onChange={handleCvvChange}
+                required // Make CVV required
               />
             </div>
           </div>
