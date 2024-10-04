@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import jsPDF from 'jspdf';
 import './BookingReport.css';
 
 interface MonthlyBooking {
@@ -25,6 +26,24 @@ const BookingReport: React.FC = () => {
     fetchMonthlyBookings();
   }, []);
 
+  // Function to generate PDF
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text('Monthly Booking Report', 20, 20);
+    doc.setFontSize(12);
+    doc.text('Month', 20, 40);
+    doc.text('Number of Bookings', 100, 40);
+
+    monthlyBookings.forEach((item, index) => {
+      const yPosition = 50 + index * 10; // Adjust spacing between rows
+      doc.text(String(item._id), 20, yPosition);
+      doc.text(String(item.count), 100, yPosition);
+    });
+
+    doc.save('Monthly_Booking_Report.pdf');
+  };
+
   return (
     <div className="booking-report-container">
       <h2>Monthly Booking Report</h2>
@@ -45,6 +64,7 @@ const BookingReport: React.FC = () => {
           ))}
         </tbody>
       </table>
+      <button onClick={generatePDF} className="print-button">Print to PDF</button>
     </div>
   );
 };

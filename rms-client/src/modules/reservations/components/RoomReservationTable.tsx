@@ -15,6 +15,12 @@ const RoomReservationTable = () => {
         return <div>No reservations available.</div>; // Show when there are no reservations
     }
 
+    // Function to format date
+    const formatDate = (dateString: string) => {
+        const date = new Date(dateString);
+        return date.toISOString().split('T')[0]; // Get the date part in YYYY-MM-DD format
+    };
+
     return (
         <div className="table-containert">
             <table className="reservation-tablet">
@@ -41,8 +47,8 @@ const RoomReservationTable = () => {
                         return (
                             <tr key={reservation._id}>
                                 <td>{reservation.roomType}</td>
-                                <td>{reservation.arrivalDate}</td>
-                                <td>{reservation.departureDate}</td>
+                                <td>{formatDate(reservation.arrivalDate)}</td> {/* Format the arrival date */}
+                                <td>{formatDate(reservation.departureDate)}</td> {/* Format the departure date */}
                                 <td>{reservation.specialRequests}</td>
                                 <td>{reservation.paymentMethod}</td>
                                 <td>{reservation.status}</td>
