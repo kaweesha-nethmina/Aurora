@@ -31,7 +31,6 @@ import AddRoomForm from './modules/reservations/components/AddRoomForm';
 import RoomTable from './modules/reservations/components/RoomTable';
 import Reservationdetails from './modules/reservations/Reservationdetails';
 import CancelBookingForm from './modules/reservations/components/CancelBookingForm';
-import CancelBookingTable from './modules/reservations/components/CancelBookingTable';
 
 import Restaurant from './modules/restuarent/restuarent/Restaurant';
 import Menu from './modules/restuarent/restuarent/components/Menu/Menu';
