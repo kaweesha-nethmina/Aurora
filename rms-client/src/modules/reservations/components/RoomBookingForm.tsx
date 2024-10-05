@@ -126,7 +126,7 @@ const RoomBookingForm: React.FC = () => {
 
   return (
     <div className="booking-form-container">
-      <Header activeTab={''} />
+      <Header activeTab={'rooms'} />
       
       <h2 className="booking-form-title">Room Booking Form</h2>
       <form onSubmit={handleSubmit}>

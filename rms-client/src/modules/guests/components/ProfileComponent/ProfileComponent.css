@@ -1,7 +1,7 @@
 .profile-container-unique {
   width: 1530px;
   margin-top: 80px;
-  padding: 40px;
+  
   height: 90vh;
   background-color: #ffffff; /* Light background for better readability */
   box-shadow: 0 0 14px 6px rgba(0, 0, 0, 0.1);
@@ -45,6 +45,7 @@
   color: white;
   margin-top: 50px !important;
   border: none;
+  margin-left: -100px;
   border-radius: 5px;
   padding: 10px 15px;
   cursor: pointer;

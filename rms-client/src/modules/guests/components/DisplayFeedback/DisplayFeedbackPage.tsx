@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './DisplayFeedbackPage.css';
 import Header from '../../../core/components/Header';
 import Navbar from '../nav/GNavbar';

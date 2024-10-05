@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
             <Link to="/displayfeedback" className="nav-link">Feedback</Link>
           </li>
           <li className="nav-item">
-            <Link to="#" className="nav-link">Loyality</Link>
+            <Link to="/loyality" className="nav-link">Loyality</Link>
           </li>
 
         </ul>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './profileComponent.css';
 import Header from '../../../core/components/Header';
+import Navbar from '../nav/GNavbar';
 
 interface UserProfile {
     firstName: string;
@@ -47,7 +47,6 @@ const ProfileComponent = () => {
     const handleSave = async () => {
         if (userProfile) {
             try {
-                const response = await axios.put('http://localhost:5000/api/customers/update', userProfile);
                 localStorage.setItem('userData', JSON.stringify(userProfile));
                 setIsEditing(false);
             } catch (error) {
@@ -62,13 +61,11 @@ const ProfileComponent = () => {
         navigate('/login');
     };
 
-    const handleFeedback = () => {
-        navigate('/feedback'); // Navigate to feedback page
-    };
 
     return (
         <div className="profile-container-unique">
             <Header activeTab={''} />
+            <Navbar />
             <div className='profile-content'>
                 {userProfile ? (
                     <div>

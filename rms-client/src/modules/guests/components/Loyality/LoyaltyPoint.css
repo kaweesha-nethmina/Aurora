@@ -1,0 +1,56 @@
+.loyalty-point-container {
+    
+    margin-top: 70px;
+    border-radius: 8px;
+    width: 1530px;
+    
+  }
+  
+  .loyalty-point-content {
+    text-align: center;
+    margin-top: 50px;
+    width: 800px;
+    margin-left: 350px;
+  }
+  
+  .loyalty-point-heading {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .loyalty-point-card {
+    background-color: #4caf50; /* Green background for the points card */
+    border-radius: 8px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+  
+  .loyalty-points-highlight {
+    font-size: 48px; /* Large font for points */
+    font-weight: bold;
+  }
+  
+  .loyalty-points-text {
+    font-size: 20px;
+  }
+  
+  .loyalty-points-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .loyalty-points-details h3 {
+    flex: 1; /* Ensures even spacing */
+    color: #555; /* Darker text color for details */
+    margin: 10px;
+    font-weight: normal;
+  }
+  .btnOffer{
+    color: #ffffff;
+    margin-top: 100px;
+    background-color: rgb(33, 34, 34);
+  }

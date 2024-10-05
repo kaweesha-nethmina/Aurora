@@ -81,7 +81,7 @@ const ProfileScreen: React.FC = () => {
 
   return (
     <div className="profile-screen">
-      <Header activeTab={''} />
+      <Header activeTab={'rooms'} />
       <Navbar />
       {error && <p className="error-message">{error}</p>}
       <ul className="booking-list">

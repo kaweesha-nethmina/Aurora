@@ -72,3 +72,21 @@ export const getAllCustomers = async (req: Request, res: Response) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+
+// Delete a customer by ID
+export const deleteCustomer = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+        const customer = await Customer.findByIdAndDelete(id);
+
+        if (!customer) {
+            return res.status(404).json({ message: 'Customer not found' });
+        }
+
+        res.status(200).json({ message: 'Customer deleted successfully' });
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};

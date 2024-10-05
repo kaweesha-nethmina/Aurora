@@ -106,6 +106,7 @@ import EmployeeLogin from './modules/employees/components/Login/EmployeeLogin';
 import EmployeeProfile from './modules/employees/components/Login/EmployeeProfile';
 import BookingReport from './modules/reservations/components/BookingReport';
 import MonthlyReservationReport from './modules/restuarent/restuarent/components/AcceptRejectBooking/MonthlyReservationReport';
+import LoyaltyPoint from './modules/guests/components/Loyality/LoyaltyPoint';
 
 
 
@@ -235,7 +236,7 @@ function App() {
         
         <Route path='/Feedbackrating' element={<FeedbackRatingPage/>}/>
         <Route path='/Adminpage' element={<GAdminPage/>}/>
-        
+        <Route path='/loyality' element={<LoyaltyPoint/>}/>
         <Route path='/displayfeedback' element={<DisplayFeedbackPage/>}/>
         <Route path='/pr' element={<ProfileComponent/>}/>
 

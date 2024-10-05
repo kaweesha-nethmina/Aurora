@@ -50,7 +50,7 @@ const HomePage1 = () => {
 
   return (
     <div className="homepage">
-      <Header activeTab={''} />
+      <Header activeTab={'offers'} />
       <Navbar />
       <div className="homepage-controls">
         <CategorySelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />

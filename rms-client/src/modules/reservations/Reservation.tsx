@@ -44,7 +44,7 @@ const Reservation: React.FC = () => {
 
   return (
     <div className="containerRoom">
-      <Header activeTab={''} />
+      <Header activeTab={'rooms'} />
       <Subheader />
       <h1 className="title">Hotel Rooms</h1>
       <div className="controls">
