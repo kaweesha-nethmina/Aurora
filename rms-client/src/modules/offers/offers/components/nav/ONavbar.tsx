@@ -12,9 +12,6 @@ const Navbar: React.FC = () => {
             <Link to="/Table" className="nav-link">View Bookings</Link>
           </li>
           <li className="nav-item">
-            <Link to="/OfferPaymentForm" className="nav-link">Payment</Link>
-          </li>
-          <li className="nav-item">
             <Link to="/TermsAndConditions" className="nav-link">Terms&Conditions</Link>
           </li>
 

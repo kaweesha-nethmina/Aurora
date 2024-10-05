@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import OfferCard from './OfferCard';
-import CategorySelector from './CategorySelector';
 import SearchBar from './SearchBar';
 import '../OffersHome/HomePage.css';
 import Header from '../../../../core/components/Header';
@@ -12,11 +11,12 @@ interface Offer {
   category: string;
   description: string;
   image: string;
+  price: string;
 }
 
 const HomePage1 = () => {
   const [offers, setOffers] = useState<Offer[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +53,7 @@ const HomePage1 = () => {
       <Header activeTab={'offers'} />
       <Navbar />
       <div className="homepage-controls">
-        <CategorySelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+        
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
       <div className="homepage-offers">

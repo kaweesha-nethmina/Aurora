@@ -1,75 +1,96 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-
+import jsPDF from 'jspdf'; // Import for PDF generation
 import '../DailyReport/DailyReport.css';
 
-interface ReportData {
-  name: string;
-  quantity: number;
+interface Booking {
+  date: string; // assuming the date field is available in your booking data
+}
+
+interface MonthlyBookingData {
+  month: string;
+  count: number;
 }
 
 const DailyReportGenerationForm = () => {
-  const [data, setData] = useState<ReportData[]>([
-    { name: 'Event', quantity: Math.floor(Math.random() * 6) },
-    { name: 'Spa', quantity: Math.floor(Math.random() * 6) },
-    { name: 'Restaurant', quantity: Math.floor(Math.random() * 6) },
-    { name: 'Packages', quantity: Math.floor(Math.random() * 6) },
-  ]);
-
+  const [data, setData] = useState<MonthlyBookingData[]>([]);
   const [generated, setGenerated] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/offerbookings'); // Modify based on your API
+        if (!response.ok) {
+          throw new Error('Failed to fetch bookings');
+        }
+        const bookings: Booking[] = await response.json();
+
+        // Group bookings by month
+        const groupedByMonth: { [key: string]: number } = {};
+        bookings.forEach((booking) => {
+          const bookingDate = new Date(booking.date);
+          const month = bookingDate.toLocaleString('default', { month: 'long' }); // e.g., 'January', 'February'
+          groupedByMonth[month] = (groupedByMonth[month] || 0) + 1;
+        });
+
+        const formattedData = Object.entries(groupedByMonth).map(([month, count]) => ({
+          month,
+          count,
+        }));
+
+        setData(formattedData);
+      } catch (error) {
+        console.error('Error fetching bookings:', error);
+        setError('Failed to load booking report. Please try again.');
+      }
+    };
+
+    fetchBookings();
+  }, []);
 
   const handleReportGeneration = () => {
     setGenerated(true);
   };
 
-  const handleSaveAsPdf = async () => {
-    const chartElement = document.getElementById('chart');
-    if (chartElement) {
-      const canvas = await html2canvas(chartElement);
-      const dataURL = canvas.toDataURL('image/png');
-      
-      const pdf = new jsPDF();
-      const imgWidth = 190;
-      const pageHeight = pdf.internal.pageSize.height;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text('Monthly Bookings Report', 20, 20);
+    doc.setFontSize(12);
+    doc.text('Month', 20, 40);
+    doc.text('Number of Bookings', 100, 40);
 
-      let position = 0;
+    data.forEach((item, index) => {
+      const yPosition = 50 + index * 10; // Adjust spacing between rows
+      doc.text(item.month, 20, yPosition);
+      doc.text(String(item.count), 100, yPosition);
+    });
 
-      pdf.addImage(dataURL, 'PNG', 10, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(dataURL, 'PNG', 10, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save('daily-report.pdf');
-    }
+    doc.save('Monthly_Bookings_Report.pdf');
   };
 
   return (
     <div className="report-containerw">
-      <h1 className="report-title">Daily Report Generation Form</h1>
+      <h1 className="report-title">Monthly Bookings Report</h1>
       <button className="btn-report" onClick={handleReportGeneration}>
-        Report Generate
+        Generate Report
       </button>
       {generated && (
         <div>
           <BarChart width={500} height={300} data={data} id="chart" className="chart">
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis domain={[0, 5]} />
+            <XAxis dataKey="month" />
+            <YAxis />
             <Tooltip />
-            <Bar dataKey="quantity" fill="#8884d8" />
+            <Bar dataKey="count" fill="#82ca9d" />
           </BarChart>
-          <button className="btn-save" onClick={handleSaveAsPdf}>
+          <button className="btn-save" onClick={generatePDF}>
             Save as PDF
           </button>
         </div>
       )}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

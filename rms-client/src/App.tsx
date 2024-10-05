@@ -275,17 +275,13 @@ function App() {
         {/* Offers */}
         <Route path='/offers' element={<Offers/>}/>
         <Route path="/HomePage1" element={<HomePage1/>} />
-        
-       
-         <Route path="/Navbar" element={<Navbar/>} />
-         
-        
-        
+        <Route path="/Navbar" element={<Navbar/>} />
         <Route path="/OfferCard" element={<OfferCard offer={{
         id: 0,
         name: '',
         description: '',
-        image: ''
+        image: '',
+        price: ''
       }}/>} />
        <Route path="/Table" element={<Table/>} />
        <Route path="/FormBook" element={<FormBook/>} />

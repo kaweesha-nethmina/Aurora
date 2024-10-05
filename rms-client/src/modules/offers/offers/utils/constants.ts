@@ -1,4 +1,6 @@
 export interface FormValues {
+  offerPrice: any;
+  offerName: any;
   fullName: string;
   nic: string;
   phoneNumber: string;

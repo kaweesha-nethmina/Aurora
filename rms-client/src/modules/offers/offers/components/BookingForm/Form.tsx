@@ -1,15 +1,52 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useForm } from '../../hooks/useForm';
+import { useLocation } from 'react-router-dom';
 import './Form.css';
 import Header from '../../../../core/components/Header';
 
+// Define the structure of your form values
+interface FormValues {
+  fullName: string;
+  phoneNumber: string;
+  offerName: string;
+  offerPrice: string;
+  date: string;
+  description: string;
+  nic: string;
+}
+
 const Form = () => {
-  const { formValues, errors, handleChange, handleSubmit } = useForm();
+  const location = useLocation();
+  const { offer } = location.state || {};
+
+  const { formValues, errors, handleChange, handleSubmit, setFormValues, submissionStatus } = useForm(); 
+
+  // Retrieve user data from localStorage
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      const userProfile = JSON.parse(userData);
+      setFormValues((prevValues: FormValues) => ({
+        ...prevValues,
+        fullName: `${userProfile.firstName || ''} ${userProfile.lastName || ''}`,
+        phoneNumber: userProfile.phone || '',
+      }));
+    }
+
+    if (offer) {
+      setFormValues((prevValues: FormValues) => ({
+        ...prevValues,
+        offerName: offer.name || '',
+        offerPrice: offer.price || '',
+        description: offer.description || '',
+      }));
+    }
+  }, [offer, setFormValues]);
 
   return (
     <div className="form-containerOf">
       <Header activeTab={'offers'} />
-      <h2 className="form-title">Booking Form</h2>
+      <h2 className="form-title">{offer ? offer.name : 'Spa Day'}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="fullName">Full Name</label>
@@ -25,19 +62,6 @@ const Form = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="nic">NIC</label>
-          <input
-            type="text"
-            id="nic"
-            name="nic"
-            value={formValues.nic}
-            onChange={handleChange}
-            className={`form-input ${errors.nic ? 'form-input-error' : ''}`}
-          />
-          {errors.nic && <p className="form-error">{errors.nic}</p>}
-        </div>
-
-        <div className="form-group">
           <label htmlFor="phoneNumber">Phone Number</label>
           <input
             type="text"
@@ -48,6 +72,34 @@ const Form = () => {
             className={`form-input ${errors.phoneNumber ? 'form-input-error' : ''}`}
           />
           {errors.phoneNumber && <p className="form-error">{errors.phoneNumber}</p>}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="offerName">Offer Name</label>
+          <input
+            type="text"
+            id="offerName"
+            name="offerName"
+            value={formValues.offerName}
+            onChange={handleChange}
+            className={`form-input ${errors.offerName ? 'form-input-error' : ''}`}
+            readOnly
+          />
+          {errors.offerName && <p className="form-error">{errors.offerName}</p>}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="offerPrice">Price</label>
+          <input
+            type="text"
+            id="offerPrice"
+            name="offerPrice"
+            value={formValues.offerPrice}
+            onChange={handleChange}
+            className={`form-input ${errors.offerPrice ? 'form-input-error' : ''}`}
+            readOnly
+          />
+          {errors.offerPrice && <p className="form-error">{errors.offerPrice}</p>}
         </div>
 
         <div className="form-group">
@@ -77,6 +129,9 @@ const Form = () => {
 
         <button className="form-button" type="submit">Book</button>
       </form>
+
+      {/* Display submission status */}
+      {submissionStatus && <p className="submission-status">{submissionStatus}</p>}
     </div>
   );
 };

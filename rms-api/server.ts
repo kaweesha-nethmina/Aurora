@@ -24,7 +24,7 @@ import leaveReportRoutes from './src/routers/leaveReportRoutes';
 import tableReservationRouter from './src/routers/TablereservationRouter';
 import notificationRoutes from './src/routers/notificationrouter';
 import RoomBookingRoutes from './src/routers/RoomBookingRoutes';
-
+import offerBookingRoutes from './src/routers/offerBookingRoutes';
 
 
 // Load environment variables
@@ -81,6 +81,7 @@ app.use('/api', leaveReportRoutes);
 app.use('/api/table-reservations', tableReservationRouter);
 app.use('/api', notificationRoutes);
 app.use('/api', RoomBookingRoutes);
+app.use('/api/offerbookings', offerBookingRoutes); 
 
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {

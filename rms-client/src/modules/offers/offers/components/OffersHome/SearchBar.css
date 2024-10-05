@@ -1,6 +1,7 @@
 .search-bar {
-    width: 250px;
+    width: 650px !important;
     padding: 10px;
+    margin-left: 450px;
     border: 1px solid #ccc;
     border-radius: 5px;
   }

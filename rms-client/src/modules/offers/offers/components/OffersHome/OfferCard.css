@@ -23,9 +23,12 @@
     color: #555;
     margin-bottom: 15px;
   }
-  
+  .offer-card-price{
+    color: #017907;
+    margin-bottom: 15px;
+  }
   .offer-card-button {
-    background-color: #4f46e5;
+    background-color: #e5b346;
     color: white;
     padding: 10px 20px;
     border: none;

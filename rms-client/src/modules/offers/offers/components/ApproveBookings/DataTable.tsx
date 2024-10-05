@@ -1,30 +1,91 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../ApproveBookings/DataTable.css';
 
 interface DataRow {
-  id: number;
+  _id: string; // MongoDB ObjectId field
   fullName: string;
-  nic: string;
-  phoneNo: string;
-  date: string;
+  phoneNumber: string;
+  offerPrice: string;
+  date: string; // Keep it as a string or convert to Date
   description: string;
   status: string;
 }
 
 const DataTable = () => {
-  const [data, setData] = useState<DataRow[]>([
-    { id: 1, fullName: 'Akash Jayasekara', nic: '123456789', phoneNo: '1234567890', date: '2024-09-24', description: 'Test Description', status: 'pending' },
-    { id: 2, fullName: 'Dulangi Amasha', nic: '987654321', phoneNo: '0987654321', date: '2024-09-26', description: 'Test Description', status: 'pending' },
-  ]);
+  const [data, setData] = useState<DataRow[]>([]);
 
-  const [dropdownOptions] = useState([
+  const dropdownOptions = [
     { label: 'Confirmed', value: 'confirmed', color: 'status-confirmed' },
     { label: 'Unsuccessful', value: 'unsuccessful', color: 'status-unsuccessful' },
     { label: 'Pending', value: 'pending', color: 'status-pending' },
-  ]);
+  ];
 
-  const handleStatusChange = (id: number, status: string) => {
-    setData(data.map((row) => (row.id === id ? { ...row, status } : row)));
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/offerbookings');
+        if (!response.ok) {
+          throw new Error('Failed to fetch bookings');
+        }
+        const bookings: DataRow[] = await response.json();
+        setData(bookings);
+      } catch (error) {
+        console.error('Error fetching bookings:', error);
+      }
+    };
+    fetchBookings();
+  }, []);
+
+  const handleStatusChange = (id: string, status: string) => {
+    const updatedData = data.map((row) => (row._id === id ? { ...row, status } : row));
+    setData(updatedData);
+  };
+
+  const handleAccept = async (id: string) => {
+    console.log(`Accepting booking with ID: ${id}`);
+    try {
+      const response = await fetch(`http://localhost:5000/api/offerbookings/${id}/accept`, {
+        method: 'PUT',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to accept booking');
+      }
+      const updatedBooking = await response.json();
+      handleStatusChange(id, updatedBooking.status);
+    } catch (error) {
+      console.error('Error accepting booking:', error);
+    }
+  };
+
+  const handleReject = async (id: string) => {
+    console.log(`Rejecting booking with ID: ${id}`);
+    try {
+      const response = await fetch(`http://localhost:5000/api/offerbookings/${id}/reject`, {
+        method: 'PUT',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to reject booking');
+      }
+      const updatedBooking = await response.json();
+      handleStatusChange(id, updatedBooking.status);
+    } catch (error) {
+      console.error('Error rejecting booking:', error);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    console.log(`Deleting booking with ID: ${id}`);
+    try {
+      const response = await fetch(`http://localhost:5000/api/offerbookings/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete booking');
+      }
+      setData(data.filter((row) => row._id !== id)); // Use _id instead of id
+    } catch (error) {
+      console.error('Error deleting booking:', error);
+    }
   };
 
   return (
@@ -33,9 +94,9 @@ const DataTable = () => {
         <thead>
           <tr>
             <th>Full Name</th>
-            <th>NIC</th>
             <th>Phone No</th>
             <th>Date</th>
+            <th>Price</th>
             <th>Description</th>
             <th>Status</th>
             <th>Action</th>
@@ -43,11 +104,11 @@ const DataTable = () => {
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.id}>
+            <tr key={row._id}> {/* Use _id for the key */}
               <td>{row.fullName}</td>
-              <td>{row.nic}</td>
-              <td>{row.phoneNo}</td>
-              <td>{row.date}</td>
+              <td>{row.phoneNumber}</td>
+              <td>{new Date(row.date).toLocaleDateString()}</td>
+              <td>Rs.{row.offerPrice}</td>
               <td>{row.description}</td>
               <td>
                 <span className={`status-label ${dropdownOptions.find((option) => option.value === row.status)?.color}`}>
@@ -55,18 +116,9 @@ const DataTable = () => {
                 </span>
               </td>
               <td>
-                <select
-                  value={row.status}
-                  onChange={(e) => handleStatusChange(row.id, e.target.value)}
-                  disabled={row.status !== 'pending'}
-                  className="status-select"
-                >
-                  {dropdownOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
+                <button onClick={() => handleAccept(row._id)}>Accept</button> 
+                <button onClick={() => handleReject(row._id)}>Reject</button> 
+                <button className='Odelete' onClick={() => handleDelete(row._id)}>Delete</button> 
               </td>
             </tr>
           ))}

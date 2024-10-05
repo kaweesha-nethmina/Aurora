@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import '../../../../employees/EmployeeDashboard.css'; // Assuming you're using a shared CSS file
+import './OManagerDashboard.css'; // Assuming you're using a shared CSS file
 import OManagerHeader from './OManagerHeader'; // New header import for OManager
 import Sidebar from '../../../../core/components/Sidebar';
 
