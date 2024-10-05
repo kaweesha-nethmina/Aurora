@@ -18,6 +18,7 @@
     filter: blur(5px); 
     transform: scale(1.1);
   }
+
 .booking-form-event {
     background-color: white;
     padding: 24px;
@@ -41,6 +42,42 @@
     border-radius: 4px;
     border: 1px solid #ccc;
   }
+
+  .booking-form-event input, .event-select-wrapper {
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;  /* Ensure padding does not affect width */
+}
+
+  .event-select-wrapper {
+    position: relative;
+  }
+
+  .booking-form-event select {
+    appearance: none; /* Removes the default dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none; /* Remove default border */
+    background-color: transparent; /* Transparent background for select */
+    padding: 8px;  /* Same padding as input */
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+}
+
+ .event-select-wrapper::after {
+  content: '▼'; /* Custom dropdown arrow */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 14px;
+  color: #333; /* Custom arrow color */
+}
   
   .booking-form-event button {
     background-color: #007bff;

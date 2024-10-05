@@ -3,16 +3,20 @@ import React, { useState } from 'react';
 import EventForm from './EventForm';
 
 interface Event {
-  id: number;
+  id: string;
   name: string;
   date: string;
   time: string;
   location: string;
+  type: string; //new
+  isCustom: boolean; //new
+  details?: string;
+  image?:File;
 }
 
 interface EventListProps {
   events: Event[];
-  handleDeleteEvent: (id: number) => void;
+  handleDeleteEvent: (id: string) => void;
   handleUpdateEvent: (event: Event) => void;
   handleAddEvent: (event: Event) => void;
 }
@@ -20,15 +24,35 @@ interface EventListProps {
 const EventList: React.FC<EventListProps> = ({ events, handleDeleteEvent , handleUpdateEvent , handleAddEvent }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [newEvent, setNewEvent] = useState<Event>({
-    id: events.length + 1, // Assuming you're auto-generating the id
+    id: '', // Assuming you're auto-generating the id
     name: '',
     date: '',
     time: '',
     location: '',
+    type: '',
+    //new
+    isCustom: false,
+    details:'',
+    //image: '',
   });
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
+  };
+
+  const handleFormSubmit = () => {
+    handleAddEvent(newEvent); // Call to add event
+    setNewEvent({
+      id: '',
+      name: '',
+      date: '',
+      time: '',
+      location: '',
+      type: '',
+      isCustom: false,
+      details: '',
+    }); // Reset form after submission
+    setIsFormVisible(false); // Hide form after submission
   };
   
   return (
@@ -64,10 +88,7 @@ const EventList: React.FC<EventListProps> = ({ events, handleDeleteEvent , handl
         <EventForm
           newEvent={newEvent}
           setNewEvent={setNewEvent}
-          handleAddEvent={() => {
-            handleAddEvent(newEvent);
-            setIsFormVisible(false); //Hide form after submission
-          }}
+          handleAddEvent={handleFormSubmit}
         />
       )}
 

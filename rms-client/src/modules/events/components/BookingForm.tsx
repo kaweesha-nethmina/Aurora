@@ -7,6 +7,7 @@ const BookingForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
@@ -32,7 +33,7 @@ const BookingForm = () => {
     <div className='bform-container'>
       <Header activeTab={'events'} />
       <form onSubmit={handleSubmit} className="booking-form-event">
-      <h2>Booking Form</h2>
+      <h2>Event Booking Form</h2>
       
       <label>Name</label>
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -42,14 +43,29 @@ const BookingForm = () => {
       
       <label>Phone</label>
       <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
+
+      <label>Event Name</label>
+      <div className="event-select-wrapper">
+      <select value={eventName} onChange={(e) => setEventName(e.target.value)}>
+          <option value="">Select Event</option>
+          <option value="Sunset Yoga Session">Sunset Yoga Session</option>
+          <option value="Seaside Music Concert">Seaside Music Concert</option>
+          <option value="Tropical Cocktail Making Class">Tropical Cocktail Making Class</option>
+          <option value="Beach Bonfire & Storytelling">Beach Bonfire & Storytelling</option>
+          <option value="Ocean Adventure Scuba Diving">Ocean Adventure Scuba Diving</option>
+          <option value="Spa & Wellness Retreat">Spa & Wellness Retreat</option>
+          <option value="Luxury Dinner Under the Stars">Luxury Dinner Under the Stars</option>
+          <option value="Beach Volleyball Tournament">Beach Volleyball Tournament</option>
+        </select>
+        </div>
       
       <label>Event Date</label>
       <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)}  />
 
-      <label>Start Time</label>
+      <label>Entry Time</label>
       <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)}  />
 
-      <label>End Time</label>
+      <label>Planned Exit Time</label>
       <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)}  />
 
       <label>Number of Guests</label>

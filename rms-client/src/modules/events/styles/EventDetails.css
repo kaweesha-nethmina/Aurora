@@ -1,41 +1,79 @@
-.event-details {
-    background-color: white;
-    padding: 24px;
-    margin-top: 150px;
-    margin-left: 400px !important;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+/* EventDetails.css */
+
+.ed-event-details {
+  background-color: #f9f9f9; /* Light background for contrast */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Centered layout */
+  margin: 70px auto; /* Increased margin to prevent content hiding beneath header */
+  font-family: 'Arial', sans-serif; /* Custom font */
+}
+
+.ed-event-details h2 {
+  color: #333;
+  font-size: 2rem; /* Increase header size */
+  margin-bottom: 10px;
+}
+
+.ed-event-details p {
+  color: #555; /* Subtle color for text */
+  font-size: 1.1rem; /* Increase paragraph size */
+  line-height: 1.6; /* Improve readability */
+}
+
+.ed-event-image {
+  width: 100%; /* Responsive image */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px;
+  margin: 20px 0; /* Space above and below the image */
+}
+
+.ed-customization-options {
+  background-color: #e9f5ff; /* Light blue background */
+  border-left: 5px solid #4A90E2; /* Accent border */
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* Styles for buttons */
+.ed-book-btn, .ed-back-btn {
+  background-color: #4A90E2; /* Primary button color */
+  color: #fff; /* Text color */
+  border: none;
+  padding: 8px 10px; /* Shorter padding */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px; /* Space above buttons */
+  margin-right: 10px; /* Space between buttons */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.ed-book-btn:hover, .ed-back-btn:hover {
+  background-color: #357ABD; /* Darker shade on hover */
+}
+
+.ed-book-btn {
+  width: 150px;
+}
+
+.ed-back-btn {
+  background-color: transparent; /* Back button as outlined */
+  border: 1px solid #4A90E2; /* Border for the back button */
+  color: #4A90E2; /* Text color for the back button */
+  width: 150px;
+}
+
+.ed-back-btn:hover {
+  background-color: #4A90E2; /* Background change on hover */
+  color: white; /* Text color change on hover */
+}
+
+/* Responsive button stacking */
+@media (max-width: 600px) {
+  .ed-book-btn, .ed-back-btn {
+    width: 100%; /* Full width on smaller screens */
+    margin-right: 0; /* Remove margin between buttons */
+    margin-bottom: 10px; /* Add space between stacked buttons */
   }
-  .event-details::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-image: url("./../image/background.jpg");
-    background-size: cover;
-    z-index: -1; 
-    height: 100vh;
-    filter: blur(5px); 
-    transform: scale(1.1);
-  }
-  .book-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 14px;
-    border-radius: 4px;
-    text-decoration: none;
-    margin-right: 10px;
-  }
-  
-  .back-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 14px;
-    border-radius: 4px;
-    text-decoration: none;
-  }
+}

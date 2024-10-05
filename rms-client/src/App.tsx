@@ -107,6 +107,10 @@ import EmployeeProfile from './modules/employees/components/Login/EmployeeProfil
 import BookingReport from './modules/reservations/components/BookingReport';
 import MonthlyReservationReport from './modules/restuarent/restuarent/components/AcceptRejectBooking/MonthlyReservationReport';
 import LoyaltyPoint from './modules/guests/components/Loyality/LoyaltyPoint';
+import CustomizedEventDetails from './modules/events/components/CustomizedEventDetails';
+import FixedEventDetails from './modules/events/components/FixedEventDetails';
+import CustomEventPayment from './modules/events/components/CustomEventPayment';
+import FixedEventPayment from './modules/events/components/FixedEventPayment';
 
 
 
@@ -150,7 +154,11 @@ function App() {
         <Route path="/events/:id/book" element={<BookingEventForm/>}/>
         <Route path="events/:id/payment" element={<PaymentEventForm />} />
         <Route path="/eventcard" element={<EventCard />} />
-
+        <Route path="/custom-events/:id" element={<CustomizedEventDetails/>} />
+        <Route path="/fixed-events/:id" element={<FixedEventDetails/>} />
+        <Route path="/customized-event-payment" element={<CustomEventPayment />} />
+        <Route path="/fixed-event-payment" element={<FixedEventPayment />} />
+        
         <Route path='/EManager' element={<EManagerDashboard />}>
           <Route path='event' element={<Event />} />
           <Route path='addevent' element={<AddEvent />} />

@@ -1,0 +1,154 @@
+/* CustomizedEventDetails.css */
+
+.ced-event-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 80px; /* Adjust based on header */
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Limiting width for readability */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .ced-event-details h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  
+  .ced-event-details p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  /* Date Picker Section */
+  .ced-event_calendar-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .ced-event_calendar-container label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .ced-event_calendar-container .react-datepicker-wrapper {
+    width: 100%;
+  }
+  
+  .react-datepicker__input-container input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Time Selection */
+  .ced-event_time_selection {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .ced-event_time_selection label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .ced-event_time_selection select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Guest Count Section */
+  .ced-event-guest-count {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .ced-event-guest-count label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .ced-event-guest-count input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Resources (checkboxes) */
+  .ced-event-resources {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .ced-event-resources label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .ced-event-resources div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .ced-event-resources div input {
+    margin-right: 20px;
+  }
+  
+  .ced-event-resources div label {
+    font-size: 14px;
+  }
+  
+  /* Buttons */
+  .ced-submit-btn, .ced-back-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 40%; /* Set width for buttons */
+  }
+  
+  .ced-submit-btn {
+    background-color: #28a745; /* Submit button color */
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  .ced-submit-btn:hover {
+    background-color: #218838; /* Darker shade on hover */
+  }
+  
+  .ced-back-btn {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    background-color: #007bff; /* Back button color */
+    color: white;
+    transition: background-color 0.3s;
+    text-align: center;
+  }
+  
+  .ced-back-btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  

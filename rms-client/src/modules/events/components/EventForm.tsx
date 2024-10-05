@@ -2,12 +2,15 @@ import React from 'react';
 import axios from 'axios';
 
 interface Event {
-  id: string; // Ensure this is string to match AddEvent
+  id: string;
   name: string;
   date: string;
   time: string;
   location: string;
   type: string;
+  image?: File;
+  isCustom: boolean;
+  details?: string;
 }
 
 interface EventFormProps {
@@ -21,27 +24,44 @@ const EventForm: React.FC<EventFormProps> = ({ newEvent, setNewEvent, handleAddE
     e.preventDefault(); // Prevent default form submission
 
     try {
-      const response = await axios.post<Event>('http://localhost:5000/api/events', newEvent);
+      const formData = new FormData();
+      formData.append('id', newEvent.id);
+      formData.append('name', newEvent.name);
+      formData.append('date', newEvent.date);
+      formData.append('time', newEvent.time);
+      formData.append('location', newEvent.location);
+      formData.append('type', newEvent.type);
+      formData.append('isCustom', String(newEvent.isCustom)); // Convert boolean to string
+      if (newEvent.details) formData.append('details', newEvent.details);
+      if (newEvent.image) formData.append('image', newEvent.image);
+
+      const response = await axios.post<Event>('http://localhost:5000/api/events', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      
       console.log('Event added successfully:', response.data);
       alert('Event added successfully!');
-      handleAddEvent(); 
-    } catch (error) {
-      console.error('Error adding event:', error);
+      handleAddEvent(); // Call the function to reset state and refresh the event list
+    } catch (error: any) {
+      console.error('Error adding event:', error.response?.data || error.message);
       alert('Error adding event. Please try again.');
     }
   };
+
+  const eventTypes = ['Wedding', 'Party', 'Sport', 'Picnic', 'Beach'];
 
   return (
     <div className="event-form">
       <h2>Add New Event</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="id">Event ID (optional)</label>
+          <label htmlFor="id">Event ID</label>
           <input
             type="text"
             id="id"
             value={newEvent.id}
             onChange={(e) => setNewEvent({ ...newEvent, id: e.target.value })}
+            required
           />
         </div>
 
@@ -58,13 +78,19 @@ const EventForm: React.FC<EventFormProps> = ({ newEvent, setNewEvent, handleAddE
 
         <div className="form-group">
           <label htmlFor="type">Event Type</label>
-          <input
-            type="text"
+          <select
             id="type"
             value={newEvent.type}
             onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
             required
-          />
+          >
+            <option value="">Select Event Type</option>
+            {eventTypes.map((eventType) => (
+              <option key={eventType} value={eventType}>
+                {eventType}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-group">
@@ -100,9 +126,42 @@ const EventForm: React.FC<EventFormProps> = ({ newEvent, setNewEvent, handleAddE
           />
         </div>
 
-        <button type="submit" className="add-button">
-          Add Event
-        </button>
+        <div className="form-group">
+          <label htmlFor="isCustom">Is Customizable?</label>
+          <select
+            id="isCustom"
+            value={newEvent.isCustom ? "true" : "false"}
+            onChange={(e) => setNewEvent({ ...newEvent, isCustom: e.target.value === "true" })}
+          >
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="details">Details</label>
+          <textarea
+            id="details"
+            value={newEvent.details}
+            onChange={(e) => setNewEvent({ ...newEvent, details: e.target.value })}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="image">Upload Image</label>
+          <input
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={(e) => {
+              if (e.target.files && e.target.files.length > 0) {
+                setNewEvent({ ...newEvent, image: e.target.files[0] });
+              }
+            }}
+          />
+        </div>
+
+        <button type="submit">Add Event</button>
       </form>
     </div>
   );

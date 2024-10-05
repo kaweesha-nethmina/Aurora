@@ -1,0 +1,81 @@
+.fixed-event-payment {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Light background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Centering */
+    margin: auto;
+    margin-top: 150px; /* Space from the top */
+}
+
+.fixed-event-payment h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.fixed-event-payment h3 {
+    color: #333;
+    margin-top: 20px;
+}
+
+.fixed-event-payment h4 {
+    color: #555;
+    margin: 15px 0 5px;
+}
+
+.fixed-event-payment p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.fixed-event-payment form {
+    margin-top: 20px;
+    background-color: #fff; /* White background for form */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fixed-event-payment input[type="text"],
+.fixed-event-payment input[type="number"] {
+    width: calc(100% - 20px); /* Full width */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.fixed-event-payment .submit-payment-btn {
+    background-color: #28a745; /* Green button */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.fixed-event-payment .submit-payment-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.fixed-event-payment .payment-option {
+    margin-bottom: 20px;
+}
+
+.fixed-event-payment .payment-option label {
+    display: block; /* Stack labels */
+    margin-bottom: 10px;
+}
+
+.fixed-event-payment .back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff; /* Link color */
+    text-decoration: none;
+}
+
+.fixed-event-payment .back-btn:hover {
+    text-decoration: underline; /* Underline on hover */
+}

@@ -3,12 +3,15 @@ import axios from 'axios';
 import EventModal from './EventModal';
 
 interface Event {
-  id: string; // Custom ID
+  id: string;
   name: string;
   date: string;
   time: string;
   location: string;
   type: string;
+  isCustom: boolean; 
+  details?: string;
+  image?: string; // Use a string type for the image URL
 }
 
 const EventsTable: React.FC = () => {
@@ -34,7 +37,7 @@ const EventsTable: React.FC = () => {
     setSelectedEvent(eventToEdit || null);
     setIsModalOpen(true);
   };
-  
+
   const handleDeleteEvent = async (eventId: string) => {
     try {
       await axios.delete(`http://localhost:5000/api/events/${eventId}`);
@@ -64,9 +67,13 @@ const EventsTable: React.FC = () => {
             <th>Time</th>
             <th>Location</th>
             <th>Type</th>
+            <th>Is Customizable</th>
+            <th>Details</th>
+            <th>Image</th>
             <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
           {events.map((event) => (
             <tr key={event.id}>
@@ -75,6 +82,15 @@ const EventsTable: React.FC = () => {
               <td>{event.time}</td>
               <td>{event.location}</td>
               <td>{event.type}</td>
+              <td>{event.isCustom ? 'Yes' : 'No'}</td>
+              <td>{event.details || 'N/A'}</td>
+              <td>
+                {event.image ? (
+                  <img src={event.image} alt={event.name} style={{width: '50px', height: '50px'}} />
+                ) : (
+                  'No image'
+                )}
+              </td>
               <td>
                 <button onClick={() => handleUpdateEvent(event.id)}>Update</button>
                 <button onClick={() => handleDeleteEvent(event.id)}>Delete</button>

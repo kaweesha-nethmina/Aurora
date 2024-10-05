@@ -6,12 +6,16 @@ import axios from 'axios';
 
 // Define the Event type
 interface Event {
-  id: string;
+  id: string; // Use string if you're using a custom ID
   name: string;
   date: string;
   location: string;
   description: string;
-  image?: string; // Optional image field
+  //new
+  image?: string;  // Optional image field
+  isCustom: boolean;
+  details?:string;
+
 }
 
 const EventCard: React.FC = () => {
@@ -20,6 +24,8 @@ const EventCard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>(''); // State for search term
+
+  
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -37,7 +43,7 @@ const EventCard: React.FC = () => {
     fetchEvents();
   }, []);
 
-  // Filter events based on the search term
+  //Filter events based on the search term
   useEffect(() => {
     const filtered = events.filter((event) =>
       event.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -53,11 +59,15 @@ const EventCard: React.FC = () => {
     return <div>{error}</div>;
   }
 
+  //new oct 4th
+  const customizableEvents = filteredEvents.filter(event=> event.isCustom);
+  const fixedEvents = filteredEvents.filter(event=> !event.isCustom)
+
   return (
     <div className="event-card-container">
       <Header activeTab={'events'} />
 
-      {/* Search bar */}
+            {/* Search bar */}
       <input
         type="text"
         placeholder="Search events..."
@@ -66,27 +76,57 @@ const EventCard: React.FC = () => {
         className="search-bar2"
       />
 
+      <h2>Customizable Events</h2>
       <div className="event-grid">
-        {filteredEvents.length > 0 ? (
-          filteredEvents.map((event) => (
-            <div className="event-card" key={event.id}>
-              {event.image && <img src={event.image} alt={event.name} className="event-image" />}
-              <div className="event-content">
-                <h2>{event.name}</h2>
-                <p className="event-location">{event.location}</p>
-                <p className="event-description">{event.description}</p>
-                <Link
-                  to={`/events/${event.id}`}
-                  state={{ event }}
-                  className="view-details-btn"
-                >
-                  View Details
-                </Link>
-              </div>
+        {customizableEvents.length > 0 ? (
+          customizableEvents.map((event) => (
+          <div className="event-card" key={event.id}>
+            {/* Optional Image */}
+            {event.image && <img src={event.image} alt={event.name} className="event-image" />}
+            <div className="event-content">
+              <h2>{event.name}</h2>
+              <p className="event-date">{event.date}</p>
+              <p className="event-location">{event.location}</p>
+              <p className="event-description">{event.description}</p>
+              <Link
+                to={`/events/${event.id}`} // Only the pathname
+                state={{ event }} // Passing event data as state
+                className="view-details-btn"
+              >
+                View Details
+              </Link>
             </div>
-          ))
-        ) : (
-          <p>No events found.</p>
+          </div>
+        ))
+      ) : (
+        <p>No customizable events found.</p>  
+        )}
+      </div>
+
+      <h2>Fixed Events</h2>
+      <div className="event-grid">
+        {fixedEvents.length > 0 ? (
+          fixedEvents.map((event) => (
+          <div className="event-card" key={event.id}>
+            {/* Optional Image */}
+            {event.image && <img src={event.image} alt={event.name} className="event-image" />}
+            <div className="event-content">
+              <h2>{event.name}</h2>
+              <p className="event-date">{event.date}</p>
+              <p className="event-location">{event.location}</p>
+              <p className="event-description">{event.description}</p>
+              <Link
+                to={`/events/${event.id}`} // Only the pathname
+                state={{ event }} // Passing event data as state
+                className="view-details-btn"
+              >
+                View Details
+              </Link>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No fixed events found.</p>  
         )}
       </div>
     </div>

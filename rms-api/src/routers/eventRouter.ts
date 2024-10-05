@@ -1,18 +1,13 @@
-import { Router } from 'express';
+import multer from 'multer';
+import express from 'express';
 import { addEvent, getAllEvents, updateEvent, deleteEvent } from '../controller/eventController';
 
-const router = Router();
+const router = express.Router();
+const upload = multer({ dest: 'uploads/' }); // Configure the uploads directory
 
-// Add new event
-router.post('/events', addEvent);
-
-// Get all events
+router.post('/events', upload.single('image'), addEvent);
 router.get('/events', getAllEvents);
-
-// Update event by custom ID
-router.put('/events/:id', updateEvent); // This assumes you're passing the custom id as a URL param
-
-// Delete event by custom ID
-router.delete('/events/:id', deleteEvent); // This also uses the custom id
+router.put('/events/:id', updateEvent);
+router.delete('/events/:id', deleteEvent);
 
 export default router;
