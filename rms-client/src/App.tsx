@@ -88,7 +88,6 @@ import AdminAppointment from './modules/spa/components/Admin/AdminAppointment';
 import EventHome from './modules/events/pages/eventhome/EventHome';
 import EventCard from './modules/events/components/EventCard';
 import EventDetails from './modules/events/components/EventDetails';
-import BookingEventForm from './modules/events/components/BookingForm';
 import PaymentEventForm from './modules/events/components/PaymentForm';
 import EManagerDashboard from './modules/events/components/ADMIN/EmanagerDashboard';
 import AddEvent from './modules/events/components/ADMIN/AddEvent';
@@ -111,6 +110,7 @@ import CustomizedEventDetails from './modules/events/components/CustomizedEventD
 import FixedEventDetails from './modules/events/components/FixedEventDetails';
 import CustomEventPayment from './modules/events/components/CustomEventPayment';
 import FixedEventPayment from './modules/events/components/FixedEventPayment';
+import EventBookingTable from './modules/events/components/ADMIN/EventBookingTable';
 
 
 
@@ -151,8 +151,8 @@ function App() {
         <Route path="/eventhome" element={<EventHome/>} />
         <Route path="/eventcard" element={<EventCard/>}/>
         <Route path="/events/:id" element={<EventDetails/>}/>
-        <Route path="/events/:id/book" element={<BookingEventForm/>}/>
-        <Route path="events/:id/payment" element={<PaymentEventForm />} />
+        {/* <Route path="/events/:id/book" element={<BookingEventForm/>}/> */}
+        <Route path="/fixed-events/:id/payment" element={<PaymentEventForm />} />
         <Route path="/eventcard" element={<EventCard />} />
         <Route path="/custom-events/:id" element={<CustomizedEventDetails/>} />
         <Route path="/fixed-events/:id" element={<FixedEventDetails/>} />
@@ -162,6 +162,7 @@ function App() {
         <Route path='/EManager' element={<EManagerDashboard />}>
           <Route path='event' element={<Event />} />
           <Route path='addevent' element={<AddEvent />} />
+          <Route path='fixedtable' element={<EventBookingTable />} />
         </Route>
 
 

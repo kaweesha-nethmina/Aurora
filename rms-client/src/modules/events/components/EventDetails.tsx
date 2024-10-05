@@ -9,11 +9,12 @@ const EventDetails = () => {
 
   const handleBooking = () => {
     if (event.isCustom) {
-      navigate(`/custom-events/${event.id}`, { state: { event } });
+      navigate(`/custom-events/${event.id}`, { state: { eventName: event.name, event } });
     } else {
-      navigate(`/fixed-events/${event.id}`, { state: { event } });
+      navigate(`/fixed-events/${event.id}`, { state: { eventName: event.name, event } });
     }
   };
+  
 
   return (
     <div className="ed-event-details">

@@ -10,10 +10,13 @@ const FixedEventDetails: React.FC = () => {
   const navigate = useNavigate();
   const event = location.state?.event;
 
+  // Define per person charge from the event
+  const perPersonCharge = event?.perPersonCharge || 0;
+
   const [availableSlots, setAvailableSlots] = useState<string[]>([
     '07:00 AM - 08:00 AM',
     '08:00 AM - 09:00 AM',
-    '05:00 PM - 06:00 PM'
+    '05:00 PM - 06:00 PM',
   ]);
   const [selectedSlot, setSelectedSlot] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -33,11 +36,11 @@ const FixedEventDetails: React.FC = () => {
     // Log to verify the values being passed
     console.log('Submitting booking with:', {
       participantCount,
-      perPersonCharge: event.perPersonCharge
+      perPersonCharge,
     });
 
     navigate('/fixed-event-payment', {
-      state: { numOfParticipants: participantCount, perPersonCharge: event.perPersonCharge }
+      state: { numOfParticipants: participantCount, perPersonCharge },
     });
   };
 
@@ -54,18 +57,20 @@ const FixedEventDetails: React.FC = () => {
       <h2>{event?.name}</h2>
       <p>{event?.description}</p>
 
+      {/* Date Selection */}
       <div className="event-date-selection">
         <h3>Select Event Date:</h3>
         <DatePicker
           selected={selectedDate}
           onChange={(date: Date | null) => setSelectedDate(date)}
-          minDate={new Date()}
+          minDate={new Date()} // Prevent past dates
           placeholderText="Select a date"
           className="date-picker"
         />
       </div>
       <br />
 
+      {/* Time Slot Selection */}
       <div className="time-slots">
         <h3>Select a Time Slot:</h3>
         {availableSlots.length > 0 ? (
@@ -85,6 +90,7 @@ const FixedEventDetails: React.FC = () => {
       </div>
       <br />
 
+      {/* Participant Count */}
       <div className="event-participant-count">
         <h3>Enter Number of Participants:</h3>
         <input
@@ -100,6 +106,7 @@ const FixedEventDetails: React.FC = () => {
         Confirm Booking
       </button>
 
+      {/* Back Button */}
       <Link to="/eventcard" className="back-btn">
         Back
       </Link>

@@ -1,0 +1,67 @@
+.event-booking-table {
+    margin-top: 100px;
+    margin-left: 500px;
+    font-family: Arial, sans-serif;
+    width: 1000px;
+  }
+  
+  .table-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    margin-left: -400px;
+  }
+  
+  .booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .table-header {
+    background-color: #5a5a5a;
+  }
+  
+  .header-cell {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-weight: bold;
+  }
+  
+  .table-row {
+    transition: background-color 0.3s;
+  }
+  
+  .table-row:hover {
+    background-color: #f1f1f1; /* Highlight on hover */
+  }
+  
+  .table-cell {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .loading-message {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .error-message {
+    font-size: 18px;
+    color: red;
+  }
+  .delete-button {
+  background-color: #e74c3c; /* Red background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  padding: 8px 12px; /* Add padding */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+}
+
+.delete-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+  

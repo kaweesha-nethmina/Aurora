@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // Import useEffect
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import './../styles/BookingForm.css';
-import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../../core/components/Header';
 
 const BookingForm = () => {
@@ -15,17 +15,25 @@ const BookingForm = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
+  const location = useLocation();
+
+  // Extract the event name from the state
+  const eventFromState = location.state?.eventName;
+  
+  // Set the event name if it exists in the state using useEffect
+  useEffect(() => {
+    if (eventFromState) {
+      setEventName(eventFromState);
+    }
+  }, [eventFromState]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(name, email, phone, eventDate, startTime, endTime, guests);
+    console.log(name, email, phone, eventName, eventDate, startTime, endTime, guests);
     navigate(`/events/${id}/payment`);
-
   };
 
-  
-
-  const handleBackClick =() => {
+  const handleBackClick = () => {
     navigate(`/events/${id}`);
   };
 
@@ -33,53 +41,36 @@ const BookingForm = () => {
     <div className='bform-container'>
       <Header activeTab={'events'} />
       <form onSubmit={handleSubmit} className="booking-form-event">
-      <h2>Event Booking Form</h2>
-      
-      <label>Name</label>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      
-      <label>Email</label>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      
-      <label>Phone</label>
-      <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <h2>Event Booking Form</h2>
 
-      <label>Event Name</label>
-      <div className="event-select-wrapper">
-      <select value={eventName} onChange={(e) => setEventName(e.target.value)}>
-          <option value="">Select Event</option>
-          <option value="Sunset Yoga Session">Sunset Yoga Session</option>
-          <option value="Seaside Music Concert">Seaside Music Concert</option>
-          <option value="Tropical Cocktail Making Class">Tropical Cocktail Making Class</option>
-          <option value="Beach Bonfire & Storytelling">Beach Bonfire & Storytelling</option>
-          <option value="Ocean Adventure Scuba Diving">Ocean Adventure Scuba Diving</option>
-          <option value="Spa & Wellness Retreat">Spa & Wellness Retreat</option>
-          <option value="Luxury Dinner Under the Stars">Luxury Dinner Under the Stars</option>
-          <option value="Beach Volleyball Tournament">Beach Volleyball Tournament</option>
-        </select>
-        </div>
-      
-      <label>Event Date</label>
-      <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)}  />
+        <label>Name</label>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
 
-      <label>Entry Time</label>
-      <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)}  />
+        <label>Email</label>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-      <label>Planned Exit Time</label>
-      <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)}  />
+        <label>Phone</label>
+        <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
 
-      <label>Number of Guests</label>
-      <input type="number" value={guests} onChange={(e) => setGuests(e.target.value)} />
-      
-      <button type="submit">Book Event</button>
+        <label>Event Name</label>
+        <input type="text" value={eventName} readOnly /> {/* Make it read-only or editable based on your requirement */}
+        
+        <label>Event Date</label>
+        <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} />
 
-      <button type="submit">Make Payments</button>
-      
-      <button type="button" onClick={handleBackClick}>Back</button>
-      
-    </form>
+        <label>Entry Time</label>
+        <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+
+        <label>Planned Exit Time</label>
+        <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+
+        <label>Number of Guests</label>
+        <input type="number" value={guests} onChange={(e) => setGuests(e.target.value)} />
+
+        <button type="submit">Book Event</button>
+        <button type="button" onClick={handleBackClick}>Back</button>
+      </form>
     </div>
-    
   );
 };
 

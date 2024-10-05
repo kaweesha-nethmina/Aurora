@@ -29,21 +29,58 @@ const FixedEventDetails: React.FC = () => {
     setAvailableSlots((prevSlots) => prevSlots.filter((s) => s !== slot));
   };
 
-  const handleSubmitBooking = () => {
+  const handleSubmitBooking = async () => {
     if (!selectedSlot || !selectedDate || participantCount < 1) {
       alert('Please select a date, time slot, and participant count.');
       return;
     }
-    navigate('/fixed-event-payment', {
-      state: { 
-        numOfParticipants: participantCount, 
-        perPersonCharge: perPersonCharge // Pass the constant here
+  
+    // Calculate total charge
+    const totalCharge = participantCount * perPersonCharge;
+  
+    // Send booking data to backend
+    try {
+      const response = await fetch('http://localhost:5000/api/eventbookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          eventId: event?.id, // Assuming event has an id
+          date: selectedDate,
+          timeSlot: selectedSlot,
+          participantCount: participantCount,
+          totalCharge: totalCharge,
+          userId: 'exampleUserId', // Replace with actual user ID
+          userName: 'John Doe', // Replace with actual user name
+          contactInfo: 'johndoe@example.com', // Replace with actual contact info
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to book event');
       }
-    });
-
-    // Placeholder for actual booking submission logic
-    //alert(`Booking confirmed for ${selectedDate?.toLocaleDateString()} at ${selectedSlot} with ${participantCount} participants.`);
+  
+      const bookingData = await response.json();
+      console.log('Booking confirmed:', bookingData);
+  
+      // Redirect to payment page
+      navigate('/fixed-event-payment', {
+        state: { 
+          numOfParticipants: participantCount, 
+          perPersonCharge: perPersonCharge 
+        }
+      });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert('Error: ' + error.message);
+      } else {
+        alert('An unknown error occurred.');
+      }
+    }
   };
+  
+  
 
   const handleParticipantChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const count = parseInt(e.target.value, 10);

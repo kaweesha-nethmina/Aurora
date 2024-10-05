@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../core/components/Header';
-import './../styles/CustomEventPayment.css'
-/*
-interface CustomEventPaymentProps {
-  numOfParticipants: number;
-  perPersonCharge: number;
-}*/
+import './../styles/CustomEventPayment.css';
 
 const CustomEventPayment: React.FC = () => {
   const location = useLocation();
@@ -18,6 +13,24 @@ const CustomEventPayment: React.FC = () => {
     additionalResources: string[];
     perPersonCharge: number;
   };
+
+  // State for user data
+  const [formValues, setFormValues] = useState<{ fullName: string; phoneNumber: string }>({
+    fullName: '',
+    phoneNumber: ''
+  });
+
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      const userProfile = JSON.parse(userData);
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        fullName: `${userProfile.firstName || ''} ${userProfile.lastName || ''}`,
+        phoneNumber: userProfile.phone || '',
+      }));
+    }
+  }, []);
 
   // Calculate the total payment for additional resources
   const basicAmount = 50000; // Basic amount for custom events
@@ -38,47 +51,40 @@ const CustomEventPayment: React.FC = () => {
   + resourceCosts.Decor 
   + (perPersonCharge * guestCount);
 
-  // State for payment details
-  const [paymentStatus, setPaymentStatus] = useState<'Complete' | 'Incomplete'>('Incomplete');
-  const [cardDetails, setCardDetails] = useState({ cardNumber: '', expiry: '', cvv: '' });
-  const [payLater, setPayLater] = useState(false);
+  // State for booking confirmation
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
-  const handleCardDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setCardDetails((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmitPayment = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitBooking = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (!payLater) {
-      // Validate card details
-      if (!cardDetails.cardNumber || !cardDetails.expiry || !cardDetails.cvv) {
-        alert('Please fill in all card details.');
-        return;
-      }
 
-      // Mark payment as complete
-      setPaymentStatus('Complete');
-      // Notify admin here (e.g., via API call)
-      alert('Payment Successful! Notifying Admin...');
-    } else {
-      // Mark payment as incomplete and notify admin
-      setPaymentStatus('Incomplete');
-      alert('Booking confirmed! You can pay later. Admin will be notified.');
-    }
+    // Mark booking as confirmed
+    setBookingConfirmed(true);
+    
+    // Notify admin here (e.g., via API call)
+    alert('Booking confirmed! Admin will be notified.');
 
     // Redirect to the booking confirmation page or dashboard
-    navigate('/event-confirmation', { state: { paymentStatus } });
+    navigate('/eventcard', { state: { bookingConfirmed } });
   };
 
   return (
     <div className="custom-event-payment">
       <Header activeTab={'payment'} />
-      <h2>Payment Details</h2>
+      <h2>Booking Details</h2>
+
+      {/* Full Name Input */}
+      <div className="ced-full-name">
+        <label>Full Name:</label>
+        <input
+          type="text"
+          value={formValues.fullName}
+          readOnly // Set to readOnly if you don't want the user to edit it
+        />
+      </div>
+
       <p>Number of Participants: {guestCount}</p>
       <p>Per Person Charge: LKR {perPersonCharge}</p>
-      <br></br>
+      <br />
       <h4>Breakdown of Costs:</h4>
       <ul>
         <li>Basic Amount: LKR {basicAmount}</li>
@@ -99,50 +105,12 @@ const CustomEventPayment: React.FC = () => {
         )}
         <li>Guests Charge: LKR {perPersonCharge * guestCount}</li>
       </ul>
-      <br></br>
-      <h3>Total Payment Amount: LKR {totalAmount}</h3>
+      <br />
+      <h3>Total Amount: LKR {totalAmount}</h3>
 
-      <form onSubmit={handleSubmitPayment}>
-        <div>
-          <label>
-            <input 
-              type="checkbox" 
-              checked={payLater} 
-              onChange={() => setPayLater((prev) => !prev)} 
-            />
-            Pay Later
-          </label>
-        </div>
-
-        {!payLater && (
-          <div>
-            <h3>Card Details:</h3>
-            <input 
-              type="text" 
-              name="cardNumber" 
-              placeholder="Card Number" 
-              value={cardDetails.cardNumber} 
-              onChange={handleCardDetailsChange} 
-            />
-            <input 
-              type="text" 
-              name="expiry" 
-              placeholder="Expiry Date (MM/YY)" 
-              value={cardDetails.expiry} 
-              onChange={handleCardDetailsChange} 
-            />
-            <input 
-              type="text" 
-              name="cvv" 
-              placeholder="CVV" 
-              value={cardDetails.cvv} 
-              onChange={handleCardDetailsChange} 
-            />
-          </div>
-        )}
-
+      <form onSubmit={handleSubmitBooking}>
         <button type="submit" className="pay-btn">
-          {payLater ? 'Book Event' : 'Make Payment'}
+          Confirm Booking
         </button>
       </form>
     </div>
