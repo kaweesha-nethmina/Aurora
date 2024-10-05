@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AdminFeedbackManagement.css';
 import UpdateFeedbackModal from './UpdateFeedbackModal'; // Import the modal
@@ -28,10 +28,7 @@ const AdminFeedbackManagement = () => {
     fetchRatings();
   }, []);
 
-  const handleEdit = (rating: Rating) => {
-    setSelectedFeedback(rating);
-    setIsModalOpen(true);
-  };
+  
 
   const handleUpdate = async (updatedFeedback: Rating) => {
     try {
@@ -81,7 +78,7 @@ const AdminFeedbackManagement = () => {
               <td>{rating.rating}</td>
               <td>{rating.description}</td>
               <td>
-                <button className="btn-edit" onClick={() => handleEdit(rating)}>Edit</button>
+               
                 <button className="btn-delete" onClick={() => handleDelete(rating._id)}>Delete</button>
               </td>
             </tr>

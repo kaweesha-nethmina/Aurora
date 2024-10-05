@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import '../../../employees/EmployeeDashboard.css'; // Custom CSS file for this dashboard
+import './GManagerDashboard.css'; // Custom CSS file for this dashboard
 import GManagerHeader from './GManagerHeader'; // Updated header import
 import Sidebar from '../../../core/components/Sidebar';
 
@@ -16,11 +16,11 @@ const GManagerDashboard: React.FC = () => {
     };
   
     return (
-      <div className="dashboard-layoutR">
+      <div className="dashboard-layoutG">
         <Sidebar /> {/* Sidebar on the left */}
-        <div className="dashboard-contentR">
+        <div className="dashboard-contentG">
           <GManagerHeader activeTab={getActiveTab()} /> {/* Header for GManagerDashboard */}
-          <div className="dashboard-containerR">
+          <div className="dashboard-containerG">
             <Outlet /> {/* Renders the matched child route */}
           </div>
         </div>

@@ -1,17 +1,23 @@
-.dashboard-layoutR {
-    display: flex;
+.dashboard-layoutG {
+    
     height: 100vh;
+    
+    
   }
   
-  .dashboard-contentR {
+  .dashboard-contentG {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    
   }
   
-  .dashboard-containerR {
+  .dashboard-containerG {
     flex-grow: 1;
     padding: 1rem;
     background-color: #f4f4f4;
+    background-image: url("../../Images/guestBack.jpg") ;
+    height: 100vh;
+    width: 1530px;
   }
   
