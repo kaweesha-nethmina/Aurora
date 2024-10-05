@@ -53,4 +53,23 @@ export const deleteEventBooking = async (req: Request, res: Response) => {
     }
   };
   
+  // Update Event Booking
+export const updateEventBooking = async (req: Request, res: Response) => {
+    const { id } = req.params; // Get ID from the URL
+    const updatedData = req.body; // Get updated data from the request body
+  
+    try {
+      const updatedBooking = await EventBooking.findByIdAndUpdate(id, updatedData, { new: true });
+  
+      if (!updatedBooking) {
+        return res.status(404).json({ message: 'Event booking not found' });
+      }
+  
+      res.status(200).json({ message: 'Event booking updated successfully', booking: updatedBooking });
+    } catch (error) {
+      console.error('Error updating event booking:', error);
+      res.status(500).json({ message: 'Error updating event booking', error });
+    }
+  };
+  
   

@@ -10,7 +10,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 800px; /* Limiting width for readability */
-    margin-left: auto;
+    margin-left: 350px;
     margin-right: auto;
   }
   
@@ -94,6 +94,7 @@
   .ced-event-resources {
     width: 100%;
     margin-bottom: 20px;
+    
   }
   
   .ced-event-resources label {
@@ -106,6 +107,7 @@
   .ced-event-resources div {
     display: flex;
     flex-wrap: wrap;
+    
     gap: 10px;
   }
   

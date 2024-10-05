@@ -17,15 +17,15 @@ const EventDetails = () => {
   
 
   return (
-    <div className="ed-event-details">
+    <div className='container1'>
       <Header activeTab={'events'} />
+      <div className="ed-event-details">
+      
       <h2>{event?.name}</h2>
       <p>{event?.date}</p>
       <p>{event?.location}</p>
       <p>{event?.description}</p>
-      {event?.image && (
-        <img src={`http://localhost:5000/uploads/${event.image}`} alt={event.name} className="event-image" />
-      )}
+      
 
       {event?.isCustom && event.details && (
         <div className="ed-customization-options">
@@ -36,6 +36,7 @@ const EventDetails = () => {
 
       <button onClick={handleBooking} className="ed-book-btn">Book Event</button>
       <Link to={'/eventcard'} className="ed-back-btn">Back</Link>
+    </div>
     </div>
   );
 };

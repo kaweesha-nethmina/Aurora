@@ -9,6 +9,7 @@
     font-size: 24px;
     margin-bottom: 15px;
     margin-left: -400px;
+    color: white;
   }
   
   .booking-table {
@@ -17,8 +18,8 @@
     margin-top: 10px;
   }
   
-  .table-header {
-    background-color: #5a5a5a;
+  .table-header th{
+    background-color: #5c5c5c;
   }
   
   .header-cell {

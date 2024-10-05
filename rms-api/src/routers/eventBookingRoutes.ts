@@ -1,5 +1,5 @@
 import express from 'express';
-import { addEventBooking, deleteEventBooking, getAllEventBookings } from '../controller/eventBookingController';
+import { addEventBooking, deleteEventBooking, getAllEventBookings, updateEventBooking } from '../controller/eventBookingController';
 
 const router = express.Router();
 
@@ -11,5 +11,5 @@ router.get('/', getAllEventBookings);
 
 // DELETE /api/eventbookings/:id - Delete a booking by ID
 router.delete('/:id', deleteEventBooking); // Make sure the route is defined as '/:id'
-
+router.put('/:id', updateEventBooking); 
 export default router;

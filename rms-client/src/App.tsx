@@ -111,6 +111,9 @@ import FixedEventDetails from './modules/events/components/FixedEventDetails';
 import CustomEventPayment from './modules/events/components/CustomEventPayment';
 import FixedEventPayment from './modules/events/components/FixedEventPayment';
 import EventBookingTable from './modules/events/components/ADMIN/EventBookingTable';
+import CustomTable from './modules/events/components/ADMIN/CustomTable';
+import MyBookings from './modules/events/components/myBookings';
+import MonthlyReport from './modules/events/components/ADMIN/MonthlyReport';
 
 
 
@@ -158,11 +161,14 @@ function App() {
         <Route path="/fixed-events/:id" element={<FixedEventDetails/>} />
         <Route path="/customized-event-payment" element={<CustomEventPayment />} />
         <Route path="/fixed-event-payment" element={<FixedEventPayment />} />
+        <Route path="/myEvents" element={<MyBookings />} />
         
         <Route path='/EManager' element={<EManagerDashboard />}>
           <Route path='event' element={<Event />} />
           <Route path='addevent' element={<AddEvent />} />
           <Route path='fixedtable' element={<EventBookingTable />} />
+          <Route path='customtable' element={<CustomTable />} />
+          <Route path='report' element={<MonthlyReport />} />
         </Route>
 
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './../styles/EventCard.css';
 import Header from '../../core/components/Header';
 import axios from 'axios';
+import Navbar from './nav/EesNavbar';
 
 // Define the Event type
 interface Event {
@@ -66,7 +67,7 @@ const EventCard: React.FC = () => {
   return (
     <div className="event-card-container">
       <Header activeTab={'events'} />
-
+      <Navbar />
             {/* Search bar */}
       <input
         type="text"
@@ -76,7 +77,7 @@ const EventCard: React.FC = () => {
         className="search-bar2"
       />
 
-      <h2>Customizable Events</h2>
+      <h2 className='title1'>Customizable Events</h2>
       <div className="event-grid">
         {customizableEvents.length > 0 ? (
           customizableEvents.map((event) => (
@@ -103,7 +104,7 @@ const EventCard: React.FC = () => {
         )}
       </div>
 
-      <h2>Fixed Events</h2>
+      <h2 className='title1'>Fixed Events</h2>
       <div className="event-grid">
         {fixedEvents.length > 0 ? (
           fixedEvents.map((event) => (

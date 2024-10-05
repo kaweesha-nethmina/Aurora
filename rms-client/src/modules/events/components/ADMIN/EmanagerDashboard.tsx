@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import '../../../employees/EmployeeDashboard.css'; // Shared CSS file
+import './EmanagerDashboard.css'; // Shared CSS file
 import SManagerHeader from './EManagerHeader'; // Header for SManager
 import Sidebar from '../../../core/components/Sidebar';
 
@@ -13,16 +13,16 @@ const EManagerDashboard: React.FC = () => {
         if (path === '/SManager/events') return 'events';
         if (path === '/SManager/add-event') return 'add-event';
         if (path === '/SManager/bookings') return 'bookings';
-        if (path === '/SManager/payments') return 'payments';
+        if (path === '/SManager/customtable') return 'payments';
         return '';
     };
 
     return (
-        <div className="dashboard-layoutS">
+        <div className="dashboard-layoutE">
             <Sidebar /> {/* Sidebar on the left */}
-            <div className="dashboard-contentS">
+            <div className="dashboard-contentE">
                 <SManagerHeader activeTab={getActiveTab()} /> {/* Updated header */}
-                <div className="dashboard-containerS">
+                <div className="dashboard-containerE">
                     <Outlet /> {/* Renders the matched child route */}
                 </div>
             </div>

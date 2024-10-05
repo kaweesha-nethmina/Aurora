@@ -1,13 +1,22 @@
 /* EventDetails.css */
+.container1{
+
+  background-size: cover;
+  
+  height: 100vh;
+  
+}
 
 .ed-event-details {
-  background-color: #f9f9f9; /* Light background for contrast */
+  background-color: #e0e0e0; /* Light background for contrast */
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   max-width: 800px; /* Centered layout */
-  margin: 70px auto; /* Increased margin to prevent content hiding beneath header */
+  margin-top: 200px;
+  margin-left: 350px;
   font-family: 'Arial', sans-serif; /* Custom font */
+  
 }
 
 .ed-event-details h2 {

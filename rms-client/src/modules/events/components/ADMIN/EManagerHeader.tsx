@@ -14,7 +14,8 @@ const EManagerHeader: React.FC<SManagerHeaderProps> = ({ activeTab }) => {
                 <Link to="/EManager/event" className={activeTab === 'events' ? 'active' : ''}>Events</Link>
                 <Link to="/EManager/addevent" className={activeTab === 'add-event' ? 'active' : ''}>Add Event</Link>
                 <Link to="/EManager/fixedtable" className={activeTab === 'fbookings' ? 'active' : ''}>Fixed Event Bookings</Link>
-                <Link to="#" className={activeTab === 'payments' ? 'active' : ''}>Payments</Link>
+                <Link to="/EManager/customtable" className={activeTab === 'cbookings' ? 'active' : ''}>Custom Event</Link>
+                <Link to="/EManager/report" className={activeTab === 'cbookings' ? 'active' : ''}>Report</Link>
             </nav>
             <div className="user-icon">
                 <img src={userIcon} alt="User Icon" />

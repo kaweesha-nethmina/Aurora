@@ -1,0 +1,108 @@
+.my-bookings-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-top: 100px;
+    margin-left: 80px;
+    width: 1350px;
+  }
+  
+  .my-bookings-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .custom-bookings-title,
+  .event-bookings-title {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+  
+  .custom-bookings-table,
+  .event-bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .custom-bookings-table th,
+  .event-bookings-table th,
+  .custom-bookings-table td,
+  .event-bookings-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .custom-bookings-table th,
+  .event-bookings-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .loading-message,
+  .error-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #e74c3c;
+  }
+  .payment-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .payment-popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .close-popup-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .close-popup-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .payment-button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .payment-button:hover {
+    background-color: #219653;
+  }
+    

@@ -1,0 +1,39 @@
+.monthly-report {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 700px;
+    margin-left: 500px;
+    margin-top: 100px;
+  }
+  
+  .report-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .report-summary {
+    margin-bottom: 20px;
+  }
+  
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-header {
+    background-color: #e0e0e0;
+  }
+  
+  .header-cell,
+  .table-cell {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .table-row:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  

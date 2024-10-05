@@ -26,6 +26,7 @@ import notificationRoutes from './src/routers/notificationrouter';
 import RoomBookingRoutes from './src/routers/RoomBookingRoutes';
 import offerBookingRoutes from './src/routers/offerBookingRoutes';
 import eventBookingRoutes from './src/routers/eventBookingRoutes';
+import customBookingRoutes from './src/routers/customBookingRoutes';
 
 // Load environment variables
 dotenv.config();
@@ -83,6 +84,7 @@ app.use('/api', notificationRoutes);
 app.use('/api', RoomBookingRoutes);
 app.use('/api/offerbookings', offerBookingRoutes); 
 app.use('/api/eventbookings', eventBookingRoutes);
+app.use('/api', customBookingRoutes);
 
 // Image upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {

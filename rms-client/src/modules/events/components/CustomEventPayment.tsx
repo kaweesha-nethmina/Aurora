@@ -54,18 +54,40 @@ const CustomEventPayment: React.FC = () => {
   // State for booking confirmation
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
-  const handleSubmitBooking = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitBooking = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Mark booking as confirmed
-    setBookingConfirmed(true);
-    
-    // Notify admin here (e.g., via API call)
-    alert('Booking confirmed! Admin will be notified.');
-
-    // Redirect to the booking confirmation page or dashboard
-    navigate('/eventcard', { state: { bookingConfirmed } });
+  
+    const bookingData = {
+      fullName: formValues.fullName,
+      phoneNumber: formValues.phoneNumber,
+      guestCount,
+      perPersonCharge,
+      additionalResources,
+      totalAmount
+    };
+  
+    try {
+      const response = await fetch('http://localhost:5000/api/customBookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingData),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        alert('Booking confirmed! Admin will be notified.');
+        navigate('/eventcard', { state: { bookingConfirmed: true } });
+      } else {
+        alert('Error confirming booking.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error confirming booking.');
+    }
   };
+  
 
   return (
     <div className="custom-event-payment">

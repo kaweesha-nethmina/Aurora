@@ -6,12 +6,12 @@
   margin: 20px auto;
   position: relative;
   z-index: 1; 
-  width: 1520px !important;
+  width: 1530px !important;
   
 }
 .event-card-container::after {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -19,18 +19,20 @@
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
-  background-image: url("./../image/background.jpg");
+  background-image: url("./../image/cusBack.jpg");
   background-size: cover;
   z-index: -1; 
   height: 100vh;
-  filter: blur(5px); 
+  filter: blur(2px); 
   transform: scale(1.1);
 }
 .search-bar2{
   width: 600px;
-  padding: 10px;
+  padding: 15px;
   border-radius: 20px;
   margin-bottom: 20px;
+  margin-top: 30px;
+  background-color: aliceblue;
 }
 /* Event Grid */
 .event-grid {
@@ -116,4 +118,8 @@
   text-align: center;
   margin-bottom: 20px;
   color: #333;
+}
+.title1{
+  color: white;
+  text-shadow: 4px 2px black;
 }
