@@ -49,9 +49,12 @@ html, body{
 
 .dashboard-containerT {
     flex-grow: 1;
+    width: 1530px;
     padding: 20px; /* Padding for the content area */
-    background-color: #eff5ee; /* Light content area background */
+    background-color: #ffffff; /* Light content area background */
     overflow-y: auto; /* Allow scrolling for long content */
+    background-image: url('../../Images/trback.jpg');
+    background-size: cover;
 }
 
 /* Add additional styles for your specific components if needed */

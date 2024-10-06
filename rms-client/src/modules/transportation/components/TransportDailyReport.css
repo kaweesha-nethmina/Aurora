@@ -1,0 +1,81 @@
+.report-container-transport {
+    padding: 20px;
+    background-color: #eeecec;
+    border-radius: 8px;
+    width: 1100px;
+    margin-top: 100px;
+    margin-left: 300px;
+  }
+  
+  .report-heading-transport {
+    text-align: center;
+    color: #333;
+    font-size: 40px;
+  }
+  
+  .date-picker-transport {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .date-label-transport {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .date-input-transport {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .report-summary-transport {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .report-table-transport {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .report-table-transport th,
+  .report-table-transport td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .report-table-transport th {
+    background-color: #f4f4f4;
+  }
+  
+  .payment-status-transport.pending {
+    color: orange;
+  }
+  
+  .payment-status-transport.success {
+    color: green;
+  }
+  
+  .payment-status-transport.unsuccessful {
+    color: red;
+  }
+  .print-button-transport {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .print-button-transport:hover {
+    background-color: #45a049;
+  }

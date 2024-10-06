@@ -14,6 +14,7 @@ const TManagerHeader: React.FC<TManagerHeaderProps> = ({ activeTab }) => {
                 <Link to="/Tmanager/drivers" className={activeTab === 'drivers' ? 'active' : ''}>Drivers</Link>
                 <Link to="/Tmanager/bookings" className={activeTab === 'bookings' ? 'active' : ''}>Bookings</Link>
                 <Link to="/Tmanager/add-drivers" className={activeTab === 'add-drivers' ? 'active' : ''}>Add Drivers</Link>
+                <Link to="/Tmanager/report" className={activeTab === 'report' ? 'active' : ''}>Report</Link>
             </nav>
             <div className="user-icon">
                 <img src={userIcon} alt="User Icon" />

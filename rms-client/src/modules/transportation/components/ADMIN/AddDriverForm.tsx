@@ -6,8 +6,15 @@ interface Driver {
   driverCode: string;
   firstName: string;
   lastName: string;
-  IDNumber: string;
   phoneNumber: string;
+  NIC: string;
+  address: string;
+  dateOfBirth: string;
+  joinDate: string;
+  driverLicenseInfo: {
+    licenseType: string;
+    expirationDate: string;
+  };
 }
 
 const AddDriverForm: React.FC = () => {
@@ -15,13 +22,33 @@ const AddDriverForm: React.FC = () => {
     driverCode: '',
     firstName: '',
     lastName: '',
-    IDNumber: '',
     phoneNumber: '',
+    NIC: '',
+    address: '',
+    dateOfBirth: '',
+    joinDate: '',
+    driverLicenseInfo: {
+      licenseType: '',
+      expirationDate: '',
+    },
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setDriver({ ...driver, [name]: value });
+
+    // Handle nested state updates for driverLicenseInfo
+    if (name.startsWith('licenseType') || name.startsWith('expirationDate')) {
+      const key = name.startsWith('licenseType') ? 'licenseType' : 'expirationDate';
+      setDriver((prevDriver) => ({
+        ...prevDriver,
+        driverLicenseInfo: {
+          ...prevDriver.driverLicenseInfo,
+          [key]: value,
+        },
+      }));
+    } else {
+      setDriver({ ...driver, [name]: value });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,8 +62,15 @@ const AddDriverForm: React.FC = () => {
         driverCode: '',
         firstName: '',
         lastName: '',
-        IDNumber: '',
         phoneNumber: '',
+        NIC: '',
+        address: '',
+        dateOfBirth: '',
+        joinDate: '',
+        driverLicenseInfo: {
+          licenseType: '',
+          expirationDate: '',
+        },
       });
     } catch (error) {
       alert('Error adding driver');
@@ -79,8 +113,20 @@ const AddDriverForm: React.FC = () => {
       <div className="form-group">
         <input
           type="text"
-          name="IDNumber"
-          value={driver.IDNumber}
+          name="phoneNumber"
+          value={driver.phoneNumber}
+          onChange={handleChange}
+          placeholder="Phone Number"
+          required
+          pattern="\d{10}"
+          title="Phone number must be 10 digits"
+        />
+      </div>
+      <div className="form-group">
+        <input
+          type="text"
+          name="NIC"
+          value={driver.NIC}
           onChange={handleChange}
           placeholder="NIC"
           required
@@ -89,13 +135,53 @@ const AddDriverForm: React.FC = () => {
       <div className="form-group">
         <input
           type="text"
-          name="phoneNumber"
-          value={driver.phoneNumber}
+          name="address"
+          value={driver.address}
           onChange={handleChange}
-          placeholder="Phone Number"
+          placeholder="Address"
           required
-          pattern="\d{10}"
-          title="Phone number must be 10 digits"
+        />
+      </div>
+      <div className="form-group">
+        <label>Date of Birth</label>
+        <input
+          type="date"
+          name="dateOfBirth"
+          value={driver.dateOfBirth}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label>Join Date</label>
+        <input
+          type="date"
+          name="joinDate"
+          value={driver.joinDate}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      {/* Driver License Information Section */}
+      <h3>Driver License Information</h3>
+      <div className="form-group">
+        <input
+          type="text"
+          name="licenseType"
+          value={driver.driverLicenseInfo.licenseType}
+          onChange={handleChange}
+          placeholder="License Type"
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label>License Expiration Date</label>
+        <input
+          type="date"
+          name="expirationDate"
+          value={driver.driverLicenseInfo.expirationDate}
+          onChange={handleChange}
+          required
         />
       </div>
       <button type="submit" className="submit-button">

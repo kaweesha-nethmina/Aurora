@@ -1,11 +1,20 @@
-// src/controllers/driverController.ts
 import { Request, Response } from 'express';
 import Driver from '../model/driverModel';
 
 // Add new driver
 export const addDriver = async (req: Request, res: Response) => {
   try {
-    const { driverCode, firstName, lastName,IDNumber, phoneNumber } = req.body;
+    const {
+      driverCode,
+      firstName,
+      lastName,
+      NIC,
+      phoneNumber,
+      address,
+      dateOfBirth,
+      joinDate,
+      driverLicenseInfo,
+    } = req.body;
 
     // Check for existing driver code
     const existingDriver = await Driver.findOne({ driverCode });
@@ -17,8 +26,12 @@ export const addDriver = async (req: Request, res: Response) => {
       driverCode,
       firstName,
       lastName,
-      IDNumber,
+      NIC,
       phoneNumber,
+      address,
+      dateOfBirth,
+      joinDate,
+      driverLicenseInfo,
     });
 
     await driver.save();
@@ -43,12 +56,30 @@ export const getDrivers = async (req: Request, res: Response) => {
 // Update driver by driverCode
 export const updateDriver = async (req: Request, res: Response) => {
   const { driverCode } = req.params;
-  const { firstName, lastName, phoneNumber } = req.body;
+  const {
+    firstName,
+    lastName,
+    phoneNumber,
+    NIC,
+    address,
+    dateOfBirth,
+    joinDate,
+    driverLicenseInfo,
+  } = req.body;
 
   try {
     const updatedDriver = await Driver.findOneAndUpdate(
       { driverCode },
-      { firstName, lastName, phoneNumber },
+      {
+        firstName,
+        lastName,
+        phoneNumber,
+        NIC,
+        address,
+        dateOfBirth,
+        joinDate,
+        driverLicenseInfo,
+      },
       { new: true } // Return the updated driver
     );
 

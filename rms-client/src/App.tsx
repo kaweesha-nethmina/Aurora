@@ -117,6 +117,8 @@ import MonthlyReport from './modules/events/components/ADMIN/MonthlyReport';
 // import AppointmentTable from './modules/spa/components/Admin/AppointmentTable';
 import AppointmentTableS from './modules/spa/components/Admin/AppointmentTable';
 import SMReport from './modules/spa/components/Admin/SMReport';
+import CustomerBookings from './modules/transportation/components/CustomerBookings';
+import TransportDailyReport from './modules/transportation/components/transportDailyReport';
 
 
 
@@ -271,12 +273,13 @@ function App() {
         <Route path='/transportation' element={<Transport/>}/>
         <Route path='/Tadmin' element={<AdminBookingsPage/>}/>
         <Route path='/Tbform' element={<BookingForm/>}/>
-
+        <Route path='/mybook' element={<CustomerBookings/>}/>
         
         <Route path="/Tmanager" element={<TManagerDashboard />}>
           <Route path="drivers" element={<ManageDrivers />} />
           <Route path="add-drivers" element={<AddDriverForm />} />
           <Route path="bookings" element={<TransportBookings />} />
+          <Route path="report" element={<TransportDailyReport />} />
         </Route>
   
         <Route path='/tbHeader' element={<TManagerHeader activeTab={''}/>}/>

@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
             <Link to="/Tbform" className="nav-link">Book Now</Link>
           </li>
           <li className="nav-item">
-            <Link to="#" className="nav-link">Mybookings</Link>
+            <Link to="/mybook" className="nav-link">Mybookings</Link>
           </li>
           
 

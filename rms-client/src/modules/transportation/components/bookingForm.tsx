@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style/BookingForm.css';
 import Header from '../../core/components/Header';
@@ -30,6 +30,17 @@ const BookingForm = () => {
   const [showCheckboxes, setShowCheckboxes] = useState(false);
   const [selectedBookings, setSelectedBookings] = useState<number[]>([]);
 
+  // Fetch user data from localStorage
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      const userProfile = JSON.parse(userData);
+      setName(`${userProfile.firstName || ''} ${userProfile.lastName || ''}`);
+      setEmail(userProfile.contact_info?.email || '');
+      setPhone(userProfile.phone || ''); // Assuming phone is stored in contact_info
+    }
+  }, []);
+
   const validatePhoneNumber = (number: string) => {
     const phoneRegex = /^[0-9]{10}$/; // Simple validation for 10-digit phone number
     return phoneRegex.test(number);
@@ -37,7 +48,7 @@ const BookingForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+
     if (!validatePhoneNumber(phone)) {
       alert('Please enter a valid 10-digit phone number.');
       return;
@@ -78,7 +89,7 @@ const BookingForm = () => {
     setDate('');
     setTime('');
     setShowCheckboxes(false); // Reset checkboxes
-    setSelectedBookings([]);
+    setSelectedBookings([]); // Clear selection
   };
 
   const handleCancelAllBookings = () => {

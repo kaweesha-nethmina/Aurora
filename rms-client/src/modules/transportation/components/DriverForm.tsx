@@ -33,7 +33,6 @@ const DriverForm: React.FC<DriverFormProps> = ({
 }) => {
   return (
     <form className="driver-form">
-      {/* Other driver fields */}
       <div className="driver-form-group">
         <label className="driver-form-label">Driver Code</label>
         <input
@@ -41,6 +40,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
           type="text"
           value={newDriver.driverCode}
           onChange={(e) => setNewDriver({ ...newDriver, driverCode: e.target.value })}
+          required
         />
       </div>
       <div className="driver-form-group">
@@ -50,6 +50,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
           type="text"
           value={newDriver.firstName}
           onChange={(e) => setNewDriver({ ...newDriver, firstName: e.target.value })}
+          required
         />
       </div>
       <div className="driver-form-group">
@@ -59,6 +60,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
           type="text"
           value={newDriver.lastName}
           onChange={(e) => setNewDriver({ ...newDriver, lastName: e.target.value })}
+          required
         />
       </div>
       <div className="driver-form-group">
@@ -68,6 +70,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
           type="text"
           value={newDriver.phoneNumber}
           onChange={(e) => setNewDriver({ ...newDriver, phoneNumber: e.target.value })}
+          required
         />
       </div>
       <div className="driver-form-group">
@@ -77,6 +80,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
           type="text"
           value={newDriver.NIC}
           onChange={(e) => setNewDriver({ ...newDriver, NIC: e.target.value })}
+          required
         />
       </div>
       <div className="driver-form-group">
@@ -86,6 +90,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
           type="text"
           value={newDriver.address}
           onChange={(e) => setNewDriver({ ...newDriver, address: e.target.value })}
+          required
         />
       </div>
       <div className="driver-form-group">
@@ -95,6 +100,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
           type="date"
           value={newDriver.dateOfBirth}
           onChange={(e) => setNewDriver({ ...newDriver, dateOfBirth: e.target.value })}
+          required
         />
       </div>
       <div className="driver-form-group">
@@ -104,6 +110,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
           type="date"
           value={newDriver.joinDate}
           onChange={(e) => setNewDriver({ ...newDriver, joinDate: e.target.value })}
+          required
         />
       </div>
 
@@ -122,6 +129,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
                 driverLicenseInfo: { ...newDriver.driverLicenseInfo, licenseType: e.target.value },
               })
             }
+            required
           />
         </div>
         <div className="driver-form-group">
@@ -136,6 +144,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
                 driverLicenseInfo: { ...newDriver.driverLicenseInfo, expirationDate: e.target.value },
               })
             }
+            required
           />
         </div>
       </div>
@@ -145,7 +154,7 @@ const DriverForm: React.FC<DriverFormProps> = ({
         onClick={editingDriver ? handleUpdateDriver : handleAddDriver}
         type="button"
       >
-        {editingDriver ? 'Update' : 'Add'}
+        {editingDriver ? 'Update Driver' : 'Add Driver'}
       </button>
     </form>
   );

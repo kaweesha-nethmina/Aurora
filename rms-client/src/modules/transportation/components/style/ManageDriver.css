@@ -1,53 +1,109 @@
 /* Container for the driver management page */
 .driver-container {
-    width: 1000px;
-    margin: 0 auto;
+    width: 1530px;
+    
+    height: 100vh;
     padding: 20px;
-    background-color: #f7f7f7;
+    margin-top: 100px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Title styling */
-.driver-title {
+  }
+  
+  /* Title styling */
+  .driver-title {
     font-size: 28px;
     font-weight: 600;
     text-align: center;
     color: #222;
     margin-bottom: 25px;
-}
-
-/* Driver Form styling */
-.driver-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 600px;
-    margin: 0 auto;
-}
-
-.driver-form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.driver-form-label {
+  }
+  
+  /* Driver Table styling */
+  .driver-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 280px;
+    max-width: 1000px;
+    background-color: #ffffff;
+  }
+  
+  .driver-table th,
+  .driver-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .driver-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .driver-table td {
     font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: #333;
-}
-
-.driver-form-input {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #bbb;
+  }
+  
+  /* Action buttons */
+  .driver-action-btn {
+    padding: 6px 10px;
+    margin: 0 4px;
+    border: none;
     border-radius: 4px;
-    background-color: #eee;
-}
-
-/* Buttons */
-.driver-btn {
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .driver-action-edit {
+    background-color: #ffc107;
+    color: white;
+  }
+  
+  .driver-action-remove {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  /* Hover effects for action buttons */
+  .driver-action-edit:hover {
+    background-color: #e0a800;
+  }
+  
+  .driver-action-remove:hover {
+    background-color: #c82333;
+  }
+  
+  /* Popup for adding/updating driver */
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensure it's above other content */
+    width: 500px; /* Set a fixed width for the popup */
+  }
+  
+  /* Popup form styling */
+  .popup h2 {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .popup input {
+    width: 100%; /* Make inputs full width */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Buttons */
+  .driver-btn {
     padding: 10px;
     max-width: 150px;
     margin-top: 20px;
@@ -57,61 +113,22 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.driver-btn:hover {
+    display: block; /* Center the button in the form */
+    width: 100%; /* Full width */
+  }
+  
+  .driver-btn:hover {
     background-color: #0056b3;
-}
-
-/* Driver Table styling */
-.driver-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.driver-table th,
-.driver-table td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: center;
-}
-
-.driver-table th {
-    background-color: #4CAF50;
+  }
+  
+  /* Additional button styles */
+  button[type="button"] {
+    background-color: #6c757d; /* Cancel button color */
     color: white;
-    font-size: 16px;
-}
-
-.driver-table td {
-    font-size: 14px;
-}
-
-/* Action buttons */
-.driver-action-btn {
-    padding: 6px 10px;
-    margin: 0 4px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.driver-action-edit {
-    background-color: #ffc107;
-    color: white;
-}
-
-.driver-action-remove {
-    background-color: #dc3545;
-    color: white;
-}
-
-/* Hover effects for action buttons */
-.driver-action-edit:hover {
-    background-color: #e0a800;
-}
-
-.driver-action-remove:hover {
-    background-color: #c82333;
-}
+    margin-top: 10px;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #5a6268; /* Darker shade on hover */
+  }
+  

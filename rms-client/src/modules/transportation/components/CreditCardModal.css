@@ -1,0 +1,46 @@
+.modalT {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Make sure it's on top */
+}
+
+
+
+.modalT form {
+  background: white;
+  padding: 60px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modalT form div {
+  margin-bottom: 12px;
+}
+
+.modalT form label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.modalT form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalT form button {
+  margin-right: 10px;
+}
+
+.pay{
+  background-color: green;
+  width: 90px;
+}

@@ -1,4 +1,3 @@
-// src/routers/driverRouter.ts
 import express from 'express';
 import { addDriver, getDrivers, updateDriver, deleteDriver } from '../controller/driverController';
 

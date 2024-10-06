@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import '../../../employees/ManagerDashboard.css'; // Custom CSS file for this dashboard
+import './TManagerDashboard.css'; // Custom CSS file for this dashboard
 import TManagerHeader from './TManagerHeader'; // Updated to use TManagerHeader
 import Sidebar from '../../../core/components/Sidebar';
 
@@ -12,6 +12,7 @@ const TManagerDashboard: React.FC = () => {
         if (path.endsWith('/drivers')) return 'drivers';
         if (path.endsWith('/bookings')) return 'bookings';
         if (path.endsWith('/add-drivers')) return 'add-drivers';
+        if (path.endsWith('/report')) return 'report';
         return '';
     };
   

@@ -8,7 +8,10 @@ export interface ITransportBooking extends Document {
   dropoff: string;
   date: Date;
   time: string;
-  status: 'pending' | 'confirmed' | 'canceled';
+  vehicle: 'Car' | 'Van' | 'Tuk Tuk';
+  status: 'pending' | 'confirmed' | 'canceled' | 'approved' | 'rejected'; // Updated status options
+  price?: number; // Optional price field
+  paymentStatus: 'pending' | 'success' | 'unsuccessful'; // New payment status field
 }
 
 const TransportBookingSchema: Schema = new Schema({
@@ -19,7 +22,10 @@ const TransportBookingSchema: Schema = new Schema({
   dropoff: { type: String, required: true },
   date: { type: Date, required: true },
   time: { type: String, required: true },
-  status: { type: String, enum: ['pending', 'confirmed', 'canceled'], default: 'pending' },
+  vehicle: { type: String, enum: ['Car', 'Van', 'Tuk Tuk'], required: true },
+  status: { type: String, enum: ['pending', 'confirmed', 'canceled', 'approved', 'rejected'], default: 'pending' },
+  price: { type: Number }, // Optional price field
+  paymentStatus: { type: String, enum: ['pending', 'success', 'unsuccessful'], default: 'pending' } // New payment status field
 });
 
 export default mongoose.model<ITransportBooking>('TransportBooking', TransportBookingSchema, 'TransportBooking');
