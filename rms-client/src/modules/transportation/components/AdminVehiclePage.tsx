@@ -4,38 +4,44 @@ import VehicleForm from './VehicleForm';
 import './style/adminVehiclePage.css';  // Updated CSS file
 
 interface Vehicle {
-  vehicleType: string;
-  vehicleCode: string;
+  code: string;
+  model: string;
+  number: string;
   seats: number;
+  driver: string;
   available: boolean;
 }
 
 const initialVehicles: Vehicle[] = [
-  { vehicleType: 'Car', vehicleCode: 'CAR-001', seats: 5, available: true },
-  { vehicleType: 'Van', vehicleCode: 'Van-001', seats: 15, available: false },
-  { vehicleType: 'Tok Tok', vehicleCode: 'Tok-001', seats: 3, available: true },
+  { code: 'CAR-001', model: 'Toyota', number: '1234', seats: 5, driver: 'John', available: true },
+  { code: 'VAN-001', model: 'Ford', number: '5678', seats: 15, driver: 'Mike', available: false },
+  { code: 'TOK-001', model: 'Honda', number: '9101', seats: 3, driver: 'Alex', available: true },
 ];
 
 const AdminVehiclePage = () => {
   const [vehicles, setVehicles] = useState<Vehicle[]>(initialVehicles);
   const [newVehicle, setNewVehicle] = useState<Vehicle>({
-    vehicleType: '',
-    vehicleCode: '',
+    code: '',
+    model: '',
+    number: '',
     seats: 0,
+    driver: '',
     available: true,
   });
   const [editing, setEditing] = useState<number>(-1);
   const [editedVehicle, setEditedVehicle] = useState<Vehicle>({
-    vehicleType: '',
-    vehicleCode: '',
+    code: '',
+    model: '',
+    number: '',
     seats: 0,
+    driver: '',
     available: true,
   });
 
   const handleAdd = () => {
     const updatedVehicles = [...vehicles, newVehicle];
     setVehicles(updatedVehicles);
-    setNewVehicle({ vehicleType: '', vehicleCode: '', seats: 0, available: true });
+    setNewVehicle({ code: '', model: '', number: '', seats: 0, driver: '', available: true });
   };
 
   const handleRemove = (index: number) => {
@@ -58,7 +64,6 @@ const AdminVehiclePage = () => {
 
   return (
     <div className="admin-vehicle-container">
-      
       <h1 className="admin-vehicle-title">Vehicles</h1>
       <VehicleTable
         vehicles={vehicles}

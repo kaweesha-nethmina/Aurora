@@ -3,6 +3,7 @@ import './medicalPage.css';
 import Header from '../../../../core/components/Header';
 import Navbar from '../nav/SNavbar';
 import { Link } from 'react-router-dom';
+import MedIMG from '../../../images/Medicalpage.jpg';
 
 const MedicalPage: React.FC = () => {
   const [isBooked, setIsBooked] = useState(false);
@@ -13,11 +14,11 @@ const MedicalPage: React.FC = () => {
 
   return (
     <div className="page-containerS">
-      <Header activeTab={''} />
+      <Header activeTab={'spa-wellness'} />
       <Navbar />
       <div className="image-section">
         <img
-          src="https://picsum.photos/200/302"
+          src={MedIMG}
           alt="Medical Center"
           className="page-image"
         />

@@ -1,55 +1,60 @@
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* GymPage.css */
+
+/* Container styles */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 1.5rem;
   }
-  
-  h2 {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 2rem;
   }
-  
-  .form-group {
-    margin-bottom: 1rem;
+}
+
+/* Card styles */
+.card {
+  background-color: #f7fafc; /* Light gray background */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card img {
+  width: 100%;
+  height: 16rem; /* Fixed height for images */
+  object-fit: cover; /* Ensures images are cropped properly */
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Text styles */
+.card-title {
+  font-size: 1.25rem; /* Bold font size */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  color: #4a5568; /* Gray color for the text */
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  gap: 1rem; /* Space between grid items */
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on larger screens */
   }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .form-group input,
-  .form-group select {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .form-submitted {
-    text-align: center;
-    font-size: 1.2rem;
-    color: green;
-  }
-  
+}

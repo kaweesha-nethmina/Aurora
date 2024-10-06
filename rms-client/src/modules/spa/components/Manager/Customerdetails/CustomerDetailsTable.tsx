@@ -2,100 +2,151 @@ import React, { useState } from 'react';
 
 interface Customer {
   id: number;
-  name: string;
-  email: string;
-  phone: string;
+  spa: boolean;
+  gym: boolean;
+  medical: boolean;
 }
 
-const initialCustomers: Customer[] = [
-  { id: 1, name: 'John Doe', email: 'john@example.com', phone: '123-456-7890' },
-  { id: 2, name: 'Jane Doe', email: 'jane@example.com', phone: '987-654-3210' },
-];
-
 const CustomerDetailsTable = () => {
-  const [customers, setCustomers] = useState(initialCustomers);
-  const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
-  const [newCustomer, setNewCustomer] = useState<Customer>({ id: 0, name: '', email: '', phone: '' });
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [id, setId] = useState('');
+  const [spa, setSpa] = useState(false);
+  const [gym, setGym] = useState(false);
+  const [medical, setMedical] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(-1);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setCustomers([...customers, { ...newCustomer, id: customers.length + 1 }]);
-    setNewCustomer({ id: 0, name: '', email: '', phone: '' });
-  };
-
-  const handleEdit = (customer: Customer) => {
-    setEditingCustomer(customer);
-  };
-
-  const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (editingCustomer) {
-      const updatedCustomers = customers.map((customer) => (customer.id === editingCustomer.id ? editingCustomer : customer));
-      setCustomers(updatedCustomers);
-      setEditingCustomer(null);
+  const handleAddCustomer = () => {
+    if (id) {
+      setCustomers([...customers, { id: parseInt(id), spa, gym, medical }]);
+      setId('');
+      setSpa(false);
+      setGym(false);
+      setMedical(false);
     }
   };
 
-  const handleDelete = (id: number) => {
-    setCustomers(customers.filter((customer) => customer.id !== id));
+  const handleDeleteCustomer = (index: number) => {
+    setCustomers(customers.filter((customer, i) => i !== index));
+  };
+
+  const handleEditCustomer = (index: number) => {
+    setIsEditing(true);
+    setEditingIndex(index);
+    const customer = customers[index];
+    setId(customer.id.toString());
+    setSpa(customer.spa);
+    setGym(customer.gym);
+    setMedical(customer.medical);
+  };
+
+  const handleUpdateCustomer = () => {
+    if (editingIndex !== -1) {
+      const updatedCustomers = [...customers];
+      updatedCustomers[editingIndex] = { id: parseInt(id), spa, gym, medical };
+      setCustomers(updatedCustomers);
+      setIsEditing(false);
+      setEditingIndex(-1);
+      setId('');
+      setSpa(false);
+      setGym(false);
+      setMedical(false);
+    }
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Customer Details</h1>
-      <form onSubmit={handleSubmit} className="mb-4">
+    <div className="max-w-4xl mx-auto p-4">
+      <h2 className="text-lg font-bold mb-4">Customer Details Table</h2>
+      <form className="flex flex-col gap-4 mb-4">
         <input
-          type="text"
-          value={newCustomer.name}
-          onChange={(e) => setNewCustomer({ ...newCustomer, name: e.target.value })}
-          placeholder="Name"
-          className="block w-full p-2 mb-2 border border-gray-300 rounded"
+          type="number"
+          placeholder="ID"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+          className="p-2 border border-gray-300 rounded"
         />
-        <input
-          type="email"
-          value={newCustomer.email}
-          onChange={(e) => setNewCustomer({ ...newCustomer, email: e.target.value })}
-          placeholder="Email"
-          className="block w-full p-2 mb-2 border border-gray-300 rounded"
-        />
-        <input
-          type="text"
-          value={newCustomer.phone}
-          onChange={(e) => setNewCustomer({ ...newCustomer, phone: e.target.value })}
-          placeholder="Phone"
-          className="block w-full p-2 mb-2 border border-gray-300 rounded"
-        />
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Submit
-        </button>
+        <div className="flex gap-4">
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={spa}
+              onChange={(e) => setSpa(e.target.checked)}
+              className="p-2 border border-gray-300 rounded"
+            />
+            <label>Spa</label>
+          </div>
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={gym}
+              onChange={(e) => setGym(e.target.checked)}
+              className="p-2 border border-gray-300 rounded"
+            />
+            <label>Gym</label>
+          </div>
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={medical}
+              onChange={(e) => setMedical(e.target.checked)}
+              className="p-2 border border-gray-300 rounded"
+            />
+            <label>Medical</label>
+          </div>
+        </div>
+        {isEditing ? (
+          <button
+            type="button"
+            onClick={handleUpdateCustomer}
+            className="bg-blue-500 text-white p-2 rounded"
+          >
+            Update Customer
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={handleAddCustomer}
+            className="bg-blue-500 text-white p-2 rounded"
+          >
+            Add Customer
+          </button>
+        )}
       </form>
       <table className="w-full border-collapse border border-gray-300">
         <thead>
           <tr>
             <th className="p-2 border border-gray-300">ID</th>
-            <th className="p-2 border border-gray-300">Name</th>
-            <th className="p-2 border border-gray-300">Email</th>
-            <th className="p-2 border border-gray-300">Phone</th>
+            <th className="p-2 border border-gray-300">Spa</th>
+            <th className="p-2 border border-gray-300">Gym</th>
+            <th className="p-2 border border-gray-300">Medical</th>
             <th className="p-2 border border-gray-300">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {customers.map((customer) => (
+          {customers.map((customer, index) => (
             <tr key={customer.id}>
               <td className="p-2 border border-gray-300">{customer.id}</td>
-              <td className="p-2 border border-gray-300">{customer.name}</td>
-              <td className="p-2 border border-gray-300">{customer.email}</td>
-              <td className="p-2 border border-gray-300">{customer.phone}</td>
+              <td className="p-2 border border-gray-300">
+                {customer.spa ? 'Yes' : 'No'}
+              </td>
+              <td className="p-2 border border-gray-300">
+                {customer.gym ? 'Yes' : 'No'}
+              </td>
+              <td className="p-2 border border-gray-300">
+                {customer.medical ? 'Yes' : 'No'}
+              </td>
               <td className="p-2 border border-gray-300">
                 <button
-                  onClick={() => handleEdit(customer)}
-                  className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
+                  type="button"
+                  onClick={() => handleEditCustomer(index)}
+                  className="bg-green-500 text-white p-2 rounded mr-2"
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(customer.id)}
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  type="button"
+                  onClick={() => handleDeleteCustomer(index)}
+                  className="bg-red-500 text-white p-2 rounded"
                 >
                   Delete
                 </button>
@@ -104,34 +155,6 @@ const CustomerDetailsTable = () => {
           ))}
         </tbody>
       </table>
-      {editingCustomer && (
-        <form onSubmit={handleSave} className="mt-4">
-          <input
-            type="text"
-            value={editingCustomer.name}
-            onChange={(e) => setEditingCustomer({ ...editingCustomer, name: e.target.value })}
-            placeholder="Name"
-            className="block w-full p-2 mb-2 border border-gray-300 rounded"
-          />
-          <input
-            type="email"
-            value={editingCustomer.email}
-            onChange={(e) => setEditingCustomer({ ...editingCustomer, email: e.target.value })}
-            placeholder="Email"
-            className="block w-full p-2 mb-2 border border-gray-300 rounded"
-          />
-          <input
-            type="text"
-            value={editingCustomer.phone}
-            onChange={(e) => setEditingCustomer({ ...editingCustomer, phone: e.target.value })}
-            placeholder="Phone"
-            className="block w-full p-2 mb-2 border border-gray-300 rounded"
-          />
-          <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Save
-          </button>
-        </form>
-      )}
     </div>
   );
 };

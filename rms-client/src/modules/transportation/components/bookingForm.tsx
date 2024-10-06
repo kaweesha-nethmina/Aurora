@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 import './style/BookingForm.css';
 import Header from '../../core/components/Header';
-import Navbar from './style/TNavbar';
+import Navbar from './TNavbar';
 
 interface Booking {
   name: string;
@@ -13,6 +13,7 @@ interface Booking {
   date: string;
   time: string;
   status: string;
+  vehicle: string;
 }
 
 const BookingForm = () => {
@@ -21,6 +22,7 @@ const BookingForm = () => {
   const [phone, setPhone] = useState('');
   const [pickup, setPickup] = useState('');
   const [dropoff, setDropoff] = useState('');
+  const [vehicle, setVehicle] = useState('Car'); // Default to Car
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -35,6 +37,7 @@ const BookingForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
     if (!validatePhoneNumber(phone)) {
       alert('Please enter a valid 10-digit phone number.');
       return;
@@ -49,6 +52,7 @@ const BookingForm = () => {
       date,
       time,
       status: 'pending',
+      vehicle,
     };
 
     try {
@@ -70,6 +74,7 @@ const BookingForm = () => {
     setPhone('');
     setPickup('');
     setDropoff('');
+    setVehicle('Car'); // Reset to default vehicle
     setDate('');
     setTime('');
     setShowCheckboxes(false); // Reset checkboxes
@@ -106,17 +111,16 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="containerBook">
-      <Header activeTab={''} />
+    <div className="booking-container">
+      <Header activeTab={'transportation'} />
       <Navbar />
-      <div className="card2">
-        <h1 className="card-title">Book Your Vehicle</h1>
-        <form onSubmit={handleSubmit} className="form">
+      <div className="booking-card">
+        <h1 className="booking-card-title">Book Your Vehicle</h1>
+        <form onSubmit={handleSubmit} className="booking-form">
+          {/* Form Fields */}
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="name">
-                Name<span>*</span>
-              </label>
+              <label htmlFor="name">Name<span>*</span></label>
               <input
                 id="name"
                 type="text"
@@ -127,9 +131,7 @@ const BookingForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">
-                Email<span>*</span>
-              </label>
+              <label htmlFor="email">Email<span>*</span></label>
               <input
                 id="email"
                 type="email"
@@ -141,11 +143,10 @@ const BookingForm = () => {
             </div>
           </div>
 
+          {/* Phone and Pickup */}
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="phone">
-                Phone<span>*</span>
-              </label>
+              <label htmlFor="phone">Phone<span>*</span></label>
               <input
                 id="phone"
                 type="tel"
@@ -156,9 +157,7 @@ const BookingForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="pickup">
-                Pickup Location<span>*</span>
-              </label>
+              <label htmlFor="pickup">Pickup Location<span>*</span></label>
               <input
                 id="pickup"
                 type="text"
@@ -170,11 +169,10 @@ const BookingForm = () => {
             </div>
           </div>
 
+          {/* Dropoff and Vehicle Type */}
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="dropoff">
-                Dropoff Location<span>*</span>
-              </label>
+              <label htmlFor="dropoff">Dropoff Location<span>*</span></label>
               <input
                 id="dropoff"
                 type="text"
@@ -185,9 +183,25 @@ const BookingForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="date">
-                Date<span>*</span>
-              </label>
+              <label htmlFor="vehicle">Vehicle Type<span>*</span></label>
+              <select
+                className="form-group1"
+                id="vehicle"
+                value={vehicle}
+                onChange={(event) => setVehicle(event.target.value)}
+                required
+              >
+                <option value="Car">Car</option>
+                <option value="Van">Van</option>
+                <option value="Tuk Tuk">Tuk Tuk</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Date and Time */}
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="date">Date<span>*</span></label>
               <input
                 id="date"
                 type="date"
@@ -197,13 +211,8 @@ const BookingForm = () => {
                 min={new Date().toISOString().split('T')[0]}
               />
             </div>
-          </div>
-
-          <div className="form-row">
             <div className="form-group">
-              <label htmlFor="time">
-                Time<span>*</span>
-              </label>
+              <label htmlFor="time">Time<span>*</span></label>
               <input
                 id="time"
                 type="time"
@@ -214,16 +223,15 @@ const BookingForm = () => {
             </div>
           </div>
 
-          <button className="submit-btn" type="submit">
-            Book Now
-          </button>
+          <button className="booking-submit-btn" type="submit">Book Now</button>
         </form>
       </div>
 
+      {/* Booking Table */}
       {showWaitingTable && (
-        <div className="table-container">
+        <div className="booking-table-container">
           <h2>Your Bookings</h2>
-          <table className="bookings-table">
+          <table className="booking-table">
             <thead>
               <tr>
                 <th>Name</th>
@@ -233,6 +241,7 @@ const BookingForm = () => {
                 <th>Dropoff</th>
                 <th>Date</th>
                 <th>Time</th>
+                <th>Vehicle</th>
                 <th>Status</th>
                 {showCheckboxes && <th>Select</th>}
               </tr>
@@ -247,9 +256,8 @@ const BookingForm = () => {
                   <td>{booking.dropoff}</td>
                   <td>{booking.date}</td>
                   <td>{booking.time}</td>
-                  <td className={`status ${booking.status}`}>
-                    {booking.status}
-                  </td>
+                  <td>{booking.vehicle}</td>
+                  <td className={`booking-status-${booking.status}`}>{booking.status}</td>
                   {showCheckboxes && (
                     <td>
                       <input
@@ -264,12 +272,12 @@ const BookingForm = () => {
             </tbody>
           </table>
 
-          <button className="cancel-btn" onClick={handleCancelAllBookings}>
-            {showCheckboxes ? 'Select Bookings' : 'Cancel Booking'}
+          <button className="booking-cancel-btn" onClick={handleCancelAllBookings}>
+            Cancel Booking
           </button>
 
           {showCheckboxes && selectedBookings.length > 0 && (
-            <button className="confirm-cancel-btn" onClick={handleCancelSelected}>
+            <button className="booking-confirm-cancel-btn" onClick={handleCancelSelected}>
               Confirm Selected
             </button>
           )}
@@ -279,4 +287,4 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm; 
+export default BookingForm;

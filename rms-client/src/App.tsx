@@ -114,6 +114,9 @@ import EventBookingTable from './modules/events/components/ADMIN/EventBookingTab
 import CustomTable from './modules/events/components/ADMIN/CustomTable';
 import MyBookings from './modules/events/components/myBookings';
 import MonthlyReport from './modules/events/components/ADMIN/MonthlyReport';
+// import AppointmentTable from './modules/spa/components/Admin/AppointmentTable';
+import AppointmentTableS from './modules/spa/components/Admin/AppointmentTable';
+import SMReport from './modules/spa/components/Admin/SMReport';
 
 
 
@@ -226,12 +229,13 @@ function App() {
         <Route path='/MedicalAppointmentForm' element={<MedicalAppointmentForm />} />
         <Route path='/apoinments' element={<AppointmentPage />} />
         <Route path='/SpaPage' element={<SpaPage />} /> 
-        <Route path='/SpaAppointmentForm ' element={<SpaAppointmentForm />} /> 
+        <Route path='/SpaAppointmentForm' element={<SpaAppointmentForm />} /> 
         <Route path='/appointments' element={<AppointmentPage />} /> 
 
         <Route path='/SManager' element={<SManagerDashboard />}>
-          
-          <Route path='Sappointments' element={<AdminAppointment />} />{/* Correct path and nesting */}
+          <Route path='spaTable' element={<AppointmentTableS />} />
+          <Route path='Sappointments' element={<AdminAppointment />} />
+          <Route path='report' element={<SMReport />} />
         </Route>
 
 

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import AppointmentTable from './AppointmentTable';
-import Header from '../../../../core/components/Header';
-import Navbar from '../nav/SNavbar';
+import { useEffect, useState } from "react";
+import Header from "../../../../core/components/Header";
+import Navbar from "../nav/SNavbar";
+import SpaTable from "./SpaTable";
+import AppointmentTable from "./AppointmentTable";
 import './Appoinment.css';
-
 interface Appointment {
   _id: string;
   doctor: string;
@@ -15,8 +15,15 @@ interface Appointment {
   status: 'Pending' | 'Approved' | 'Rejected';
 }
 
+// Define a separate interface for spa appointments that extends the basic Appointment interface
+interface SpaAppointment extends Appointment {
+  service: string; // Add the required service field
+  message?: string;
+}
+
 const AppointmentPage: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [spaAppointments, setSpaAppointments] = useState<SpaAppointment[]>([]); // Use the new SpaAppointment type
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -33,8 +40,36 @@ const AppointmentPage: React.FC = () => {
       }
     };
 
+    const fetchSpaAppointments = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/spaappointments');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch spa appointments: ${response.statusText}`);
+        }
+        const data: SpaAppointment[] = await response.json();
+        setSpaAppointments(data);
+      } catch (error) {
+        setError((error as Error).message);
+      }
+    };
+
     fetchAppointments();
+    fetchSpaAppointments();
   }, []);
+
+  // Retrieve user data from local storage
+  const userData = localStorage.getItem('userData');
+  const userProfile = userData ? JSON.parse(userData) : null;
+
+  // Filter appointments by logged-in user
+  const filteredAppointments = appointments.filter(
+    (appointment) => appointment.name === `${userProfile?.firstName || ''} ${userProfile?.lastName || ''}`
+  );
+
+  // Filter spa appointments by logged-in user
+  const filteredSpaAppointments = spaAppointments.filter(
+    (appointment) => appointment.name === `${userProfile?.firstName || ''} ${userProfile?.lastName || ''}`
+  );
 
   const handleUpdate = async (updatedAppointment: Appointment) => {
     console.log('Updating appointment:', updatedAppointment);
@@ -48,7 +83,7 @@ const AppointmentPage: React.FC = () => {
       });
 
       console.log('Response:', response);
-      
+
       if (!response.ok) {
         throw new Error(`Failed to update appointment: ${response.statusText}`);
       }
@@ -66,12 +101,18 @@ const AppointmentPage: React.FC = () => {
   };
 
   return (
-    <div className='page-containerS'>
-      <Header activeTab={''} />
+    <div className='page-containerSP'>
+      <Header activeTab={'spa-wellness'} />
       <Navbar />
       <div className='appointment-containerW'>
         {error && <p className="error-message">{error}</p>}
-        <AppointmentTable appointments={appointments} onUpdate={handleUpdate} />
+
+        {/* Medical Appointments Table */}
+        
+        <AppointmentTable appointments={filteredAppointments} onUpdate={handleUpdate} />
+
+        {/* Spa Appointments Table */}
+        <SpaTable appointments={filteredSpaAppointments} /> {/* Pass filtered spa appointments to SpaTable */}
       </div>
     </div>
   );

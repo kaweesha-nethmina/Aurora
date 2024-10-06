@@ -2,14 +2,19 @@
     margin: 20px auto;
     width: 90%;
   }
-  
+  .tilteME{
+    margin-left: 80px;
+    color: #ddd;
+    font-size: 30px;
+    text-shadow: 2px 2px black;
+  }
   .table-title {
     text-align: center;
     margin-bottom: 20px;
   }
   
   .appointment-table {
-    width: 100%;
+    width: 820px !important;
     border-collapse: collapse;
   }
   

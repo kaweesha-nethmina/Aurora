@@ -2,9 +2,11 @@ import React from 'react';
 import './style/adminVehiclePage.css';  // Updated CSS file
 
 interface Vehicle {
-  vehicleType: string;
-  vehicleCode: string;
+  code: string;
+  model: string;
+  number: string;
   seats: number;
+  driver: string;
   available: boolean;
 }
 
@@ -38,9 +40,11 @@ const VehicleTable: React.FC<VehicleTableProps> = ({
     <table className="vehicle-table">
       <thead>
         <tr>
-          <th>Type</th>
           <th>Code</th>
+          <th>Model</th>
+          <th>Number</th>
           <th>Seats</th>
+          <th>Driver</th>
           <th>Available</th>
           <th>Actions</th>
         </tr>
@@ -51,20 +55,28 @@ const VehicleTable: React.FC<VehicleTableProps> = ({
             {editing === index ? (
               <>
                 <td>
-                  <input type="text" name="vehicleType" value={editedVehicle.vehicleType} onChange={handleEditChange} />
+                  <input type="text" name="code" value={editedVehicle.code} onChange={handleEditChange} />
                 </td>
                 <td>
-                  <input type="text" name="vehicleCode" value={editedVehicle.vehicleCode} onChange={handleEditChange} />
+                  <input type="text" name="model" value={editedVehicle.model} onChange={handleEditChange} />
+                </td>
+                <td>
+                  <input type="text" name="number" value={editedVehicle.number} onChange={handleEditChange} />
                 </td>
                 <td>
                   <input type="number" name="seats" value={editedVehicle.seats} onChange={handleEditChange} />
                 </td>
+                <td>
+                  <input type="text" name="driver" value={editedVehicle.driver} onChange={handleEditChange} />
+                </td>
               </>
             ) : (
               <>
-                <td>{vehicle.vehicleType}</td>
-                <td>{vehicle.vehicleCode}</td>
+                <td>{vehicle.code}</td>
+                <td>{vehicle.model}</td>
+                <td>{vehicle.number}</td>
                 <td>{vehicle.seats}</td>
+                <td>{vehicle.driver}</td>
               </>
             )}
             <td>{vehicle.available ? <span className="vehicle-available">Yes</span> : <span className="vehicle-not-available">No</span>}</td>

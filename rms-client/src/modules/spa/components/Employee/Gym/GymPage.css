@@ -4,7 +4,16 @@
     margin: 2rem;
     gap: 2rem;
   }
-  
+  .spaContainer{
+    margin-top: 80px;
+    width: 1530px;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.8), rgba(54, 54, 54, 0.8)), url('../../../images/gymback.jpeg');
+    background-size: cover;
+    height: 100vh;
+    position: fixed;
+    overflow-y: scroll;
+  }
+ 
   .image-section {
     flex: 1;
     text-align: center;
@@ -16,7 +25,19 @@
     width: 75%;
     border-radius: 1rem;
   }
-  
+  .yoga{
+    height: 80vh;
+    
+    border-radius: 20px;
+  }
+
+  .fit{
+    height: 80vh;
+    
+    border-radius: 20px;
+    width: 1100px;
+    margin-bottom: 100px;
+  }
   .description-section {
     flex: 1;
   }
@@ -53,4 +74,13 @@
   .booked:hover {
     background-color: #047857;
   }
-  
+
+  .titleG{
+    color: white;
+    font-size: 30px;
+    margin-top: 50px;
+  }
+  .text{
+    color: white;
+    font-size: 20px;
+  }

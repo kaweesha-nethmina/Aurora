@@ -3,15 +3,33 @@
     margin-top: 100px;
     margin-left: 350px;
   }
-  
+  .search-input {
+  width: 100%;
+  padding: 10px;
+  margin-left: -5px !important;
+  margin-bottom: 20px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  background-color: #f2f2f2;
+}
+
   .admin-title {
     margin-bottom: 20px;
     font-size: 24px;
+    color: #ddd;
+  }
+  .title2{
+    color: #ffffff;
+    margin-left: -50px;
+    font-size: 30px;
+    text-shadow: 2px 2px black;
   }
   
   .admin-appointment-table {
     width: 100%;
     border-collapse: collapse;
+    background-color: #f2f2f2;
   }
   
   .table-header {

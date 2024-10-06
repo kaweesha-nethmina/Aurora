@@ -1,83 +1,167 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import DriverTable from './DriverTable';
-import EditDriverModal from './EditDriverModal'; // Import the modal component
+import DriverForm from './DriverForm';
 import './style/ManageDriver.css'; 
 
 interface Driver {
   driverCode: string;
   firstName: string;
   lastName: string;
-  IDNumber: string;
   phoneNumber: string;
+  NIC: string;
+  address: string;
+  dateOfBirth: string;
+  joinDate: string;
+  driverLicenseInfo: {
+    licenseType: string;
+    expirationDate: string;
+  };
 }
 
+const initialDrivers: Driver[] = [
+  {
+    driverCode: 'DRV001',
+    firstName: 'Pasindu',
+    lastName: 'Mahesh',
+    phoneNumber: '1234567890',
+    NIC: '980123456V',
+    address: '123 Main Street',
+    dateOfBirth: '1990-01-01',
+    joinDate: '2020-05-01',
+    driverLicenseInfo: {
+      licenseType: 'A',
+      expirationDate: '2025-05-01',
+    },
+  },
+  {
+    driverCode: 'DRV002',
+    firstName: 'Kaweesha',
+    lastName: 'Nethmina',
+    phoneNumber: '9876543210',
+    NIC: '970456789V',
+    address: '456 Elm Street',
+    dateOfBirth: '1989-02-02',
+    joinDate: '2019-06-15',
+    driverLicenseInfo: {
+      licenseType: 'B',
+      expirationDate: '2024-06-15',
+    },
+  },
+  {
+    driverCode: 'DRV003',
+    firstName: 'Kavindu',
+    lastName: 'Senanayake',
+    phoneNumber: '1234567890',
+    NIC: '960789123V',
+    address: '789 Oak Avenue',
+    dateOfBirth: '1992-03-03',
+    joinDate: '2021-07-20',
+    driverLicenseInfo: {
+      licenseType: 'C',
+      expirationDate: '2023-07-20',
+    },
+  },
+  {
+    driverCode: 'DRV004',
+    firstName: 'Hiuni',
+    lastName: 'Chamathka',
+    phoneNumber: '1234567890',
+    NIC: '200189123V',
+    address: 'Payagala,Kunukand road',
+    dateOfBirth: '2001-03-03',
+    joinDate: '2021-07-20',
+    driverLicenseInfo: {
+      licenseType: 'C',
+      expirationDate: '2023-07-20',
+    },
+  },
+  {
+    driverCode: 'DRV003',
+    firstName: 'Desima',
+    lastName: 'Weerasinhe',
+    phoneNumber: '1234567890',
+    NIC: '200189123V',
+    address: 'sadalokapujitha sajith premadasa Gammanaya',
+    dateOfBirth: '1992-03-03',
+    joinDate: '2021-07-20',
+    driverLicenseInfo: {
+      licenseType: 'B',
+      expirationDate: '2023-07-20',
+    },
+  },
+];
+
 const ManageDrivers = () => {
-  const [drivers, setDrivers] = useState<Driver[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedDriver, setSelectedDriver] = useState<Driver | null>(null); // Driver selected for editing
-  const [isModalOpen, setIsModalOpen] = useState(false); // Control modal visibility
+  const [drivers, setDrivers] = useState(initialDrivers);
+  const [newDriver, setNewDriver] = useState<Driver>({
+    driverCode: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    NIC: '',
+    address: '',
+    dateOfBirth: '',
+    joinDate: '',
+    driverLicenseInfo: {
+      licenseType: '',
+      expirationDate: '',
+    },
+  });
+  const [editingDriver, setEditingDriver] = useState<Driver | null>(null);
 
-  // Fetch drivers from the API when component mounts
-  useEffect(() => {
-    const fetchDrivers = async () => {
-      try {
-        const response = await axios.get<Driver[]>('http://localhost:5000/api/drivers');
-        setDrivers(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch drivers');
-        setLoading(false);
-      }
-    };
-
-    fetchDrivers();
-  }, []);
+  const handleAddDriver = () => {
+    setDrivers([...drivers, newDriver]);
+    resetForm();
+  };
 
   const handleEditDriver = (driver: Driver) => {
-    setSelectedDriver(driver); // Set the driver to be edited
-    setIsModalOpen(true); // Open the modal
+    setEditingDriver(driver);
+    setNewDriver(driver);
   };
 
-  const handleUpdateDriver = async (updatedDriver: Driver) => {
-    try {
-      const response = await axios.put<{ driver: Driver }>(`http://localhost:5000/api/drivers/${updatedDriver.driverCode}`, updatedDriver);
-      const updatedData = response.data.driver;
-      setDrivers(drivers.map(driver => (driver.driverCode === updatedDriver.driverCode ? updatedData : driver)));
-      setIsModalOpen(false); // Close the modal
-      setSelectedDriver(null); // Reset the selected driver
-    } catch (err) {
-      console.error('Error updating driver:', err);
+  const handleUpdateDriver = () => {
+    if (editingDriver) {
+      const updatedDrivers = drivers.map((driver) =>
+        driver.driverCode === editingDriver.driverCode ? newDriver : driver
+      );
+      setDrivers(updatedDrivers);
+      setEditingDriver(null);
+      resetForm();
     }
   };
 
-  const handleRemoveDriver = async (driverCode: string) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/drivers/${driverCode}`);
-      setDrivers(drivers.filter((driver) => driver.driverCode !== driverCode));
-    } catch (err) {
-      console.error('Error removing driver:', err);
-    }
+  const handleRemoveDriver = (driverCode: string) => {
+    setDrivers(drivers.filter((driver) => driver.driverCode !== driverCode));
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  const resetForm = () => {
+    setNewDriver({
+      driverCode: '',
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      NIC: '',
+      address: '',
+      dateOfBirth: '',
+      joinDate: '',
+      driverLicenseInfo: {
+        licenseType: '',
+        expirationDate: '',
+      },
+    });
+  };
 
   return (
     <div className="driver-container">
-      <DriverTable
-        drivers={drivers}
-        handleEditDriver={handleEditDriver}
-        handleRemoveDriver={handleRemoveDriver}
+      <h1 className="driver-title">Manage Drivers</h1>
+      <DriverTable drivers={drivers} handleEditDriver={handleEditDriver} handleRemoveDriver={handleRemoveDriver} />
+      <DriverForm
+        newDriver={newDriver}
+        setNewDriver={setNewDriver}
+        handleAddDriver={handleAddDriver}
+        editingDriver={editingDriver}
+        handleUpdateDriver={handleUpdateDriver}
       />
-      {isModalOpen && selectedDriver && (
-        <EditDriverModal
-          driver={selectedDriver}
-          onSave={handleUpdateDriver}
-          onClose={() => setIsModalOpen(false)} // Close modal on cancel
-        />
-      )}
     </div>
   );
 };

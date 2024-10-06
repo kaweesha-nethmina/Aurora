@@ -1,0 +1,77 @@
+/* General styles for the report container */
+.report-container {
+    padding: 20px;
+    margin-left: 450px !important;
+    max-width: 800px; /* Set a maximum width for the report */
+    margin-top: 100px;/* Center the container */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  /* Header styles */
+  .report-header {
+    text-align: center;
+    margin-bottom: 20px; /* Space below header */
+  }
+  
+  .report-header h1 {
+    font-size: 2em; /* Main title font size */
+    color: #333; /* Dark color for the main title */
+  }
+  
+  .report-header h2 {
+    font-size: 1.5em; /* Subtitle font size */
+    color: #555; /* Slightly lighter color for the subtitle */
+  }
+  
+  /* Styles for report sections */
+  .report-section {
+    margin-bottom: 30px; /* Space below sections */
+  }
+  
+  .report-section h3 {
+    font-size: 1.5em; /* Subsection font size */
+    color: #555; /* Slightly lighter color for subsection headings */
+    margin-bottom: 10px; /* Space below subsection headings */
+  }
+  
+  /* Styles for tables */
+  .report-table {
+    width: 100%; /* Full width for tables */
+    border-collapse: collapse; /* Remove spacing between cells */
+    margin-bottom: 20px; /* Space below tables */
+  }
+  
+  .report-table th, .report-table td {
+    padding: 10px; /* Padding for cells */
+    border: 1px solid #ddd; /* Light border for cells */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .report-table th {
+    background-color: #f2f2f2; /* Light gray background for headers */
+    color: #333; /* Dark color for header text */
+  }
+  
+  /* Footer styles */
+  .report-footer {
+    text-align: center; /* Center align footer text */
+    margin-top: 20px; /* Space above footer */
+    color: #777; /* Gray color for footer text */
+  }
+  
+  /* Optional: Add styles for loading and error states */
+  .loading, .error {
+    text-align: center; /* Center align loading/error text */
+    font-size: 1.2em; /* Larger font size for loading/error text */
+  }
+  
+  .loading {
+    color: #007bff; /* Blue color for loading text */
+  }
+  
+  .error {
+    color: red; /* Red color for error text */
+  }
+  

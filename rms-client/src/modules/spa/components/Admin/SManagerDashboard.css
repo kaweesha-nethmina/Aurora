@@ -1,0 +1,25 @@
+.dashboard-layoutS {
+    
+    height: 100vh;
+    
+    
+  }
+  
+  .dashboard-contentS {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .dashboard-containerS {
+    flex-grow: 1;
+    padding: 1rem;
+    background-color: #f4f4f4;
+    background-image: url("../../images/ManagerDashboardpage.jpg") ;
+    height: 100vh;
+    background-size: cover;
+    width: 1530px;
+    overflow-x: hidden;
+  }
+  

@@ -11,9 +11,9 @@ const SManagerHeader: React.FC<SManagerHeaderProps> = ({ activeTab }) => {
     return (
         <header className="header">
             <nav className="nav-links">
-                <Link to="/SManager/Sappointments" className={activeTab === 'appointments' ? 'active' : ''}>Appointments</Link>
-                <Link to="#" className={activeTab === 'add-customer' ? 'active' : ''}>Add Customer</Link>
-                <Link to="#" className={activeTab === 'inventory' ? 'active' : ''}>Inventory</Link>
+                <Link to="/SManager/Sappointments" className={activeTab === 'appointments' ? 'active' : ''}>Medical</Link>
+                <Link to="/SManager/spaTable" className={activeTab === 'add-customer' ? 'active' : ''}>Spa</Link>
+                <Link to="/SManager/report" className={activeTab === 'inventory' ? 'active' : ''}>Report</Link>
             </nav>
             <div className="user-icon">
                 <img src={userIcon} alt="User Icon" />

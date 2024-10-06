@@ -7,16 +7,18 @@
   }
   
   .image-section {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .page-image {
-    object-fit: cover;
-    height: 16rem;
-    width: 75%;
-    border-radius: 1rem;
-  }
+  flex: 1;
+  text-align: center;
+}
+
+.page-image {
+  object-fit: cover; /* This ensures the image covers the area */
+  height: 23rem;     /* Fixed height */
+  max-width: 100%;   /* Prevents the image from exceeding its container width */
+  max-height: 100%;  /* Prevents the image from exceeding its container height */
+  border-radius: 1rem;
+}
+
   
   .description-section {
     flex: 1;

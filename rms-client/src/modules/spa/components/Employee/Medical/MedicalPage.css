@@ -11,11 +11,13 @@
   }
   
   .page-image {
-    object-fit: cover;
-    height: 16rem;
-    width: 75%;
+    object-fit: cover; /* This ensures the image covers the area */
+    height: 24rem;     /* Fixed height */
+    max-width: 100%;   /* Prevents the image from exceeding its container width */
+    max-height: 100%;  /* Prevents the image from exceeding its container height */
     border-radius: 1rem;
   }
+  
   
   .description-section {
     flex: 1;

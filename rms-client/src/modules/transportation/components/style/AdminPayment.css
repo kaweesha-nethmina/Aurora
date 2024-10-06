@@ -1,0 +1,72 @@
+/* Container for AdminPayment */
+.admin-payment-container {
+    max-width: 100rem; /* Increase width for more space */
+    margin: auto;
+    padding: 3rem 4rem;
+  }
+  
+  /* Heading Style */
+  .admin-payment-heading {
+    font-size: 2.8rem; /* Larger heading */
+    font-weight: bold;
+    color: #2D3748;
+    margin-bottom: 3rem;
+  }
+  
+  /* Grid for payment cards */
+  .admin-payment-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Single column for mobile */
+    gap: 3rem; /* Increased gap between cards */
+  }
+  
+  @media (min-width: 640px) {
+    .admin-payment-grid {
+      grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .admin-payment-grid {
+      grid-template-columns: repeat(3, 1fr); /* Three columns for larger screens */
+    }
+  }
+  
+  /* Common Payment Card Styling */
+  .admin-payment-card {
+    color: white; /* White text */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+    border-radius: 1.5rem; /* Slightly rounder corners */
+    padding: 3rem; /* Larger padding for bigger cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.3rem; /* Slightly larger text for better readability */
+    background: linear-gradient(135deg, #4a90e2 0%, #0072ff 100%); /* Matte blue gradient */
+  }
+  
+  /* Hover Effect */
+  .admin-payment-card:hover {
+    transform: translateY(-10px); /* Increased hover effect */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* Stronger hover shadow */
+  }
+  
+  /* Card Title */
+  .admin-payment-card-title {
+    font-size: 1.7rem; /* Larger title */
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+  }
+  
+  /* Card Details */
+  .admin-payment-card-detail {
+    font-size: 1.2rem; /* Increased detail font size */
+    margin-top: 1rem;
+  }
+  
+  /* Responsive card adjustments for mobile */
+  @media (max-width: 640px) {
+    .admin-payment-card {
+      padding: 2rem; /* Adjust padding for smaller screens */
+      font-size: 1.1rem;
+    }
+  }
+  

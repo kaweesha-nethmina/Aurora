@@ -4,3 +4,12 @@
 
 }
 
+.page-containerSP{
+    background-image:linear-gradient(rgba(19, 19, 19, 0.8), rgba(50, 28, 0, 0.8)), url('../../../images//ManagerDashboardpage.jpg');
+    background-size: cover;
+    height: 100vh;
+    margin-top: 75px;
+    position: fixed;
+    overflow-y: scroll;
+
+}

@@ -3,6 +3,7 @@ import './spaPage.css';
 import Header from '../../../../core/components/Header';
 import Navbar from '../nav/SNavbar';
 import { Link } from 'react-router-dom';
+import SpaImg from '../../../images/SpapagenNew.jpg';
 
 const SpaPage: React.FC = () => {
   const [isBooked, setIsBooked] = useState(false);
@@ -13,11 +14,11 @@ const SpaPage: React.FC = () => {
 
   return (
     <div className="page-containerS">
-      <Header activeTab={''} />
+      <Header activeTab={'spa-wellness'} />
       <Navbar />
       <div className="image-section">
         <img
-          src="https://picsum.photos/200/301"
+          src={SpaImg}
           alt="Spa"
           className="page-image"
         />

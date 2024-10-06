@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './AdminAppointment.css';
+import axios from 'axios'; // Import axios for making HTTP requests
+import './AdminAppointment.css'; // Import your CSS file for styling
 
 interface Appointment {
   _id: string;
@@ -9,6 +10,7 @@ interface Appointment {
   phone: string;
   date: string;
   time: string;
+  message?: string; // Optional field
   status: 'Pending' | 'Approved' | 'Rejected';
 }
 
@@ -16,20 +18,17 @@ const AdminAppointment: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [loadingStatus, setLoadingStatus] = useState<string | null>(null); // For tracking loading status of individual appointments
+  const [searchQuery, setSearchQuery] = useState<string>(''); // State for search query
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/appointments');
-        if (!response.ok) throw new Error('Failed to fetch appointments');
-        const data = await response.json();
-        setAppointments(data);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError('An unknown error occurred');
-        }
+        const response = await axios.get<Appointment[]>('http://localhost:5000/api/appointments');
+        setAppointments(response.data);
+      } catch (error) {
+        setError('Failed to fetch appointments. Please try again.');
+        console.error('Error fetching appointments:', error);
       } finally {
         setLoading(false);
       }
@@ -38,66 +37,70 @@ const AdminAppointment: React.FC = () => {
     fetchAppointments();
   }, []);
 
-  const handleStatusChange = async (id: string, newStatus: 'Approved' | 'Rejected') => {
+  const updateAppointmentStatus = async (id: string, newStatus: 'Approved' | 'Rejected') => {
     const confirmed = window.confirm(`Are you sure you want to ${newStatus.toLowerCase()} this appointment?`);
     if (!confirmed) return;
 
+    setLoadingStatus(id); // Set loading status for the specific appointment
+
     try {
-      const response = await fetch(`http://localhost:5000/api/appointments/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status: newStatus }),
-      });
-
-      if (!response.ok) {
-        const errorMessage = await response.json();
-        throw new Error(errorMessage.message || 'Failed to update appointment status');
-      }
-
-      const updatedAppointment = await response.json();
-      setAppointments((prev) =>
-        prev.map((appointment) =>
-          appointment._id === updatedAppointment._id ? updatedAppointment : appointment
+      // Make sure to use the correct HTTP method (PUT or PATCH) as per your backend
+      await axios.put(`http://localhost:5000/api/appointments/${id}/status`, { status: newStatus });
+      setAppointments((prevAppointments) =>
+        prevAppointments.map((appointment) =>
+          appointment._id === id ? { ...appointment, status: newStatus } : appointment
         )
       );
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError('Unknown error occurred while updating appointment status');
-      }
+    } catch (error) {
+      console.error('Error updating appointment status:', error);
+      setError('Failed to update appointment status. Please try again.');
+    } finally {
+      setLoadingStatus(null); // Reset loading status after operation
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const deleteAppointment = async (id: string) => {
     const confirmed = window.confirm('Are you sure you want to delete this appointment?');
     if (!confirmed) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/appointments/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) throw new Error('Failed to delete appointment');
-
-      setAppointments((prev) => prev.filter((appointment) => appointment._id !== id));
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError('Failed to delete appointment: An unknown error occurred');
-      }
+      await axios.delete(`http://localhost:5000/api/appointments/${id}`);
+      setAppointments((prevAppointments) => prevAppointments.filter((appointment) => appointment._id !== id));
+    } catch (error) {
+      console.error('Error deleting appointment:', error);
+      setError('Failed to delete appointment. Please try again.');
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  // Filter appointments based on search query
+  const filteredAppointments = appointments.filter((appointment) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      appointment.doctor.toLowerCase().includes(query) ||
+      appointment.name.toLowerCase().includes(query) ||
+      appointment.email.toLowerCase().includes(query) ||
+      appointment.phone.toLowerCase().includes(query)
+    );
+  });
+
+  if (loading) {
+    return <div>Loading appointments...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="admin-appointment-container">
-      
-      {error && <p className="error-message">{error}</p>}
+      <h3 className='title2'>Medical Appointments</h3>
+      <input
+        type="text"
+        placeholder="Search by doctor, name, email, or phone"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+        className="search-input"
+      />
       <table className="admin-appointment-table">
         <thead>
           <tr>
@@ -112,7 +115,7 @@ const AdminAppointment: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {appointments.map((appointment) => (
+          {filteredAppointments.map((appointment) => (
             <tr key={appointment._id}>
               <td>{appointment.doctor}</td>
               <td>{appointment.name}</td>
@@ -124,11 +127,21 @@ const AdminAppointment: React.FC = () => {
               <td>
                 {appointment.status === 'Pending' && (
                   <>
-                    <button onClick={() => handleStatusChange(appointment._id, 'Approved')}>Approve</button>
-                    <button onClick={() => handleStatusChange(appointment._id, 'Rejected')}>Reject</button>
+                    <button 
+                      onClick={() => updateAppointmentStatus(appointment._id, 'Approved')} 
+                      disabled={loadingStatus === appointment._id} // Disable button while loading
+                    >
+                      {loadingStatus === appointment._id ? 'Approving...' : 'Approve'}
+                    </button>
+                    <button 
+                      onClick={() => updateAppointmentStatus(appointment._id, 'Rejected')} 
+                      disabled={loadingStatus === appointment._id} // Disable button while loading
+                    >
+                      {loadingStatus === appointment._id ? 'Rejecting...' : 'Reject'}
+                    </button>
                   </>
                 )}
-                <button onClick={() => handleDelete(appointment._id)}>Delete</button>
+                <button onClick={() => deleteAppointment(appointment._id)}>Delete</button>
               </td>
             </tr>
           ))}

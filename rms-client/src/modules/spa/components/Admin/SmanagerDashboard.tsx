@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import '../../../employees/EmployeeDashboard.css'; // Shared CSS file
+import './SManagerDashboard.css'; // Shared CSS file
 import SManagerHeader from './SManagerHeader'; // Header for SManager
 import Sidebar from '../../../core/components/Sidebar';
 
@@ -10,9 +10,9 @@ const SManagerDashboard: React.FC = () => {
     // Set the active tab based on the current path
     const getActiveTab = () => {
         const path = location.pathname;
-        if (path === '/SManager/appointments') return 'appointments';
-        if (path === '/SManager/add-customer') return 'add-customer';
-        if (path === '/SManager/inventory') return 'inventory';
+        if (path === '/SManager/Sappointments') return 'appointments';
+        if (path === '/SManager/spaTable') return 'add-customer';
+        if (path === '/SManager/report') return 'inventory';
         return '';
     };
 

@@ -5,9 +5,9 @@ html, body {
     overflow-y: auto;
 }
 .nav{
-    margin-top: -220px;
-    width: 1540px;
-    margin-left: 90px;
+    margin-top: -210px;
+    width: 1640px;
+    margin-left: 220px;
     
 }
 .homepage-container {
@@ -21,8 +21,7 @@ html, body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    
-    width: 1630px;
+    width: 1640px;
     overflow-x: hidden;
     overflow-y: hidden;
     margin-left: -110px;

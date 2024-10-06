@@ -54,8 +54,8 @@ export const createAppointment = async (req: Request, res: Response): Promise<Re
 };
 
 // Update appointment status
-export const updateAppointmentStatus = async (req: Request, res: Response): Promise<Response> => {
-  const { id } = req.params; // Take id from params
+export const updateAppointmentStatus = async (req: Request, res: Response) => {
+  const { id } = req.params;
   const { status } = req.body;
 
   if (!Types.ObjectId.isValid(id)) {
@@ -82,6 +82,8 @@ export const updateAppointmentStatus = async (req: Request, res: Response): Prom
     return res.status(500).json({ message: (error as Error).message });
   }
 };
+
+
 
 // Update appointment details
 export const updateAppointmentDetails = async (req: Request, res: Response): Promise<Response> => {

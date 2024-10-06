@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import './HomePage.css';
 import Header from '../core/components/Header';
-import Navbar from './components/style/TNavbar';
+import Navbar from './components/TNavbar';
+
 
 const HomePage = () => {
   return (

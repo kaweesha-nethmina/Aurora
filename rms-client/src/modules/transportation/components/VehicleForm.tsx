@@ -2,9 +2,11 @@ import React from 'react';
 import './style/adminVehiclePage.css';  // Updated CSS file
 
 interface Vehicle {
-  vehicleType: string;
-  vehicleCode: string;
+  code: string;
+  model: string;
+  number: string;
   seats: number;
+  driver: string;
   available: boolean;
 }
 
@@ -22,19 +24,33 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ newVehicle, setNewVehicle, ha
 
   return (
     <form className="vehicle-form">
-      <div className="vehicle-form-group">
       <h1 className="admin-vehicle-title">Add Vehicles</h1>
-        <label>Vehicle Type</label>
-        <input type="text" name="vehicleType" value={newVehicle.vehicleType} onChange={handleNewVehicleChange} />
-      </div>
+
       <div className="vehicle-form-group">
-        <label>Vehicle Code</label>
-        <input type="text" name="vehicleCode" value={newVehicle.vehicleCode} onChange={handleNewVehicleChange} />
+        <label>Code</label>
+        <input type="text" name="code" value={newVehicle.code} onChange={handleNewVehicleChange} />
       </div>
+      
+      <div className="vehicle-form-group">
+        <label>Model</label>
+        <input type="text" name="model" value={newVehicle.model} onChange={handleNewVehicleChange} />
+      </div>
+
+      <div className="vehicle-form-group">
+        <label>Number</label>
+        <input type="text" name="number" value={newVehicle.number} onChange={handleNewVehicleChange} />
+      </div>
+
       <div className="vehicle-form-group">
         <label>Seats</label>
         <input type="number" name="seats" value={newVehicle.seats} onChange={handleNewVehicleChange} />
       </div>
+
+      <div className="vehicle-form-group">
+        <label>Driver</label>
+        <input type="text" name="driver" value={newVehicle.driver} onChange={handleNewVehicleChange} />
+      </div>
+
       <button type="button" className="vehicle-btn-add" onClick={handleAdd}>Add Vehicle</button>
     </form>
   );

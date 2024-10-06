@@ -24,7 +24,9 @@ const AppointmentTable: React.FC<AppointmentTableProps> = ({ appointments }) => 
 
   return (
     <>
+    <h3 className='tilteME'>Medical Appointments</h3>
       <table className='appointment-table'>
+        
         <thead>
           <tr>
             <th>Doctor</th>
