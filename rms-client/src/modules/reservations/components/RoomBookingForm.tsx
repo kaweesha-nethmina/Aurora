@@ -31,7 +31,7 @@ const RoomBookingForm: React.FC = () => {
   const queryParams = new URLSearchParams(location.search);
   const initialRoomType = queryParams.get('roomType') || ''; // Retrieve roomType from URL
 
-  const [roomType, setRoomType] = useState(initialRoomType);
+  const [roomType] = useState(initialRoomType);
   const [arrivalDate, setArrivalDate] = useState('');
   const [departureDate, setDepartureDate] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
@@ -41,7 +41,7 @@ const RoomBookingForm: React.FC = () => {
   const [cvv, setCvv] = useState('');
   const [email, setEmail] = useState(''); // State for email
   const [bookingSuccess, setBookingSuccess] = useState(false);
-  const [userProfile, setUserProfile] = useState<UserProfile | null>(null); // State for user profile
+  const [, setUserProfile] = useState<UserProfile | null>(null); // State for user profile
 
   useEffect(() => {
     const userData = localStorage.getItem('userData');

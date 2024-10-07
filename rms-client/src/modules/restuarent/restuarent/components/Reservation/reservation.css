@@ -6,6 +6,15 @@
     width: 1530px;
     overflow-x: auto;
 }
+.checkbox-group {
+  margin: 10px 0; /* Add some margin above and below */
+}
+
+.checkbox-group label {
+  display: block; /* Stack checkboxes vertically */
+  margin: 5px 0; /* Add some space between checkboxes */
+}
+
 .reservation-form {
     display: flex;
     flex-direction: column;
@@ -51,6 +60,12 @@
     margin-top: 50px;
     margin-left: 450px;
 }
+.input-select.foodcode {
+  width: 100%;
+  height: 100px; /* Adjust height based on your needs */
+  padding: 5px;
+}
+
 .check-button {
     padding: 10px;
     background-color: #007BFF;
@@ -177,4 +192,13 @@ height: 40px;
     padding: 20px;
     margin-left: 500px;
 
+}
+
+.view-menu-buttonR{
+    background-color: #b37400;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.view-menu-buttonR:hover{
+    background-color: #d38a02;
 }

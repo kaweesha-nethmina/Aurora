@@ -26,9 +26,9 @@ const BookingForm = () => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [showWaitingTable, setShowWaitingTable] = useState(false);
-  const [showCheckboxes, setShowCheckboxes] = useState(false);
-  const [selectedBookings, setSelectedBookings] = useState<number[]>([]);
+  const [, setShowWaitingTable] = useState(false);
+  const [, setShowCheckboxes] = useState(false);
+  const [, setSelectedBookings] = useState<number[]>([]);
 
   // Fetch user data from localStorage
   useEffect(() => {
@@ -92,34 +92,8 @@ const BookingForm = () => {
     setSelectedBookings([]); // Clear selection
   };
 
-  const handleCancelAllBookings = () => {
-    if (bookings.length > 1) {
-      setShowCheckboxes(!showCheckboxes);
-    } else if (bookings.length === 1) {
-      setBookings([]);
-      setShowWaitingTable(false); // Hide the table when all bookings are cancelled
-    }
-  };
 
-  const handleCancelSelected = () => {
-    const filteredBookings = bookings.filter(
-      (_, index) => !selectedBookings.includes(index)
-    );
-    setBookings(filteredBookings);
-    if (filteredBookings.length === 0) {
-      setShowWaitingTable(false); // Hide the table if no bookings left
-    }
-    setShowCheckboxes(false); // Hide checkboxes
-    setSelectedBookings([]); // Clear selection
-  };
 
-  const handleCheckboxChange = (index: number) => {
-    setSelectedBookings((prevSelected) =>
-      prevSelected.includes(index)
-        ? prevSelected.filter((i) => i !== index) // Remove if already selected
-        : [...prevSelected, index] // Add if not selected
-    );
-  };
 
   return (
     <div className="booking-container">
@@ -238,62 +212,7 @@ const BookingForm = () => {
         </form>
       </div>
 
-      {/* Booking Table */}
-      {showWaitingTable && (
-        <div className="booking-table-container">
-          <h2>Your Bookings</h2>
-          <table className="booking-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Pickup</th>
-                <th>Dropoff</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Vehicle</th>
-                <th>Status</th>
-                {showCheckboxes && <th>Select</th>}
-              </tr>
-            </thead>
-            <tbody>
-              {bookings.map((booking, index) => (
-                <tr key={index}>
-                  <td>{booking.name}</td>
-                  <td>{booking.email}</td>
-                  <td>{booking.phone}</td>
-                  <td>{booking.pickup}</td>
-                  <td>{booking.dropoff}</td>
-                  <td>{booking.date}</td>
-                  <td>{booking.time}</td>
-                  <td>{booking.vehicle}</td>
-                  <td className={`booking-status-${booking.status}`}>{booking.status}</td>
-                  {showCheckboxes && (
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={selectedBookings.includes(index)}
-                        onChange={() => handleCheckboxChange(index)}
-                      />
-                    </td>
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          <button className="booking-cancel-btn" onClick={handleCancelAllBookings}>
-            Cancel Booking
-          </button>
-
-          {showCheckboxes && selectedBookings.length > 0 && (
-            <button className="booking-confirm-cancel-btn" onClick={handleCancelSelected}>
-              Confirm Selected
-            </button>
-          )}
-        </div>
-      )}
+      
     </div>
   );
 };

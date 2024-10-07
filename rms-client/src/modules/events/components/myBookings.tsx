@@ -132,6 +132,7 @@ const MyBookings: React.FC = () => {
         <Navbar />
       
       
+      <div className='conE'>
       <h3 className="custom-bookings-title">Custom Event Bookings</h3>
       <table className="custom-bookings-table">
         <thead>
@@ -247,6 +248,7 @@ const MyBookings: React.FC = () => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };
