@@ -31,6 +31,7 @@ const RoomReservationTable = () => {
                         <th>Check-out Date</th>
                         <th>Special Requests</th>
                         <th>Payment Method</th>
+                        <th>Email</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -51,6 +52,7 @@ const RoomReservationTable = () => {
                                 <td>{formatDate(reservation.departureDate)}</td> {/* Format the departure date */}
                                 <td>{reservation.specialRequests}</td>
                                 <td>{reservation.paymentMethod}</td>
+                                <td>{reservation.email}</td>
                                 <td>{reservation.status}</td>
                                 <td>
                                     {reservation.status === 'Pending' && (

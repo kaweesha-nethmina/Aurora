@@ -66,8 +66,8 @@ const ReservationDetailsPage: React.FC = () => {
             <p><strong>Status:</strong> Pending...</p>
 
             <div className="action-buttonsR">
-              <Link to="/menu">
-                <button onClick={handleCancel} className="cancel-button2">Cancel</button>
+              <Link to="/reservation-mybooking">
+                <button  className="cancel-button2">Cancel</button>
               </Link>
               <button onClick={handleConfirm} className="confirm-button2">Reserve Now</button>
             </div>
