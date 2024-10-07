@@ -36,16 +36,16 @@ const MenuHomePage = () => {
             <h2 className="card-title">Menu</h2>
             <p className="card-description">Our menu features a wide variety of dishes, from classic favorites to innovative creations.</p>
           </div></Link> 
-          <div className="card">
+          <Link to="/aboutus"><div className="card">
             <img src="https://i.pinimg.com/564x/2d/d4/12/2dd4129c2ed74f4aff768baf81c82871.jpg" alt="About Us" className="card-image" />
             <h2 className="card-title">About Us</h2>
             <p className="card-description">Our restaurant is dedicated to providing a warm and welcoming atmosphere for all our guests.</p>
-          </div>
-          <div className="card">
+          </div></Link>
+          <Link to="/drinks"><div className="card">
             <img src="https://i.pinimg.com/736x/d9/87/0e/d9870e364c4853ade88cd8091b7c0b9e.jpg" alt="Bar" className="card-image" />
             <h2 className="card-title">Bar</h2>
             <p className="card-description">Our bar features a wide selection of craft beers, wines, and cocktails, perfect for any occasion.</p>
-          </div>
+          </div></Link>
         </div>
       </div>
     </div>

@@ -93,15 +93,7 @@ const RoomTable: React.FC = () => {
                 onChange={handleInputChange}
               />
             </label>
-            <label>
-              Rating:
-              <input
-                type="number"
-                name="rating"
-                value={editingRoom.rating}
-                onChange={handleInputChange}
-              />
-            </label>
+            
             <label>
               Description:
               <input

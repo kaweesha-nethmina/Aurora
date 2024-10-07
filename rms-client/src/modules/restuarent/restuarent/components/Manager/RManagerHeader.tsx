@@ -11,7 +11,7 @@ interface RManagerHeaderProps {
     return (
       <header className="header">
         <nav className="nav-links">
-          <Link to="/Rmanager/admincancel" className={activeTab === 'admincancel' ? 'active' : ''}>Admin Cancel</Link>
+          <Link to="/Rmanager/admincancel" className={activeTab === 'admincancel' ? 'active' : ''}>Notify</Link>
           <Link to="/Rmanager/editmenu" className={activeTab === 'editmenu' ? 'active' : ''}>Edit Menu</Link>
           <Link to="/Rmanager/addmenu" className={activeTab === 'addmenu' ? 'active' : ''}>Add Menu</Link>
           <Link to="/Rmanager/tablereserve" className={activeTab === 'tablereserve' ? 'active' : ''}>Table Reserve</Link>

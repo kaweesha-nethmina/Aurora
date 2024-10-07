@@ -1,6 +1,5 @@
 // Path: restaurant/components/SearchFilter/SearchFilter.tsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from React Router
 import './searchFilter.css';
 
 interface SearchFilterProps {
@@ -10,18 +9,8 @@ interface SearchFilterProps {
   setSearchTerm: (term: string) => void;
 }
 
-const SearchFilter: React.FC<SearchFilterProps> = ({ category, setCategory, searchTerm, setSearchTerm }) => {
-  const navigate = useNavigate(); // Initialize useNavigate
+const SearchFilter: React.FC<SearchFilterProps> = ({ searchTerm, setSearchTerm }) => {
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedCategory = e.target.value;
-    setCategory(selectedCategory);
-
-    // Navigate to /drinks if Drinks is selected
-    if (selectedCategory === 'Drinks') {
-      navigate('/drinks');
-    }
-  };
 
   return (
     <div className="search-filter">
@@ -32,7 +21,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ category, setCategory, sear
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-input2"
       />
-      <select
+      {/* <select
         value={category}
         onChange={handleCategoryChange}  // Use the handler function
         className="category-dropdown"
@@ -42,7 +31,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ category, setCategory, sear
         <option value="Main Course">Main Course</option>
         <option value="Drinks">Drinks</option>
         <option value="Desserts">Desserts</option>
-      </select>
+      </select> */}
     </div>
   );
 };

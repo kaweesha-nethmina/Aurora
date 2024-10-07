@@ -67,9 +67,32 @@ const AdminCancelBookingTable: React.FC = () => {
     }
   };
 
+  // Function to delete a booking
+  const handleDelete = async (id: string) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this booking?');
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/table-reservations/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete booking');
+      }
+
+      // Update the bookings list after successful deletion
+      setBookings((prevBookings) => prevBookings.filter((booking) => booking._id !== id));
+      alert('Booking deleted successfully');
+    } catch (error) {
+      console.error('Error deleting booking:', error);
+      alert('Failed to delete booking. Please try again.');
+    }
+  };
+
   return (
     <div className="container">
-      <h1 className="heading">Cancel Booking Table</h1>
+      <h1 className="heading">Notify Booking Status</h1>
       <table className="booking-table">
         <thead>
           <tr>
@@ -94,6 +117,12 @@ const AdminCancelBookingTable: React.FC = () => {
                 >
                   Notify
                 </button>
+                <button
+                  className="delete-button1"
+                  onClick={() => handleDelete(booking._id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
@@ -109,12 +138,12 @@ const AdminCancelBookingTable: React.FC = () => {
             <label htmlFor="reason">Reservation Status:</label>
             <textarea
               id="reason"
-              className='txt'
+              className="txt"
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               rows={4}
             />
-            <button className='sendbtn' onClick={sendNotification}>Send Notification</button>
+            <button className="sendbtn" onClick={sendNotification}>Send Notification</button>
           </div>
         </div>
       )}

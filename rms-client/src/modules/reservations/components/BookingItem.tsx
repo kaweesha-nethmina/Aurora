@@ -28,12 +28,17 @@ const BookingItem: React.FC<BookingItemProps> = ({ booking, onCancel }) => {
     }
   };
 
+  // Helper function to format the date
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toISOString().split('T')[0]; // Returns only the YYYY-MM-DD part
+  };
+
   return (
     <div className="booking-item">
       <h3 className="title">Booking #{booking._id}</h3>
       <p className="detail">Room Type: {booking.roomType}</p>
-      <p className="detail">Check-in Date: {booking.arrivalDate}</p>
-      <p className="detail">Check-out Date: {booking.departureDate}</p>
+      <p className="detail">Check-in Date: {formatDate(booking.arrivalDate)}</p>
+      <p className="detail">Check-out Date: {formatDate(booking.departureDate)}</p>
       <p className="detail">Special Requests: {booking.specialRequests}</p>
       <p className="detail">Payment Method: {booking.paymentMethod}</p>
       <p className="detail">Status: {booking.status}</p>

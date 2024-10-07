@@ -39,6 +39,7 @@
   border: 1px solid #ccc; /* Example style */
   border-radius: 8px; /* Example style */
   overflow: hidden; /* Example style */
+  padding: 10px;
 }
 
   .room-image {
@@ -70,21 +71,22 @@
     cursor: pointer;
   }
   
-  .details-button {
-    background: #007bff;
+  .details-button12 {
+    background: #ac7e01;
     color: #fff;
   }
   
-  .book-button {
+  .book-button12 {
     background: #28a745;
     color: #fff;
+    margin-left: 10px;
   }
   
-  .details-button:hover {
-    background: #0056b3;
+  .details-button12:hover {
+    background: #b37a00;
   }
   
-  .book-button:hover {
+  .book-button12:hover {
     background: #218838;
   }
 

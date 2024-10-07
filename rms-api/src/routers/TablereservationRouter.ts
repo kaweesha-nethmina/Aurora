@@ -6,6 +6,7 @@ import {
   acceptTableReservation,
   rejectTableReservation,
   getMonthlyReservations,
+  deleteTableReservation, // Import delete method
 } from '../controller/TablereservationController';
 
 const router = express.Router();
@@ -24,6 +25,9 @@ router.put('/:id/accept', acceptTableReservation);
 
 // Route to reject a reservation
 router.put('/:id/reject', rejectTableReservation);
+
+// Route to delete a reservation
+router.delete('/:id', deleteTableReservation); // New delete route
 
 // Route to get monthly reservations
 router.get('/monthly', getMonthlyReservations);

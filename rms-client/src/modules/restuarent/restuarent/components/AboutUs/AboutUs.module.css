@@ -3,6 +3,7 @@
     
     margin: auto;
     width: 1530px;
+    
   }
   
   .title {
@@ -25,8 +26,9 @@
   }
   
   .image {
-    width: 100%;
-    height: auto;
+    width: 1300px;
+    height: 80vh;
+
     border-radius: 8px;
   }
   
@@ -76,8 +78,8 @@
   }
   
   .smallImage {
-    width: 100%;
-    height: auto;
+    width: 70%;
+    height: 50vh;
     border-radius: 8px;
   }
   
@@ -85,4 +87,5 @@
     font-size: 1rem;
     color: #666;
     margin-top: 8px;
+    margin-bottom: 300px;
   }

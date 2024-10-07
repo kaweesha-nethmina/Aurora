@@ -124,3 +124,20 @@ export const getMonthlyReservations = async (req: Request, res: Response) => {
 };
 
 
+// Delete a table reservation
+export const deleteTableReservation = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const deletedReservation = await TableReservationModel.findByIdAndDelete(id);
+
+    if (!deletedReservation) {
+      return res.status(404).json({ message: 'Reservation not found' });
+    }
+
+    return res.status(200).json({ message: 'Reservation deleted successfully', deletedReservation });
+  } catch (error) {
+    console.error('Error deleting reservation:', error);
+    return res.status(500).json({ message: 'Failed to delete reservation', error });
+  }
+};

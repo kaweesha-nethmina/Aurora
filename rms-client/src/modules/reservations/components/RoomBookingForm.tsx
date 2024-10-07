@@ -128,6 +128,7 @@ const RoomBookingForm: React.FC = () => {
     <div className="booking-form-container">
       <Header activeTab={'rooms'} />
       
+      <div className='form_c'>
       <h2 className="booking-form-title">Room Booking Form</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -228,6 +229,7 @@ const RoomBookingForm: React.FC = () => {
           <p className="success-message">Room booked successfully!</p>
         )}
       </form>
+      </div>
     </div>
   );
 };

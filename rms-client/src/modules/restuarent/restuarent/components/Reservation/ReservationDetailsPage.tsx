@@ -9,12 +9,10 @@ const ReservationDetailsPage: React.FC = () => {
   const reservationData = state?.reservationData;
 
   const handleCancel = () => {
-    navigate('/cancelbooking');
+    navigate('/menu');
+    alert('Reservation canceled');
   };
 
-  const handleEdit = () => {
-    navigate('/');
-  };
 
   const handleConfirm = async () => {
     if (!reservationData) {
@@ -52,7 +50,7 @@ const ReservationDetailsPage: React.FC = () => {
   return (
     <div className="reservation-details-page">
       <Header activeTab={'restaurant-bar'} />
-      <div className='resdetails'>
+      <div className='resdetailsf'>
         <h2>Reservation Details</h2>
         {reservationData ? (
           <>
@@ -68,7 +66,7 @@ const ReservationDetailsPage: React.FC = () => {
             <p><strong>Status:</strong> Pending...</p>
 
             <div className="action-buttonsR">
-              <Link to="/cancelbooking">
+              <Link to="/menu">
                 <button onClick={handleCancel} className="cancel-button2">Cancel</button>
               </Link>
               <button onClick={handleConfirm} className="confirm-button2">Reserve Now</button>

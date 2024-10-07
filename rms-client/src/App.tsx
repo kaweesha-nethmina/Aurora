@@ -119,6 +119,7 @@ import AppointmentTableS from './modules/spa/components/Admin/AppointmentTable';
 import SMReport from './modules/spa/components/Admin/SMReport';
 import CustomerBookings from './modules/transportation/components/CustomerBookings';
 import TransportDailyReport from './modules/transportation/components/transportDailyReport';
+import CustomerReservationTable from './modules/restuarent/restuarent/components/CancelTableBookingPage/CustomerReservationTable';
 
 
 
@@ -190,6 +191,7 @@ function App() {
         <Route path="/menupayment" element={<PaymentForm/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/reservation-details" element={<ReservationDetailsPage />} />
+        <Route path="/reservation-mybooking" element={<CustomerReservationTable />} />
 
         <Route path="/Rmanager" element={<RManagerDashboard />}>
           <Route path="admincancel" element={<AdminCancelBookingTable />} />
